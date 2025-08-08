@@ -70,16 +70,9 @@ const KeralaToursSection = () => {
                   <img src={tour.image} alt={tour.title} className="w-full h-full object-cover group-hover:scale-110 transition-smooth duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
-                  {/* Tour Name and Duration Overlay */}
+                  {/* Tour Name Overlay */}
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="font-bold text-lg mb-1">{tour.title}</h3>
-                    <div className="flex items-center gap-4 text-sm">
-                      <span>{tour.duration}</span>
-                      <div className="flex items-center gap-1">
-                        <Users className="h-4 w-4" />
-                        <span>{tour.groupSize}</span>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Hover Button */}

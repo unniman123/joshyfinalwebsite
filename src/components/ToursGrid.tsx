@@ -41,9 +41,6 @@ const ToursGrid = ({
       {tours.map(tour => <Card key={tour.id} className="group hover:shadow-lg transition-shadow duration-300">
           <div className="relative overflow-hidden rounded-t-lg">
             <img src={tour.image} alt={tour.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-            <Badge variant="secondary" className="absolute top-3 left-3 bg-white/90 text-foreground">
-              {tour.category}
-            </Badge>
           </div>
 
           <CardHeader>
@@ -56,16 +53,7 @@ const ToursGrid = ({
           </CardHeader>
 
           <CardContent>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <CalendarDays className="h-4 w-4" />
-                <span>{tour.duration} days</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="h-4 w-4" />
-                <span>{tour.category}</span>
-              </div>
-            </div>
+            {/* Removed duration and category display */}
           </CardContent>
 
           <CardFooter className="pt-0 flex gap-2">
