@@ -1,0 +1,140 @@
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ToursGrid from "@/components/ToursGrid";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import { getAllTours, TourSummary } from "@/lib/api";
+
+const Tours = () => {
+  const [searchParams] = useSearchParams();
+  const [tours, setTours] = useState<TourSummary[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  // Set category from URL parameter
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams]);
+
+  // TODO: Fetch all tours from Supabase and pass to components
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setLoading(true);
+        const toursData = await getAllTours();
+        setTours(toursData);
+      } catch (error) {
+        console.error("Error fetching tours:", error);
+        // TODO: Add proper error handling with toast notifications
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, []);
+
+  // Filter tours based on search query and selected category
+  const filteredTours = tours.filter(tour => {
+    const matchesSearch = tour.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tour.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tour.category.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    const matchesCategory = !selectedCategory || 
+      tour.category.toLowerCase().includes(selectedCategory.replace('-', ' ').toLowerCase());
+    
+    return matchesSearch && matchesCategory;
+  });
+
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="py-12">
+        <div className="container mx-auto px-4 max-w-6xl">
+          {/* Page Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              {selectedCategory ? 
+                `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` : 
+                'Explore Our Tours'
+              }
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {selectedCategory ? 
+                `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
+                'Discover incredible journeys across India and beyond. From serene backwaters to majestic palaces, find your perfect adventure.'
+              }
+            </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto mb-16">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Input
+                type="text"
+                placeholder="Search tours by destination, activity, or keyword..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-12 pr-6 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
+          </div>
+
+          {/* Results Section */}
+          <div className="space-y-8">
+            {/* Results Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <p className="text-muted-foreground text-lg">
+                  {loading ? (
+                    "Loading tours..."
+                  ) : (
+                    `${filteredTours.length} tour${filteredTours.length !== 1 ? 's' : ''} found`
+                  )}
+                </p>
+              </div>
+              
+              {/* Sort Options */}
+              <div className="w-full sm:w-auto">
+                <select className="w-full sm:w-auto text-sm border-2 rounded-lg px-4 py-2 bg-background focus:ring-2 focus:ring-primary/20">
+                  <option value="popular">Sort by: Popular</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="duration">Duration</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Tours Grid */}
+            <ToursGrid tours={filteredTours} loading={loading} />
+
+            {/* Load More Button */}
+            {!loading && filteredTours.length > 0 && (
+              <div className="text-center pt-12">
+                <Button variant="outline" size="lg" className="px-8 py-3">
+                  Load More Tours
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+      <WhatsAppFloat />
+    </div>
+  );
+};
+
+export default Tours;
