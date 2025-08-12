@@ -31,7 +31,7 @@ const Header = () => {
       <div className="bg-gradient-golden px-4 py-2 text-sm font-medium text-primary-foreground">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
-            <span className="font-semibold">KeralaToursGlobal</span>
+            {/* Removed KeralaToursGlobal text */}
           </div>
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-2">
@@ -51,10 +51,10 @@ const Header = () => {
           <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
-            <div className="flex items-center gap-3">
-              <img src="/src/assets/logo-header.png.png" alt="Kerala Tours" className="h-10 w-auto" />
-              <span className="text-lg font-semibold text-foreground">KeralaToursGlobal</span>
-            </div>
+            <Link to="/" className="flex items-center gap-3">
+              <img src="/src/assets/logo-header.png.png" alt="Kerala Tours" className="h-10 w-auto cursor-pointer" />
+              <span className="text-lg font-semibold text-foreground">Kerala Tours Travels & Organic Remedies</span>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
