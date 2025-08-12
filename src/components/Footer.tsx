@@ -34,16 +34,16 @@ const Footer = () => {
     href: "/privacy"
   }];
   return <footer className="bg-blue-500 text-white">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-5">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
           {/* Company Info */}
           
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold mb-2">Quick Links</h3>
+            <ul className="space-y-1">
               {quickLinks.map(link => <li key={link.name}>
                   <Link to={link.href} className="text-white/80 hover:text-golden transition-smooth">
                     {link.name}
@@ -53,9 +53,9 @@ const Footer = () => {
           </div>
 
           {/* Support Links & Social Media */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Support</h3>
-            <ul className="space-y-2">
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold mb-2">Support</h3>
+            <ul className="space-y-1">
               {supportLinks.map(link => (
                 <li key={link.name}>
                   <Link to={link.href} className="text-white/80 hover:text-golden transition-smooth">
@@ -66,9 +66,9 @@ const Footer = () => {
             </ul>
             
             {/* Social Media Icons */}
-            <div className="pt-4">
-              <h4 className="font-medium mb-3">Follow Us</h4>
-              <div className="flex gap-3">
+            <div>
+              <h4 className="text-sm font-medium mb-1">Follow Us</h4>
+              <div className="flex gap-2">
                 <a href="https://www.Facebook.com/GoIntoAllTheWorld.in" target="_blank" rel="noopener noreferrer" 
                    className="w-8 h-8 bg-white/10 hover:bg-golden/20 rounded-full flex items-center justify-center transition-smooth">
                   <Facebook className="h-4 w-4" />
@@ -96,22 +96,22 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
+          <div className="space-y-2">
+            <h3 className="text-sm font-semibold mb-2">Get In Touch</h3>
             
             {/* Contact Details */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-golden flex-shrink-0" />
-                <span className="text-white/80">+91 9539 50 7516, +914712488880.</span>
+                <span className="text-xs text-white/80">+91 9539 50 7516, +914712488880.</span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-golden flex-shrink-0" />
-                <span className="text-white/80">KeralaToursGlobal@gmail.com</span>
+                <span className="text-xs text-white/80">KeralaToursGlobal@gmail.com</span>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-golden flex-shrink-0 mt-1" />
-                <span className="text-white/80">
+                <span className="text-xs text-white/80">
                   Kerala, India
                 </span>
               </div>
@@ -119,14 +119,14 @@ const Footer = () => {
           </div>
         </div>
 
-        <Separator className="bg-white/20 mb-6" />
+        <Separator className="bg-white/20 mb-2" />
 
         {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/80">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80">
           <div>
             © 2024 Kerala Tours Global. All rights reserved.
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             <Link to="/terms" className="hover:text-golden transition-smooth">Terms of Service</Link>
             <Link to="/privacy" className="hover:text-golden transition-smooth">Privacy Policy</Link>
             <Link to="/cookies" className="hover:text-golden transition-smooth">Cookie Policy</Link>

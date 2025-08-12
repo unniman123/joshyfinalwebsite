@@ -72,8 +72,8 @@ const HeroBanner = () => {
       ))}
 
       {/* Content Overlay - Only Button */}
-      <div className="relative z-10 h-full flex items-end justify-end">
-        <div className="container mx-auto px-4 py-8">
+      <div className="relative z-10 h-full flex items-center justify-end">
+        <div className="container mx-auto px-4">
           <div className="flex justify-end">
             <Button 
               variant="default"
