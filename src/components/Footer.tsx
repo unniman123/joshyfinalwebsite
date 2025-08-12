@@ -6,19 +6,19 @@ import { Facebook, Instagram, Twitter, Youtube, Linkedin, Phone, Mail, MapPin, S
 const Footer = () => {
   const quickLinks = [{
     name: "Kerala Tours",
-    href: "/tours/kerala"
+    href: "/tours?category=kerala"
   }, {
     name: "Discover India",
-    href: "/tours/india"
+    href: "/tours?category=discover-india"
   }, {
     name: "Ayurveda",
-    href: "/tours/ayurveda"
+    href: "/tours"
   }, {
     name: "Heritage Tours",
-    href: "/tours/heritage"
+    href: "/tours?category=heritage"
   }, {
     name: "Global Holidays",
-    href: "/tours/global"
+    href: "/tours?category=global"
   }];
   const supportLinks = [{
     name: "Contact Us",
@@ -32,9 +32,6 @@ const Footer = () => {
   }, {
     name: "Privacy Policy",
     href: "/privacy"
-  }, {
-    name: "Cancellation Policy",
-    href: "/cancellation"
   }];
   return <footer className="bg-blue-500 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -98,7 +95,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Info & Newsletter */}
+          {/* Contact Info */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
             
@@ -117,17 +114,6 @@ const Footer = () => {
                 <span className="text-white/80">
                   Kerala, India
                 </span>
-              </div>
-            </div>
-
-            {/* Newsletter Signup */}
-            <div className="pt-4">
-              <h4 className="font-medium mb-2">Subscribe to Our Newsletter</h4>
-              <div className="flex gap-2">
-                <Input type="email" placeholder="Your email" className="bg-white/10 border-white/20 text-white placeholder:text-white/60" />
-                <Button variant="secondary" size="icon">
-                  <Send className="h-4 w-4" />
-                </Button>
               </div>
             </div>
           </div>

@@ -16,6 +16,7 @@ const ContactForm = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     nationality: "",
     contactNumber: "",
     destinationsInterested: "",
@@ -35,7 +36,7 @@ const ContactForm = ({
       // TODO: Wire form submit to submitTourInquiry(tourId, data) API
       await submitTourInquiry(tourId || "default", {
         name: formData.name,
-        email: "", // Not collected in this form variant
+        email: formData.email,
         nationality: formData.nationality,
         contactNumber: formData.contactNumber,
         numberOfDays: formData.numberOfDaysTourNeeded,
@@ -56,6 +57,7 @@ const ContactForm = ({
       // Clear form fields on success
       setFormData({
         name: "",
+        email: "",
         nationality: "",
         contactNumber: "",
         destinationsInterested: "",
@@ -104,21 +106,26 @@ const ContactForm = ({
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="nationality">Nationality *</Label>
-            <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
+            <Label htmlFor="email">Email Address *</Label>
+            <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <Label htmlFor="contactNumber">Contact Number (Whatsapp) *</Label>
-            <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
+            <Label htmlFor="nationality">Nationality *</Label>
+            <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="destinationsInterested">Destinations Interested *</Label>
-            <Input id="destinationsInterested" name="destinationsInterested" value={formData.destinationsInterested} onChange={handleChange} placeholder="e.g., Kerala, Rajasthan" required />
+            <Label htmlFor="contactNumber">Contact Number (Whatsapp) *</Label>
+            <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="destinationsInterested">Destinations Interested *</Label>
+          <Input id="destinationsInterested" name="destinationsInterested" value={formData.destinationsInterested} onChange={handleChange} placeholder="e.g., Kerala, Rajasthan" required />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

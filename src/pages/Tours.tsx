@@ -48,6 +48,11 @@ const Tours = () => {
       tour.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tour.category.toLowerCase().includes(searchQuery.toLowerCase());
     
+    // Skip Ayurveda category if it's selected
+    if (selectedCategory === 'ayurveda') {
+      return false;
+    }
+    
     const matchesCategory = !selectedCategory || 
       tour.category.toLowerCase().includes(selectedCategory.replace('-', ' ').toLowerCase());
     
