@@ -1,30 +1,18 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const WhatsAppFloat = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setIsVisible(scrollTop > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Show tooltip after 3 seconds of page load
+    const timer = setTimeout(() => {
+      setShowTooltip(true);
+    }, 3000);
+    return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    // Show tooltip after 3 seconds of appearing
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setShowTooltip(true);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "919000000000"; // Replace with actual WhatsApp number
@@ -33,7 +21,7 @@ const WhatsAppFloat = () => {
     window.open(whatsappUrl, "_blank");
   };
 
-  if (!isVisible) return null;
+
 
   return (
     <>
@@ -70,7 +58,7 @@ const WhatsAppFloat = () => {
             className="h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-xl transition-smooth animate-pulse"
             size="icon"
           >
-            <MessageCircle className="h-7 w-7 text-white" />
+            <WhatsAppIcon className="h-7 w-7 text-white" />
           </Button>
 
           {/* Ripple Effect */}
