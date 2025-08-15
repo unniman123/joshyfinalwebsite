@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { getContactInfo } from "@/lib/api/contact";
 import ContactInfo from "@/components/ContactInfo";
 import ContactForm from "@/components/ContactForm";
-import GoogleMap from "@/components/GoogleMap";
-import SocialLinks from "@/components/SocialLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 const Contact = () => {
   const [contactInfo, setContactInfo] = useState(null);
@@ -24,39 +23,64 @@ const Contact = () => {
     fetchContactInfo();
   }, []);
 
-  // TODO: Replace with actual loading state
+  // Loading state with proper skeleton
   if (!contactInfo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center space-y-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+            <p className="text-muted-foreground">Loading contact information...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      <main className="container mx-auto px-4 py-8 space-y-12">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Contact Us</h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Get in touch with us to plan your perfect Indian adventure
-          </p>
-        </div>
 
-        <ContactInfo info={contactInfo} />
-        
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold mb-6 text-center">Send us a Message</h2>
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-20">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+              Contact Us
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Get in touch with us to plan your perfect Indian adventure. We're here to help make your travel dreams come true.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information Section */}
+      <section className="py-16 md:py-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <ContactInfo info={contactInfo} />
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-16 md:py-20 bg-muted/30">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Send us a Message
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Have questions about our tours? Need a custom itinerary? We'd love to hear from you.
+            </p>
+          </div>
           <ContactForm />
         </div>
-
-        <div className="space-y-6">
-          <h2 className="text-2xl font-semibold text-center">Find Us</h2>
-          <GoogleMap locations={contactInfo.locations} />
-        </div>
-
-        <SocialLinks links={contactInfo.socialLinks} />
-      </main>
+      </section>
 
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 };
