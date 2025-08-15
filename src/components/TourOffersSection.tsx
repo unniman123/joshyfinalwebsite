@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
+import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
 
 const TourOffersSection = () => {
   const tourOffers = [
@@ -15,7 +16,7 @@ const TourOffersSection = () => {
       id: 2,
       title: "Rajasthan Royal",
       image: heroRajasthanPalace,
-      slug: "rajasthan-royal-heritage"
+      slug: "royal-rajasthan-heritage"
     },
     {
       id: 3,
@@ -25,15 +26,15 @@ const TourOffersSection = () => {
     },
     {
       id: 4,
-      title: "Kerala Beaches",
-      image: keralaTourCard,
-      slug: "kerala-beaches"
+      title: "Golden Triangle",
+      image: goldenTriangleTourCard,
+      slug: "golden-triangle-classic"
     },
     {
       id: 5,
-      title: "Hill Stations",
+      title: "Kerala Tours",
       image: keralaTourCard,
-      slug: "kerala-hill-stations"
+      slug: "kerala-backwaters-explorer"
     }
   ];
 
