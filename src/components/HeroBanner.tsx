@@ -59,9 +59,8 @@ const HeroBanner = () => {
       {bannerImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
         >
           <img
             src={image.src}
@@ -74,8 +73,8 @@ const HeroBanner = () => {
       {/* Content Overlay - Only Button */}
       <div className="relative z-10 h-full flex items-center justify-end">
         <div className="container mx-auto px-4">
-          <div className="flex justify-end">
-            <Button 
+          <div className="flex justify-end pr-8 md:pr-16 lg:pr-20">
+            <Button
               variant="default"
               size="lg"
               className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce"
@@ -111,9 +110,8 @@ const HeroBanner = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-smooth ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
-            }`}
+            className={`w-3 h-3 rounded-full transition-smooth ${index === currentSlide ? "bg-white" : "bg-white/50"
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
