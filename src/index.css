@@ -1,3 +1,6 @@
+/* Custom component styles */
+@import './styles/socialIcons.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,7 +19,8 @@
     --popover-foreground: 30 10% 15%;
 
     /* Golden theme colors */
-    --primary: 45 95% 50%;  /* Golden yellow */
+    --primary: 45 95% 50%;
+    /* Golden yellow */
     --primary-foreground: 30 10% 15%;
 
     --secondary: 45 100% 96%;

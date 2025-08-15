@@ -1,0 +1,352 @@
+/* Social Media Icon Styles */
+/* Branded styling for social media icons in footer */
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  /* Performance optimizations */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.social-icon:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Platform-specific backgrounds */
+.social-icon--facebook {
+  background-color: #1877F2;
+}
+
+.social-icon--instagram {
+  /* Fallback for older browsers */
+  background-color: #E4405F;
+  /* Instagram's official gradient */
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  /* Alternative gradient for better compatibility */
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon--twitter {
+  background-color: #000000;
+}
+
+.social-icon--linkedin {
+  background-color: #0A66C2;
+}
+
+.social-icon--pinterest {
+  background-color: #BD081C;
+}
+
+/* Hover and interaction effects */
+.social-icon:hover {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon:active {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.social-icon:focus {
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+  transform: scale(1.05);
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.social-icon--facebook:hover {
+  background-color: #166FE5;
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.4);
+}
+
+.social-icon--instagram:hover {
+  /* Simplified solid color on hover for better performance */
+  background: #E4405F;
+  box-shadow: 0 4px 12px rgba(228, 64, 95, 0.4);
+  /* Alternative: Enhanced gradient on hover */
+  /* background: linear-gradient(45deg, #f09433 0%, #e6683c 15%, #dc2743 35%, #cc2366 55%, #bc1888 75%, #8a3ab9 100%); */
+}
+
+.social-icon--twitter:hover {
+  background-color: #1DA1F2;
+  box-shadow: 0 4px 12px rgba(29, 161, 242, 0.4);
+}
+
+.social-icon--linkedin:hover {
+  background-color: #004182;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
+}
+
+.social-icon--pinterest:hover {
+  background-color: #9B0000;
+  box-shadow: 0 4px 12px rgba(189, 8, 28, 0.4);
+}
+
+/* Icon styling */
+.social-icon svg {
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  transition: inherit;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .social-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+  }
+
+  .social-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Instagram gradient browser compatibility and performance */
+@supports not (background: linear-gradient(45deg, #f09433, #bc1888)) {
+  .social-icon--instagram {
+    background: #E4405F;
+    /* Fallback for very old browsers */
+  }
+}
+
+/* Performance optimizations for animations */
+.social-icon {
+  will-change: transform, box-shadow;
+}
+
+.social-icon:hover,
+.social-icon:focus,
+.social-icon:active {
+  will-change: auto;
+}
+
+/* GPU acceleration for smooth animations */
+@media (min-width: 768px) {
+  .social-icon {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .social-icon {
+    border: 2px solid #ffffff;
+  }
+
+  .social-icon:hover {
+    border-color: #ffff00;
+  }
+
+  /* Simplify Instagram gradient in high contrast mode */
+  .social-icon--instagram {
+    background: #E4405F !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .social-icon {
+    transition: none;
+  }
+
+  .social-icon:hover {
+    transform: none;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+.social-icon:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  transform: scale(1.05);
+}
+
+/* Platform-specific focus states */
+.social-icon--facebook:focus-visible {
+  outline-color: #1877F2;
+}
+
+.social-icon--instagram:focus-visible {
+  outline-color: #E4405F;
+}
+
+.social-icon--twitter:focus-visible {
+  outline-color: #1DA1F2;
+}
+
+.social-icon--linkedin:focus-visible {
+  outline-color: #0A66C2;
+}
+
+.social-icon--pinterest:focus-visible {
+  outline-color: #BD081C;
+}
+
+/* Container for social icons */
+.social-icons-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 16px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+/* Fallback for browsers that don't support gap */
+@supports not (gap: 16px) {
+  .social-icons-container>* {
+    margin: 0 8px 8px 0;
+  }
+
+  .social-icons-container>*:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons-container {
+    gap: 12px;
+  }
+}
+
+/* Additional accessibility enhancements */
+.social-icon {
+  /* Ensure minimum touch target size on mobile */
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Screen reader support */
+.social-icon .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .social-icon:focus-visible {
+    outline-color: #ffffff;
+  }
+}
+
+/* Print styles */
+@media print {
+  .social-icon {
+    display: none;
+  }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1200px) {
+  .social-icon {
+    width: 52px;
+    height: 52px;
+  }
+
+  .social-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/*
+ Internet Explorer 11 specific fixes */
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+  .social-icon {
+    /* IE11 flexbox fix */
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+
+  .social-icon--instagram {
+    /* IE11 doesn't support gradients well, use solid color */
+    background: #E4405F !important;
+  }
+}
+
+/* Safari specific optimizations */
+@supports (-webkit-appearance: none) {
+  .social-icon {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Performance: Reduce repaints during animations */
+@media (prefers-reduced-motion: no-preference) {
+  .social-icon {
+    contain: layout style paint;
+  }
+}
+
+/* Edge/Chromium specific optimizations */
+@supports (-ms-ime-align: auto) {
+  .social-icon {
+    /* Edge specific optimizations */
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+  }
+}
+
+/* Firefox specific optimizations */
+@-moz-document url-prefix() {
+  .social-icon {
+    /* Firefox specific font rendering */
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
