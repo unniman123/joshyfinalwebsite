@@ -24,7 +24,6 @@ const InquiryForm = ({
     numberOfRooms: "",
     numberOfPeople: "",
     numberOfKids: "",
-    specialComments: "",
     message: ""
   });
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,7 +41,7 @@ const InquiryForm = ({
         dateOfTravel: formData.dateOfTravel,
         hotelCategory: formData.hotelCategory,
         numberOfRooms: formData.numberOfRooms,
-        specialComments: formData.specialComments,
+        specialComments: "", // Removed field, sending empty string for API compatibility
         message: `${formData.message} | People: ${formData.numberOfPeople}, Kids: ${formData.numberOfKids || 'None'}`
       });
 
@@ -64,7 +63,6 @@ const InquiryForm = ({
         numberOfRooms: "",
         numberOfPeople: "",
         numberOfKids: "",
-        specialComments: "",
         message: ""
       });
 
@@ -159,14 +157,11 @@ const InquiryForm = ({
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="specialComments">Special Comments</Label>
-        <Textarea id="specialComments" name="specialComments" value={formData.specialComments} onChange={handleChange} placeholder="Any special requests, dietary requirements, accessibility needs, or other comments..." rows={3} />
-      </div>
+
 
       <div className="space-y-2">
-        <Label htmlFor="message">Message *</Label>
-        <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} required />
+        <Label htmlFor="message">Message</Label>
+        <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} />
       </div>
 
       <Button
