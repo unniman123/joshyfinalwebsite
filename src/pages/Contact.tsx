@@ -43,39 +43,37 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-16 md:py-20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-              Contact Us
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Get in touch with us to plan your perfect Indian adventure. We're here to help make your travel dreams come true.
-            </p>
-          </div>
+      {/* Simplified Hero Section */}
+      <section className="bg-gradient-to-b from-primary/5 to-background py-12 md:py-16">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-center">
+            Contact Us
+          </h1>
         </div>
       </section>
 
-      {/* Contact Information Section */}
+      {/* Two-Column Layout Section */}
       <section className="py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">
-          <ContactInfo info={contactInfo} />
-        </div>
-      </section>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* Left Column: Contact Actions */}
+            <div className="space-y-6">
+              <ContactInfo info={contactInfo} />
+            </div>
 
-      {/* Contact Form Section */}
-      <section className="py-16 md:py-20 bg-muted/30">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Send us a Message
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have questions about our tours? Need a custom itinerary? We'd love to hear from you.
-            </p>
+            {/* Right Column: Contact Form */}
+            <div className="space-y-6">
+              <div className="text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Send us a Message
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Have questions about our tours? Need a custom itinerary? We'd love to hear from you.
+                </p>
+              </div>
+              <ContactForm />
+            </div>
           </div>
-          <ContactForm />
         </div>
       </section>
 

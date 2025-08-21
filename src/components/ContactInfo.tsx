@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 interface ContactInfoProps {
@@ -13,98 +13,83 @@ interface ContactInfoProps {
 }
 
 const ContactInfo = ({ info }: ContactInfoProps) => {
-  const getSocialIcon = (name: string) => {
-    switch (name.toLowerCase()) {
-      case 'facebook':
-        return <Facebook className="w-6 h-6" />;
-      case 'instagram':
-        return <Instagram className="w-6 h-6" />;
-      case 'twitter':
-        return <Twitter className="w-6 h-6" />;
-      case 'youtube':
-        return <Youtube className="w-6 h-6" />;
-      default:
-        return <div className="w-6 h-6 bg-muted rounded" />;
-    }
-  };
-
   return (
-    <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-        Get in Touch
-      </h2>
-      <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-        Ready to start your journey? Contact us through any of these channels and we'll help you plan the perfect trip.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Address */}
-        <div className="group text-center space-y-4 p-6 rounded-xl hover:bg-muted/50 transition-colors">
-          <div className="w-16 h-16 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center mx-auto transition-colors">
-            <MapPin className="w-8 h-8 text-primary" />
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Visit Us</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              {info.address || "123 Travel Street, Tourism District, India"}
-            </p>
+    <div className="space-y-6">
+      {/* Contact Actions arranged vertically */}
+      <div className="space-y-4">
+        {/* Visit Us Button */}
+        <div className="group p-4 md:p-6 rounded-xl border border-border hover:border-primary/20 hover:bg-muted/30 transition-all duration-300">
+          <div className="flex items-center space-x-3 md:space-x-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors">
+              <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-base md:text-lg mb-1">Visit Us</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">
+                {info.address || "123 Travel Street, Tourism District, India"}
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Phone */}
+        {/* Call Us Button */}
         <a
           href={`tel:${info.phone}`}
-          className="group text-center space-y-4 p-6 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer"
+          className="group block p-4 md:p-6 rounded-xl border border-border hover:border-primary/20 hover:bg-muted/30 transition-all duration-300 cursor-pointer"
         >
-          <div className="w-16 h-16 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center mx-auto transition-colors">
-            <Phone className="w-8 h-8 text-primary" />
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Call Us</h3>
-            <p className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
-              {info.phone || "+91 12345 67890"}
-            </p>
+          <div className="flex items-center space-x-3 md:space-x-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors">
+              <Phone className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-base md:text-lg mb-1">Call Us</h3>
+              <p className="text-muted-foreground text-xs md:text-sm group-hover:text-primary transition-colors">
+                {info.phone || "+91 12345 67890"}
+              </p>
+            </div>
           </div>
         </a>
 
-        {/* Email */}
+        {/* Email Us Button */}
         <a
           href={`mailto:${info.email}`}
-          className="group text-center space-y-4 p-6 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer"
+          className="group block p-4 md:p-6 rounded-xl border border-border hover:border-primary/20 hover:bg-muted/30 transition-all duration-300 cursor-pointer"
         >
-          <div className="w-16 h-16 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center mx-auto transition-colors">
-            <Mail className="w-8 h-8 text-primary" />
-          </div>
-          <div>
-            <h3 className="font-semibold text-lg mb-3">Email Us</h3>
-            <p className="text-muted-foreground text-sm group-hover:text-primary transition-colors">
-              {info.email || "info@tourcompany.com"}
-            </p>
+          <div className="flex items-center space-x-3 md:space-x-4">
+            <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 group-hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors">
+              <Mail className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-base md:text-lg mb-1">Email Us</h3>
+              <p className="text-muted-foreground text-xs md:text-sm group-hover:text-primary transition-colors">
+                {info.email || "info@tourcompany.com"}
+              </p>
+            </div>
           </div>
         </a>
 
-        {/* WhatsApp */}
+        {/* WhatsApp Button (conditional) */}
         {info.whatsapp && (
           <a
             href={`https://wa.me/${info.whatsapp.replace(/[^0-9]/g, '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group text-center space-y-4 p-6 rounded-xl hover:bg-muted/50 transition-colors cursor-pointer"
+            className="group block p-4 md:p-6 rounded-xl border border-border hover:border-green-200 hover:bg-green-50 transition-all duration-300 cursor-pointer"
           >
-            <div className="w-16 h-16 bg-green-500/10 group-hover:bg-green-500/20 rounded-full flex items-center justify-center mx-auto transition-colors">
-              <WhatsAppIcon className="w-8 h-8 text-green-600" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-lg mb-3">WhatsApp</h3>
-              <p className="text-muted-foreground text-sm group-hover:text-green-600 transition-colors">
-                {info.whatsapp || "+91 98765 43210"}
-              </p>
+            <div className="flex items-center space-x-3 md:space-x-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 group-hover:bg-green-500/20 rounded-full flex items-center justify-center transition-colors">
+                <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-base md:text-lg mb-1">WhatsApp</h3>
+                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-green-600 transition-colors">
+                  {info.whatsapp || "+91 98765 43210"}
+                </p>
+              </div>
             </div>
           </a>
         )}
       </div>
-
-
     </div>
   );
 };
