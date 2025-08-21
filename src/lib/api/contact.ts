@@ -13,15 +13,15 @@ export interface ContactInfo {
 export async function getContactInfo(): Promise<ContactInfo> {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
   // TODO: Fetch contactInfo via getContactInfo() API
   return {
-    address: "123 Travel Street, Tourism District, New Delhi, India 110001",
-    phone: "+91 11 2345 6789",
-    email: "info@indiantours.com",
-    whatsapp: "+91 98765 43210",
+    address: "Kovalam Beach, Thiruvananthapuram, Kerala, India",
+    phone: "+91 9539 50 7516",
+    email: "KeralaToursGlobal@gmail.com",
+    whatsapp: "+91 9539 50 7516",
     locations: [
-      { lat: 28.6139, lng: 77.2090 }, // New Delhi
+      { lat: 8.4004, lng: 76.9784 }, // Kovalam Beach, Thiruvananthapuram
     ],
     socialLinks: [
       { name: "Facebook", url: "https://facebook.com/indiantours" },
@@ -40,7 +40,7 @@ export async function submitContactInquiry(data: {
 }): Promise<void> {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
   // TODO: Implement actual API call to submit contact inquiry
   console.log("Contact inquiry submitted:", data);
 }

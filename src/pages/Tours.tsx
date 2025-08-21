@@ -47,15 +47,15 @@ const Tours = () => {
     const matchesSearch = tour.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tour.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tour.category.toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     // Skip Ayurveda category if it's selected
     if (selectedCategory === 'ayurveda') {
       return false;
     }
-    
-    const matchesCategory = !selectedCategory || 
+
+    const matchesCategory = !selectedCategory ||
       tour.category.toLowerCase().includes(selectedCategory.replace('-', ' ').toLowerCase());
-    
+
     return matchesSearch && matchesCategory;
   });
 
@@ -63,19 +63,19 @@ const Tours = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="py-12">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Page Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              {selectedCategory ? 
-                `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` : 
+              {selectedCategory ?
+                `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` :
                 'Explore Our Tours'
               }
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              {selectedCategory ? 
+              {selectedCategory ?
                 `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
                 'Discover incredible journeys across India and beyond. From serene backwaters to majestic palaces, find your perfect adventure.'
               }
@@ -108,16 +108,6 @@ const Tours = () => {
                     `${filteredTours.length} tour${filteredTours.length !== 1 ? 's' : ''} found`
                   )}
                 </p>
-              </div>
-              
-              {/* Sort Options */}
-              <div className="w-full sm:w-auto">
-                <select className="w-full sm:w-auto text-sm border-2 rounded-lg px-4 py-2 bg-background focus:ring-2 focus:ring-primary/20">
-                  <option value="popular">Sort by: Popular</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="duration">Duration</option>
-                </select>
               </div>
             </div>
 

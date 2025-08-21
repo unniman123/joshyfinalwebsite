@@ -81,7 +81,7 @@ const Footer = () => {
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 text-golden flex-shrink-0 mt-1" />
               <span className="text-xs text-white/80">
-                Kerala, India
+                Kovalam Beach, Thiruvananthapuram, Kerala, India
               </span>
             </div>
           </div>
