@@ -38,8 +38,8 @@ const TestimonialsSection = () => {
             Discover why travelers from around the world choose Kerala Tours Global for their unforgettable Indian adventures.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <GoogleIcon size={18} />
-            <span>Verified reviews from Google</span>
+           
+            <span></span>
           </div>
         </div>
 

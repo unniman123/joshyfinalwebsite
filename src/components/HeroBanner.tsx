@@ -2,38 +2,38 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import heroKeralBackwaters from "@/assets/hero-kerala-backwaters.jpg";
-import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
-import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
-import alleppeyTourism from "@/assets/alleppey-tourism.jpg";
+import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
+import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
+import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
+import stiltFishing from "@/assets/Stilt Fishing in Sri Lanka.jpg";
 
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const bannerImages = [
     {
-      src: heroKeralBackwaters,
-      alt: "Kerala Backwaters",
-      title: "Discover Kerala's Pristine Backwaters",
-      subtitle: "Experience serenity with traditional houseboats"
+      src: ayurvedaTreatments,
+      alt: "Ayurveda Treatments Kerala",
+      title: "Authentic Ayurveda Treatments",
+      subtitle: "Experience traditional healing therapies in Kerala's serene settings"
     },
     {
-      src: heroRajasthanPalace,
-      alt: "Rajasthan Palace",
-      title: "Explore Magnificent Rajasthan",
-      subtitle: "Journey through royal palaces and desert landscapes"
+      src: ktgAmmachi,
+      alt: "Kerala Traditional Culture",
+      title: "Discover Kerala's Rich Heritage",
+      subtitle: "Immerse yourself in authentic local culture and traditions"
     },
     {
-      src: heroAyurvedaSpa,
-      alt: "Ayurveda Spa",
-      title: "Rejuvenate with Authentic Ayurveda",
-      subtitle: "Ancient healing traditions for modern wellness"
+      src: rameswaramTemple,
+      alt: "Rameswaram Temple",
+      title: "Sacred Temples of South India",
+      subtitle: "Explore ancient temples and spiritual destinations"
     },
     {
-      src: alleppeyTourism,
-      alt: "Alleppey Tourism",
-      title: "Experience Alleppey's Backwater Paradise",
-      subtitle: "Discover the Venice of the East with its serene backwaters and houseboats"
+      src: stiltFishing,
+      alt: "Stilt Fishing in Sri Lanka",
+      title: "Unique Cultural Experiences",
+      subtitle: "Witness traditional fishing methods and coastal life"
     }
   ];
 
