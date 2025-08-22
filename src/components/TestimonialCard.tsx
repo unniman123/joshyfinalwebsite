@@ -1,7 +1,6 @@
 import * as React from "react";
-import { User, Shield } from "lucide-react";
+import { Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { StarRating } from "@/components/ui/star-rating";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { cn } from "@/lib/utils";
@@ -24,16 +23,6 @@ const TestimonialCard = React.forwardRef<
     }
   };
 
-  // Get customer initials for avatar fallback
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map(word => word.charAt(0))
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
   return (
     <Card
       ref={ref}
@@ -47,34 +36,21 @@ const TestimonialCard = React.forwardRef<
       {...props}
     >
       <CardContent className="p-6">
-        {/* Customer Avatar and Info */}
-        <div className="flex items-center gap-4 mb-4">
-          <Avatar className="h-12 w-12 ring-2 ring-golden/20">
-            <AvatarImage
-              src={testimonial.avatar}
-              alt={`${testimonial.customerName} avatar`}
-              className="object-cover"
-            />
-            <AvatarFallback className="bg-golden/10 text-golden font-semibold">
-              {getInitials(testimonial.customerName)}
-            </AvatarFallback>
-          </Avatar>
-
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-foreground truncate">
-                {testimonial.customerName}
-              </h3>
-              {testimonial.verified && (
-                <Shield className="h-4 w-4 text-blue-500 flex-shrink-0" />
-              )}
-            </div>
-            {testimonial.location && (
-              <p className="text-sm text-muted-foreground truncate">
-                {testimonial.location}
-              </p>
+        {/* Customer Info */}
+        <div className="mb-4">
+          <div className="flex items-center gap-2 mb-1">
+            <h3 className="font-semibold text-foreground">
+              {testimonial.customerName}
+            </h3>
+            {testimonial.verified && (
+              <Shield className="h-4 w-4 text-blue-500 flex-shrink-0" />
             )}
           </div>
+          {testimonial.location && (
+            <p className="text-sm text-muted-foreground">
+              {testimonial.location}
+            </p>
+          )}
         </div>
 
         {/* Star Rating */}
@@ -84,10 +60,16 @@ const TestimonialCard = React.forwardRef<
             size="md"
             className="mb-2"
           />
+          <span className="sr-only">
+            Rating: {testimonial.rating} out of 5 stars
+          </span>
         </div>
 
         {/* Review Text */}
-        <blockquote className="text-muted-foreground leading-relaxed mb-4">
+        <blockquote
+          className="text-muted-foreground leading-relaxed mb-4"
+          aria-label={`Customer review: ${testimonial.reviewText}`}
+        >
           "{testimonial.reviewText}"
         </blockquote>
 
