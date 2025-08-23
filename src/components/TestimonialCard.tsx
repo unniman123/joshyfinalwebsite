@@ -1,8 +1,6 @@
 import * as React from "react";
 import { Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { StarRating } from "@/components/ui/star-rating";
-import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { cn } from "@/lib/utils";
 import { TestimonialCardProps } from "@/lib/types/testimonials";
 
@@ -10,18 +8,7 @@ const TestimonialCard = React.forwardRef<
   HTMLDivElement,
   TestimonialCardProps
 >(({ testimonial, className, ...props }, ref) => {
-  // Format the review date for display
-  const formatDate = (dateString: string) => {
-    try {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long'
-      });
-    } catch {
-      return dateString; // Fallback to original string if parsing fails
-    }
-  };
+
 
   return (
     <Card
@@ -53,35 +40,13 @@ const TestimonialCard = React.forwardRef<
           )}
         </div>
 
-        {/* Star Rating */}
-        <div className="mb-3">
-          <StarRating
-            rating={testimonial.rating}
-            size="md"
-            className="mb-2"
-          />
-          <span className="sr-only">
-            Rating: {testimonial.rating} out of 5 stars
-          </span>
-        </div>
-
         {/* Review Text */}
         <blockquote
-          className="text-muted-foreground leading-relaxed mb-3"
+          className="text-muted-foreground leading-relaxed"
           aria-label={`Customer review: ${testimonial.reviewText}`}
         >
           "{testimonial.reviewText}"
         </blockquote>
-
-        {/* Review Source and Date */}
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center">
-
-          </div>
-          <div>
-            {formatDate(testimonial.reviewDate)}
-          </div>
-        </div>
       </CardContent>
     </Card>
   );
