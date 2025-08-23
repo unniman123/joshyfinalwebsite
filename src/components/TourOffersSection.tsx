@@ -128,10 +128,10 @@ const TourOffersSection = () => {
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
 
-        {/* Two-Column Layout: 75% Carousel + 25% Inquiry Form */}
+        {/* Two-Column Layout: 80% Carousel + 20% Inquiry Form */}
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-          {/* Left Column - Tour Carousel (75% on desktop) */}
-          <div className="flex-1 lg:w-[75%]">
+          {/* Left Column - Tour Carousel (80% on desktop) */}
+          <div className="flex-1 lg:w-[80%]">
             <div className="relative px-12">
               {/* Navigation Buttons */}
               <Button
@@ -162,11 +162,11 @@ const TourOffersSection = () => {
                   <Link
                     key={tour.id}
                     to={`/tours/${tour.slug}`}
-                    className="group bg-card border border-border rounded-lg shadow-card hover:shadow-warm focus:shadow-warm focus:ring-2 focus:ring-golden focus:ring-offset-2 transition-[box-shadow,transform] duration-300 overflow-hidden hover:scale-[1.02] focus:scale-[1.02]"
+                    className="group bg-card border border-border rounded-lg shadow-card hover:shadow-warm focus:shadow-warm focus:ring-2 focus:ring-golden focus:ring-offset-2 transition-[box-shadow,transform] duration-300 overflow-hidden hover:scale-[1.02] focus:scale-[1.02] flex flex-col h-full"
                     aria-label={`View details for ${tour.title} tour`}
                   >
                     {/* Image Area */}
-                    <div className="relative aspect-square overflow-hidden">
+                    <div className="relative h-64 lg:h-80 overflow-hidden flex-shrink-0">
                       <img
                         src={tour.image}
                         alt={tour.title}
@@ -183,16 +183,18 @@ const TourOffersSection = () => {
                     </div>
 
                     {/* Information Area */}
-                    <div className="p-3 sm:p-4 space-y-2">
-                      {/* Tour Title */}
-                      <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">
-                        {tour.title}
-                      </h3>
+                    <div className="p-3 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Tour Title */}
+                        <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight mb-2">
+                          {tour.title}
+                        </h3>
 
-                      {/* Description */}
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                        {tour.description}
-                      </p>
+                        {/* Description */}
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                          {tour.description}
+                        </p>
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -213,116 +215,86 @@ const TourOffersSection = () => {
             </div>
           </div>
 
-          {/* Right Column - Inquiry Form (25% on desktop) */}
-          <div className="lg:w-[25%] mt-8 lg:mt-0">
-            {/* Form card with height matching tour cards */}
-            <Card className="shadow-warm h-full flex flex-col form-card-height">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base font-semibold text-foreground flex items-center gap-2">
-                  <User className="h-4 w-4 text-golden" />
+          {/* Right Column - Inquiry Form (20% on desktop) */}
+          <div className="lg:w-[20%] mt-8 lg:mt-0">
+            {/* Compact Form card */}
+            <Card className="shadow-warm w-full">
+              <CardHeader className="pb-2 px-3 pt-3">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
+                  <User className="h-3 w-3 text-golden" />
                   Quick Inquiry
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex-1 flex flex-col px-4">
-                <form onSubmit={handleFormSubmit} className="space-y-2.5 flex-1">
+              <CardContent className="px-3 pb-3">
+                <form onSubmit={handleFormSubmit} className="space-y-1.5">
                   {/* Name Field */}
-                  <div className="space-y-1">
-                    <Label htmlFor="name" className="text-xs font-medium text-muted-foreground">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="name" className="text-[10px] font-medium text-muted-foreground">
                       Name *
                     </Label>
-                    <div className="relative">
-                      <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="pl-7 h-7 text-xs"
-                        required
-                      />
-                    </div>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Your name"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      className="h-6 text-[10px] px-2"
+                      required
+                    />
                   </div>
 
                   {/* Mobile No (WhatsApp) Field */}
-                  <div className="space-y-1">
-                    <Label htmlFor="mobile" className="text-xs font-medium text-muted-foreground">
-                      Mobile No (WhatsApp) *
+                  <div className="space-y-0.5">
+                    <Label htmlFor="mobile" className="text-[10px] font-medium text-muted-foreground">
+                      Mobile *
                     </Label>
-                    <div className="relative">
-                      <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Input
-                        id="mobile"
-                        type="tel"
-                        placeholder="+91 98765 43210"
-                        value={formData.mobileNo}
-                        onChange={(e) => handleInputChange("mobileNo", e.target.value)}
-                        className="pl-7 h-7 text-xs"
-                        required
-                      />
-                    </div>
+                    <Input
+                      id="mobile"
+                      type="tel"
+                      placeholder="+91 98765 43210"
+                      value={formData.mobileNo}
+                      onChange={(e) => handleInputChange("mobileNo", e.target.value)}
+                      className="h-6 text-[10px] px-2"
+                      required
+                    />
                   </div>
 
                   {/* Date Field */}
-                  <div className="space-y-1">
-                    <Label htmlFor="date" className="text-xs font-medium text-muted-foreground">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="date" className="text-[10px] font-medium text-muted-foreground">
                       Travel Date *
                     </Label>
-                    <div className="relative">
-                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Input
-                        id="date"
-                        type="date"
-                        value={formData.date}
-                        onChange={(e) => handleInputChange("date", e.target.value)}
-                        className="pl-7 h-7 text-xs"
-                        required
-                      />
-                    </div>
+                    <Input
+                      id="date"
+                      type="date"
+                      value={formData.date}
+                      onChange={(e) => handleInputChange("date", e.target.value)}
+                      className="h-6 text-[10px] px-2"
+                      required
+                    />
                   </div>
 
                   {/* Destination Field */}
-                  <div className="space-y-1">
-                    <Label htmlFor="destination" className="text-xs font-medium text-muted-foreground">
+                  <div className="space-y-0.5">
+                    <Label htmlFor="destination" className="text-[10px] font-medium text-muted-foreground">
                       Destination *
                     </Label>
-                    <div className="relative">
-                      <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Input
-                        id="destination"
-                        type="text"
-                        placeholder="Kerala, Rajasthan..."
-                        value={formData.destination}
-                        onChange={(e) => handleInputChange("destination", e.target.value)}
-                        className="pl-7 h-7 text-xs"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  {/* Special Comments Field */}
-                  <div className="space-y-1">
-                    <Label htmlFor="comments" className="text-xs font-medium text-muted-foreground">
-                      Special Comments
-                    </Label>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Input
-                        id="comments"
-                        type="text"
-                        placeholder="Special requirements..."
-                        value={formData.specialComments}
-                        onChange={(e) => handleInputChange("specialComments", e.target.value)}
-                        className="pl-7 h-7 text-xs"
-                      />
-                    </div>
+                    <Input
+                      id="destination"
+                      type="text"
+                      placeholder="Kerala, Rajasthan..."
+                      value={formData.destination}
+                      onChange={(e) => handleInputChange("destination", e.target.value)}
+                      className="h-6 text-[10px] px-2"
+                      required
+                    />
                   </div>
 
                   {/* Submit Button */}
-                  <div className="pt-2">
+                  <div className="pt-1">
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-8 text-xs"
+                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-6 text-[10px]"
                     >
                       Submit
                     </Button>
