@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import HeroBanner from "@/components/HeroBanner";
 import TourOffersSection from "@/components/TourOffersSection";
+import PopularDestinationsSection from "@/components/PopularDestinationsSection";
 import AboutUsSection from "@/components/AboutUsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
@@ -12,7 +13,9 @@ const Index = () => {
       <Header />
       <HeroBanner />
       <TourOffersSection />
-      {/* AboutUsSection positioned after tour offers */}
+      {/* Popular Destinations Section */}
+      <PopularDestinationsSection />
+      {/* AboutUsSection positioned after popular destinations */}
       <div id="about">
         <AboutUsSection />
       </div>
