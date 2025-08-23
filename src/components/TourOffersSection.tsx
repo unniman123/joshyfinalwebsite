@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin, MessageSquare
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
@@ -302,19 +301,19 @@ const TourOffersSection = () => {
                   </div>
 
                   {/* Special Comments Field */}
-                  <div className="space-y-1 flex-1">
+                  <div className="space-y-1">
                     <Label htmlFor="comments" className="text-xs font-medium text-muted-foreground">
                       Special Comments
                     </Label>
-                    <div className="relative flex-1">
-                      <MessageSquare className="absolute left-2 top-2 h-2.5 w-2.5 text-muted-foreground" />
-                      <Textarea
+                    <div className="relative">
+                      <MessageSquare className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2.5 w-2.5 text-muted-foreground" />
+                      <Input
                         id="comments"
+                        type="text"
                         placeholder="Special requirements..."
                         value={formData.specialComments}
                         onChange={(e) => handleInputChange("specialComments", e.target.value)}
-                        className="pl-7 text-xs resize-none h-14"
-                        rows={2}
+                        className="pl-7 h-7 text-xs"
                       />
                     </div>
                   </div>
@@ -325,17 +324,10 @@ const TourOffersSection = () => {
                       type="submit"
                       className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-8 text-xs"
                     >
-                      Send Inquiry
+                      Submit
                     </Button>
                   </div>
                 </form>
-
-                {/* Additional Info */}
-                <div className="mt-3 pt-3 border-t border-border">
-                  <p className="text-xs text-muted-foreground text-center leading-tight">
-                    We'll get back to you within 24 hours
-                  </p>
-                </div>
               </CardContent>
             </Card>
           </div>

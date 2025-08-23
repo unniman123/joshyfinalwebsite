@@ -11,21 +11,17 @@ const WhatsAppFloat = () => {
 
   return (
     <>
-      {/* WhatsApp Button */}
+      {/* WhatsApp Icon */}
       <div className="fixed bottom-6 right-6 z-50 animate-scale-up">
         <div className="relative">
-          {/* WhatsApp Button */}
-          <Button
+          {/* WhatsApp Icon - No circular background */}
+          <button
             onClick={handleWhatsAppClick}
-            className="h-14 w-14 rounded-full bg-green-500 hover:bg-green-600 shadow-lg hover:shadow-xl transition-smooth animate-pulse"
-            size="icon"
+            className="p-2 hover:scale-110 transition-transform duration-300 cursor-pointer"
             aria-label="Contact us on WhatsApp"
           >
-            <WhatsAppIcon className="h-7 w-7 text-white" />
-          </Button>
-
-          {/* Ripple Effect */}
-          <div className="absolute inset-0 rounded-full bg-green-500/30 animate-ping"></div>
+            <WhatsAppIcon className="h-12 w-12 text-green-500 hover:text-green-600 transition-colors duration-300 drop-shadow-lg" />
+          </button>
         </div>
       </div>
     </>

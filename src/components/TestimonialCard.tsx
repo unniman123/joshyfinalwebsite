@@ -35,9 +35,9 @@ const TestimonialCard = React.forwardRef<
       )}
       {...props}
     >
-      <CardContent className="p-6">
+      <CardContent className="p-4">
         {/* Customer Info */}
-        <div className="mb-4">
+        <div className="mb-3">
           <div className="flex items-center gap-2 mb-1">
             <h3 className="font-semibold text-foreground">
               {testimonial.customerName}
@@ -54,7 +54,7 @@ const TestimonialCard = React.forwardRef<
         </div>
 
         {/* Star Rating */}
-        <div className="mb-4">
+        <div className="mb-3">
           <StarRating
             rating={testimonial.rating}
             size="md"
@@ -67,7 +67,7 @@ const TestimonialCard = React.forwardRef<
 
         {/* Review Text */}
         <blockquote
-          className="text-muted-foreground leading-relaxed mb-4"
+          className="text-muted-foreground leading-relaxed mb-3"
           aria-label={`Customer review: ${testimonial.reviewText}`}
         >
           "{testimonial.reviewText}"
@@ -75,13 +75,8 @@ const TestimonialCard = React.forwardRef<
 
         {/* Review Source and Date */}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center gap-2">
-            {testimonial.source === 'google' && (
-              <>
-                <GoogleIcon size={16} />
-                <span className="font-medium">Google Review</span>
-              </>
-            )}
+          <div className="flex items-center">
+
           </div>
           <div>
             {formatDate(testimonial.reviewDate)}

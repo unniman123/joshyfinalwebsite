@@ -20,7 +20,7 @@ const AboutUsSection = () => {
           <div className="lg:w-1/2 w-full">
             <div className="animate-fade-in">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                About Us - Namaste
+                Namaste
               </h2>
               
               <div className="w-24 h-1 bg-gradient-golden mb-6"></div>
