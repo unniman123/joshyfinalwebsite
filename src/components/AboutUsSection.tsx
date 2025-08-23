@@ -1,3 +1,5 @@
+import InquiryFormCompact from "@/components/InquiryFormCompact";
+
 const AboutUsSection = () => {
   return (
     <section className="py-16 bg-gradient-warm" id="about">
@@ -6,9 +8,9 @@ const AboutUsSection = () => {
           {/* Image Section - Left Aligned */}
           <div className="lg:w-1/2 w-full">
             <div className="relative overflow-hidden rounded-2xl shadow-xl transform transition-all duration-700 hover:scale-105">
-              <img 
-                src="/src/assets/about-us-image.jpg" 
-                alt="About Us - Travel Experience" 
+              <img
+                src="/src/assets/about-us-image.jpg"
+                alt="About Us - Travel Experience"
                 className="w-full h-auto object-cover"
                 loading="lazy"
               />
@@ -22,16 +24,21 @@ const AboutUsSection = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
                 Namaste
               </h2>
-              
+
               <div className="w-24 h-1 bg-gradient-golden mb-6"></div>
-              
+
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 We are passionate about creating unforgettable travel experiences that showcase the beauty, culture, and heritage of India. Our expert team designs personalized itineraries that cater to your unique preferences and interests.
               </p>
 
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed mb-8">
                 No need of capcha in any of these. entries that is required will be shared by me, do as per your idea must be attractive user friendly, themes mainly, dont use dark colours for the page parts, website loading time should be shorter. also a link that is popping up in the side when we scroll (as an image of WhatsApp if added would be better so once clicked will be able to message us over there.
               </p>
+
+              {/* Inquiry Form positioned below Namaste content */}
+              <div className="flex justify-start">
+                <InquiryFormCompact />
+              </div>
             </div>
           </div>
         </div>

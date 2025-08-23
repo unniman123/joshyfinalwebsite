@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin, MessageSquare } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -67,17 +64,10 @@ const TourOffersSection = () => {
 
   // Carousel state management
   const [currentIndex, setCurrentIndex] = useState(0);
-  const toursPerPage = 3;
+  const toursPerPage = 5;
   const totalPages = Math.ceil(tourOffers.length / toursPerPage);
 
-  // Inquiry form state
-  const [formData, setFormData] = useState({
-    name: "",
-    mobileNo: "",
-    date: "",
-    destination: "",
-    specialComments: ""
-  });
+
 
   // Carousel navigation functions
   const goToNext = () => {
@@ -94,28 +84,7 @@ const TourOffersSection = () => {
     return tourOffers.slice(startIndex, startIndex + toursPerPage);
   };
 
-  // Form submission handler
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log("Form submitted:", formData);
-    // Reset form after submission
-    setFormData({
-      name: "",
-      mobileNo: "",
-      date: "",
-      destination: "",
-      specialComments: ""
-    });
-  };
 
-  // Form input handler
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
 
   return (
     <section className="py-12 bg-background">
@@ -128,45 +97,45 @@ const TourOffersSection = () => {
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
 
-        {/* Two-Column Layout: 80% Carousel + 20% Inquiry Form */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-          {/* Left Column - Tour Carousel (80% on desktop) */}
-          <div className="flex-1 lg:w-[80%]">
-            <div className="relative px-12">
+        {/* Full Width Tour Carousel */}
+        <div className="w-full">
+          {/* Tour Carousel Container */}
+          <div className="w-full">
+            <div className="relative px-16">
               {/* Navigation Buttons */}
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
+                className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
                 aria-label="Previous tours"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-5 w-5" />
               </Button>
 
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
+                className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
                 onClick={goToNext}
                 disabled={currentIndex === totalPages - 1}
                 aria-label="Next tours"
               >
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-5 w-5" />
               </Button>
 
-              {/* Tour Cards Carousel */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 transition-all duration-300">
+              {/* Tour Cards Carousel - Larger Oval Shaped Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 transition-all duration-300">
                 {getCurrentTours().map((tour) => (
                   <Link
                     key={tour.id}
                     to={`/tours/${tour.slug}`}
-                    className="group bg-card border border-border rounded-lg shadow-card hover:shadow-warm focus:shadow-warm focus:ring-2 focus:ring-golden focus:ring-offset-2 transition-[box-shadow,transform] duration-300 overflow-hidden hover:scale-[1.02] focus:scale-[1.02] flex flex-col h-full"
+                    className="group flex flex-col items-center transition-[transform] duration-300 hover:scale-[1.05] focus:scale-[1.05]"
                     aria-label={`View details for ${tour.title} tour`}
                   >
-                    {/* Image Area */}
-                    <div className="relative h-64 lg:h-80 overflow-hidden flex-shrink-0">
+                    {/* Larger Oval Image Area */}
+                    <div className="relative w-36 h-48 sm:w-40 sm:h-52 lg:w-44 lg:h-56 overflow-hidden rounded-full shadow-card hover:shadow-warm transition-shadow duration-300 mb-3">
                       <img
                         src={tour.image}
                         alt={tour.title}
@@ -174,27 +143,17 @@ const TourOffersSection = () => {
                         loading="lazy"
                         decoding="async"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white text-sm font-semibold text-center px-2">
-                          {tour.title}
-                        </h3>
-                      </div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                     </div>
 
-                    {/* Information Area */}
-                    <div className="p-3 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
-                      <div>
-                        {/* Tour Title */}
-                        <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight mb-2">
-                          {tour.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                          {tour.description}
-                        </p>
-                      </div>
+                    {/* Tour Name Below Card */}
+                    <div className="text-center">
+                      <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight group-hover:text-golden transition-colors duration-300">
+                        {tour.title}
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2 max-w-[180px]">
+                        {tour.description}
+                      </p>
                     </div>
                   </Link>
                 ))}
@@ -213,95 +172,6 @@ const TourOffersSection = () => {
                 ))}
               </div>
             </div>
-          </div>
-
-          {/* Right Column - Inquiry Form (20% on desktop) */}
-          <div className="lg:w-[20%] mt-8 lg:mt-0">
-            {/* Compact Form card */}
-            <Card className="shadow-warm w-full">
-              <CardHeader className="pb-2 px-3 pt-3">
-                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
-                  <User className="h-3 w-3 text-golden" />
-                  Quick Inquiry
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="px-3 pb-3">
-                <form onSubmit={handleFormSubmit} className="space-y-1.5">
-                  {/* Name Field */}
-                  <div className="space-y-0.5">
-                    <Label htmlFor="name" className="text-[10px] font-medium text-muted-foreground">
-                      Name *
-                    </Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      className="h-6 text-[10px] px-2"
-                      required
-                    />
-                  </div>
-
-                  {/* Mobile No (WhatsApp) Field */}
-                  <div className="space-y-0.5">
-                    <Label htmlFor="mobile" className="text-[10px] font-medium text-muted-foreground">
-                      Mobile *
-                    </Label>
-                    <Input
-                      id="mobile"
-                      type="tel"
-                      placeholder="+91 98765 43210"
-                      value={formData.mobileNo}
-                      onChange={(e) => handleInputChange("mobileNo", e.target.value)}
-                      className="h-6 text-[10px] px-2"
-                      required
-                    />
-                  </div>
-
-                  {/* Date Field */}
-                  <div className="space-y-0.5">
-                    <Label htmlFor="date" className="text-[10px] font-medium text-muted-foreground">
-                      Travel Date *
-                    </Label>
-                    <Input
-                      id="date"
-                      type="date"
-                      value={formData.date}
-                      onChange={(e) => handleInputChange("date", e.target.value)}
-                      className="h-6 text-[10px] px-2"
-                      required
-                    />
-                  </div>
-
-                  {/* Destination Field */}
-                  <div className="space-y-0.5">
-                    <Label htmlFor="destination" className="text-[10px] font-medium text-muted-foreground">
-                      Destination *
-                    </Label>
-                    <Input
-                      id="destination"
-                      type="text"
-                      placeholder="Kerala, Rajasthan..."
-                      value={formData.destination}
-                      onChange={(e) => handleInputChange("destination", e.target.value)}
-                      className="h-6 text-[10px] px-2"
-                      required
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="pt-1">
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-6 text-[10px]"
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                </form>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>
