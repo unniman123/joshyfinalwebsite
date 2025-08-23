@@ -1,4 +1,4 @@
-import InquiryFormCompact from "@/components/InquiryFormCompact";
+
 
 const AboutUsSection = () => {
   return (
@@ -31,14 +31,9 @@ const AboutUsSection = () => {
                 We are passionate about creating unforgettable travel experiences that showcase the beauty, culture, and heritage of India. Our expert team designs personalized itineraries that cater to your unique preferences and interests.
               </p>
 
-              <p className="text-muted-foreground leading-relaxed mb-8">
+              <p className="text-muted-foreground leading-relaxed">
                 No need of capcha in any of these. entries that is required will be shared by me, do as per your idea must be attractive user friendly, themes mainly, dont use dark colours for the page parts, website loading time should be shorter. also a link that is popping up in the side when we scroll (as an image of WhatsApp if added would be better so once clicked will be able to message us over there.
               </p>
-
-              {/* Inquiry Form positioned below Namaste content */}
-              <div className="flex justify-start">
-                <InquiryFormCompact />
-              </div>
             </div>
           </div>
         </div>
