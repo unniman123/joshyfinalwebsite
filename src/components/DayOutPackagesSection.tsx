@@ -165,7 +165,14 @@ const DayOutPackagesSection = () => {
                         loading="lazy"
                         decoding="async"
                       />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
+
+                      {/* Package Name Overlay on Hover */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <h3 className="text-white text-sm sm:text-base font-bold text-center px-3 leading-tight drop-shadow-lg">
+                          {pkg.title}
+                        </h3>
+                      </div>
                     </div>
 
                     {/* Package Name Below Card */}
