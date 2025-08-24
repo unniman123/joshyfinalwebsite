@@ -72,7 +72,7 @@ const Footer = () => {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-golden flex-shrink-0" />
-              <span className="text-xs text-white/80">+91 9539 50 7516, +914712488880.</span>
+              <span className="text-xs text-white/80">+91 9539 50 7516, +91 471 24 888 80.</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-golden flex-shrink-0" />
@@ -148,7 +148,7 @@ const Footer = () => {
     {/* Bottom Footer */}
     <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80">
       <div>
-        © 2025 Kerala Tours Travel & Organic Remedies. All rights reserved.
+        © Kerala Tours Travels & Organic Remedies. All rights reserved.
       </div>
       <div className="flex gap-4">
         <Link to="/terms" className="hover:text-golden transition-smooth">Terms of Service</Link>

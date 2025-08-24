@@ -34,7 +34,7 @@ const TestimonialsSection = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-golden to-golden-dark mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
-            Discover why travelers from around the world choose Kerala Tours Global for their unforgettable Indian adventures.
+
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
 
