@@ -4,7 +4,7 @@
 .social-icon {
   width: 48px;
   height: 48px;
-  border-radius: 8px;
+  border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -135,7 +135,7 @@
   .social-icon {
     width: 44px;
     height: 44px;
-    border-radius: 6px;
+    border-radius: 50%;
   }
 
   .social-icon svg {
