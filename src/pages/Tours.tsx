@@ -10,15 +10,20 @@ import { Search } from "lucide-react";
 import { getAllTours, TourSummary } from "@/lib/api";
 
 const Tours = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [tours, setTours] = useState<TourSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  // Set category from URL parameter
+  // Set search query and category from URL parameters
   useEffect(() => {
+    const searchParam = searchParams.get('search');
     const categoryParam = searchParams.get('category');
+    
+    if (searchParam) {
+      setSearchQuery(decodeURIComponent(searchParam));
+    }
     if (categoryParam) {
       setSelectedCategory(categoryParam);
     }
@@ -59,6 +64,17 @@ const Tours = () => {
     return matchesSearch && matchesCategory;
   });
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newParams = new URLSearchParams();
+    if (searchQuery.trim()) {
+      newParams.set('search', searchQuery.trim());
+    }
+    if (selectedCategory) {
+      newParams.set('category', selectedCategory);
+    }
+    setSearchParams(newParams);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -71,12 +87,16 @@ const Tours = () => {
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               {selectedCategory ?
                 `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` :
+                searchQuery ?
+                'Search Results' :
                 'Explore Our Tours'
               }
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {selectedCategory ?
                 `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
+                searchQuery ?
+                `Showing results for "${searchQuery}"` :
                 'Discover incredible journeys across India and beyond. From serene backwaters to majestic palaces, find your perfect adventure.'
               }
             </p>
@@ -84,16 +104,24 @@ const Tours = () => {
 
           {/* Search Bar */}
           <div className="max-w-2xl mx-auto mb-16">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-              <Input
-                type="text"
-                placeholder="Search tours by destination, activity, or keyword..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-6 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
-              />
-            </div>
+            <form onSubmit={handleSearch}>
+              <div className="relative flex items-center">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+                <Input
+                  type="text"
+                  placeholder="Search tours by destination, activity, or keyword..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-12 pr-32 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
+                />
+                <Button
+                  type="submit"
+                  className="absolute right-2 h-12 px-6"
+                >
+                  Search
+                </Button>
+              </div>
+            </form>
           </div>
 
           {/* Results Section */}

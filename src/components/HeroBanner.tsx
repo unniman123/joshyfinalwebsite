@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
 import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
@@ -9,6 +10,8 @@ import stiltFishing from "@/assets/Stilt Fishing in Sri Lanka.jpg";
 
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const bannerImages = [
     {
@@ -53,6 +56,13 @@ const HeroBanner = () => {
     setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/tours?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
   return (
     <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
       {/* Background Images */}
@@ -70,21 +80,52 @@ const HeroBanner = () => {
         </div>
       ))}
 
-      {/* Content Overlay - Only Button */}
-      <div className="relative z-10 h-full flex items-center justify-end">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-end pr-8 md:pr-16 lg:pr-20">
+      {/* Search Overlay */}
+      <div className="absolute inset-0 bg-black/30 z-10"></div>
+      
+      {/* Content Overlay - Search Bar and Button */}
+      <div className="relative z-20 h-full flex flex-col justify-center items-center px-4">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+            Discover Amazing Tours
+          </h1>
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+            Explore the best travel experiences across India and beyond
+          </p>
+        </div>
+
+        {/* Search Bar */}
+        <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
+          <div className="relative flex items-center">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+            <Input
+              type="text"
+              placeholder="Search tours by destination, activity, or keyword..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 pr-32 py-4 text-lg border-0 rounded-full shadow-xl focus:ring-2 focus:ring-primary/50 bg-white/95 backdrop-blur-sm"
+            />
             <Button
-              variant="default"
-              size="lg"
-              className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce"
-              asChild
+              type="submit"
+              className="absolute right-2 h-12 px-6 bg-gradient-golden hover:bg-golden-dark text-primary-foreground transition-bounce rounded-full font-medium shadow-lg"
             >
-              <Link to="/contact">
-                Plan My Trip
-              </Link>
+              Search
             </Button>
           </div>
+        </form>
+
+        {/* Plan My Trip Button */}
+        <div className="mt-8">
+          <Button
+            variant="default"
+            size="lg"
+            className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce"
+            asChild
+          >
+            <Link to="/contact">
+              Plan My Trip
+            </Link>
+          </Button>
         </div>
       </div>
 
