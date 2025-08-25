@@ -1,30 +1,15 @@
 import { Tour } from "@/lib/api";
+import { getOverviewImages, getOverviewContent } from "@/lib/admin-utils";
+import OverviewImageGallery from "@/components/OverviewImageGallery";
 
 interface OverviewSectionProps {
   tour: Tour;
 }
 
 const OverviewSection = ({ tour }: OverviewSectionProps) => {
-  // Get the first image for overview section
-  const getOverviewImage = () => {
-    if (tour.images && tour.images.length > 0) {
-      return tour.images[0];
-    }
-    // Fallback to tour card image if no images array
-    return tour.image;
-  };
-
-  const overviewImage = getOverviewImage();
-
-  // Content validation for overview
-  const getOverviewContent = () => {
-    if (tour.detailedContent?.trim()) {
-      return tour.detailedContent.trim();
-    }
-    return "Tour overview coming soon...";
-  };
-
-  const overviewContent = getOverviewContent();
+  // Use admin-ready utility functions for dynamic content
+  const overviewImages = getOverviewImages(tour);
+  const overviewContent = getOverviewContent(tour);
 
   return (
     <section className="py-12 md:py-16 lg:py-20">
@@ -32,16 +17,12 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
         {/* 50-50 Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-          {/* Left side - Overview Image (50%) */}
+          {/* Left side - Interactive Overview Image Gallery (50%) */}
           <div className="order-2 lg:order-1">
-            <div className="relative overflow-hidden rounded-lg shadow-lg">
-              <img
-                src={overviewImage}
-                alt={`${tour.title} overview`}
-                className="w-full h-64 md:h-80 lg:h-96 object-cover transition-transform duration-300 hover:scale-105"
-                loading="lazy"
-              />
-            </div>
+            <OverviewImageGallery
+              images={overviewImages}
+              tourTitle={tour.title}
+            />
           </div>
 
           {/* Right side - Overview Content (50%) */}

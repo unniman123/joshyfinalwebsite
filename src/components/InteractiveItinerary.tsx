@@ -1,26 +1,20 @@
-import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Plane,
+  PlaneTakeoff,
   Camera,
-  MapPin,
   Building,
   TreePine,
   Ship,
-  PlaneTakeoff,
-  Mountain
+  MapPin,
+  Clock
 } from "lucide-react";
 
 interface ItineraryDay {
   dayNumber: number;
   title: string;
-  activities: string[];
+  description: string;
   activityType: string;
 }
 
@@ -30,23 +24,47 @@ interface InteractiveItineraryProps {
 }
 
 const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProps) => {
-  // Activity type detection for icon selection
-  const detectActivityType = (content: string): string => {
-    const lowerContent = content.toLowerCase();
+  // Simplified parsing logic
+  const parseItinerary = (itineraryText: string): ItineraryDay[] => {
+    const lines = itineraryText.split('\n').filter(line => line.trim());
+    const days: ItineraryDay[] = [];
 
-    if (lowerContent.includes('arrival') || lowerContent.includes('check-in')) return 'arrival';
-    if (lowerContent.includes('departure') || lowerContent.includes('return')) return 'departure';
-    if (lowerContent.includes('temple') || lowerContent.includes('church') || lowerContent.includes('mosque')) return 'temple';
-    if (lowerContent.includes('cruise') || lowerContent.includes('boat') || lowerContent.includes('backwater')) return 'cruise';
-    if (lowerContent.includes('fort') || lowerContent.includes('palace') || lowerContent.includes('museum')) return 'sightseeing';
-    if (lowerContent.includes('nature') || lowerContent.includes('park') || lowerContent.includes('sanctuary')) return 'nature';
-    if (lowerContent.includes('mountain') || lowerContent.includes('hill') || lowerContent.includes('trek')) return 'mountain';
-    if (lowerContent.includes('city') || lowerContent.includes('tour') || lowerContent.includes('visit')) return 'city';
+    lines.forEach(line => {
+      const dayMatch = line.match(/Day (\d+):?\s*(.+)/i);
+      if (dayMatch) {
+        const dayNumber = parseInt(dayMatch[1]);
+        const content = dayMatch[2];
+
+        days.push({
+          dayNumber,
+          title: `Day ${dayNumber}`,
+          description: content,
+          activityType: detectActivityType(content),
+        });
+      }
+    });
+
+    return days;
+  };
+
+
+
+  // Detect activity type for icon selection
+  const detectActivityType = (activity: string): string => {
+    const activityLower = activity.toLowerCase();
+
+    if (activityLower.includes('arrival') || activityLower.includes('arrive')) return 'arrival';
+    if (activityLower.includes('departure') || activityLower.includes('depart')) return 'departure';
+    if (activityLower.includes('temple') || activityLower.includes('church') || activityLower.includes('mosque')) return 'temple';
+    if (activityLower.includes('cruise') || activityLower.includes('boat') || activityLower.includes('ship')) return 'cruise';
+    if (activityLower.includes('nature') || activityLower.includes('forest') || activityLower.includes('wildlife')) return 'nature';
+    if (activityLower.includes('city') || activityLower.includes('tour') || activityLower.includes('visit')) return 'city';
+    if (activityLower.includes('sightseeing') || activityLower.includes('photo')) return 'sightseeing';
 
     return 'default';
   };
 
-  // Travel-themed icon mapping
+  // Get travel-themed icon for activity type
   const getActivityIcon = (activityType: string) => {
     const iconMap = {
       'arrival': Plane,
@@ -56,43 +74,15 @@ const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProp
       'nature': TreePine,
       'cruise': Ship,
       'city': MapPin,
-      'mountain': Mountain,
-      'default': MapPin
+      'default': Clock
     };
+
     return iconMap[activityType] || iconMap.default;
-  };
-
-  // Itinerary parsing logic with activity type detection
-  const parseItinerary = (itinerary: string): ItineraryDay[] => {
-    if (!itinerary?.trim()) return [];
-
-    const lines = itinerary.split('\n').filter(line => line.trim());
-    const days: ItineraryDay[] = [];
-
-    lines.forEach(line => {
-      const dayMatch = line.match(/Day (\d+):?\s*(.+)/i);
-      if (dayMatch) {
-        const dayNumber = parseInt(dayMatch[1]);
-        const content = dayMatch[2];
-
-        // Split activities by common separators
-        const activities = content.split(/[,;]/).map(activity => activity.trim()).filter(Boolean);
-
-        days.push({
-          dayNumber,
-          title: activities[0] || `Day ${dayNumber}`,
-          activities: activities.length > 1 ? activities.slice(1) : activities,
-          activityType: detectActivityType(activities[0] || content),
-        });
-      }
-    });
-
-    return days;
   };
 
   const days = parseItinerary(itinerary);
 
-  if (days.length === 0) {
+  if (!days.length) {
     return (
       <div className="text-center py-8">
         <p className="text-muted-foreground">Detailed itinerary coming soon...</p>
@@ -101,69 +91,52 @@ const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProp
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Section heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
         Detailed Itinerary
       </h2>
 
-      {/* Interactive accordion for each day */}
-      <Accordion type="multiple" className="space-y-4">
+      {/* Simple day cards without dropdown */}
+      <div className="space-y-4">
         {days.map((day) => {
           const IconComponent = getActivityIcon(day.activityType);
 
           return (
-            <AccordionItem
+            <Card
               key={day.dayNumber}
-              value={`day-${day.dayNumber}`}
-              className="border border-border/50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 bg-card"
+              className="group hover:shadow-golden transition-all duration-300 border-border hover:border-golden/50 bg-white"
             >
-              <AccordionTrigger className="px-6 py-4 hover:no-underline group">
-                <div className="flex items-center gap-4 w-full">
-                  {/* Circular day badge with golden gradient */}
-                  <div className="flex-shrink-0">
-                    <Badge
-                      variant="default"
-                      className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold bg-gradient-to-br from-golden to-golden-dark text-white shadow-golden border-2 border-golden-light"
-                    >
-                      {day.dayNumber}
-                    </Badge>
-                  </div>
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-4">
+                  {/* Day badge with golden gradient */}
+                  <Badge
+                    variant="default"
+                    className="bg-gradient-to-r from-golden to-golden-dark text-white shadow-golden/30 px-4 py-2 text-sm font-bold min-w-fit rounded-full"
+                  >
+                    Day {day.dayNumber}
+                  </Badge>
 
-                  {/* Activity icon and title */}
-                  <div className="flex items-center gap-3 flex-1 text-left">
-                    <IconComponent className="h-5 w-5 text-golden flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-golden transition-colors">
-                        Day {day.dayNumber}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-1">
-                        {day.title}
-                      </p>
-                    </div>
+                  {/* Activity icon */}
+                  <div className="p-3 rounded-full bg-gradient-to-br from-golden/10 to-golden/5 text-golden group-hover:bg-gradient-to-br group-hover:from-golden/20 group-hover:to-golden/10 transition-all duration-300 shadow-warm">
+                    <IconComponent className="h-6 w-6" />
                   </div>
                 </div>
-              </AccordionTrigger>
+              </CardHeader>
 
-              <AccordionContent className="px-6 pb-6">
-                <div className="pt-2 space-y-3">
-                  {/* Activity list with travel-themed bullet points */}
-                  <div className="space-y-2">
-                    {day.activities.map((activity, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div className="w-2 h-2 rounded-full bg-golden mt-2 flex-shrink-0" />
-                        <p className="text-muted-foreground leading-relaxed">
-                          {activity}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
+              <CardContent className="pt-0">
+                {/* Simple description without complex formatting */}
+                <p className="text-muted-foreground leading-relaxed text-base">
+                  {day.description}
+                </p>
+
+                {/* Subtle bottom accent */}
+                <div className="h-1 w-full bg-gradient-to-r from-transparent via-golden/30 to-transparent rounded-full mt-4" />
+              </CardContent>
+            </Card>
           );
         })}
-      </Accordion>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Tour } from "@/lib/api";
+import { getImagesBySection } from "@/lib/admin-utils";
+
+// Import the same banner images from HeroBanner as fallback
 import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
 import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
@@ -13,33 +16,40 @@ interface TourDetailBannerProps {
 const TourDetailBanner = ({ tour }: TourDetailBannerProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Reuse the same banner images from HeroBanner component
-  const bannerImages = [
-    {
-      src: ayurvedaTreatments,
-      alt: "Ayurveda Treatments Kerala",
-      title: "Authentic Ayurveda Treatments",
-      subtitle: "Experience traditional healing therapies in Kerala's serene settings"
-    },
-    {
-      src: ktgAmmachi,
-      alt: "Kerala Traditional Culture",
-      title: "Discover Kerala's Rich Heritage",
-      subtitle: "Immerse yourself in authentic local culture and traditions"
-    },
-    {
-      src: rameswaramTemple,
-      alt: "Rameswaram Temple",
-      title: "Sacred Temples of South India",
-      subtitle: "Explore ancient temples and spiritual destinations"
-    },
-    {
-      src: stiltFishing,
-      alt: "Stilt Fishing in Sri Lanka",
-      title: "Unique Cultural Experiences",
-      subtitle: "Witness traditional fishing methods and coastal life"
+  // Get banner images from admin panel or use fallback images
+  const getBannerImages = () => {
+    const adminBannerImages = getImagesBySection(tour, 'banner');
+
+    if (adminBannerImages.length > 0) {
+      return adminBannerImages.map(img => ({
+        src: img.url,
+        alt: img.alt || tour.title,
+        caption: img.caption
+      }));
     }
-  ];
+
+    // Fallback to default banner images for consistency
+    return [
+      {
+        src: ayurvedaTreatments,
+        alt: "Ayurveda Treatments Kerala",
+      },
+      {
+        src: ktgAmmachi,
+        alt: "Kerala Traditional Culture",
+      },
+      {
+        src: rameswaramTemple,
+        alt: "Rameswaram Temple",
+      },
+      {
+        src: stiltFishing,
+        alt: "Stilt Fishing in Sri Lanka",
+      }
+    ];
+  };
+
+  const bannerImages = getBannerImages();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -59,7 +69,7 @@ const TourDetailBanner = ({ tour }: TourDetailBannerProps) => {
 
   return (
     <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
-      {/* Background Images */}
+      {/* Background Images - Same as HeroBanner */}
       {bannerImages.map((image, index) => (
         <div
           key={index}
@@ -78,20 +88,20 @@ const TourDetailBanner = ({ tour }: TourDetailBannerProps) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
       {/* Tour-specific overlay content */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-white max-w-4xl">
+      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+        <div className="container mx-auto max-w-7xl">
+          <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
               {tour.title}
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-6 max-w-2xl leading-relaxed">
+            <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl leading-relaxed">
               {tour.description}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Same as HeroBanner */}
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-smooth backdrop-blur-sm"
@@ -107,7 +117,7 @@ const TourDetailBanner = ({ tour }: TourDetailBannerProps) => {
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
 
-      {/* Slide Indicators */}
+      {/* Slide Indicators - Same as HeroBanner */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
         {bannerImages.map((_, index) => (
           <button

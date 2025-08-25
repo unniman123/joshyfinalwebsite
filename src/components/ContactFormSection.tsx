@@ -199,10 +199,10 @@ const ContactFormSection = () => {
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
-                  className="w-full" 
-                  variant="cta" 
+                <Button
+                  type="submit"
+                  className="w-full"
+                  variant="cta"
                   size="lg"
                   disabled={isSubmitting}
                   aria-describedby="form-status"
@@ -211,10 +211,10 @@ const ContactFormSection = () => {
                 </Button>
 
                 {/* Screen reader status region for accessibility */}
-                <div 
-                  id="form-status" 
-                  className="sr-only" 
-                  role="status" 
+                <div
+                  id="form-status"
+                  className="sr-only"
+                  role="status"
                   aria-live="polite"
                   aria-atomic="true"
                 >
