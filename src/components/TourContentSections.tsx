@@ -1,18 +1,126 @@
 import { Tour } from "@/lib/api";
 import OverviewSection from "@/components/OverviewSection";
 import ItinerarySection from "@/components/ItinerarySection";
+import AdminControllableSection from "@/components/AdminControllableSection";
+import AdminControllableItinerary from "@/components/AdminControllableItinerary";
+import AdminControllableImageGallery from "@/components/AdminControllableImageGallery";
 
 interface TourContentSectionsProps {
   tour: Tour;
 }
 
 const TourContentSections = ({ tour }: TourContentSectionsProps) => {
+  // Check if tour has structured admin data
+  const hasStructuredData = tour.sections && tour.sections.length > 0;
+  const hasStructuredItinerary = tour.itineraryDays && tour.itineraryDays.length > 0;
+  const hasStructuredImages = tour.images && tour.images.length > 0;
+
+  if (hasStructuredData || hasStructuredItinerary || hasStructuredImages) {
+    // Render admin-controlled sections
+    const visibleSections = tour.sections
+      ?.filter(section => section.isVisible)
+      ?.sort((a, b) => a.order - b.order) || [];
+
+    return (
+      <div className="w-full">
+        {/* Admin-controlled sections */}
+        {visibleSections.map((section) => {
+          if (section.type === 'overview') {
+            return (
+              <section key={section.id} className="py-12 md:py-16 lg:py-20">
+                <div className="container mx-auto max-w-7xl px-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                    {/* Left side - Admin-controlled images */}
+                    <div className="order-2 lg:order-1">
+                      {hasStructuredImages && (
+                        <AdminControllableImageGallery
+                          images={tour.images}
+                          section="overview"
+                          tourTitle={tour.title}
+                        />
+                      )}
+                    </div>
+
+                    {/* Right side - Admin-controlled content */}
+                    <div className="order-1 lg:order-2">
+                      <div className="space-y-6">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
+                          {section.title}
+                        </h2>
+                        <div className="prose prose-lg max-w-none">
+                          <div
+                            className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: section.content || '' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          }
+
+          if (section.type === 'itinerary') {
+            return (
+              <section key={section.id} className="py-12 md:py-16 lg:py-20 bg-muted/30">
+                <div className="container mx-auto max-w-7xl px-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    {/* Left side - Admin-controlled images */}
+                    <div className="order-2 lg:order-1">
+                      {hasStructuredImages && (
+                        <AdminControllableImageGallery
+                          images={tour.images}
+                          section="itinerary"
+                          tourTitle={tour.title}
+                        />
+                      )}
+                    </div>
+
+                    {/* Right side - Admin-controlled itinerary */}
+                    <div className="order-1 lg:order-2">
+                      {hasStructuredItinerary ? (
+                        <AdminControllableItinerary
+                          itineraryDays={tour.itineraryDays}
+                          tourTitle={tour.title}
+                        />
+                      ) : (
+                        <div className="space-y-6">
+                          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                            {section.title}
+                          </h2>
+                          <div
+                            className="text-muted-foreground leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: section.content || '' }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          }
+
+          // Other admin-controlled sections
+          return (
+            <AdminControllableSection
+              key={section.id}
+              section={section}
+            />
+          );
+        })}
+      </div>
+    );
+  }
+
+  // Fallback to legacy components for backward compatibility
   return (
     <div className="w-full">
-      {/* Overview Section */}
+      {/* Legacy Overview Section */}
       <OverviewSection tour={tour} />
 
-      {/* Itinerary Section */}
+      {/* Legacy Itinerary Section */}
       <ItinerarySection tour={tour} />
     </div>
   );

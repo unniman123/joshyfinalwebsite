@@ -1,21 +1,10 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Plane,
-  PlaneTakeoff,
-  Camera,
-  Building,
-  TreePine,
-  Ship,
-  MapPin,
-  Clock
-} from "lucide-react";
 
 interface ItineraryDay {
   dayNumber: number;
   title: string;
   description: string;
-  activityType: string;
 }
 
 interface InteractiveItineraryProps {
@@ -24,7 +13,7 @@ interface InteractiveItineraryProps {
 }
 
 const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProps) => {
-  // Simplified parsing logic
+  // Simplified parsing logic - admin controlled content
   const parseItinerary = (itineraryText: string): ItineraryDay[] => {
     const lines = itineraryText.split('\n').filter(line => line.trim());
     const days: ItineraryDay[] = [];
@@ -39,45 +28,11 @@ const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProp
           dayNumber,
           title: `Day ${dayNumber}`,
           description: content,
-          activityType: detectActivityType(content),
         });
       }
     });
 
     return days;
-  };
-
-
-
-  // Detect activity type for icon selection
-  const detectActivityType = (activity: string): string => {
-    const activityLower = activity.toLowerCase();
-
-    if (activityLower.includes('arrival') || activityLower.includes('arrive')) return 'arrival';
-    if (activityLower.includes('departure') || activityLower.includes('depart')) return 'departure';
-    if (activityLower.includes('temple') || activityLower.includes('church') || activityLower.includes('mosque')) return 'temple';
-    if (activityLower.includes('cruise') || activityLower.includes('boat') || activityLower.includes('ship')) return 'cruise';
-    if (activityLower.includes('nature') || activityLower.includes('forest') || activityLower.includes('wildlife')) return 'nature';
-    if (activityLower.includes('city') || activityLower.includes('tour') || activityLower.includes('visit')) return 'city';
-    if (activityLower.includes('sightseeing') || activityLower.includes('photo')) return 'sightseeing';
-
-    return 'default';
-  };
-
-  // Get travel-themed icon for activity type
-  const getActivityIcon = (activityType: string) => {
-    const iconMap = {
-      'arrival': Plane,
-      'departure': PlaneTakeoff,
-      'sightseeing': Camera,
-      'temple': Building,
-      'nature': TreePine,
-      'cruise': Ship,
-      'city': MapPin,
-      'default': Clock
-    };
-
-    return iconMap[activityType] || iconMap.default;
   };
 
   const days = parseItinerary(itinerary);
@@ -97,45 +52,41 @@ const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProp
         Detailed Itinerary
       </h2>
 
-      {/* Simple day cards without dropdown */}
+      {/* Simplified day cards - admin controlled content */}
       <div className="space-y-4">
-        {days.map((day) => {
-          const IconComponent = getActivityIcon(day.activityType);
+        {days.map((day) => (
+          <Card
+            key={day.dayNumber}
+            className="group hover:shadow-golden transition-all duration-300 border-border hover:border-golden/50 bg-white"
+          >
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-4">
+                {/* Day badge with golden gradient */}
+                <Badge
+                  variant="default"
+                  className="bg-gradient-to-r from-golden to-golden-dark text-white shadow-golden/30 px-4 py-2 text-sm font-bold min-w-fit rounded-full"
+                >
+                  Day {day.dayNumber}
+                </Badge>
 
-          return (
-            <Card
-              key={day.dayNumber}
-              className="group hover:shadow-golden transition-all duration-300 border-border hover:border-golden/50 bg-white"
-            >
-              <CardHeader className="pb-3">
-                <div className="flex items-center gap-4">
-                  {/* Day badge with golden gradient */}
-                  <Badge
-                    variant="default"
-                    className="bg-gradient-to-r from-golden to-golden-dark text-white shadow-golden/30 px-4 py-2 text-sm font-bold min-w-fit rounded-full"
-                  >
-                    Day {day.dayNumber}
-                  </Badge>
+                {/* Day title */}
+                <h3 className="text-lg font-semibold text-foreground">
+                  {day.title}
+                </h3>
+              </div>
+            </CardHeader>
 
-                  {/* Activity icon */}
-                  <div className="p-3 rounded-full bg-gradient-to-br from-golden/10 to-golden/5 text-golden group-hover:bg-gradient-to-br group-hover:from-golden/20 group-hover:to-golden/10 transition-all duration-300 shadow-warm">
-                    <IconComponent className="h-6 w-6" />
-                  </div>
-                </div>
-              </CardHeader>
+            <CardContent className="pt-0">
+              {/* Simple description - admin controlled */}
+              <p className="text-muted-foreground leading-relaxed text-base">
+                {day.description}
+              </p>
 
-              <CardContent className="pt-0">
-                {/* Simple description without complex formatting */}
-                <p className="text-muted-foreground leading-relaxed text-base">
-                  {day.description}
-                </p>
-
-                {/* Subtle bottom accent */}
-                <div className="h-1 w-full bg-gradient-to-r from-transparent via-golden/30 to-transparent rounded-full mt-4" />
-              </CardContent>
-            </Card>
-          );
-        })}
+              {/* Subtle bottom accent */}
+              <div className="h-1 w-full bg-gradient-to-r from-transparent via-golden/30 to-transparent rounded-full mt-4" />
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );

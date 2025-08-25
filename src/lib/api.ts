@@ -28,6 +28,7 @@ export interface TourSummary {
   isActive?: boolean;
   createdAt?: string;
   updatedAt?: string;
+  order?: number;
 }
 
 // Enhanced interfaces for admin panel integration
@@ -88,7 +89,7 @@ export interface Tour extends TourSummary {
   inclusions: string[];
   exclusions: string[];
 
-  // Enhanced structured data
+  // Enhanced structured data for admin control
   images: TourImage[];
   itineraryDays: ItineraryDay[];
 
@@ -123,6 +124,17 @@ export interface Tour extends TourSummary {
     languages?: string[];
     cancellationPolicy?: string;
   };
+
+  // Admin control flags
+  adminSettings?: {
+    allowPublicBooking: boolean;
+    showPricing: boolean;
+    showInquiryForm: boolean;
+    enableReviews: boolean;
+    featuredTour: boolean;
+    customCss?: string;
+    customJs?: string;
+  };
 }
 
 export interface TourFilters {
@@ -156,7 +168,7 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Royal Rajasthan Heritage",
       description: "Journey through magnificent palaces, historic forts, and vibrant markets in the land of maharajas.",
       category: "Heritage Tours",
-      duration: 7,
+      duration: 5,
       price: "₹65,000",
       image: rajasthanTourCard,
       slug: "royal-rajasthan-heritage"
@@ -166,7 +178,7 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Ayurveda Wellness Retreat",
       description: "Rejuvenate your body and mind with authentic Ayurvedic treatments in peaceful Kerala settings.",
       category: "Ayurveda",
-      duration: 10,
+      duration: 5,
       price: "₹85,000",
       image: ayurvedaTourCard,
       slug: "ayurveda-wellness-retreat"
@@ -176,7 +188,7 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Golden Triangle Classic",
       description: "Discover India's most iconic destinations: Delhi, Agra, and Jaipur in this comprehensive tour.",
       category: "Discover India",
-      duration: 6,
+      duration: 5,
       price: "₹55,000",
       image: goldenTriangleTourCard,
       slug: "golden-triangle-classic"
@@ -210,26 +222,99 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
       id: "1",
       title: "Kerala Backwaters Explorer",
       description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
-      detailedContent: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board. This comprehensive tour takes you through the most scenic waterways of Alleppey and Kumarakom, offering glimpses of traditional village life, exotic bird watching opportunities, and authentic culinary experiences that showcase the rich flavors of Kerala cuisine.",
+      detailedContent: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board.",
       category: "Kerala Tours",
       duration: 5,
       price: "₹45,000",
       image: keralaTourCard,
       images: [
-        heroKeralBackwaters,
-        galleryKerala1,
-        galleryKerala2,
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop&auto=format&q=80",
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format&q=80"
+        { id: "1", url: heroKeralBackwaters, alt: "Kerala Backwaters Sunset", caption: "Serene backwaters at sunset", order: 1, section: "overview", isActive: true },
+        { id: "2", url: galleryKerala1, alt: "Traditional Houseboat", caption: "Traditional Kerala houseboat", order: 2, section: "overview", isActive: true },
+        { id: "3", url: galleryKerala2, alt: "Village Life", caption: "Local village experience", order: 3, section: "overview", isActive: true },
+        { id: "4", url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop", alt: "Backwater Cruise", caption: "Peaceful backwater cruise", order: 1, section: "itinerary", isActive: true },
+        { id: "5", url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop", alt: "Bird Sanctuary", caption: "Kumarakom bird sanctuary", order: 2, section: "itinerary", isActive: true },
+        { id: "6", url: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop", alt: "Cultural Performance", caption: "Traditional Kathakali dance", order: 3, section: "itinerary", isActive: true },
+        { id: "7", url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop&auto=format&q=80", alt: "Spice Gardens", caption: "Local spice plantation", order: 4, section: "itinerary", isActive: true },
+        { id: "8", url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format&q=80", alt: "Cooking Class", caption: "Traditional cooking experience", order: 5, section: "itinerary", isActive: true }
       ],
       slug: "kerala-backwaters-explorer",
-      itinerary: "Day 1: Arrival in Kochi & Backwater Introduction - Airport pickup and transfer to heritage hotel, Welcome drink and orientation session, Evening stroll through Fort Kochi historic district, Traditional Kathakali dance performance with dinner\nDay 2: Houseboat Cruise & Village Experience - Check-in to traditional Kerala houseboat, Cruise through palm-fringed canals and waterways, Visit local village and interact with fishermen families, Sunset viewing from houseboat deck, Traditional fishing demonstration and fresh seafood dinner\nDay 3: Kumarakom Bird Sanctuary & Nature Walk - Early morning bird watching expedition, Guided nature walk through mangrove sanctuary, Canoe ride through narrow canals and hidden waterways, Visit to local toddy shop and spice gardens, Relaxing Ayurvedic massage session\nDay 4: Cultural Immersion & Cooking Class - Visit to ancient temple and morning prayer ceremony, Traditional cooking class with local family, Explore bustling local markets and spice shops, Handicraft workshop and pottery making experience, Evening cultural program with folk music\nDay 5: Adventure & Photography Expedition - Sunrise photography session over backwaters, Bamboo rafting adventure through scenic routes, Trek through cardamom and pepper plantations, Visit to elephant rehabilitation center, Sunset viewing at scenic hilltop viewpoint with farewell dinner",
+      itinerary: "Day 1: Arrival and Welcome\nDay 2: Backwater Cruise Experience\nDay 3: Nature and Wildlife Exploration\nDay 4: Cultural Activities and Local Cuisine\nDay 5: Adventure and Departure",
       inclusions: ["Houseboat accommodation", "All meals", "Local guide", "Transportation"],
       exclusions: ["Airfare", "Personal expenses", "Tips"],
-      mapLocation: { lat: 9.9312, lng: 76.2673 }
+      mapLocation: { lat: 9.9312, lng: 76.2673 },
+      sections: [
+        {
+          id: "overview-1",
+          type: "overview",
+          title: "Kerala Backwaters Explorer",
+          content: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board. This comprehensive tour takes you through the most scenic waterways of Alleppey and Kumarakom, offering glimpses of traditional village life, exotic bird watching opportunities, and authentic culinary experiences that showcase the rich flavors of Kerala cuisine.",
+          isVisible: true,
+          order: 1
+        },
+        {
+          id: "itinerary-1",
+          type: "itinerary",
+          title: "Detailed Itinerary",
+          content: "",
+          isVisible: true,
+          order: 2
+        }
+      ],
+      itineraryDays: [
+        {
+          id: "day-1",
+          dayNumber: 1,
+          title: "Arrival in Kochi & Backwater Introduction",
+          description: "Begin your Kerala adventure with a warm welcome in the historic port city of Kochi.",
+          activities: [
+            { id: "act-1", title: "Airport pickup and transfer to heritage hotel", description: "Comfortable transfer in AC vehicle", duration: "1 hour", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-2", title: "Welcome drink and orientation session", description: "Traditional welcome with fresh coconut water", duration: "30 mins", activityType: "cultural", isIncluded: true, order: 2 },
+            { id: "act-3", title: "Evening stroll through Fort Kochi historic district", description: "Explore colonial architecture and Chinese fishing nets", duration: "2 hours", activityType: "sightseeing", isIncluded: true, order: 3 },
+            { id: "act-4", title: "Traditional Kathakali dance performance with dinner", description: "Authentic Kerala cultural performance", duration: "2 hours", activityType: "cultural", isIncluded: true, order: 4 }
+          ],
+          highlights: ["Historic Fort Kochi", "Chinese fishing nets", "Kathakali performance"],
+          meals: ["Dinner"],
+          accommodation: "Heritage Hotel in Fort Kochi",
+          duration: "Full Day",
+          location: "Kochi",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop"],
+          isActive: true,
+          order: 1
+        },
+        {
+          id: "day-2",
+          dayNumber: 2,
+          title: "Houseboat Cruise & Village Experience",
+          description: "Experience the magic of Kerala's backwaters aboard a traditional houseboat.",
+          activities: [
+            { id: "act-5", title: "Check-in to traditional Kerala houseboat", description: "Board your floating home for the next 24 hours", duration: "30 mins", activityType: "cruise", isIncluded: true, order: 1 },
+            { id: "act-6", title: "Cruise through palm-fringed canals and waterways", description: "Peaceful journey through scenic backwaters", duration: "4 hours", activityType: "cruise", isIncluded: true, order: 2 },
+            { id: "act-7", title: "Visit local village and interact with fishermen families", description: "Authentic cultural exchange experience", duration: "2 hours", activityType: "cultural", isIncluded: true, order: 3 },
+            { id: "act-8", title: "Sunset viewing from houseboat deck", description: "Magical sunset over the backwaters", duration: "1 hour", activityType: "sightseeing", isIncluded: true, order: 4 }
+          ],
+          highlights: ["Traditional houseboat stay", "Village interaction", "Backwater sunset"],
+          meals: ["Breakfast", "Lunch", "Dinner"],
+          accommodation: "Traditional Houseboat",
+          duration: "Full Day",
+          location: "Alleppey Backwaters",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop"],
+          isActive: true,
+          order: 2
+        }
+      ],
+      isPublished: true,
+      seoTitle: "Kerala Backwaters Tour - 5 Days Houseboat Experience",
+      seoDescription: "Experience Kerala's serene backwaters with traditional houseboat stays, village visits, and authentic cuisine on this 5-day tour.",
+      seoKeywords: ["Kerala backwaters", "houseboat tour", "Alleppey", "Kumarakom"],
+      adminSettings: {
+        allowPublicBooking: true,
+        showPricing: true,
+        showInquiryForm: true,
+        enableReviews: true,
+        featuredTour: true
+      }
     },
     "royal-rajasthan-heritage": {
       id: "2",
@@ -252,7 +337,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
         "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop&auto=format&q=80"
       ],
       slug: "royal-rajasthan-heritage",
-      itinerary: "Day 1: Arrival in Jaipur, check-in at heritage hotel\nDay 2: City Palace, Hawa Mahal, and Amber Fort exploration\nDay 3: Travel to Udaipur, evening boat ride on Lake Pichola\nDay 4: City Palace Udaipur, Jagdish Temple, and local markets\nDay 5: Travel to Jodhpur, Mehrangarh Fort and blue city tour\nDay 6: Travel to Jaisalmer, golden city exploration and camel safari\nDay 7: Morning at Jaisalmer Fort, departure to Jaipur airport",
+      itinerary: "Day 1: Arrival and Palace Introduction\nDay 2: Fort Exploration and Heritage Walk\nDay 3: Cultural Immersion and Local Markets\nDay 4: Desert Experience and Traditional Arts\nDay 5: Final Sightseeing and Departure",
       inclusions: ["Heritage hotel stays", "All meals", "Local guide", "Transportation", "Entry fees"],
       exclusions: ["Airfare", "Personal expenses", "Tips", "Camera fees"],
       mapLocation: { lat: 26.9124, lng: 75.7873 }
@@ -263,7 +348,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
       description: "Rejuvenate your body and mind with authentic Ayurvedic treatments in peaceful Kerala settings.",
       detailedContent: "Discover the ancient healing science of Ayurveda in this transformative 10-day wellness retreat. Experience personalized treatments, yoga sessions, and meditation in serene natural surroundings. Our expert Ayurvedic doctors will create a customized treatment plan based on your individual constitution and health needs. Enjoy organic vegetarian meals, daily yoga and meditation sessions, and traditional therapies like Panchakarma, Abhyanga, and Shirodhara in a peaceful resort setting surrounded by lush tropical gardens.",
       category: "Ayurveda",
-      duration: 10,
+      duration: 5,
       price: "₹85,000",
       image: ayurvedaTourCard,
       images: [
@@ -279,7 +364,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
         "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop&auto=format&q=80"
       ],
       slug: "ayurveda-wellness-retreat",
-      itinerary: "Day 1: Arrival and initial consultation with Ayurvedic doctor\nDay 2: Body constitution analysis and personalized treatment plan\nDay 3: Begin Panchakarma treatments and daily yoga sessions\nDay 4: Abhyanga massage therapy and meditation workshops\nDay 5: Shirodhara treatment and herbal steam baths\nDay 6: Traditional Kerala massage and cooking class\nDay 7: Yoga nidra sessions and nature walks\nDay 8: Advanced meditation techniques and lifestyle counseling\nDay 9: Final treatments and wellness plan discussion\nDay 10: Departure with personalized wellness guide",
+      itinerary: "Day 1: Arrival and Wellness Consultation\nDay 2: Traditional Treatments and Yoga\nDay 3: Meditation and Therapeutic Sessions\nDay 4: Holistic Healing and Nature Activities\nDay 5: Final Treatments and Departure",
       inclusions: ["Ayurvedic resort stay", "All treatments", "Yoga sessions", "Organic meals", "Consultation"],
       exclusions: ["Airfare", "Personal expenses", "Additional treatments"],
       mapLocation: { lat: 10.8505, lng: 76.2711 }
@@ -290,7 +375,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
       description: "Discover India's most iconic destinations: Delhi, Agra, and Jaipur in this comprehensive tour.",
       detailedContent: "Experience India's most famous tourist circuit covering Delhi, Agra, and Jaipur. Visit the Taj Mahal, explore Mughal architecture, and discover the pink city of Jaipur in this classic 6-day journey. This tour combines the best of India's historical heritage, from the bustling streets of Old Delhi to the romantic marble monument of the Taj Mahal, and the royal palaces of Jaipur. Each city offers unique experiences, from street food tours in Delhi to sunrise at the Taj Mahal and elephant rides at Amber Fort.",
       category: "Discover India",
-      duration: 6,
+      duration: 5,
       price: "₹55,000",
       image: goldenTriangleTourCard,
       images: [
