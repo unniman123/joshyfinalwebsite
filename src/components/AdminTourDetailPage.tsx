@@ -10,14 +10,14 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { 
-  Save, 
-  Eye, 
-  EyeOff, 
-  Plus, 
-  Trash2, 
-  Upload, 
-  Download, 
+import {
+  Save,
+  Eye,
+  EyeOff,
+  Plus,
+  Trash2,
+  Upload,
+  Download,
   Settings,
   ChevronUp,
   ChevronDown,
@@ -169,15 +169,15 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
 
           {/* Admin Actions */}
           <div className="flex items-center gap-3 flex-wrap">
-            <Button 
-              onClick={saveTour} 
+            <Button
+              onClick={saveTour}
               disabled={saving || !validation.isValid}
               className="bg-green-600 hover:bg-green-700"
             >
               <Save className="h-4 w-4 mr-2" />
               {saving ? 'Saving...' : 'Save Changes'}
             </Button>
-            
+
             {tour.isPublished ? (
               <Button onClick={unpublishTour} variant="outline">
                 <EyeOff className="h-4 w-4 mr-2" />
@@ -194,7 +194,7 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
               Reset Changes
             </Button>
 
-            <Button 
+            <Button
               onClick={async () => {
                 const blob = await exportTour();
                 const url = URL.createObjectURL(blob);
@@ -209,7 +209,7 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
               Export
             </Button>
 
-            <Button 
+            <Button
               onClick={() => window.open(`/tours/${tour.slug}`, '_blank')}
               variant="outline"
             >
@@ -315,12 +315,12 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
           <TabsContent value="sections" className="space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-semibold\">Tour Sections</h3>
-              <Button onClick={() => addSection({ 
-                type: 'overview', 
+              <Button onClick={() => addSection({
+                type: 'overview',
                 title: 'New Section',
                 content: '',
                 isVisible: true,
-                order: tour.sections.length 
+                order: tour.sections.length
               })}>
                 <Plus className="h-4 w-4 mr-2" />
                 Add Section
@@ -347,8 +347,8 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => setEditingSection(editingSection === section.id ? null : section.id)}
                         >
@@ -360,8 +360,8 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                         <Button variant="outline" size="sm">
                           <ChevronDown className="h-4 w-4" />
                         </Button>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => deleteSection(section.id)}
                         >
@@ -421,8 +421,8 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                     <div className="flex items-center justify-between">
                       <CardTitle>Day {day.dayNumber}: {day.title}</CardTitle>
                       <div className="flex items-center gap-2">
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => setEditingDay(editingDay === day.id ? null : day.id)}
                         >
@@ -434,8 +434,8 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                         <Button variant="outline" size="sm">
                           <ChevronDown className="h-4 w-4" />
                         </Button>
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           size="sm"
                           onClick={() => deleteItineraryDay(day.id)}
                         >
@@ -507,7 +507,7 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                         <Upload className="h-4 w-4 mr-2" />
                         Upload Images
                       </Button>
-                      
+
                       {tour.images
                         .filter(img => img.section === section)
                         .sort((a, b) => a.order - b.order)

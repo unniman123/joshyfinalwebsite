@@ -40,69 +40,58 @@ const AdminControllableImageGallery = ({
   // Different layouts based on section and image count
   const renderImageLayout = () => {
     if (section === 'overview') {
-      // Overview section - main image with thumbnails
+      // Overview section - optimized for smaller 10-15% space
       if (sectionImages.length === 1) {
         return (
           <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
             <img
               src={sectionImages[0].url}
               alt={sectionImages[0].alt}
-              className="w-full h-64 md:h-80 lg:h-96 object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-32 md:h-40 lg:h-48 object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               onClick={() => handleImageClick(0)}
             />
             <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Expand className="h-4 w-4" />
+            <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Expand className="h-3 w-3" />
             </div>
             {sectionImages[0].caption && (
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                <p className="text-white text-sm">{sectionImages[0].caption}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                <p className="text-white text-xs">{sectionImages[0].caption}</p>
               </div>
             )}
           </div>
         );
       }
 
-      // Multiple images - main + thumbnails
+      // Multiple images - simplified for small space (no thumbnails)
       return (
-        <div className="space-y-4">
+        <div className="space-y-2">
           <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
             <img
               src={sectionImages[0].url}
               alt={sectionImages[0].alt}
-              className="w-full h-64 md:h-80 lg:h-96 object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-32 md:h-40 lg:h-48 object-cover transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
               onClick={() => handleImageClick(0)}
             />
             <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Expand className="h-4 w-4" />
+            <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Expand className="h-3 w-3" />
             </div>
             {sectionImages[0].caption && (
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
-                <p className="text-white text-sm">{sectionImages[0].caption}</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                <p className="text-white text-xs">{sectionImages[0].caption}</p>
               </div>
             )}
           </div>
 
+          {/* Compact image count indicator for multiple images */}
           {sectionImages.length > 1 && (
-            <div className="flex gap-3 justify-center">
-              {sectionImages.slice(1, 4).map((image, index) => (
-                <button
-                  key={image.id}
-                  onClick={() => handleImageClick(index + 1)}
-                  className="relative overflow-hidden rounded-lg transition-all duration-300 group hover:ring-2 hover:ring-golden/50 hover:shadow-warm hover:scale-105"
-                >
-                  <img
-                    src={image.url}
-                    alt={image.alt}
-                    className="w-16 h-16 md:w-20 md:h-20 object-cover transition-all duration-300 opacity-75 group-hover:opacity-100"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
-                </button>
-              ))}
+            <div className="text-center">
+              <span className="text-xs text-muted-foreground">
+                <span className="text-golden font-medium">1</span> of {sectionImages.length}
+              </span>
             </div>
           )}
         </div>
@@ -110,7 +99,7 @@ const AdminControllableImageGallery = ({
     }
 
     if (section === 'itinerary') {
-      // Itinerary section - vertical stack
+      // Itinerary section - vertical stack (no captions)
       return (
         <div className="space-y-4">
           {sectionImages.map((image, index) => (
@@ -126,11 +115,6 @@ const AdminControllableImageGallery = ({
               <div className="absolute top-3 right-3 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Expand className="h-4 w-4" />
               </div>
-              {image.caption && (
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
-                  <p className="text-white text-sm">{image.caption}</p>
-                </div>
-              )}
             </div>
           ))}
         </div>

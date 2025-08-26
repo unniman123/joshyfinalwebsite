@@ -8,22 +8,16 @@ export const getImagesBySection = (tour: Tour, section: 'banner' | 'overview' | 
     .sort((a, b) => a.order - b.order);
 };
 
+// @deprecated Overview sections no longer use images as of latest update
+// This function is maintained for backward compatibility only
 export const getOverviewImages = (tour: Tour): string[] => {
-  const overviewImages = getImagesBySection(tour, 'overview');
-  if (overviewImages.length > 0) {
-    return overviewImages.map(img => img.url);
-  }
-
-  // Fallback to legacy images array (first 3 images)
-  if (tour.images && Array.isArray(tour.images) && typeof tour.images[0] === 'string') {
-    return (tour.images as unknown as string[]).slice(0, 3);
-  }
-
-  // Final fallback to tour card image
-  return [tour.image];
+  // Return empty array since overview sections no longer display images
+  return [];
 };
 
 export const getItineraryImages = (tour: Tour): string[] => {
+  // Note: Itinerary images no longer display captions in UI (as of latest update)
+  // Captions are preserved in data but not shown to users
   const itineraryImages = getImagesBySection(tour, 'itinerary');
   if (itineraryImages.length > 0) {
     return itineraryImages.map(img => img.url);
@@ -242,7 +236,7 @@ export const createItineraryDayFromText = (dayNumber: number, text: string): Iti
 };
 
 export const simplifyItineraryDay = (day: ItineraryDay): ItineraryDay => {
-  // Simplified version with only title and description for the new layout
+  // Simplified version with only title and description for the single text box layout
   return {
     ...day,
     activities: [],
@@ -266,9 +260,28 @@ export const organizeImagesBySection = (images: TourImage[]) => {
   };
 };
 
-// Layout management helpers for the new 30-70 split
+// Image display configuration for different sections
+export const getImageDisplayConfig = (section: 'overview' | 'itinerary' | 'gallery') => {
+  return {
+    overview: {
+      showImages: false, // Completely removed as of latest update
+      showCaptions: false
+    },
+    itinerary: {
+      showImages: true,
+      showCaptions: false // Removed as of latest update - captions preserved in data but not displayed
+    },
+    gallery: {
+      showImages: true,
+      showCaptions: true // Gallery section still shows captions
+    }
+  }[section];
+};
+
+// Layout management helpers for full-width overview and 10-90 itinerary split
 export const getOptimalImageLayout = (images: TourImage[], maxImages: number = 3): TourImage[] => {
-  // For the new layout, we want to show rectangular images optimally
+  // For overview: no images needed (full-width content)
+  // For itinerary: show images optimally in 10-15% space
   return images.slice(0, maxImages);
 };
 
@@ -302,10 +315,10 @@ export const transformTourForDetailPage = (tour: Tour): Tour => {
     transformedTour.itineraryDays = transformedTour.itineraryDays.map(simplifyItineraryDay);
   }
 
-  // Ensure images are organized by section
+  // Ensure images are organized by section (overview no longer needs images)
   if (!transformedTour.images || transformedTour.images.length === 0) {
     transformedTour.images = [
-      ...generatePlaceholderImages('overview', 3),
+      // Overview sections no longer use images - only itinerary needs them
       ...generatePlaceholderImages('itinerary', 3)
     ];
   }
@@ -412,7 +425,7 @@ export const generateSEOData = (tour: Tour) => {
 export const transformTourForAdmin = (tour: Tour) => {
   return {
     ...tour,
-    overviewImages: getOverviewImages(tour),
+    overviewImages: [], // Overview no longer uses images
     itineraryImages: getItineraryImages(tour),
     structuredItinerary: getStructuredItinerary(tour),
     overviewContent: getOverviewContent(tour),
