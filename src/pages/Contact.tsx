@@ -65,10 +65,10 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Send us a Message
+                  Plan My Trip
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  Have questions about our tours? Need a custom itinerary? We'd love to hear from you.
+                   Need a custom itinerary? We'd love to hear from you.
                 </p>
               </div>
               <ContactForm />

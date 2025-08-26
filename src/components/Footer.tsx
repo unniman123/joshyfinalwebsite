@@ -154,7 +154,7 @@ const Footer = () => {
     {/* Bottom Footer */}
     <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80">
       <div>
-        © Kerala Tours Travels & Organic Remedies. All rights reserved.
+        © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
       <div className="flex gap-4">
         <Link to="/terms" className="hover:text-golden transition-smooth">Terms of Service</Link>

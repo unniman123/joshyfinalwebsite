@@ -44,7 +44,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             <div className="flex-1">
               <h3 className="font-semibold text-base md:text-lg mb-1">Call Us</h3>
               <p className="text-muted-foreground text-xs md:text-sm group-hover:text-primary transition-colors">
-                {info.phone || "+91 12345 67890"}
+                {info.phone || "+91 12345 67890 / +91 471 2488880"}
               </p>
             </div>
           </div>
@@ -62,7 +62,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             <div className="flex-1">
               <h3 className="font-semibold text-base md:text-lg mb-1">Email Us</h3>
               <p className="text-muted-foreground text-xs md:text-sm group-hover:text-primary transition-colors">
-                {info.email || "info@tourcompany.com"}
+                {info.email || "info@tourcompany.com, flabour@gmail.com"}
               </p>
             </div>
           </div>
