@@ -97,7 +97,7 @@ const EnquiryForm = ({
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Full Name *</Label>
+          <Label htmlFor="name">Name *</Label>
           <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" required />
         </div>
 
@@ -114,7 +114,7 @@ const EnquiryForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="contactNumber">Contact Number (WhatsApp) *</Label>
+          <Label htmlFor="contactNumber">Whatsapp *</Label>
           <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
         </div>
       </div>
@@ -133,13 +133,13 @@ const EnquiryForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="numberOfPeople">Number of People *</Label>
+          <Label htmlFor="numberOfPeople">Number of persons *</Label>
           <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="numberOfKids">Number of Kids (below age 5)</Label>
-          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 1" />
+          <Label htmlFor="numberOfKids">No of Kids & their age (If any)</Label>
+          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
         </div>
       </div>
 
@@ -150,9 +150,9 @@ const EnquiryForm = ({
             <SelectValue placeholder="Select hotel category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="3-star">3* category</SelectItem>
-            <SelectItem value="4-star">4* category</SelectItem>
-            <SelectItem value="5-star">5* category</SelectItem>
+            <SelectItem value="3-star">3* Category</SelectItem>
+            <SelectItem value="4-star">4* Category</SelectItem>
+            <SelectItem value="5-star">5* Category</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -160,7 +160,7 @@ const EnquiryForm = ({
 
 
       <div className="space-y-2">
-        <Label htmlFor="message">Message</Label>
+        <Label htmlFor="message">Special Comment</Label>
         <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} />
       </div>
 
