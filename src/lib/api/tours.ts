@@ -1,7 +1,7 @@
 // Tours API functions
 
 // TODO: Wire to Supabase on integration
-export async function submitTourInquiry(
+export async function submitTourEnquiry(
   tourId: string,
   data: {
     name: string;
@@ -20,5 +20,5 @@ export async function submitTourInquiry(
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   // TODO: Map new form fields to Supabase columns on integration
-  console.log("quick inquiry submitted:", { tourId, ...data });
+  console.log("Quick Enquiry submitted:", { tourId, ...data });
 }

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-interface TourInquiryFormProps {
+interface TourEnquiryFormProps {
   title?: string;
   placeholderText?: string;
   formType?: "tour" | "dayOut";
@@ -17,16 +17,16 @@ interface TourInquiryFormProps {
   phoneFieldPlaceholder?: string;
 }
 
-const TourInquiryForm = ({
-  title = "quick inquiry",
+const TourEnquiryForm = ({
+  title = "Quick Enquiry",
   formType = "tour",
   showMessage = true,
   showDate = false,
   showDestination = false,
   messagePlaceholder = "Describe your preferred destination and dates",
   phoneFieldPlaceholder = ""
-}: TourInquiryFormProps) => {
-  // Inquiry form state - dynamic based on admin config
+}: TourEnquiryFormProps) => {
+  // Enquiry form state - dynamic based on admin config
   const [formData, setFormData] = useState({
     name: "",
     mobileNo: "",
@@ -39,7 +39,7 @@ const TourInquiryForm = ({
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission logic
-    console.log(`${formType} inquiry submitted:`, formData);
+    console.log(`${formType} Enquiry submitted:`, formData);
     // Reset form after submission - dynamic fields
     setFormData({
       name: "",
@@ -173,7 +173,7 @@ const TourInquiryForm = ({
               type="submit"
               className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
             >
-              Submit Inquiry
+              Submit Enquiry
             </Button>
           </div>
         </form>
@@ -182,4 +182,4 @@ const TourInquiryForm = ({
   );
 };
 
-export default TourInquiryForm;
+export default TourEnquiryForm;

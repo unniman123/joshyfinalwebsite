@@ -93,7 +93,7 @@ const DayOutPackagesSection = ({
     return () => clearInterval(timer);
   }, [dayOutPackages.length]);
 
-  // Inquiry form state
+  // Enquiry form state
   const [formData, setFormData] = useState({
     name: "",
     mobileNo: "",
@@ -110,7 +110,7 @@ const DayOutPackagesSection = ({
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Implement form submission logic
-    console.log("Day Out Package inquiry submitted:", formData);
+    console.log("Day Out Package Enquiry submitted:", formData);
     // Reset form after submission
     setFormData({
       name: "",
@@ -139,7 +139,7 @@ const DayOutPackagesSection = ({
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
 
-        {/* Two-Column Layout: 70% Packages + 30% Inquiry Form */}
+        {/* Two-Column Layout: 70% Packages + 30% Enquiry Form */}
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
           {/* Left Column - Day Out Packages Carousel (70% on desktop) */}
           <div className="flex-1 lg:w-[70%]">
@@ -215,14 +215,14 @@ const DayOutPackagesSection = ({
             </div>
           </div>
 
-          {/* Right Column - Inquiry Form (30% on desktop) */}
+          {/* Right Column - Enquiry Form (30% on desktop) */}
           <div className="lg:w-[30%] mt-8 lg:mt-0">
             {/* Form card */}
             <Card className="shadow-warm w-full max-w-xs">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
                   <User className="h-3 w-3 text-golden" />
-                  Day Out Inquiry
+                  Day Out Enquiry
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-3">
@@ -308,7 +308,7 @@ const DayOutPackagesSection = ({
                       type="submit"
                       className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
                     >
-                      Submit Inquiry
+                      Submit Enquiry
                     </Button>
                   </div>
                 </form>

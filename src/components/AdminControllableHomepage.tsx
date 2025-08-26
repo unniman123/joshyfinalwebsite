@@ -7,11 +7,11 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Settings, 
-  Palette, 
-  Layout, 
-  MessageSquare, 
+import {
+  Settings,
+  Palette,
+  Layout,
+  MessageSquare,
   Save,
   Eye,
   Upload,
@@ -38,7 +38,7 @@ interface HeroBannerConfig {
 
 interface TourOfferConfig {
   sectionTitle: string;
-  showInquiryForm: boolean;
+  showEnquiryForm: boolean;
   formTitle: string;
   formFields: {
     showMessage: boolean;
@@ -80,10 +80,10 @@ interface AdminControllableHomepageProps {
   onPreview?: () => void;
 }
 
-const AdminControllableHomepage = ({ 
-  config: initialConfig, 
-  onSave, 
-  onPreview 
+const AdminControllableHomepage = ({
+  config: initialConfig,
+  onSave,
+  onPreview
 }: AdminControllableHomepageProps) => {
   // Default configuration based on current implementation
   const defaultConfig: HomepageConfig = {
@@ -102,8 +102,8 @@ const AdminControllableHomepage = ({
     },
     tourOffers: {
       sectionTitle: "Our Top Selling Packages",
-      showInquiryForm: true,
-      formTitle: "quick inquiry",
+      showEnquiryForm: true,
+      formTitle: "Quick Enquiry",
       formFields: {
         showMessage: true,
         showDate: false,
@@ -124,7 +124,7 @@ const AdminControllableHomepage = ({
           isActive: true
         },
         {
-          id: "2", 
+          id: "2",
           title: "Spice Garden Visit",
           image: "/assets/hero-ayurveda-spa.jpg",
           showDescription: false,
@@ -222,7 +222,7 @@ const AdminControllableHomepage = ({
               <div className="flex items-center space-x-2">
                 <Switch
                   checked={config.heroBanner.isVisible}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     updateConfig('heroBanner', { isVisible: checked })
                   }
                 />
@@ -236,7 +236,7 @@ const AdminControllableHomepage = ({
                   <Input
                     id="hero-title"
                     value={config.heroBanner.title}
-                    onChange={(e) => 
+                    onChange={(e) =>
                       updateConfig('heroBanner', { title: e.target.value })
                     }
                     placeholder="Discover Amazing Tours"
@@ -247,7 +247,7 @@ const AdminControllableHomepage = ({
                   <Input
                     id="search-placeholder"
                     value={config.heroBanner.searchPlaceholder}
-                    onChange={(e) => 
+                    onChange={(e) =>
                       updateConfig('heroBanner', { searchPlaceholder: e.target.value })
                     }
                     placeholder="Search destinations..."
@@ -260,7 +260,7 @@ const AdminControllableHomepage = ({
                 <Textarea
                   id="hero-subtitle"
                   value={config.heroBanner.subtitle}
-                  onChange={(e) => 
+                  onChange={(e) =>
                     updateConfig('heroBanner', { subtitle: e.target.value })
                   }
                   placeholder="Explore the best travel experiences..."
@@ -277,8 +277,8 @@ const AdminControllableHomepage = ({
                     <Input
                       id="button-primary"
                       value={config.heroBanner.searchButtonColor.primary}
-                      onChange={(e) => 
-                        updateConfig('heroBanner', { 
+                      onChange={(e) =>
+                        updateConfig('heroBanner', {
                           searchButtonColor: {
                             ...config.heroBanner.searchButtonColor,
                             primary: e.target.value
@@ -293,8 +293,8 @@ const AdminControllableHomepage = ({
                     <Input
                       id="button-hover"
                       value={config.heroBanner.searchButtonColor.hover}
-                      onChange={(e) => 
-                        updateConfig('heroBanner', { 
+                      onChange={(e) =>
+                        updateConfig('heroBanner', {
                           searchButtonColor: {
                             ...config.heroBanner.searchButtonColor,
                             hover: e.target.value
@@ -313,8 +313,8 @@ const AdminControllableHomepage = ({
                 <Input
                   id="content-position"
                   value={config.heroBanner.contentPosition.paddingTop}
-                  onChange={(e) => 
-                    updateConfig('heroBanner', { 
+                  onChange={(e) =>
+                    updateConfig('heroBanner', {
                       contentPosition: { paddingTop: e.target.value }
                     })
                   }
@@ -342,7 +342,7 @@ const AdminControllableHomepage = ({
               <div className="flex items-center space-x-2">
                 <Switch
                   checked={config.tourOffers.isVisible}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     updateConfig('tourOffers', { isVisible: checked })
                   }
                 />
@@ -354,49 +354,49 @@ const AdminControllableHomepage = ({
                 <Input
                   id="tour-section-title"
                   value={config.tourOffers.sectionTitle}
-                  onChange={(e) => 
+                  onChange={(e) =>
                     updateConfig('tourOffers', { sectionTitle: e.target.value })
                   }
                   placeholder="Our Top Selling Packages"
                 />
               </div>
 
-              {/* Inquiry Form Configuration */}
+              {/* Enquiry Form Configuration */}
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
                   <Switch
-                    checked={config.tourOffers.showInquiryForm}
-                    onCheckedChange={(checked) => 
-                      updateConfig('tourOffers', { showInquiryForm: checked })
+                    checked={config.tourOffers.showEnquiryForm}
+                    onCheckedChange={(checked) =>
+                      updateConfig('tourOffers', { showEnquiryForm: checked })
                     }
                   />
-                  <Label>Show Inquiry Form</Label>
+                  <Label>Show Enquiry Form</Label>
                 </div>
 
-                {config.tourOffers.showInquiryForm && (
+                {config.tourOffers.showEnquiryForm && (
                   <div className="space-y-4 ml-6 p-4 border rounded-lg">
                     <h4 className="font-medium">Form Configuration</h4>
-                    
+
                     <div>
                       <Label htmlFor="form-title">Form Title</Label>
                       <Input
                         id="form-title"
                         value={config.tourOffers.formTitle}
-                        onChange={(e) => 
+                        onChange={(e) =>
                           updateConfig('tourOffers', { formTitle: e.target.value })
                         }
-                        placeholder="quick inquiry"
+                        placeholder="Quick Enquiry"
                       />
                     </div>
 
                     <div className="space-y-3">
                       <h5 className="text-sm font-medium">Form Fields</h5>
-                      
+
                       <div className="flex items-center space-x-2">
                         <Switch
                           checked={config.tourOffers.formFields.showMessage}
-                          onCheckedChange={(checked) => 
-                            updateConfig('tourOffers', { 
+                          onCheckedChange={(checked) =>
+                            updateConfig('tourOffers', {
                               formFields: {
                                 ...config.tourOffers.formFields,
                                 showMessage: checked
@@ -413,8 +413,8 @@ const AdminControllableHomepage = ({
                           <Input
                             id="message-placeholder"
                             value={config.tourOffers.formFields.messagePlaceholder}
-                            onChange={(e) => 
-                              updateConfig('tourOffers', { 
+                            onChange={(e) =>
+                              updateConfig('tourOffers', {
                                 formFields: {
                                   ...config.tourOffers.formFields,
                                   messagePlaceholder: e.target.value
@@ -429,8 +429,8 @@ const AdminControllableHomepage = ({
                       <div className="flex items-center space-x-2">
                         <Switch
                           checked={config.tourOffers.formFields.showDate}
-                          onCheckedChange={(checked) => 
-                            updateConfig('tourOffers', { 
+                          onCheckedChange={(checked) =>
+                            updateConfig('tourOffers', {
                               formFields: {
                                 ...config.tourOffers.formFields,
                                 showDate: checked
@@ -444,8 +444,8 @@ const AdminControllableHomepage = ({
                       <div className="flex items-center space-x-2">
                         <Switch
                           checked={config.tourOffers.formFields.showDestination}
-                          onCheckedChange={(checked) => 
-                            updateConfig('tourOffers', { 
+                          onCheckedChange={(checked) =>
+                            updateConfig('tourOffers', {
                               formFields: {
                                 ...config.tourOffers.formFields,
                                 showDestination: checked
@@ -477,7 +477,7 @@ const AdminControllableHomepage = ({
               <div className="flex items-center space-x-2">
                 <Switch
                   checked={config.dayOutPackages.isVisible}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     updateConfig('dayOutPackages', { isVisible: checked })
                   }
                 />
@@ -489,7 +489,7 @@ const AdminControllableHomepage = ({
                 <Input
                   id="dayout-section-title"
                   value={config.dayOutPackages.sectionTitle}
-                  onChange={(e) => 
+                  onChange={(e) =>
                     updateConfig('dayOutPackages', { sectionTitle: e.target.value })
                   }
                   placeholder="Day Out Packages"
@@ -498,15 +498,15 @@ const AdminControllableHomepage = ({
 
               {/* Form Configuration */}
               <div className="space-y-4">
-                <h4 className="font-medium">Inquiry Form Settings</h4>
-                
+                <h4 className="font-medium">Enquiry Form Settings</h4>
+
                 <div>
                   <Label htmlFor="phone-placeholder">Phone Field Placeholder</Label>
                   <Input
                     id="phone-placeholder"
                     value={config.dayOutPackages.formConfig.phoneFieldPlaceholder}
-                    onChange={(e) => 
-                      updateConfig('dayOutPackages', { 
+                    onChange={(e) =>
+                      updateConfig('dayOutPackages', {
                         formConfig: {
                           ...config.dayOutPackages.formConfig,
                           phoneFieldPlaceholder: e.target.value
@@ -522,8 +522,8 @@ const AdminControllableHomepage = ({
                   <Input
                     id="destination-label"
                     value={config.dayOutPackages.formConfig.destinationFieldLabel}
-                    onChange={(e) => 
-                      updateConfig('dayOutPackages', { 
+                    onChange={(e) =>
+                      updateConfig('dayOutPackages', {
                         formConfig: {
                           ...config.dayOutPackages.formConfig,
                           destinationFieldLabel: e.target.value
@@ -539,8 +539,8 @@ const AdminControllableHomepage = ({
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h4 className="font-medium">Package Configuration</h4>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
                     onClick={() => {
                       const newPackage = {
@@ -573,8 +573,8 @@ const AdminControllableHomepage = ({
                           <Button variant="outline" size="sm">
                             <ChevronDown className="h-4 w-4" />
                           </Button>
-                          <Button 
-                            variant="outline" 
+                          <Button
+                            variant="outline"
                             size="sm"
                             onClick={() => {
                               const updatedPackages = config.dayOutPackages.packages.filter(p => p.id !== pkg.id);
@@ -592,7 +592,7 @@ const AdminControllableHomepage = ({
                           <Input
                             value={pkg.title}
                             onChange={(e) => {
-                              const updatedPackages = config.dayOutPackages.packages.map(p => 
+                              const updatedPackages = config.dayOutPackages.packages.map(p =>
                                 p.id === pkg.id ? { ...p, title: e.target.value } : p
                               );
                               updateConfig('dayOutPackages', { packages: updatedPackages });
@@ -605,7 +605,7 @@ const AdminControllableHomepage = ({
                           <Input
                             value={pkg.image}
                             onChange={(e) => {
-                              const updatedPackages = config.dayOutPackages.packages.map(p => 
+                              const updatedPackages = config.dayOutPackages.packages.map(p =>
                                 p.id === pkg.id ? { ...p, image: e.target.value } : p
                               );
                               updateConfig('dayOutPackages', { packages: updatedPackages });
@@ -620,7 +620,7 @@ const AdminControllableHomepage = ({
                           <Switch
                             checked={pkg.showDescription}
                             onCheckedChange={(checked) => {
-                              const updatedPackages = config.dayOutPackages.packages.map(p => 
+                              const updatedPackages = config.dayOutPackages.packages.map(p =>
                                 p.id === pkg.id ? { ...p, showDescription: checked } : p
                               );
                               updateConfig('dayOutPackages', { packages: updatedPackages });
@@ -633,7 +633,7 @@ const AdminControllableHomepage = ({
                           <Switch
                             checked={pkg.showExploreButton}
                             onCheckedChange={(checked) => {
-                              const updatedPackages = config.dayOutPackages.packages.map(p => 
+                              const updatedPackages = config.dayOutPackages.packages.map(p =>
                                 p.id === pkg.id ? { ...p, showExploreButton: checked } : p
                               );
                               updateConfig('dayOutPackages', { packages: updatedPackages });
@@ -646,7 +646,7 @@ const AdminControllableHomepage = ({
                           <Switch
                             checked={pkg.isActive}
                             onCheckedChange={(checked) => {
-                              const updatedPackages = config.dayOutPackages.packages.map(p => 
+                              const updatedPackages = config.dayOutPackages.packages.map(p =>
                                 p.id === pkg.id ? { ...p, isActive: checked } : p
                               );
                               updateConfig('dayOutPackages', { packages: updatedPackages });
@@ -679,7 +679,7 @@ const AdminControllableHomepage = ({
             <p><strong>Active Sections:</strong> {
               [
                 config.heroBanner.isVisible && "Hero Banner",
-                config.tourOffers.isVisible && "Tour Offers", 
+                config.tourOffers.isVisible && "Tour Offers",
                 config.dayOutPackages.isVisible && "Day Out Packages"
               ].filter(Boolean).join(", ")
             }</p>

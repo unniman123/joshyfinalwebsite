@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { submitTourInquiry } from "@/lib/api/tours";
+import { submitTourEnquiry } from "@/lib/api/tours";
 interface ContactFormProps {
   tourId?: string;
 }
@@ -33,8 +33,8 @@ const ContactForm = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Wire form submit to submitTourInquiry(tourId, data) API
-      await submitTourInquiry(tourId || "default", {
+      // TODO: Wire form submit to submitTourEnquiry(tourId, data) API
+      await submitTourEnquiry(tourId || "default", {
         name: formData.name,
         email: formData.email,
         nationality: formData.nationality,
@@ -49,7 +49,7 @@ const ContactForm = ({
 
       // Show success toast
       toast({
-        title: "Inquiry Submitted Successfully!",
+        title: "Enquiry Submitted Successfully!",
         description: "Thank you for your interest. We'll contact you within 24 hours.",
         variant: "default"
       });
@@ -77,7 +77,7 @@ const ContactForm = ({
       // Show error toast
       toast({
         title: "Submission Failed",
-        description: "Failed to submit inquiry. Please try again or contact us directly.",
+        description: "Failed to submit Enquiry. Please try again or contact us directly.",
         variant: "destructive"
       });
       console.error("Form submission error:", error);

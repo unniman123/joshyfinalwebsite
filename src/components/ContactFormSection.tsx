@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Users, Hotel, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { submitContactInquiry } from "@/lib/api/contact";
+import { submitContactEnquiry } from "@/lib/api/contact";
 const ContactFormSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,8 +33,8 @@ const ContactFormSection = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Wire form submit to submitContactInquiry(data) API
-      await submitContactInquiry({
+      // TODO: Wire form submit to submitContactEnquiry(data) API
+      await submitContactEnquiry({
         name: formData.name,
         email: formData.contactWhatsapp, // Using WhatsApp as contact method
         message: `Contact WhatsApp: ${formData.contactWhatsapp}\nNationality: ${formData.nationality}\nDestination: ${formData.destinationInterested}\nTour Days: ${formData.tourDays}\nTravel Date: ${formData.travelDate}\nRooms: ${formData.roomsCount}\nHotel Category: ${formData.hotelCategory}\nSpecial Comments: ${formData.specialComments}`
@@ -43,7 +43,7 @@ const ContactFormSection = () => {
       // Show success toast with accessibility
       toast({
         title: "Quote Request Submitted Successfully!",
-        description: "Thank you for your inquiry. We'll send you a free quote within 24 hours.",
+        description: "Thank you for your Enquiry. We'll send you a free quote within 24 hours.",
         variant: "default"
       });
 

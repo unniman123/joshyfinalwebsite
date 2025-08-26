@@ -453,7 +453,7 @@ export interface HomepageAdminConfig {
   };
   tourOffers: {
     sectionTitle: string;
-    showInquiryForm: boolean;
+    showEnquiryForm: boolean;
     formTitle: string;
     formFields: {
       showMessage: boolean;
@@ -499,8 +499,8 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
     },
     tourOffers: {
       sectionTitle: 'Our Top Selling Packages',
-      showInquiryForm: true,
-      formTitle: 'quick inquiry',
+      showEnquiryForm: true,
+      formTitle: 'Quick Enquiry',
       formFields: {
         showMessage: true,
         showDate: false,
@@ -581,8 +581,8 @@ export const validateHomepageConfig = (config: HomepageAdminConfig): { isValid: 
   if (config.tourOffers.isVisible && !config.tourOffers.sectionTitle.trim()) {
     errors.push('Tour offers section title is required when section is visible');
   }
-  if (config.tourOffers.showInquiryForm && !config.tourOffers.formTitle.trim()) {
-    errors.push('Tour inquiry form title is required when form is enabled');
+  if (config.tourOffers.showEnquiryForm && !config.tourOffers.formTitle.trim()) {
+    errors.push('Tour Enquiry form title is required when form is enabled');
   }
 
   // Day out packages validation
@@ -628,7 +628,7 @@ export const transformHomepageConfigForComponents = (config: HomepageAdminConfig
         showDestination: config.tourOffers.formFields.showDestination,
         messagePlaceholder: config.tourOffers.formFields.messagePlaceholder
       },
-      showInquiryForm: config.tourOffers.showInquiryForm,
+      showEnquiryForm: config.tourOffers.showEnquiryForm,
       isVisible: config.tourOffers.isVisible
     },
     dayOutPackagesProps: {
@@ -697,7 +697,7 @@ const detectConfigChanges = (config: HomepageAdminConfig): string[] => {
 
   // Detect tour offers changes
   if (config.tourOffers.formFields.showMessage !== defaultConfig.tourOffers.formFields.showMessage) {
-    changes.push('Tour inquiry form fields modified');
+    changes.push('Tour Enquiry form fields modified');
   }
 
   // Detect day out packages changes
@@ -729,7 +729,7 @@ export const exportHomepageConfig = (config: HomepageAdminConfig) => {
         'Day out packages explore button removed',
         'Day out packages description hidden',
         'Destination field renamed in day out form',
-        'Tour inquiry form simplified to message field',
+        'Tour Enquiry form simplified to message field',
         'Phone placeholders removed from both forms'
       ]
     }

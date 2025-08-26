@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const InquiryFormCompact = () => {
-  // Inquiry form state
+const EnquiryFormCompact = () => {
+  // Enquiry form state
   const [formData, setFormData] = useState({
     name: "",
     mobileNo: "",
@@ -41,18 +41,18 @@ const InquiryFormCompact = () => {
       <CardHeader className="pb-2 px-3 pt-3">
         <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
           <User className="h-3 w-3 text-golden" />
-          Quick Inquiry
+          Quick Enquiry
         </CardTitle>
       </CardHeader>
       <CardContent className="px-3 pb-3">
         <form onSubmit={handleFormSubmit} className="space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
-            <Label htmlFor="inquiry-name" className="text-[10px] font-medium text-muted-foreground">
+            <Label htmlFor="Enquiry-name" className="text-[10px] font-medium text-muted-foreground">
               Name *
             </Label>
             <Input
-              id="inquiry-name"
+              id="Enquiry-name"
               type="text"
               placeholder="Your name"
               value={formData.name}
@@ -64,11 +64,11 @@ const InquiryFormCompact = () => {
 
           {/* Mobile No Field */}
           <div className="space-y-0.5">
-            <Label htmlFor="inquiry-mobile" className="text-[10px] font-medium text-muted-foreground">
+            <Label htmlFor="Enquiry-mobile" className="text-[10px] font-medium text-muted-foreground">
               Mobile *
             </Label>
             <Input
-              id="inquiry-mobile"
+              id="Enquiry-mobile"
               type="tel"
               placeholder="+91 98765 43210"
               value={formData.mobileNo}
@@ -80,11 +80,11 @@ const InquiryFormCompact = () => {
 
           {/* Date Field */}
           <div className="space-y-0.5">
-            <Label htmlFor="inquiry-date" className="text-[10px] font-medium text-muted-foreground">
+            <Label htmlFor="Enquiry-date" className="text-[10px] font-medium text-muted-foreground">
               Travel Date *
             </Label>
             <Input
-              id="inquiry-date"
+              id="Enquiry-date"
               type="date"
               value={formData.date}
               onChange={(e) => handleInputChange("date", e.target.value)}
@@ -95,11 +95,11 @@ const InquiryFormCompact = () => {
 
           {/* Destination Field */}
           <div className="space-y-0.5">
-            <Label htmlFor="inquiry-destination" className="text-[10px] font-medium text-muted-foreground">
+            <Label htmlFor="Enquiry-destination" className="text-[10px] font-medium text-muted-foreground">
               Destination *
             </Label>
             <Input
-              id="inquiry-destination"
+              id="Enquiry-destination"
               type="text"
               placeholder="Kerala, Rajasthan..."
               value={formData.destination}
@@ -124,4 +124,4 @@ const InquiryFormCompact = () => {
   );
 };
 
-export default InquiryFormCompact;
+export default EnquiryFormCompact;

@@ -326,7 +326,7 @@ export interface HomepageConfiguration {
   };
   tourOffers: {
     sectionTitle: string;
-    showInquiryForm: boolean;
+    showEnquiryForm: boolean;
     formTitle: string;
     formFields: {
       showMessage: boolean;
@@ -377,8 +377,8 @@ export async function getHomepageConfiguration(): Promise<HomepageConfiguration 
     },
     tourOffers: {
       sectionTitle: 'Our Top Selling Packages',
-      showInquiryForm: true,
-      formTitle: 'quick inquiry',
+      showEnquiryForm: true,
+      formTitle: 'Quick Enquiry',
       formFields: {
         showMessage: true,
         showDate: false,
@@ -488,9 +488,9 @@ export interface FormFieldConfiguration {
   order: number;
 }
 
-export async function getFormConfiguration(formType: 'tour_inquiry' | 'day_out_inquiry'): Promise<FormFieldConfiguration[]> {
+export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_Enquiry'): Promise<FormFieldConfiguration[]> {
   // TODO: Implement form configuration fetching
-  const defaultTourInquiryFields: FormFieldConfiguration[] = [
+  const defaultTourEnquiryFields: FormFieldConfiguration[] = [
     {
       id: 'name',
       fieldType: 'text',
@@ -520,7 +520,7 @@ export async function getFormConfiguration(formType: 'tour_inquiry' | 'day_out_i
     }
   ];
 
-  const defaultDayOutInquiryFields: FormFieldConfiguration[] = [
+  const defaultDayOutEnquiryFields: FormFieldConfiguration[] = [
     {
       id: 'name',
       fieldType: 'text',
@@ -559,10 +559,10 @@ export async function getFormConfiguration(formType: 'tour_inquiry' | 'day_out_i
     }
   ];
 
-  return formType === 'tour_inquiry' ? defaultTourInquiryFields : defaultDayOutInquiryFields;
+  return formType === 'tour_Enquiry' ? defaultTourEnquiryFields : defaultDayOutEnquiryFields;
 }
 
-export async function updateFormConfiguration(formType: 'tour_inquiry' | 'day_out_inquiry', fields: FormFieldConfiguration[]): Promise<boolean> {
+export async function updateFormConfiguration(formType: 'tour_Enquiry' | 'day_out_Enquiry', fields: FormFieldConfiguration[]): Promise<boolean> {
   // TODO: Implement form configuration update
   return true;
 }

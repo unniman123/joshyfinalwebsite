@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getTourBySlug, Tour } from "@/lib/api";
 import TourDetailBanner from "@/components/TourDetailBanner";
 import TourContentSections from "@/components/TourContentSections";
-import InquiryForm from "@/components/InquiryForm";
+import EnquiryForm from "@/components/EnquiryForm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -58,7 +58,7 @@ const TourDetail = () => {
             <h2 className="text-3xl font-bold text-foreground mb-4">Enquire?</h2>
 
           </div>
-          <InquiryForm tourId={tour.id} />
+          <EnquiryForm tourId={tour.id} />
         </div>
       </section>
     </main>

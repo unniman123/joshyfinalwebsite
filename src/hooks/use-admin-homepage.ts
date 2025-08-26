@@ -17,7 +17,7 @@ export interface HeroBannerConfig {
 
 export interface TourOfferConfig {
   sectionTitle: string;
-  showInquiryForm: boolean;
+  showEnquiryForm: boolean;
   formTitle: string;
   formFields: {
     showMessage: boolean;
@@ -78,8 +78,8 @@ export const useAdminHomepage = () => {
     },
     tourOffers: {
       sectionTitle: "Our Top Selling Packages",
-      showInquiryForm: true,
-      formTitle: "quick inquiry",
+      showEnquiryForm: true,
+      formTitle: "Quick Enquiry",
       formFields: {
         showMessage: true,
         showDate: false,
@@ -147,7 +147,7 @@ export const useAdminHomepage = () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       // TODO: Replace with actual API call
       // For now, use default configuration or localStorage
       const savedConfig = localStorage.getItem('homepage-admin-config');
@@ -182,7 +182,7 @@ export const useAdminHomepage = () => {
       localStorage.setItem('homepage-admin-config', JSON.stringify(configToSave));
       setConfig(configToSave);
       setIsDirty(false);
-      
+
       return configToSave;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save homepage configuration');
@@ -194,7 +194,7 @@ export const useAdminHomepage = () => {
 
   // Update specific section of configuration
   const updateSection = useCallback(<T extends keyof HomepageConfig>(
-    section: T, 
+    section: T,
     updates: Partial<HomepageConfig[T]>
   ) => {
     if (!config) return;
@@ -296,8 +296,8 @@ export const useAdminHomepage = () => {
       version: '1.0'
     };
 
-    return new Blob([JSON.stringify(exportData, null, 2)], { 
-      type: 'application/json' 
+    return new Blob([JSON.stringify(exportData, null, 2)], {
+      type: 'application/json'
     });
   }, [config]);
 
@@ -306,7 +306,7 @@ export const useAdminHomepage = () => {
     try {
       const text = await file.text();
       const importedConfig = JSON.parse(text);
-      
+
       // Basic validation
       if (!importedConfig.heroBanner || !importedConfig.tourOffers || !importedConfig.dayOutPackages) {
         throw new Error('Invalid configuration file format');
@@ -322,7 +322,7 @@ export const useAdminHomepage = () => {
 
       setConfig(configToImport);
       setIsDirty(true);
-      
+
       return configToImport;
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to import configuration');

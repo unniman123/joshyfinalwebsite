@@ -129,7 +129,7 @@ export interface Tour extends TourSummary {
   adminSettings?: {
     allowPublicBooking: boolean;
     showPricing: boolean;
-    showInquiryForm: boolean;
+    showEnquiryForm: boolean;
     enableReviews: boolean;
     featuredTour: boolean;
     customCss?: string;
@@ -311,7 +311,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
       adminSettings: {
         allowPublicBooking: true,
         showPricing: true,
-        showInquiryForm: true,
+        showEnquiryForm: true,
         enableReviews: true,
         featuredTour: true
       }

@@ -5,13 +5,13 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { submitTourInquiry } from "@/lib/api/tours";
-interface InquiryFormProps {
+import { submitTourEnquiry } from "@/lib/api/tours";
+interface EnquiryFormProps {
   tourId: string;
 }
-const InquiryForm = ({
+const EnquiryForm = ({
   tourId
-}: InquiryFormProps) => {
+}: EnquiryFormProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,8 +31,8 @@ const InquiryForm = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Submit all fields via submitTourInquiry(tourId, data) API
-      await submitTourInquiry(tourId, {
+      // TODO: Submit all fields via submitTourEnquiry(tourId, data) API
+      await submitTourEnquiry(tourId, {
         name: formData.name,
         email: formData.email,
         nationality: formData.nationality,
@@ -47,7 +47,7 @@ const InquiryForm = ({
 
       // Show success toast with accessibility
       toast({
-        title: "quick inquiry Submitted Successfully!",
+        title: "Quick Enquiry Submitted Successfully!",
         description: "Thank you for your interest in this tour. We'll respond within 24 hours.",
         variant: "default"
       });
@@ -73,10 +73,10 @@ const InquiryForm = ({
       // Show error toast with accessibility
       toast({
         title: "Submission Failed",
-        description: "Failed to submit quick inquiry. Please try again or contact us directly.",
+        description: "Failed to submit Quick Enquiry. Please try again or contact us directly.",
         variant: "destructive"
       });
-      console.error("quick inquiry submission error:", error);
+      console.error("Quick Enquiry submission error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -183,14 +183,14 @@ const InquiryForm = ({
         aria-live="polite"
         aria-atomic="true"
       >
-        {isSubmitting && "quick inquiry form is being submitted, please wait."}
+        {isSubmitting && "Quick Enquiry form is being submitted, please wait."}
       </div>
 
       {/* TODO: Add form validation for all new fields */}
       {/* TODO: Wire to real API endpoint when Supabase is integrated */}
       {/* TODO: Map new form fields to Supabase columns on integration */}
-      {/* TODO: Add email notifications to admin on quick inquiry submission */}
+      {/* TODO: Add email notifications to admin on Quick Enquiry submission */}
     </form>
   </div>;
 };
-export default InquiryForm;
+export default EnquiryForm;

@@ -58,7 +58,7 @@ export function withHomepageAdmin<P extends object>(
 ) {
   const AdminControllableComponent = (props: P) => {
     const { config, isAdminMode } = useHomepageAdmin();
-    
+
     // If section key is provided and section is not visible, don't render
     if (sectionKey && config[sectionKey] && 'isVisible' in config[sectionKey]) {
       const section = config[sectionKey] as any;
@@ -78,7 +78,7 @@ export function withHomepageAdmin<P extends object>(
   };
 
   AdminControllableComponent.displayName = `withHomepageAdmin(${WrappedComponent.displayName || WrappedComponent.name})`;
-  
+
   return AdminControllableComponent;
 }
 
@@ -126,11 +126,10 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
           {onToggleVisibility && (
             <button
               onClick={() => onToggleVisibility(!isVisible)}
-              className={`px-2 py-1 rounded text-xs ${
-                isVisible 
-                  ? 'bg-green-600 hover:bg-green-700' 
+              className={`px-2 py-1 rounded text-xs ${isVisible
+                  ? 'bg-green-600 hover:bg-green-700'
                   : 'bg-red-600 hover:bg-red-700'
-              }`}
+                }`}
               title={isVisible ? 'Hide section' : 'Show section'}
             >
               {isVisible ? 'Hide' : 'Show'}
@@ -147,7 +146,7 @@ export const AdminPanelWrapper: React.FC<AdminPanelWrapperProps> = ({
           )}
         </div>
       </div>
-      
+
       {/* Content with admin border */}
       <div className={`${isAdminMode ? 'border-2 border-dashed border-blue-500/50' : ''}`}>
         {children}
@@ -171,7 +170,7 @@ export const AdminControllableSection: React.FC<AdminControllableSectionProps> =
   className = ''
 }) => {
   const { config, isAdminMode, updateConfig } = useHomepageAdmin();
-  
+
   const sectionConfig = config[sectionKey] as any;
   const isVisible = sectionConfig?.isVisible !== false;
 
@@ -224,7 +223,7 @@ export const applyAdminConfig = {
   // TourOffers configuration application
   tourOffers: (config: HomepageAdminConfig['tourOffers']) => ({
     sectionTitle: config.sectionTitle,
-    showInquiryForm: config.showInquiryForm,
+    showEnquiryForm: config.showEnquiryForm,
     formConfig: {
       title: config.formTitle,
       fields: config.formFields

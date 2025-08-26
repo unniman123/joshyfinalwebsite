@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import TourInquiryForm from "@/components/TourInquiryForm";
+import TourEnquiryForm from "@/components/TourEnquiryForm";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -30,15 +30,15 @@ interface TourFormConfig {
 
 interface TourOffersSectionProps {
   sectionTitle?: string;
-  showInquiryForm?: boolean;
+  showEnquiryForm?: boolean;
   formConfig?: TourFormConfig;
 }
 
 const TourOffersSection = ({
   sectionTitle = "Our Top Selling Packages",
-  showInquiryForm = true,
+  showEnquiryForm = true,
   formConfig = {
-    title: "quick inquiry",
+    title: "Quick Enquiry",
     fields: {
       showMessage: true,
       showDate: false,
@@ -127,7 +127,7 @@ const TourOffersSection = ({
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
 
-        {/* Two-Column Layout: 70% Tours + 30% Inquiry Form */}
+        {/* Two-Column Layout: 70% Tours + 30% Enquiry Form */}
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
           {/* Left Column - Tour Packages Carousel (70% on desktop) */}
           <div className="flex-1 lg:w-[70%]">
@@ -211,10 +211,10 @@ const TourOffersSection = ({
             </div>
           </div>
 
-          {/* Right Column - Inquiry Form (30% on desktop) */}
-          {showInquiryForm && (
+          {/* Right Column - Enquiry Form (30% on desktop) */}
+          {showEnquiryForm && (
             <div className="lg:w-[30%] mt-8 lg:mt-0">
-              <TourInquiryForm
+              <TourEnquiryForm
                 title={formConfig.title}
                 formType="tour"
                 showMessage={formConfig.fields.showMessage}

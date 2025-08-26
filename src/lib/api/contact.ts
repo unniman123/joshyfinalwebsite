@@ -32,8 +32,8 @@ export async function getContactInfo(): Promise<ContactInfo> {
   };
 }
 
-// TODO: Wire form submit to submitContactInquiry(data) API
-export async function submitContactInquiry(data: {
+// TODO: Wire form submit to submitContactEnquiry(data) API
+export async function submitContactEnquiry(data: {
   name: string;
   email: string;
   message: string;
@@ -41,6 +41,6 @@ export async function submitContactInquiry(data: {
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 1000));
 
-  // TODO: Implement actual API call to submit contact inquiry
-  console.log("Contact inquiry submitted:", data);
+  // TODO: Implement actual API call to submit contact Enquiry
+  console.log("Contact Enquiry submitted:", data);
 }
