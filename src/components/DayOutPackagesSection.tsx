@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { User, Calendar, Phone, MapPin } from "lucide-react";
+import { User, Calendar, Phone, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -98,6 +98,7 @@ const DayOutPackagesSection = ({
     name: "",
     mobileNo: "",
     date: "",
+    numberOfPeople: "",
     destination: ""
   });
 
@@ -116,6 +117,7 @@ const DayOutPackagesSection = ({
       name: "",
       mobileNo: "",
       date: "",
+      numberOfPeople: "",
       destination: ""
     });
   };
@@ -277,6 +279,26 @@ const DayOutPackagesSection = ({
                         type="date"
                         value={formData.date}
                         onChange={(e) => handleInputChange("date", e.target.value)}
+                        className="pl-6 h-6 text-[10px]"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Number of People Field */}
+                  <div className="space-y-0.5">
+                    <Label htmlFor="dayOut-people" className="text-[10px] font-medium text-muted-foreground">
+                      Number of People *
+                    </Label>
+                    <div className="relative">
+                      <Users className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
+                      <Input
+                        id="dayOut-people"
+                        type="number"
+                        min="1"
+                        placeholder="e.g., 2"
+                        value={formData.numberOfPeople}
+                        onChange={(e) => handleInputChange("numberOfPeople", e.target.value)}
                         className="pl-6 h-6 text-[10px]"
                         required
                       />

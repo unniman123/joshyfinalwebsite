@@ -549,13 +549,25 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       order: 2
     },
     {
+      id: 'numberOfPeople',
+      fieldType: 'text',
+      label: 'Number of People',
+      placeholder: 'e.g., 2',
+      isRequired: true,
+      isVisible: true,
+      validationRules: {
+        pattern: '^[1-9][0-9]*$'
+      },
+      order: 3
+    },
+    {
       id: 'destination',
       fieldType: 'text',
       label: 'Destination',
       placeholder: 'Backwater, Beach, Hill Station...',
       isRequired: true,
       isVisible: true,
-      order: 3
+      order: 4
     }
   ];
 
