@@ -14,19 +14,36 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
   return (
     <section className="py-12 md:py-16 lg:py-20">
       <div className="container mx-auto max-w-7xl px-4">
-        {/* 50-50 Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        {/* 30-70 Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-start">
 
-          {/* Left side - Interactive Overview Image Gallery (50%) */}
-          <div className="order-2 lg:order-1">
-            <OverviewImageGallery
-              images={overviewImages}
-              tourTitle={tour.title}
-            />
+          {/* Left side - Images (30%) */}
+          <div className="order-2 lg:order-1 lg:col-span-3">
+            {overviewImages && overviewImages.length > 0 ? (
+              <OverviewImageGallery
+                images={overviewImages}
+                tourTitle={tour.title}
+              />
+            ) : (
+              /* Placeholder rectangular images for testing */
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-500 text-sm">Image 1</span>
+                  </div>
+                  <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                    <span className="text-gray-500 text-sm">Image 2</span>
+                  </div>
+                </div>
+                <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-500 text-sm">Image 3</span>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Right side - Overview Content (50%) */}
-          <div className="order-1 lg:order-2">
+          {/* Right side - Content (70%) */}
+          <div className="order-1 lg:order-2 lg:col-span-7">
             <div className="space-y-6">
               {/* Section heading using tour title */}
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">

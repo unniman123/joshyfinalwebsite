@@ -21,11 +21,11 @@ const ItinerarySection = ({ tour }: ItinerarySectionProps) => {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-muted/30">
       <div className="container mx-auto max-w-7xl px-4">
-        {/* 50-50 Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        {/* 30-70 Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
 
-          {/* Left side - Interactive Image Gallery (50%) */}
-          <div className="order-2 lg:order-1">
+          {/* Left side - Image Gallery (30%) */}
+          <div className="order-2 lg:order-1 lg:col-span-3">
             <ItineraryImageGallery
               images={itineraryImages}
               tourTitle={tour.title}
@@ -33,12 +33,11 @@ const ItinerarySection = ({ tour }: ItinerarySectionProps) => {
             />
           </div>
 
-          {/* Right side - Interactive Itinerary Content (50%) */}
-          <div className="order-1 lg:order-2">
+          {/* Right side - Itinerary Content (70%) */}
+          <div className="order-1 lg:order-2 lg:col-span-7">
             <InteractiveItinerary
               itinerary={itineraryContent}
               tourTitle={tour.title}
-              structuredItinerary={structuredItinerary}
             />
           </div>
 

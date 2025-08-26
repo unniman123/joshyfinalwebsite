@@ -198,6 +198,200 @@ export const validateTourData = (tour: Partial<Tour>): { isValid: boolean; error
   };
 };
 
+// Tour Detail Page Specific Admin Utilities
+
+// Section management helpers
+export const createDefaultOverviewSection = (tour: Tour): TourSection => {
+  return {
+    id: `overview-${Date.now()}`,
+    type: 'overview',
+    title: tour.title,
+    content: tour.detailedContent || tour.description,
+    isVisible: true,
+    order: 0,
+    settings: {}
+  };
+};
+
+export const createDefaultItinerarySection = (): TourSection => {
+  return {
+    id: `itinerary-${Date.now()}`,
+    type: 'itinerary',
+    title: 'Detailed Itinerary',
+    content: '',
+    isVisible: true,
+    order: 1,
+    settings: {}
+  };
+};
+
+// Itinerary management helpers
+export const createItineraryDayFromText = (dayNumber: number, text: string): ItineraryDay => {
+  return {
+    id: `day-${dayNumber}-${Date.now()}`,
+    dayNumber,
+    title: `Day ${dayNumber}`,
+    description: text.trim(),
+    activities: [],
+    highlights: [],
+    meals: [],
+    images: [],
+    isActive: true,
+    order: dayNumber - 1
+  };
+};
+
+export const simplifyItineraryDay = (day: ItineraryDay): ItineraryDay => {
+  // Simplified version with only title and description for the new layout
+  return {
+    ...day,
+    activities: [],
+    highlights: [],
+    meals: [],
+    accommodation: undefined,
+    duration: undefined,
+    location: undefined,
+    difficulty: undefined,
+    images: []
+  };
+};
+
+// Image management helpers
+export const organizeImagesBySection = (images: TourImage[]) => {
+  return {
+    banner: images.filter(img => img.section === 'banner' && img.isActive).sort((a, b) => a.order - b.order),
+    overview: images.filter(img => img.section === 'overview' && img.isActive).sort((a, b) => a.order - b.order),
+    itinerary: images.filter(img => img.section === 'itinerary' && img.isActive).sort((a, b) => a.order - b.order),
+    gallery: images.filter(img => img.section === 'gallery' && img.isActive).sort((a, b) => a.order - b.order)
+  };
+};
+
+// Layout management helpers for the new 30-70 split
+export const getOptimalImageLayout = (images: TourImage[], maxImages: number = 3): TourImage[] => {
+  // For the new layout, we want to show rectangular images optimally
+  return images.slice(0, maxImages);
+};
+
+export const generatePlaceholderImages = (section: string, count: number = 3): TourImage[] => {
+  return Array.from({ length: count }, (_, index) => ({
+    id: `placeholder-${section}-${index + 1}`,
+    url: `https://via.placeholder.com/400x200/e5e7eb/6b7280?text=Image+${index + 1}`,
+    alt: `Placeholder ${section} image ${index + 1}`,
+    caption: `Placeholder for ${section} section`,
+    order: index,
+    section: section as 'banner' | 'overview' | 'itinerary' | 'gallery',
+    isActive: true
+  }));
+};
+
+// Tour detail page content transformation
+export const transformTourForDetailPage = (tour: Tour): Tour => {
+  // Ensure tour has the required structure for the new detail page layout
+  const transformedTour = { ...tour };
+
+  // Ensure sections exist
+  if (!transformedTour.sections || transformedTour.sections.length === 0) {
+    transformedTour.sections = [
+      createDefaultOverviewSection(tour),
+      createDefaultItinerarySection()
+    ];
+  }
+
+  // Simplify itinerary days for the new layout
+  if (transformedTour.itineraryDays) {
+    transformedTour.itineraryDays = transformedTour.itineraryDays.map(simplifyItineraryDay);
+  }
+
+  // Ensure images are organized by section
+  if (!transformedTour.images || transformedTour.images.length === 0) {
+    transformedTour.images = [
+      ...generatePlaceholderImages('overview', 3),
+      ...generatePlaceholderImages('itinerary', 3)
+    ];
+  }
+
+  return transformedTour;
+};
+
+// Admin panel helper for bulk operations
+export const bulkUpdateItineraryDays = (days: ItineraryDay[], updates: Partial<ItineraryDay>): ItineraryDay[] => {
+  return days.map(day => ({ ...day, ...updates }));
+};
+
+export const reorderSectionsByDragDrop = (sections: TourSection[], dragIndex: number, dropIndex: number): TourSection[] => {
+  const reorderedSections = [...sections];
+  const draggedSection = reorderedSections[dragIndex];
+  
+  reorderedSections.splice(dragIndex, 1);
+  reorderedSections.splice(dropIndex, 0, draggedSection);
+  
+  return reorderedSections.map((section, index) => ({
+    ...section,
+    order: index
+  }));
+};
+
+// Content validation for admin panel
+export const validateTourSection = (section: TourSection): { isValid: boolean; errors: string[] } => {
+  const errors: string[] = [];
+  
+  if (!section.title?.trim()) errors.push('Section title is required');
+  if (section.type === 'overview' && !section.content?.trim()) {
+    errors.push('Overview section must have content');
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+};
+
+export const validateItineraryDay = (day: ItineraryDay): { isValid: boolean; errors: string[] } => {
+  const errors: string[] = [];
+  
+  if (!day.title?.trim()) errors.push('Day title is required');
+  if (day.dayNumber < 1) errors.push('Day number must be at least 1');
+  if (!day.description?.trim()) errors.push('Day description is required for the simplified layout');
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+};
+
+// SEO and meta helpers for admin panel
+export const generateTourSEOData = (tour: Tour) => {
+  return {
+    title: tour.seoTitle || `${tour.title} | Tour Agency`,
+    description: tour.seoDescription || tour.description,
+    keywords: tour.seoKeywords || [tour.category, 'tour', 'travel', 'india'],
+    canonicalUrl: `/tours/${tour.slug}`,
+    ogImage: tour.images?.find(img => img.section === 'banner')?.url || tour.image
+  };
+};
+
+// Export helpers for admin backup/restore
+export const exportTourForBackup = (tour: Tour) => {
+  return {
+    ...tour,
+    exportedAt: new Date().toISOString(),
+    version: '1.0'
+  };
+};
+
+export const importTourFromBackup = (backupData: any): Tour => {
+  // Basic validation and cleanup for imported tour data
+  const { exportedAt, version, ...tourData } = backupData;
+  
+  return {
+    ...tourData,
+    importedAt: new Date().toISOString(),
+    id: `imported-${Date.now()}`,
+    slug: `${tourData.slug}-imported`,
+    isPublished: false // Always import as draft
+  };
+};
+
 // SEO utilities for admin panel
 export const generateSEOData = (tour: Tour) => {
   return {

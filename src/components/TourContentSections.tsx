@@ -23,26 +23,50 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
 
     return (
       <div className="w-full">
+        {/* Tour Title Section - Left Corner Display */}
+        <section className="py-8 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+              {tour.title}
+            </h1>
+          </div>
+        </section>
+
         {/* Admin-controlled sections */}
         {visibleSections.map((section) => {
           if (section.type === 'overview') {
             return (
               <section key={section.id} className="py-12 md:py-16 lg:py-20">
                 <div className="container mx-auto max-w-7xl px-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                    {/* Left side - Admin-controlled images */}
-                    <div className="order-2 lg:order-1">
-                      {hasStructuredImages && (
+                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-start">
+                    {/* Left side - Images (30%) */}
+                    <div className="order-2 lg:order-1 lg:col-span-3">
+                      {hasStructuredImages ? (
                         <AdminControllableImageGallery
                           images={tour.images}
                           section="overview"
                           tourTitle={tour.title}
                         />
+                      ) : (
+                        /* Placeholder rectangular images for testing */
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-500 text-sm">Image 1</span>
+                            </div>
+                            <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                              <span className="text-gray-500 text-sm">Image 2</span>
+                            </div>
+                          </div>
+                          <div className="bg-gray-200 h-32 rounded-lg flex items-center justify-center">
+                            <span className="text-gray-500 text-sm">Image 3</span>
+                          </div>
+                        </div>
                       )}
                     </div>
 
-                    {/* Right side - Admin-controlled content */}
-                    <div className="order-1 lg:order-2">
+                    {/* Right side - Content (70%) */}
+                    <div className="order-1 lg:order-2 lg:col-span-7">
                       <div className="space-y-6">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                           {section.title}
@@ -65,9 +89,9 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
             return (
               <section key={section.id} className="py-12 md:py-16 lg:py-20 bg-muted/30">
                 <div className="container mx-auto max-w-7xl px-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                    {/* Left side - Admin-controlled images */}
-                    <div className="order-2 lg:order-1">
+                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
+                    {/* Left side - Images (30%) */}
+                    <div className="order-2 lg:order-1 lg:col-span-3">
                       {hasStructuredImages && (
                         <AdminControllableImageGallery
                           images={tour.images}
@@ -77,8 +101,8 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       )}
                     </div>
 
-                    {/* Right side - Admin-controlled itinerary */}
-                    <div className="order-1 lg:order-2">
+                    {/* Right side - Itinerary (70%) */}
+                    <div className="order-1 lg:order-2 lg:col-span-7">
                       {hasStructuredItinerary ? (
                         <AdminControllableItinerary
                           itineraryDays={tour.itineraryDays}
@@ -117,6 +141,15 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
   // Fallback to legacy components for backward compatibility
   return (
     <div className="w-full">
+      {/* Tour Title Section - Left Corner Display */}
+      <section className="py-8 px-4">
+        <div className="container mx-auto max-w-7xl">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            {tour.title}
+          </h1>
+        </div>
+      </section>
+
       {/* Legacy Overview Section */}
       <OverviewSection tour={tour} />
 
