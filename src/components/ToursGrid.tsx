@@ -38,36 +38,31 @@ const ToursGrid = ({
       </div>;
   }
   return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {tours.map(tour => <Card key={tour.id} className="group hover:shadow-lg transition-shadow duration-300">
-          <div className="relative overflow-hidden rounded-t-lg">
-            <img src={tour.image} alt={tour.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-          </div>
+      {tours.map(tour => <Link 
+          key={tour.id} 
+          to={`/tours/${tour.slug}`}
+          className="block group transition-all duration-300 hover:shadow-lg"
+          aria-label={`View details for ${tour.title} tour`}
+        >
+          <Card className="group-hover:shadow-lg transition-shadow duration-300 h-full">
+            <div className="relative overflow-hidden rounded-t-lg">
+              <img src={tour.image} alt={tour.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+            </div>
 
-          <CardHeader>
-            <CardTitle className="line-clamp-2 group-hover:text-golden transition-colors">
-              {tour.title}
-            </CardTitle>
-            <CardDescription className="line-clamp-3">
-              {tour.description}
-            </CardDescription>
-          </CardHeader>
+            <CardHeader>
+              <CardTitle className="line-clamp-2 group-hover:text-golden transition-colors">
+                {tour.title}
+              </CardTitle>
+              <CardDescription className="line-clamp-3">
+                {tour.description}
+              </CardDescription>
+            </CardHeader>
 
-          <CardContent>
-            {/* Removed duration and category display */}
-          </CardContent>
-
-          <CardFooter className="pt-0 flex gap-2">
-            <Button variant="outline" className="flex-1 group-hover:scale-105 transition-transform" asChild>
-              <Link to={`/tours/${tour.slug}`}>
-                View Details
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button variant="cta" className="flex-1 group-hover:scale-105 transition-transform" asChild>
-              
-            </Button>
-          </CardFooter>
-        </Card>)}
+            <CardContent>
+              {/* Removed duration and category display */}
+            </CardContent>
+          </Card>
+        </Link>)}
     </div>;
 };
 export default ToursGrid;

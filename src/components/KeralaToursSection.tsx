@@ -1,7 +1,13 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
+
+// Helper function to generate slug from title
+const generateSlug = (title: string): string => {
+  return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+};
 const KeralaToursSection = () => {
   const keralaTours = [{
     id: 1,
@@ -61,41 +67,40 @@ const KeralaToursSection = () => {
 
         {/* Tours Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {keralaTours.map((tour, index) => <Card key={tour.id} className="group overflow-hidden hover:shadow-card transition-smooth cursor-pointer animate-fade-in" style={{
-          animationDelay: `${index * 0.1}s`
-        }}>
-              {/* Tour Image */}
-              <CardHeader className="p-0 relative">
-                <div className="relative overflow-hidden h-48">
-                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover group-hover:scale-110 transition-smooth duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Tour Name Overlay */}
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="font-bold text-lg mb-1">{tour.title}</h3>
+          {keralaTours.map((tour, index) => <Link
+              key={tour.id}
+              to={`/tours/${generateSlug(tour.title)}`}
+              className="block group transition-all duration-300 hover:shadow-card"
+              aria-label={`View details for ${tour.title} tour`}
+            >
+              <Card className="overflow-hidden group-hover:shadow-card transition-smooth animate-fade-in" style={{
+                animationDelay: `${index * 0.1}s`
+              }}>
+                {/* Tour Image */}
+                <CardHeader className="p-0 relative">
+                  <div className="relative overflow-hidden h-48">
+                    <img src={tour.image} alt={tour.title} className="w-full h-full object-cover group-hover:scale-110 transition-smooth duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    
+                    {/* Tour Name Overlay */}
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="font-bold text-lg mb-1">{tour.title}</h3>
+                    </div>
                   </div>
+                </CardHeader>
 
-                  {/* Hover Button */}
-                  <div className="absolute inset-0 bg-golden/80 opacity-0 group-hover:opacity-100 transition-smooth flex items-center justify-center">
-                    <Button variant="outline-white" size="sm">
-                      View Details
-                      <ArrowRight className="h-4 w-4 ml-2" />
-                    </Button>
-                  </div>
-                </div>
-              </CardHeader>
-
-              {/* Tour Content */}
-              <CardContent className="p-6">
-                <p className="text-muted-foreground mb-4 line-clamp-2">
-                  {tour.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
+                {/* Tour Content */}
+                <CardContent className="p-6">
+                  <p className="text-muted-foreground mb-4 line-clamp-2">
+                    {tour.description}
+                  </p>
                   
-                </div>
-              </CardContent>
-            </Card>)}
+                  <div className="flex items-center justify-between">
+                    
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>)}
         </div>
 
         {/* View All Tours Button */}

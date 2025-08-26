@@ -82,7 +82,7 @@ const HeroBanner = () => {
 
       {/* Search Overlay */}
       <div className="absolute inset-0 bg-black/30 z-10"></div>
-      
+
       {/* Content Overlay - Search Bar and Button */}
       <div className="relative z-20 h-full flex flex-col justify-center items-center px-4">
         <div className="text-center mb-8">

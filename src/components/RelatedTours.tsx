@@ -24,47 +24,45 @@ const RelatedTours = ({
       
       {/* TODO: Replace with real related tour data */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tours.map(tour => <Card key={tour.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-            <CardHeader className="p-0">
-              <div className="aspect-video relative overflow-hidden">
-                <img src={tour.image} alt={tour.title} className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
-              </div>
-            </CardHeader>
-            
-            <CardContent className="p-6">
-              <Link to={`/tours/${tour.slug}`}>
-                <CardTitle className="text-xl mb-2 line-clamp-2 hover:text-primary transition-colors cursor-pointer">
+        {tours.map(tour => <Link 
+            key={tour.id} 
+            to={`/tours/${tour.slug}`}
+            className="block group transition-all duration-300 hover:shadow-lg"
+            aria-label={`View details for ${tour.title} tour`}
+          >
+            <Card className="overflow-hidden group-hover:shadow-lg transition-shadow h-full">
+              <CardHeader className="p-0">
+                <div className="aspect-video relative overflow-hidden">
+                  <img src={tour.image} alt={tour.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+              </CardHeader>
+              
+              <CardContent className="p-6">
+                <CardTitle className="text-xl mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                   {tour.title}
                 </CardTitle>
-              </Link>
-              
-              <p className="text-muted-foreground mb-4 line-clamp-3">
-                {tour.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  <span>{tour.duration} Days</span>
+                
+                <p className="text-muted-foreground mb-4 line-clamp-3">
+                  {tour.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{tour.duration} Days</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <MapPin className="h-4 w-4" />
+                    <span>{tour.category}</span>
+                  </div>
+                  {tour.price && <div className="flex items-center gap-1">
+                      <IndianRupee className="h-4 w-4" />
+                      <span>{tour.price}</span>
+                    </div>}
                 </div>
-                <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
-                  <span>{tour.category}</span>
-                </div>
-                {tour.price && <div className="flex items-center gap-1">
-                    <IndianRupee className="h-4 w-4" />
-                    <span>{tour.price}</span>
-                  </div>}
-              </div>
-            </CardContent>
-            
-            <CardFooter className="p-6 pt-0">
-              {/* TODO: Verify navigation to /tours/${tour.slug} works as expected */}
-              <Link to={`/tours/${tour.slug}`} className="w-full">
-                <Button variant="outline" className="w-full">View Details</Button>
-              </Link>
-            </CardFooter>
-          </Card>)}
+              </CardContent>
+            </Card>
+          </Link>)}
       </div>
     </section>;
 };
