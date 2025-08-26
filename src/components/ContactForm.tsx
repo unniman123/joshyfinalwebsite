@@ -165,9 +165,9 @@ const ContactForm = ({
               <SelectValue placeholder="Select hotel category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="3-star">3* category</SelectItem>
-              <SelectItem value="4-star">4* category</SelectItem>
-              <SelectItem value="5-star">5* category</SelectItem>
+              <SelectItem value="3-star">3* Category</SelectItem>
+              <SelectItem value="4-star">4* Category</SelectItem>
+              <SelectItem value="5-star">5* Category</SelectItem>
             </SelectContent>
           </Select>
         </div>
