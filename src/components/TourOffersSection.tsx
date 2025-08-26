@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import TourInquiryForm from "@/components/TourInquiryForm";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -64,7 +65,7 @@ const TourOffersSection = () => {
 
   // Carousel state management
   const [currentIndex, setCurrentIndex] = useState(0);
-  const toursPerPage = 5;
+  const toursPerPage = 3;
   const totalPages = Math.ceil(tourOffers.length / toursPerPage);
 
 
@@ -97,11 +98,11 @@ const TourOffersSection = () => {
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
 
-        {/* Full Width Tour Carousel */}
-        <div className="w-full">
-          {/* Tour Carousel Container */}
-          <div className="w-full">
-            <div className="relative px-16">
+        {/* Two-Column Layout: 70% Tours + 30% Inquiry Form */}
+        <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
+          {/* Left Column - Tour Packages Carousel (70% on desktop) */}
+          <div className="flex-1 lg:w-[70%]">
+            <div className="relative px-12">
               {/* Navigation Buttons */}
               <Button
                 variant="outline"
@@ -125,8 +126,8 @@ const TourOffersSection = () => {
                 <ChevronRight className="h-5 w-5" />
               </Button>
 
-              {/* Tour Cards Carousel - Larger Oval Shaped Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 transition-all duration-300">
+              {/* Tour Cards Carousel - Oval Shaped Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
                 {getCurrentTours().map((tour) => (
                   <Link
                     key={tour.id}
@@ -134,8 +135,8 @@ const TourOffersSection = () => {
                     className="group flex flex-col items-center transition-[transform] duration-300 hover:scale-[1.05] focus:scale-[1.05]"
                     aria-label={`View details for ${tour.title} tour`}
                   >
-                    {/* Larger Oval Image Area */}
-                    <div className="relative w-36 h-48 sm:w-40 sm:h-52 lg:w-44 lg:h-56 overflow-hidden rounded-full shadow-card hover:shadow-warm transition-shadow duration-300 mb-3">
+                    {/* Oval Image Area */}
+                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full shadow-card hover:shadow-warm transition-shadow duration-300 mb-3">
                       <img
                         src={tour.image}
                         alt={tour.title}
@@ -158,7 +159,7 @@ const TourOffersSection = () => {
                       <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight group-hover:text-golden transition-colors duration-300">
                         {tour.title}
                       </h3>
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2 max-w-[180px]">
+                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2 max-w-[160px]">
                         {tour.description}
                       </p>
                     </div>
@@ -179,6 +180,15 @@ const TourOffersSection = () => {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Right Column - Inquiry Form (30% on desktop) */}
+          <div className="lg:w-[30%] mt-8 lg:mt-0">
+            <TourInquiryForm 
+              title="Tour Inquiry" 
+              placeholderText="Kerala, Rajasthan, Golden Triangle..."
+              formType="tour"
+            />
           </div>
         </div>
       </div>
