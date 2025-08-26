@@ -17,10 +17,31 @@ interface DayOutPackage {
   image: string;
   slug: string;
   description: string;
+  showDescription?: boolean;
+  showExploreButton?: boolean;
 }
 
-const DayOutPackagesSection = () => {
-  const dayOutPackages: DayOutPackage[] = [
+// Admin configuration interfaces
+interface PackageFormConfig {
+  phoneFieldPlaceholder: string;
+  destinationFieldLabel: string;
+}
+
+interface DayOutPackagesSectionProps {
+  sectionTitle?: string;
+  packages?: DayOutPackage[];
+  formConfig?: PackageFormConfig;
+}
+
+const DayOutPackagesSection = ({
+  sectionTitle = "Day Out Packages",
+  packages,
+  formConfig = {
+    phoneFieldPlaceholder: "",
+    destinationFieldLabel: "Destination"
+  }
+}: DayOutPackagesSectionProps = {}) => {
+  const dayOutPackages: DayOutPackage[] = packages || [
     {
       id: 1,
       title: "Backwater Day Cruise",
@@ -113,7 +134,7 @@ const DayOutPackagesSection = () => {
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Day Out Packages
+            {sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
@@ -172,17 +193,21 @@ const DayOutPackagesSection = () => {
                           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg group-hover:text-golden-light transition-colors duration-300">
                             {currentPackage.title}
                           </h3>
-                          <p className="text-sm sm:text-base lg:text-lg leading-relaxed drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                            {currentPackage.description}
-                          </p>
-
-                          {/* Call-to-Action Button */}
-                          <div className="mt-4 sm:mt-6">
-                            <span className="inline-flex items-center px-4 py-2 bg-gradient-golden text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-golden transition-all duration-300 group-hover:scale-105">
+                          {/* Show description only if configured to show */}
+                          {currentPackage.showDescription && (
+                            <p className="text-base sm:text-lg text-white/90 mb-4 drop-shadow-md">
+                              {currentPackage.description}
+                            </p>
+                          )}
+                          {/* Show explore button only if configured to show */}
+                          {currentPackage.showExploreButton && (
+                            <Button
+                              variant="default"
+                              className="bg-golden hover:bg-golden-dark text-white font-medium px-6 py-2 rounded-lg"
+                            >
                               Explore Package
-                              <ChevronRight className="ml-2 h-4 w-4" />
-                            </span>
-                          </div>
+                            </Button>
+                          )}
                         </div>
                       </div>
 
@@ -252,7 +277,7 @@ const DayOutPackagesSection = () => {
                       <Input
                         id="dayOut-mobile"
                         type="tel"
-                        placeholder="+91 98765 43210"
+                        placeholder={formConfig.phoneFieldPlaceholder}
                         value={formData.mobileNo}
                         onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                         className="pl-6 h-6 text-[10px]"
@@ -282,7 +307,7 @@ const DayOutPackagesSection = () => {
                   {/* Destination Field */}
                   <div className="space-y-0.5">
                     <Label htmlFor="dayOut-destination" className="text-[10px] font-medium text-muted-foreground">
-                      Preferred Package *
+                      {formConfig.destinationFieldLabel} *
                     </Label>
                     <div className="relative">
                       <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />

@@ -312,3 +312,257 @@ export async function exportAllTours(): Promise<Blob> {
   // TODO: Export all tours as JSON
   return new Blob();
 }
+
+// Homepage Configuration Management
+export interface HomepageConfiguration {
+  id: string;
+  heroBanner: {
+    searchButtonColor: { primary: string; hover: string };
+    contentPosition: { paddingTop: string };
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    isVisible: boolean;
+  };
+  tourOffers: {
+    sectionTitle: string;
+    showInquiryForm: boolean;
+    formTitle: string;
+    formFields: {
+      showMessage: boolean;
+      showDate: boolean;
+      showDestination: boolean;
+      messagePlaceholder: string;
+    };
+    isVisible: boolean;
+  };
+  dayOutPackages: {
+    sectionTitle: string;
+    packages: Array<{
+      id: string;
+      title: string;
+      image: string;
+      showDescription: boolean;
+      showExploreButton: boolean;
+      isActive: boolean;
+    }>;
+    formConfig: {
+      phoneFieldPlaceholder: string;
+      destinationFieldLabel: string;
+    };
+    isVisible: boolean;
+  };
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export async function getHomepageConfiguration(): Promise<HomepageConfiguration | null> {
+  // TODO: Implement Supabase homepage config fetch
+  // For now, return default configuration based on current implementation
+  const defaultConfig: HomepageConfiguration = {
+    id: 'homepage-main',
+    heroBanner: {
+      searchButtonColor: {
+        primary: 'bg-blue-600',
+        hover: 'hover:bg-blue-700'
+      },
+      contentPosition: {
+        paddingTop: 'pt-8'
+      },
+      title: 'Discover Amazing Tours',
+      subtitle: 'Explore the best travel experiences across India and beyond',
+      searchPlaceholder: 'Search destinations, tours, or activities...',
+      isVisible: true
+    },
+    tourOffers: {
+      sectionTitle: 'Our Top Selling Packages',
+      showInquiryForm: true,
+      formTitle: 'quick inquiry',
+      formFields: {
+        showMessage: true,
+        showDate: false,
+        showDestination: false,
+        messagePlaceholder: 'Describe your preferred destination and dates'
+      },
+      isVisible: true
+    },
+    dayOutPackages: {
+      sectionTitle: 'Day Out Packages',
+      packages: [
+        {
+          id: 'backwater-cruise',
+          title: 'Backwater Day Cruise',
+          image: '/assets/kerala-tour-card.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        },
+        {
+          id: 'spice-garden',
+          title: 'Spice Garden Visit',
+          image: '/assets/hero-ayurveda-spa.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        }
+      ],
+      formConfig: {
+        phoneFieldPlaceholder: '',
+        destinationFieldLabel: 'Destination'
+      },
+      isVisible: true
+    },
+    isPublished: true,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  return defaultConfig;
+}
+
+export async function updateHomepageConfiguration(updates: Partial<HomepageConfiguration>): Promise<HomepageConfiguration> {
+  // TODO: Implement Supabase homepage config update
+  const currentConfig = await getHomepageConfiguration();
+  if (!currentConfig) {
+    throw new Error('Homepage configuration not found');
+  }
+
+  const updatedConfig: HomepageConfiguration = {
+    ...currentConfig,
+    ...updates,
+    updatedAt: new Date().toISOString()
+  };
+
+  return updatedConfig;
+}
+
+export async function publishHomepageConfiguration(configId: string): Promise<boolean> {
+  // TODO: Implement homepage config publishing
+  return true;
+}
+
+export async function revertHomepageConfiguration(configId: string, versionId: string): Promise<HomepageConfiguration> {
+  // TODO: Implement homepage config version revert
+  const config = await getHomepageConfiguration();
+  if (!config) {
+    throw new Error('Configuration not found');
+  }
+  return config;
+}
+
+export async function getHomepageConfigurationHistory(configId: string): Promise<HomepageConfiguration[]> {
+  // TODO: Implement homepage config history fetching
+  return [];
+}
+
+// Homepage Section Management
+export async function updateHeroBannerConfig(updates: Partial<HomepageConfiguration['heroBanner']>): Promise<boolean> {
+  // TODO: Implement hero banner specific updates
+  return true;
+}
+
+export async function updateTourOffersConfig(updates: Partial<HomepageConfiguration['tourOffers']>): Promise<boolean> {
+  // TODO: Implement tour offers specific updates
+  return true;
+}
+
+export async function updateDayOutPackagesConfig(updates: Partial<HomepageConfiguration['dayOutPackages']>): Promise<boolean> {
+  // TODO: Implement day out packages specific updates
+  return true;
+}
+
+// Form Configuration Management
+export interface FormFieldConfiguration {
+  id: string;
+  fieldType: 'text' | 'email' | 'tel' | 'date' | 'textarea' | 'select';
+  label: string;
+  placeholder: string;
+  isRequired: boolean;
+  isVisible: boolean;
+  validationRules?: {
+    minLength?: number;
+    maxLength?: number;
+    pattern?: string;
+  };
+  order: number;
+}
+
+export async function getFormConfiguration(formType: 'tour_inquiry' | 'day_out_inquiry'): Promise<FormFieldConfiguration[]> {
+  // TODO: Implement form configuration fetching
+  const defaultTourInquiryFields: FormFieldConfiguration[] = [
+    {
+      id: 'name',
+      fieldType: 'text',
+      label: 'Name',
+      placeholder: 'Your name',
+      isRequired: true,
+      isVisible: true,
+      order: 0
+    },
+    {
+      id: 'mobile',
+      fieldType: 'tel',
+      label: 'Mobile No (WhatsApp)',
+      placeholder: '',
+      isRequired: true,
+      isVisible: true,
+      order: 1
+    },
+    {
+      id: 'message',
+      fieldType: 'textarea',
+      label: 'Message',
+      placeholder: 'Describe your preferred destination and dates',
+      isRequired: true,
+      isVisible: true,
+      order: 2
+    }
+  ];
+
+  const defaultDayOutInquiryFields: FormFieldConfiguration[] = [
+    {
+      id: 'name',
+      fieldType: 'text',
+      label: 'Name',
+      placeholder: 'Your name',
+      isRequired: true,
+      isVisible: true,
+      order: 0
+    },
+    {
+      id: 'mobile',
+      fieldType: 'tel',
+      label: 'Mobile No (WhatsApp)',
+      placeholder: '',
+      isRequired: true,
+      isVisible: true,
+      order: 1
+    },
+    {
+      id: 'date',
+      fieldType: 'date',
+      label: 'Preferred Date',
+      placeholder: '',
+      isRequired: true,
+      isVisible: true,
+      order: 2
+    },
+    {
+      id: 'destination',
+      fieldType: 'text',
+      label: 'Destination',
+      placeholder: 'Backwater, Beach, Hill Station...',
+      isRequired: true,
+      isVisible: true,
+      order: 3
+    }
+  ];
+
+  return formType === 'tour_inquiry' ? defaultTourInquiryFields : defaultDayOutInquiryFields;
+}
+
+export async function updateFormConfiguration(formType: 'tour_inquiry' | 'day_out_inquiry', fields: FormFieldConfiguration[]): Promise<boolean> {
+  // TODO: Implement form configuration update
+  return true;
+}

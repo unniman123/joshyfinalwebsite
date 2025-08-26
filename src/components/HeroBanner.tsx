@@ -8,7 +8,22 @@ import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
 import stiltFishing from "@/assets/Stilt Fishing in Sri Lanka.jpg";
 
-const HeroBanner = () => {
+// Admin-controllable props interface
+interface HeroBannerProps {
+  title?: string;
+  subtitle?: string;
+  searchPlaceholder?: string;
+  searchButtonClassName?: string;
+  className?: string;
+}
+
+const HeroBanner = ({
+  title = "Discover Amazing Tours",
+  subtitle = "Explore the best travel experiences across India and beyond",
+  searchPlaceholder = "Search destinations, tours, or activities...",
+  searchButtonClassName = "px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors",
+  className = ""
+}: HeroBannerProps = {}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -84,13 +99,13 @@ const HeroBanner = () => {
       <div className="absolute inset-0 bg-black/30 z-10"></div>
 
       {/* Content Overlay - Search Bar and Button */}
-      <div className="relative z-20 h-full flex flex-col justify-center items-center px-4">
+      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 pt-8 ${className}`}>
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            Discover Amazing Tours
+            {title}
           </h1>
           <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
-            Explore the best travel experiences across India and beyond
+            {subtitle}
           </p>
         </div>
 
@@ -102,7 +117,7 @@ const HeroBanner = () => {
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
                 <Input
                   type="text"
-                  placeholder="Search destinations, tours, or activities..."
+                  placeholder={searchPlaceholder}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-golden/50 focus:outline-none"
@@ -110,7 +125,7 @@ const HeroBanner = () => {
               </div>
               <Button
                 type="submit"
-                className="px-6 py-3 bg-golden hover:bg-golden-dark text-white font-medium rounded-lg transition-colors"
+                className={searchButtonClassName}
               >
                 Search
               </Button>

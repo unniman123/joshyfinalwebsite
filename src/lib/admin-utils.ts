@@ -321,10 +321,10 @@ export const bulkUpdateItineraryDays = (days: ItineraryDay[], updates: Partial<I
 export const reorderSectionsByDragDrop = (sections: TourSection[], dragIndex: number, dropIndex: number): TourSection[] => {
   const reorderedSections = [...sections];
   const draggedSection = reorderedSections[dragIndex];
-  
+
   reorderedSections.splice(dragIndex, 1);
   reorderedSections.splice(dropIndex, 0, draggedSection);
-  
+
   return reorderedSections.map((section, index) => ({
     ...section,
     order: index
@@ -334,12 +334,12 @@ export const reorderSectionsByDragDrop = (sections: TourSection[], dragIndex: nu
 // Content validation for admin panel
 export const validateTourSection = (section: TourSection): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
-  
+
   if (!section.title?.trim()) errors.push('Section title is required');
   if (section.type === 'overview' && !section.content?.trim()) {
     errors.push('Overview section must have content');
   }
-  
+
   return {
     isValid: errors.length === 0,
     errors
@@ -348,11 +348,11 @@ export const validateTourSection = (section: TourSection): { isValid: boolean; e
 
 export const validateItineraryDay = (day: ItineraryDay): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
-  
+
   if (!day.title?.trim()) errors.push('Day title is required');
   if (day.dayNumber < 1) errors.push('Day number must be at least 1');
   if (!day.description?.trim()) errors.push('Day description is required for the simplified layout');
-  
+
   return {
     isValid: errors.length === 0,
     errors
@@ -382,7 +382,7 @@ export const exportTourForBackup = (tour: Tour) => {
 export const importTourFromBackup = (backupData: any): Tour => {
   // Basic validation and cleanup for imported tour data
   const { exportedAt, version, ...tourData } = backupData;
-  
+
   return {
     ...tourData,
     importedAt: new Date().toISOString(),
@@ -426,4 +426,333 @@ export const transformAdminDataForTour = (adminData: any): Partial<Tour> => {
     ...adminData,
     updatedAt: new Date().toISOString()
   };
+};
+
+// Homepage Configuration Utilities
+export interface HomepageAdminConfig {
+  heroBanner: {
+    searchButtonColor: { primary: string; hover: string };
+    contentPosition: { paddingTop: string };
+    title: string;
+    subtitle: string;
+    searchPlaceholder: string;
+    isVisible: boolean;
+  };
+  tourOffers: {
+    sectionTitle: string;
+    showInquiryForm: boolean;
+    formTitle: string;
+    formFields: {
+      showMessage: boolean;
+      showDate: boolean;
+      showDestination: boolean;
+      messagePlaceholder: string;
+    };
+    isVisible: boolean;
+  };
+  dayOutPackages: {
+    sectionTitle: string;
+    packages: Array<{
+      id: string;
+      title: string;
+      image: string;
+      showDescription: boolean;
+      showExploreButton: boolean;
+      isActive: boolean;
+    }>;
+    formConfig: {
+      phoneFieldPlaceholder: string;
+      destinationFieldLabel: string;
+    };
+    isVisible: boolean;
+  };
+}
+
+// Get current homepage configuration based on implemented changes
+export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
+  return {
+    heroBanner: {
+      searchButtonColor: {
+        primary: 'bg-blue-600',
+        hover: 'hover:bg-blue-700'
+      },
+      contentPosition: {
+        paddingTop: 'pt-8'
+      },
+      title: 'Discover Amazing Tours',
+      subtitle: 'Explore the best travel experiences across India and beyond',
+      searchPlaceholder: 'Search destinations, tours, or activities...',
+      isVisible: true
+    },
+    tourOffers: {
+      sectionTitle: 'Our Top Selling Packages',
+      showInquiryForm: true,
+      formTitle: 'quick inquiry',
+      formFields: {
+        showMessage: true,
+        showDate: false,
+        showDestination: false,
+        messagePlaceholder: 'Describe your preferred destination and dates'
+      },
+      isVisible: true
+    },
+    dayOutPackages: {
+      sectionTitle: 'Day Out Packages',
+      packages: [
+        {
+          id: 'backwater-cruise',
+          title: 'Backwater Day Cruise',
+          image: '/assets/kerala-tour-card.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        },
+        {
+          id: 'spice-garden',
+          title: 'Spice Garden Visit',
+          image: '/assets/hero-ayurveda-spa.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        },
+        {
+          id: 'beach-experience',
+          title: 'Beach Day Experience',
+          image: '/assets/hero-rajasthan-palace.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        },
+        {
+          id: 'hill-station',
+          title: 'Hill Station Escape',
+          image: '/assets/tour-golden-triangle.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        },
+        {
+          id: 'cultural-village',
+          title: 'Cultural Village Tour',
+          image: '/assets/kerala-tour-card.jpg',
+          showDescription: false,
+          showExploreButton: false,
+          isActive: true
+        }
+      ],
+      formConfig: {
+        phoneFieldPlaceholder: '',
+        destinationFieldLabel: 'Destination'
+      },
+      isVisible: true
+    }
+  };
+};
+
+// Validate homepage configuration
+export const validateHomepageConfig = (config: HomepageAdminConfig): { isValid: boolean; errors: string[] } => {
+  const errors: string[] = [];
+
+  // Hero banner validation
+  if (!config.heroBanner.title.trim()) {
+    errors.push('Hero banner title is required');
+  }
+  if (!config.heroBanner.searchButtonColor.primary) {
+    errors.push('Search button primary color is required');
+  }
+  if (!config.heroBanner.searchButtonColor.hover) {
+    errors.push('Search button hover color is required');
+  }
+
+  // Tour offers validation
+  if (config.tourOffers.isVisible && !config.tourOffers.sectionTitle.trim()) {
+    errors.push('Tour offers section title is required when section is visible');
+  }
+  if (config.tourOffers.showInquiryForm && !config.tourOffers.formTitle.trim()) {
+    errors.push('Tour inquiry form title is required when form is enabled');
+  }
+
+  // Day out packages validation
+  if (config.dayOutPackages.isVisible) {
+    if (!config.dayOutPackages.sectionTitle.trim()) {
+      errors.push('Day out packages section title is required when section is visible');
+    }
+    
+    const activePackages = config.dayOutPackages.packages.filter(p => p.isActive);
+    if (activePackages.length === 0) {
+      errors.push('At least one day out package must be active when section is visible');
+    }
+    
+    const packagesWithoutTitles = activePackages.filter(p => !p.title.trim());
+    if (packagesWithoutTitles.length > 0) {
+      errors.push('All active day out packages must have titles');
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+};
+
+// Transform homepage config for component props
+export const transformHomepageConfigForComponents = (config: HomepageAdminConfig) => {
+  return {
+    heroBannerProps: {
+      title: config.heroBanner.title,
+      subtitle: config.heroBanner.subtitle,
+      searchPlaceholder: config.heroBanner.searchPlaceholder,
+      searchButtonClassName: `px-6 py-3 ${config.heroBanner.searchButtonColor.primary} ${config.heroBanner.searchButtonColor.hover} text-white font-medium rounded-lg transition-colors`,
+      contentClassName: `relative z-20 h-full flex flex-col justify-center items-center px-4 ${config.heroBanner.contentPosition.paddingTop}`,
+      isVisible: config.heroBanner.isVisible
+    },
+    tourOffersProps: {
+      sectionTitle: config.tourOffers.sectionTitle,
+      formConfig: {
+        title: config.tourOffers.formTitle,
+        showMessage: config.tourOffers.formFields.showMessage,
+        showDate: config.tourOffers.formFields.showDate,
+        showDestination: config.tourOffers.formFields.showDestination,
+        messagePlaceholder: config.tourOffers.formFields.messagePlaceholder
+      },
+      showInquiryForm: config.tourOffers.showInquiryForm,
+      isVisible: config.tourOffers.isVisible
+    },
+    dayOutPackagesProps: {
+      sectionTitle: config.dayOutPackages.sectionTitle,
+      packages: config.dayOutPackages.packages.filter(p => p.isActive),
+      formConfig: config.dayOutPackages.formConfig,
+      isVisible: config.dayOutPackages.isVisible
+    }
+  };
+};
+
+// Generate CSS classes for dynamic styling
+export const generateHomepageCSS = (config: HomepageAdminConfig): string => {
+  const cssRules: string[] = [];
+
+  // Hero banner search button styling
+  if (config.heroBanner.searchButtonColor.primary !== 'bg-blue-600') {
+    cssRules.push(`
+      .hero-search-button {
+        @apply ${config.heroBanner.searchButtonColor.primary} ${config.heroBanner.searchButtonColor.hover};
+      }
+    `);
+  }
+
+  // Content positioning
+  if (config.heroBanner.contentPosition.paddingTop !== 'pt-8') {
+    cssRules.push(`
+      .hero-content-overlay {
+        @apply ${config.heroBanner.contentPosition.paddingTop};
+      }
+    `);
+  }
+
+  return cssRules.join('\n');
+};
+
+// Homepage configuration versioning
+export const createHomepageConfigVersion = (config: HomepageAdminConfig) => {
+  return {
+    ...config,
+    version: generateConfigVersion(),
+    createdAt: new Date().toISOString(),
+    changes: detectConfigChanges(config)
+  };
+};
+
+const generateConfigVersion = (): string => {
+  const now = new Date();
+  return `v${now.getFullYear()}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getDate().toString().padStart(2, '0')}.${now.getHours().toString().padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}`;
+};
+
+const detectConfigChanges = (config: HomepageAdminConfig): string[] => {
+  const defaultConfig = getCurrentHomepageConfig();
+  const changes: string[] = [];
+
+  // Detect hero banner changes
+  if (config.heroBanner.title !== defaultConfig.heroBanner.title) {
+    changes.push('Hero banner title modified');
+  }
+  if (config.heroBanner.searchButtonColor.primary !== defaultConfig.heroBanner.searchButtonColor.primary) {
+    changes.push('Search button color changed');
+  }
+  if (config.heroBanner.contentPosition.paddingTop !== defaultConfig.heroBanner.contentPosition.paddingTop) {
+    changes.push('Hero content positioning adjusted');
+  }
+
+  // Detect tour offers changes
+  if (config.tourOffers.formFields.showMessage !== defaultConfig.tourOffers.formFields.showMessage) {
+    changes.push('Tour inquiry form fields modified');
+  }
+
+  // Detect day out packages changes
+  if (config.dayOutPackages.formConfig.destinationFieldLabel !== defaultConfig.dayOutPackages.formConfig.destinationFieldLabel) {
+    changes.push('Day out packages form labels updated');
+  }
+  
+  const activePackageCount = config.dayOutPackages.packages.filter(p => p.isActive).length;
+  const defaultActiveCount = defaultConfig.dayOutPackages.packages.filter(p => p.isActive).length;
+  if (activePackageCount !== defaultActiveCount) {
+    changes.push('Day out packages configuration changed');
+  }
+
+  return changes;
+};
+
+// Export configuration for backup
+export const exportHomepageConfig = (config: HomepageAdminConfig) => {
+  const exportData = {
+    ...config,
+    exportedAt: new Date().toISOString(),
+    version: '1.0',
+    metadata: {
+      source: 'wanderwise-admin',
+      type: 'homepage-configuration',
+      implementedChanges: [
+        'Hero banner search button color changed to blue',
+        'Hero banner content positioned slightly down',
+        'Day out packages explore button removed',
+        'Day out packages description hidden',
+        'Destination field renamed in day out form',
+        'Tour inquiry form simplified to message field',
+        'Phone placeholders removed from both forms'
+      ]
+    }
+  };
+
+  return new Blob([JSON.stringify(exportData, null, 2)], {
+    type: 'application/json'
+  });
+};
+
+// Import and validate configuration
+export const importHomepageConfig = async (file: File): Promise<HomepageAdminConfig> => {
+  try {
+    const text = await file.text();
+    const importedData = JSON.parse(text);
+
+    // Validate structure
+    if (!importedData.heroBanner || !importedData.tourOffers || !importedData.dayOutPackages) {
+      throw new Error('Invalid homepage configuration file format');
+    }
+
+    // Extract configuration
+    const config: HomepageAdminConfig = {
+      heroBanner: importedData.heroBanner,
+      tourOffers: importedData.tourOffers,
+      dayOutPackages: importedData.dayOutPackages
+    };
+
+    // Validate configuration
+    const validation = validateHomepageConfig(config);
+    if (!validation.isValid) {
+      throw new Error(`Configuration validation failed: ${validation.errors.join(', ')}`);
+    }
+
+    return config;
+  } catch (error) {
+    throw new Error(`Failed to import homepage configuration: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 };

@@ -17,7 +17,36 @@ interface TourOffer {
   description: string; // 2-line description for card display
 }
 
-const TourOffersSection = () => {
+// Admin configuration interfaces
+interface TourFormConfig {
+  title: string;
+  fields: {
+    showMessage: boolean;
+    showDate: boolean;
+    showDestination: boolean;
+    messagePlaceholder: string;
+  };
+}
+
+interface TourOffersSectionProps {
+  sectionTitle?: string;
+  showInquiryForm?: boolean;
+  formConfig?: TourFormConfig;
+}
+
+const TourOffersSection = ({
+  sectionTitle = "Our Top Selling Packages",
+  showInquiryForm = true,
+  formConfig = {
+    title: "quick inquiry",
+    fields: {
+      showMessage: true,
+      showDate: false,
+      showDestination: false,
+      messagePlaceholder: "Describe your preferred destination and dates"
+    }
+  }
+}: TourOffersSectionProps = {}) => {
   const tourOffers: TourOffer[] = [
     {
       id: 1,
@@ -93,7 +122,7 @@ const TourOffersSection = () => {
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Our Top Selling Packages
+            {sectionTitle}
           </h2>
           <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
         </div>
@@ -183,13 +212,18 @@ const TourOffersSection = () => {
           </div>
 
           {/* Right Column - Inquiry Form (30% on desktop) */}
-          <div className="lg:w-[30%] mt-8 lg:mt-0">
-            <TourInquiryForm
-              title="Tour Inquiry"
-              placeholderText="Kerala, Rajasthan, Golden Triangle..."
-              formType="tour"
-            />
-          </div>
+          {showInquiryForm && (
+            <div className="lg:w-[30%] mt-8 lg:mt-0">
+              <TourInquiryForm
+                title={formConfig.title}
+                formType="tour"
+                showMessage={formConfig.fields.showMessage}
+                showDate={formConfig.fields.showDate}
+                showDestination={formConfig.fields.showDestination}
+                messagePlaceholder={formConfig.fields.messagePlaceholder}
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

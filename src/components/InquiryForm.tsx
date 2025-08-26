@@ -47,7 +47,7 @@ const InquiryForm = ({
 
       // Show success toast with accessibility
       toast({
-        title: "Tour Inquiry Submitted Successfully!",
+        title: "quick inquiry Submitted Successfully!",
         description: "Thank you for your interest in this tour. We'll respond within 24 hours.",
         variant: "default"
       });
@@ -73,10 +73,10 @@ const InquiryForm = ({
       // Show error toast with accessibility
       toast({
         title: "Submission Failed",
-        description: "Failed to submit tour inquiry. Please try again or contact us directly.",
+        description: "Failed to submit quick inquiry. Please try again or contact us directly.",
         variant: "destructive"
       });
-      console.error("Tour inquiry submission error:", error);
+      console.error("quick inquiry submission error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -183,13 +183,13 @@ const InquiryForm = ({
         aria-live="polite"
         aria-atomic="true"
       >
-        {isSubmitting && "Tour inquiry form is being submitted, please wait."}
+        {isSubmitting && "quick inquiry form is being submitted, please wait."}
       </div>
 
       {/* TODO: Add form validation for all new fields */}
       {/* TODO: Wire to real API endpoint when Supabase is integrated */}
       {/* TODO: Map new form fields to Supabase columns on integration */}
-      {/* TODO: Add email notifications to admin on tour inquiry submission */}
+      {/* TODO: Add email notifications to admin on quick inquiry submission */}
     </form>
   </div>;
 };

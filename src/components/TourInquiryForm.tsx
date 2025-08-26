@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Calendar, Phone, MapPin } from "lucide-react";
+import { User, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,19 +9,30 @@ interface TourInquiryFormProps {
   title?: string;
   placeholderText?: string;
   formType?: "tour" | "dayOut";
+  // Admin configuration props
+  showMessage?: boolean;
+  showDate?: boolean;
+  showDestination?: boolean;
+  messagePlaceholder?: string;
+  phoneFieldPlaceholder?: string;
 }
 
 const TourInquiryForm = ({
-  title = "Tour Inquiry",
-  placeholderText = "Kerala, Rajasthan...",
-  formType = "tour"
+  title = "quick inquiry",
+  formType = "tour",
+  showMessage = true,
+  showDate = false,
+  showDestination = false,
+  messagePlaceholder = "Describe your preferred destination and dates",
+  phoneFieldPlaceholder = ""
 }: TourInquiryFormProps) => {
-  // Inquiry form state
+  // Inquiry form state - dynamic based on admin config
   const [formData, setFormData] = useState({
     name: "",
     mobileNo: "",
-    date: "",
-    destination: ""
+    ...(showMessage && { message: "" }),
+    ...(showDate && { date: "" }),
+    ...(showDestination && { destination: "" })
   });
 
   // Form submission handler
@@ -29,12 +40,13 @@ const TourInquiryForm = ({
     e.preventDefault();
     // TODO: Implement form submission logic
     console.log(`${formType} inquiry submitted:`, formData);
-    // Reset form after submission
+    // Reset form after submission - dynamic fields
     setFormData({
       name: "",
       mobileNo: "",
-      date: "",
-      destination: ""
+      ...(showMessage && { message: "" }),
+      ...(showDate && { date: "" }),
+      ...(showDestination && { destination: "" })
     });
   };
 
@@ -46,7 +58,6 @@ const TourInquiryForm = ({
     }));
   };
 
-  const destinationLabel = formType === "dayOut" ? "Preferred Package" : "Destination";
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
@@ -88,7 +99,7 @@ const TourInquiryForm = ({
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder="+91 98765 43210"
+                placeholder={phoneFieldPlaceholder}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                 className="pl-6 h-6 text-[10px]"
@@ -97,42 +108,64 @@ const TourInquiryForm = ({
             </div>
           </div>
 
-          {/* Date Field */}
-          <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-date`} className="text-[10px] font-medium text-muted-foreground">
-              Preferred Date *
-            </Label>
-            <div className="relative">
-              <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
-              <Input
-                id={`${formIdPrefix}-date`}
-                type="date"
-                value={formData.date}
-                onChange={(e) => handleInputChange("date", e.target.value)}
-                className="pl-6 h-6 text-[10px]"
-                required
-              />
+          {/* Message Field - conditionally rendered */}
+          {showMessage && (
+            <div className="space-y-0.5">
+              <Label htmlFor={`${formIdPrefix}-message`} className="text-[10px] font-medium text-muted-foreground">
+                Message *
+              </Label>
+              <div className="relative">
+                <Input
+                  id={`${formIdPrefix}-message`}
+                  type="text"
+                  placeholder={messagePlaceholder}
+                  value={formData.message || ""}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  className="h-6 text-[10px]"
+                  required
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Destination Field */}
-          <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[10px] font-medium text-muted-foreground">
-              {destinationLabel} *
-            </Label>
-            <div className="relative">
-              <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
-              <Input
-                id={`${formIdPrefix}-destination`}
-                type="text"
-                placeholder={placeholderText}
-                value={formData.destination}
-                onChange={(e) => handleInputChange("destination", e.target.value)}
-                className="pl-6 h-6 text-[10px]"
-                required
-              />
+          {/* Date Field - conditionally rendered */}
+          {showDate && (
+            <div className="space-y-0.5">
+              <Label htmlFor={`${formIdPrefix}-date`} className="text-[10px] font-medium text-muted-foreground">
+                Preferred Date *
+              </Label>
+              <div className="relative">
+                <Input
+                  id={`${formIdPrefix}-date`}
+                  type="date"
+                  value={formData.date || ""}
+                  onChange={(e) => handleInputChange("date", e.target.value)}
+                  className="h-6 text-[10px]"
+                  required
+                />
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Destination Field - conditionally rendered */}
+          {showDestination && (
+            <div className="space-y-0.5">
+              <Label htmlFor={`${formIdPrefix}-destination`} className="text-[10px] font-medium text-muted-foreground">
+                Destination *
+              </Label>
+              <div className="relative">
+                <Input
+                  id={`${formIdPrefix}-destination`}
+                  type="text"
+                  placeholder="Enter destination"
+                  value={formData.destination || ""}
+                  onChange={(e) => handleInputChange("destination", e.target.value)}
+                  className="h-6 text-[10px]"
+                  required
+                />
+              </div>
+            </div>
+          )}
 
           {/* Submit Button */}
           <div className="pt-1">
