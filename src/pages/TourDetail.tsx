@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getTourBySlug, Tour } from "@/lib/api";
 import TourDetailBanner from "@/components/TourDetailBanner";
 import TourContentSections from "@/components/TourContentSections";
-import EnquiryForm from "@/components/EnquiryForm";
+import EnquiryForm from "@/components/InquiryForm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
