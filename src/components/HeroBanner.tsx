@@ -94,23 +94,27 @@ const HeroBanner = () => {
           </p>
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar - Simplified Design */}
         <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
-          <div className="relative flex items-center">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
-            <Input
-              type="text"
-              placeholder="Search tours by destination, activity, or keyword..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 pr-32 py-4 text-lg border-0 rounded-full shadow-xl focus:ring-2 focus:ring-primary/50 bg-white/95 backdrop-blur-sm"
-            />
-            <Button
-              type="submit"
-              className="absolute right-2 h-12 px-6 bg-gradient-golden hover:bg-golden-dark text-primary-foreground transition-bounce rounded-full font-medium shadow-lg"
-            >
-              Search
-            </Button>
+          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+            <div className="flex items-center gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
+                <Input
+                  type="text"
+                  placeholder="Search destinations, tours, or activities..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-golden/50 focus:outline-none"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="px-6 py-3 bg-golden hover:bg-golden-dark text-white font-medium rounded-lg transition-colors"
+              >
+                Search
+              </Button>
+            </div>
           </div>
         </form>
 

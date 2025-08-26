@@ -11,10 +11,10 @@ interface TourInquiryFormProps {
   formType?: "tour" | "dayOut";
 }
 
-const TourInquiryForm = ({ 
-  title = "Tour Inquiry", 
+const TourInquiryForm = ({
+  title = "Tour Inquiry",
   placeholderText = "Kerala, Rajasthan...",
-  formType = "tour" 
+  formType = "tour"
 }: TourInquiryFormProps) => {
   // Inquiry form state
   const [formData, setFormData] = useState({

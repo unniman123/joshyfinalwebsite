@@ -184,8 +184,8 @@ const TourOffersSection = () => {
 
           {/* Right Column - Inquiry Form (30% on desktop) */}
           <div className="lg:w-[30%] mt-8 lg:mt-0">
-            <TourInquiryForm 
-              title="Tour Inquiry" 
+            <TourInquiryForm
+              title="Tour Inquiry"
               placeholderText="Kerala, Rajasthan, Golden Triangle..."
               formType="tour"
             />

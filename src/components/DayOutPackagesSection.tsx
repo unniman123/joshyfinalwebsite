@@ -175,7 +175,7 @@ const DayOutPackagesSection = () => {
                           <p className="text-sm sm:text-base lg:text-lg leading-relaxed drop-shadow-md opacity-90 group-hover:opacity-100 transition-opacity duration-300">
                             {currentPackage.description}
                           </p>
-                          
+
                           {/* Call-to-Action Button */}
                           <div className="mt-4 sm:mt-6">
                             <span className="inline-flex items-center px-4 py-2 bg-gradient-golden text-white text-sm font-semibold rounded-lg shadow-lg hover:shadow-golden transition-all duration-300 group-hover:scale-105">
@@ -200,9 +200,8 @@ const DayOutPackagesSection = () => {
                 {dayOutPackages.map((pkg, index) => (
                   <button
                     key={pkg.id}
-                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                      index === currentIndex ? 'bg-golden scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-                    }`}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-golden scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                      }`}
                     onClick={() => setCurrentIndex(index)}
                     aria-label={`Go to ${pkg.title} package`}
                     title={pkg.title}
