@@ -70,11 +70,11 @@ const Footer = () => {
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-golden flex-shrink-0" />
-              <span className="text-xs text-white/80">+91 9539 50 7516, +91 471 24 888 80.</span>
+              <span className="text-xs text-white/80">+91 9539 50 7516, +91 471 2488880.</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-golden flex-shrink-0" />
-              <span className="text-xs text-white/80">KeralaToursGlobal@gmail.com</span>
+              <span className="text-xs text-white/80">KeralaToursGlobal@gmail.com, flabour@gmail.com</span>
             </div>
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 text-golden flex-shrink-0 mt-1" />

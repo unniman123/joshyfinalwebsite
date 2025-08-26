@@ -16,7 +16,7 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
         <div className="w-full">
           <div className="space-y-6">
             {/* Removed duplicate title - using general tour title in TourContentSections */}
-            
+
             {/* Full overview content with no line limitations */}
             <div className="prose prose-lg max-w-none">
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">

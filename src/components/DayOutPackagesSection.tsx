@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight, User, Calendar, Phone, MapPin } from "lucide-react";
+import { User, Calendar, Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -84,6 +84,15 @@ const DayOutPackagesSection = ({
   const packagesPerPage = 1; // Show one package at a time in banner format
   const totalPages = dayOutPackages.length; // Each package gets its own slide
 
+  // Automatic slideshow timer - matches HeroBanner pattern
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % dayOutPackages.length);
+    }, 5000); // 5 second interval
+
+    return () => clearInterval(timer);
+  }, [dayOutPackages.length]);
+
   // Inquiry form state
   const [formData, setFormData] = useState({
     name: "",
@@ -91,15 +100,6 @@ const DayOutPackagesSection = ({
     date: "",
     destination: ""
   });
-
-  // Carousel navigation functions for banner slideshow
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
-  };
-
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
 
   // Get current package to display in banner
   const getCurrentPackage = () => {
@@ -143,28 +143,7 @@ const DayOutPackagesSection = ({
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
           {/* Left Column - Day Out Packages Carousel (70% on desktop) */}
           <div className="flex-1 lg:w-[70%]">
-            <div className="relative px-12">
-              {/* Navigation Buttons */}
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
-                onClick={goToPrevious}
-                aria-label="Previous package"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
-                onClick={goToNext}
-                aria-label="Next package"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-
+            <div className="relative">
               {/* Day Out Package Banner Slideshow */}
               <div className="w-full h-64 sm:h-72 lg:h-80 relative overflow-hidden rounded-lg shadow-card transition-all duration-300">
                 {(() => {

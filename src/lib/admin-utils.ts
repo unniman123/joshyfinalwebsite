@@ -590,12 +590,12 @@ export const validateHomepageConfig = (config: HomepageAdminConfig): { isValid: 
     if (!config.dayOutPackages.sectionTitle.trim()) {
       errors.push('Day out packages section title is required when section is visible');
     }
-    
+
     const activePackages = config.dayOutPackages.packages.filter(p => p.isActive);
     if (activePackages.length === 0) {
       errors.push('At least one day out package must be active when section is visible');
     }
-    
+
     const packagesWithoutTitles = activePackages.filter(p => !p.title.trim());
     if (packagesWithoutTitles.length > 0) {
       errors.push('All active day out packages must have titles');
@@ -704,7 +704,7 @@ const detectConfigChanges = (config: HomepageAdminConfig): string[] => {
   if (config.dayOutPackages.formConfig.destinationFieldLabel !== defaultConfig.dayOutPackages.formConfig.destinationFieldLabel) {
     changes.push('Day out packages form labels updated');
   }
-  
+
   const activePackageCount = config.dayOutPackages.packages.filter(p => p.isActive).length;
   const defaultActiveCount = defaultConfig.dayOutPackages.packages.filter(p => p.isActive).length;
   if (activePackageCount !== defaultActiveCount) {
