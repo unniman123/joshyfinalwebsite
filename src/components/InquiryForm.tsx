@@ -109,13 +109,25 @@ const EnquiryForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="nationality">Nationality *</Label>
-          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
+          <Label htmlFor="numberOfPeople">Number of persons *</Label>
+          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
         </div>
 
         <div className="space-y-2">
+          <Label htmlFor="nationality">Nationality *</Label>
+          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-2">
           <Label htmlFor="contactNumber">Whatsapp *</Label>
           <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="numberOfKids">No of Kids & their age (If any)</Label>
+          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
         </div>
       </div>
 
@@ -131,17 +143,7 @@ const EnquiryForm = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="numberOfPeople">Number of persons *</Label>
-          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
-        </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="numberOfKids">No of Kids & their age (If any)</Label>
-          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
-        </div>
-      </div>
 
       <div className="space-y-2">
         <Label htmlFor="hotelCategory">Hotel Category *</Label>
