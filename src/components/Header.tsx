@@ -14,6 +14,9 @@ const Header = () => {
     name: "Discover India",
     href: "/tours?category=discover-india"
   }, {
+    name: "Top Destinations",
+    href: "/top-destinations"
+  }, {
     name: "Ayurveda",
     href: "/tours"
   }, {

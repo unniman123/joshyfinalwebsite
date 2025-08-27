@@ -10,6 +10,8 @@ import TourDetail from "./pages/TourDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import DynamicCategoryPage from "./pages/DynamicCategoryPage";
+import TopDestinations from "./pages/TopDestinations";
+
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/tours" element={<Tours />} />
             <Route path="/tours/:slug" element={<TourDetail />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/top-destinations" element={<TopDestinations />} />
+
 
             {/* Dynamic Category Pages - Infrastructure for admin-controlled categories */}
             <Route path="/category/:category" element={<DynamicCategoryPage />} />
