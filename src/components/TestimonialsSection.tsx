@@ -70,14 +70,14 @@ const TestimonialsSection = () => {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={testimonial.id}
-                  className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+                  className="pl-2 md:pl-4 basis-full"
                   role="group"
                   aria-roledescription="slide"
                   aria-label={`Testimonial ${index + 1} of ${testimonials.length} from ${testimonial.customerName}`}
                 >
                   <TestimonialCard
                     testimonial={testimonial}
-                    className="h-full animate-fade-in"
+                    className="animate-fade-in"
                   />
                 </CarouselItem>
               ))}
