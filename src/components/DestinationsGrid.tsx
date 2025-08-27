@@ -14,7 +14,7 @@ const DestinationsGrid = ({
 }: DestinationsGridProps) => {
   if (loading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {Array.from({ length: 6 }).map((_, index) => (
           <Card key={index} className="animate-pulse">
             <div className="h-32 sm:h-36 bg-muted rounded-t-lg" />
@@ -52,7 +52,7 @@ const DestinationsGrid = ({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {destinations.map(destination => (
         <DestinationCard
           key={destination.id}
