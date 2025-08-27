@@ -30,17 +30,6 @@ export interface StarRatingProps {
 // Sample testimonials data based on real customer reviews
 export const testimonials: Testimonial[] = [
   {
-    id: 1,
-    customerName: "Jacky Donovan",
-    rating: 5,
-    reviewText: "I had an excellent 5-day/4-nt tour with this company with Aziz as my driver. I'd contacted several tourist agencies but chose this one because they sent all the information concisely for a number of options I could choose from. They were professional, knowledgeable, and made our Kerala experience unforgettable.",
-    reviewDate: "2023-12-15",
-    location: "Local Guide",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    source: "google",
-    verified: true
-  },
-  {
     id: 2,
     customerName: "Shubhankar Baksi",
     rating: 5,
