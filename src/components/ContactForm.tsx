@@ -135,7 +135,7 @@ const ContactForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="numberOfKidsAndAge">No of Kids & their age (If any)</Label>
+          <Label htmlFor="numberOfKidsAndAge">No of kids & their age (If any)</Label>
           <Input id="numberOfKidsAndAge" name="numberOfKidsAndAge" value={formData.numberOfKidsAndAge} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
         </div>
       </div>

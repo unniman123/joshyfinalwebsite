@@ -81,7 +81,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
                 <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-base md:text-lg mb-1">WhatsApp</h3>
+                <h3 className="font-semibold text-base md:text-lg mb-1">Whatsapp</h3>
                 <p className="text-muted-foreground text-xs md:text-sm group-hover:text-green-600 transition-colors">
                   {info.whatsapp || "+91 98765 43210"}
                 </p>
