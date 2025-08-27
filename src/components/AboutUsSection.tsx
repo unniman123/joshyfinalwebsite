@@ -2,7 +2,7 @@
 
 const AboutUsSection = () => {
   return (
-    <section className="py-16 bg-gradient-warm" id="about">
+    <section className="py-16 bg-background" id="about">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
           {/* Image Section - Left Aligned - Reduced to 15% */}
@@ -31,11 +31,11 @@ const AboutUsSection = () => {
                 We are engaged in tourism industry for the last 3 decades. First half was in Kerala promoting Indian subcontinent to the Incoming tourists & Second half of the period was in Dubai promoting global tourism to the expatriates and locals. Back to India again as holiday makers with the sound geographical knowledge & experiences of exceptional services.
               </p>
 
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 We are also experienced in arranging Group Tours for Employees of Institutions, Corporate Executives, Government Officials, Families, Pilgrims, Special Interest Groups, School Children & others. The Programmes include Excursions, Get-togethers (Weekend & Vacations) and Sponsored Holidays, Meetings, Institutional Holidays, Conferences, Study Tours, Water Cruises, Pilgrim Centre Visits & more. Therefore we can confidently claim to offer the best services available in the industry to your complete satisfaction.
               </p>
 
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 Now please click on your area of interest and reach us to enjoy your precious vacations, which can be either local or international. Whether your travel intention is Relaxation, Discovery, Exploration, Spiritual, Tourism, Vacationing, Research for gathering information, Building interpersonal relationships, Business, Healthcare, School Excursion we are at your finger tips.
               </p>
             </div>
