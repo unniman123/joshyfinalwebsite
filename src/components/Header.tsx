@@ -20,9 +20,6 @@ const Header = () => {
     name: "Ayurveda",
     href: "/tours"
   }, {
-    name: "Heritage Tours",
-    href: "/tours?category=heritage"
-  }, {
     name: "Global Holidays",
     href: "/tours?category=global"
   }, {

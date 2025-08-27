@@ -2,6 +2,7 @@ import { useState } from "react";
 import { User, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -92,7 +93,7 @@ const TourEnquiryForm = ({
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
             <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[10px] font-medium text-muted-foreground">
-              Mobile No (WhatsApp) *
+              Mobile No (Whatsapp) *
             </Label>
             <div className="relative">
               <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
@@ -115,13 +116,13 @@ const TourEnquiryForm = ({
                 Message *
               </Label>
               <div className="relative">
-                <Input
+                <Textarea
                   id={`${formIdPrefix}-message`}
-                  type="text"
                   placeholder={messagePlaceholder}
                   value={formData.message || ""}
                   onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="h-6 text-[10px]"
+                  className="min-h-[24px] text-[10px] resize-none"
+                  rows={2}
                   required
                 />
               </div>
