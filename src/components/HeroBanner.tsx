@@ -125,7 +125,8 @@ const HeroBanner = ({
               </div>
               <Button
                 type="submit"
-                className={searchButtonClassName}
+                variant="cta"
+                className="px-6 py-3"
               >
                 Search
               </Button>

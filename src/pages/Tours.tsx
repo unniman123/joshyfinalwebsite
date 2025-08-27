@@ -86,7 +86,9 @@ const Tours = () => {
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               {selectedCategory ?
-                `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` :
+                selectedCategory === 'discover-india' ?
+                  'Discover India' :
+                  `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` :
                 searchQuery ?
                 'Search Results' :
                 'Explore Our Tours'
@@ -94,7 +96,9 @@ const Tours = () => {
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {selectedCategory ?
-                `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
+                selectedCategory === 'discover-india' ?
+                  '' :
+                  `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
                 searchQuery ?
                 `Showing results for "${searchQuery}"` :
                 'Discover incredible journeys across India and beyond. From serene backwaters to majestic palaces, find your perfect adventure.'
@@ -116,6 +120,7 @@ const Tours = () => {
                 />
                 <Button
                   type="submit"
+                  variant="cta"
                   className="absolute right-2 h-12 px-6"
                 >
                   Search
