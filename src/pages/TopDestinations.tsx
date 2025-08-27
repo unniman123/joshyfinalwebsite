@@ -20,7 +20,7 @@ const TopDestinations = () => {
   useEffect(() => {
     const searchParam = searchParams.get('search');
     const stateParam = searchParams.get('state');
-    
+
     if (searchParam) {
       setSearchQuery(decodeURIComponent(searchParam));
     }
@@ -88,8 +88,8 @@ const TopDestinations = () => {
               {selectedState ?
                 `Discover the most incredible destinations in ${selectedState} - from historic monuments to natural wonders, explore the diversity and beauty of India.` :
                 searchQuery ?
-                `Showing destinations matching "${searchQuery}"` :
-                'Discover the most incredible destinations across India - from snow-capped mountains to pristine beaches, from ancient temples to bustling cities. Explore the diversity and beauty of our incredible nation.'
+                  `Showing destinations matching "${searchQuery}"` :
+                  'Discover the most incredible destinations across India - from snow-capped mountains to pristine beaches, from ancient temples to bustling cities. Explore the diversity and beauty of our incredible nation.'
               }
             </p>
           </div>
@@ -112,6 +112,7 @@ const TopDestinations = () => {
                 />
                 <Button
                   type="submit"
+                  variant="cta"
                   className="absolute right-2 h-12 px-6"
                 >
                   Search
