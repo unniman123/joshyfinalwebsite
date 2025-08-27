@@ -10,7 +10,7 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
   const overviewContent = getOverviewContent(tour);
 
   return (
-    <section className="py-12 md:py-16 lg:py-20">
+    <section className="py-6 md:py-8 lg:py-10">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Full-width content layout (no images) */}
         <div className="w-full">

@@ -23,10 +23,10 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
 
     return (
       <div className="w-full">
-        {/* Tour Title Section - Left Corner Display */}
-        <section className="py-8 px-4">
+        {/* Tour Title Section - Center Aligned */}
+        <section className="py-4 px-4">
           <div className="container mx-auto max-w-7xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center">
               {tour.title}
             </h1>
           </div>
@@ -36,7 +36,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         {visibleSections.map((section) => {
           if (section.type === 'overview') {
             return (
-              <section key={section.id} className="py-12 md:py-16 lg:py-20">
+              <section key={section.id} className="py-6 md:py-8 lg:py-10">
                 <div className="container mx-auto max-w-7xl px-4">
                   {/* Full-width content layout (no images) */}
                   <div className="w-full">
@@ -111,14 +111,14 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
   // Fallback to legacy components for backward compatibility
   return (
     <div className="w-full">
-      {/* Tour Title Section - Left Corner Display */}
-      <section className="py-8 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-            {tour.title}
-          </h1>
-        </div>
-      </section>
+        {/* Tour Title Section - Center Aligned */}
+        <section className="py-4 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center">
+              {tour.title}
+            </h1>
+          </div>
+        </section>
 
       {/* Legacy Overview Section */}
       <OverviewSection tour={tour} />
