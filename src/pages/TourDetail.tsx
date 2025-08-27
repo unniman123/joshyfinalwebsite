@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTourBySlug, Tour } from "@/lib/api";
-import TourDetailBanner from "@/components/TourDetailBanner";
 import TourContentSections from "@/components/TourContentSections";
 import EnquiryForm from "@/components/InquiryForm";
 import Header from "@/components/Header";
@@ -48,8 +47,6 @@ const TourDetail = () => {
 
     <Header />
     <main>
-      <TourDetailBanner tour={tour} />
-
       <TourContentSections tour={tour} />
 
       <section className="py-20 px-4 bg-muted/30">
