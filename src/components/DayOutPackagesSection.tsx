@@ -147,7 +147,7 @@ const DayOutPackagesSection = ({
           <div className="flex-1 lg:w-[70%]">
             <div className="relative">
               {/* Day Out Package Banner Slideshow */}
-              <div className="w-full h-64 sm:h-72 lg:h-80 relative overflow-hidden rounded-lg shadow-card transition-all duration-300">
+              <div className="w-full h-64 sm:h-72 lg:h-80 relative overflow-hidden rounded-lg border-2 border-golden/30 hover:border-golden/50 shadow-card hover:shadow-golden/20 transition-all duration-300">
                 {(() => {
                   const currentPackage = getCurrentPackage();
                   return (
@@ -220,7 +220,7 @@ const DayOutPackagesSection = ({
           {/* Right Column - Enquiry Form (30% on desktop) */}
           <div className="lg:w-[30%] mt-8 lg:mt-0">
             {/* Form card */}
-            <Card className="shadow-warm w-full max-w-xs">
+            <Card className="border-2 border-golden/30 hover:border-golden/50 shadow-warm hover:shadow-golden/20 transition-all duration-300 w-full max-w-xs">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
                   <User className="h-3 w-3 text-golden" />

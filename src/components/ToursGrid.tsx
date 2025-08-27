@@ -44,7 +44,7 @@ const ToursGrid = ({
       className="block group transition-all duration-300 hover:shadow-lg"
       aria-label={`View details for ${tour.title} tour`}
     >
-      <Card className="group-hover:shadow-lg transition-shadow duration-300 h-full">
+      <Card className="border-2 border-golden/30 hover:border-golden/50 group-hover:shadow-lg hover:shadow-golden/20 transition-all duration-300 h-full">
         <div className="relative overflow-hidden rounded-t-lg">
           <img src={tour.image} alt={tour.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
         </div>

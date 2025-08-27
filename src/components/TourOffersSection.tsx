@@ -165,7 +165,7 @@ const TourOffersSection = ({
                     aria-label={`View details for ${tour.title} tour`}
                   >
                     {/* Oval Image Area */}
-                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full shadow-card hover:shadow-warm transition-shadow duration-300 mb-3">
+                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full border-2 border-golden/30 hover:border-golden/50 shadow-card hover:shadow-warm hover:shadow-golden/20 transition-all duration-300 mb-3">
                       <img
                         src={tour.image}
                         alt={tour.title}

@@ -61,7 +61,7 @@ const TourEnquiryForm = ({
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
-    <Card className="shadow-warm w-full max-w-xs">
+    <Card className="border-2 border-golden/30 hover:border-golden/50 shadow-warm hover:shadow-golden/20 transition-all duration-300 w-full max-w-xs">
       <CardHeader className="pb-1">
         <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
           <User className="h-3 w-3 text-golden" />
