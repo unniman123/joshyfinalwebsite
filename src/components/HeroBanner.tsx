@@ -125,8 +125,8 @@ const HeroBanner = ({
               </div>
               <Button
                 type="submit"
-                variant="cta"
-                className="px-6 py-3"
+                variant="default"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
               >
                 Search
               </Button>
