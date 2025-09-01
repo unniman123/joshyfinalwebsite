@@ -37,7 +37,7 @@ const ContactFormSection = () => {
       await submitContactEnquiry({
         name: formData.name,
         email: formData.contactWhatsapp, // Using WhatsApp as contact method
-        message: `Contact WhatsApp: ${formData.contactWhatsapp}\nNationality: ${formData.nationality}\nDestination: ${formData.destinationInterested}\nTour Days: ${formData.tourDays}\nTravel Date: ${formData.travelDate}\nRooms: ${formData.roomsCount}\nHotel Category: ${formData.hotelCategory}\nSpecial Comments: ${formData.specialComments}`
+        message: `Contact WhatsApp: ${formData.contactWhatsapp}\nNationality: ${formData.nationality}\nDestination: ${formData.destinationInterested}\nTour Days: ${formData.tourDays}\nTravel Date: ${formData.travelDate}\nRooms: ${formData.roomsCount}\nHotel Category: ${formData.hotelCategory}\nSpecial Comment: ${formData.specialComments}`
       });
 
       // Show success toast with accessibility
@@ -190,7 +190,7 @@ const ContactFormSection = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="comments">Special Comments</Label>
+                  <Label htmlFor="comments">Special Comment</Label>
                   <Textarea
                     id="comments"
                     value={formData.specialComments}
