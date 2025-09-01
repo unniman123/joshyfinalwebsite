@@ -18,7 +18,7 @@ interface HeroBannerProps {
 }
 
 const HeroBanner = ({
-  title = "Discover Amazing Tours",
+  title = "",
   subtitle = "Explore the best travel experiences across India and beyond",
   searchPlaceholder = "Search destinations, tours, or activities...",
   searchButtonClassName = "px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors",

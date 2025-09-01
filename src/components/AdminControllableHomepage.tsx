@@ -95,7 +95,7 @@ const AdminControllableHomepage = ({
       contentPosition: {
         paddingTop: "pt-8"
       },
-      title: "Discover Amazing Tours",
+      title: "",
       subtitle: "Explore the best travel experiences across India and beyond",
       searchPlaceholder: "Search destinations, tours, or activities...",
       isVisible: true
@@ -239,7 +239,7 @@ const AdminControllableHomepage = ({
                     onChange={(e) =>
                       updateConfig('heroBanner', { title: e.target.value })
                     }
-                    placeholder="Discover Amazing Tours"
+                    placeholder="Enter banner title (optional)"
                   />
                 </div>
                 <div>

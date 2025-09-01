@@ -492,7 +492,7 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
       contentPosition: {
         paddingTop: 'pt-8'
       },
-      title: 'Discover Amazing Tours',
+      title: '',
       subtitle: 'Explore the best travel experiences across India and beyond',
       searchPlaceholder: 'Search destinations, tours, or activities...',
       isVisible: true
