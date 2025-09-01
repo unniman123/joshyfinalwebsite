@@ -21,11 +21,11 @@ const AboutUsSection = () => {
           {/* Content Section - Right Aligned - Expanded to 85% */}
           <div className="lg:w-[85%] w-full">
             <div className="animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-6 text-center">
-                Namaste
+              <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-6 text-left" style={{fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif"}}>
+                Namaste!
               </h2>
 
-              <div className="w-24 h-1 bg-gradient-golden mb-6 mx-auto"></div>
+              <div className="w-24 h-1 bg-gradient-golden mb-6"></div>
 
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 We are engaged in tourism industry for the last 3 decades. First half was in Kerala promoting Indian subcontinent to the Incoming tourists & Second half of the period was in Dubai promoting global tourism to the expatriates and locals. Back to India again as holiday makers with the sound geographical knowledge & experiences of exceptional services.
