@@ -21,7 +21,7 @@ const AboutUsSection = () => {
           {/* Content Section - Right Aligned - Expanded to 85% */}
           <div className="lg:w-[85%] w-full">
             <div className="animate-fade-in">
-              <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-6 text-left" style={{fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif"}}>
+              <h2 className="text-3xl md:text-4xl font-bold text-green-600 mb-6 text-left" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
                 Namaste!
               </h2>
 
