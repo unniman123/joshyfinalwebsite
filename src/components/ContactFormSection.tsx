@@ -107,7 +107,7 @@ const ContactFormSection = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="contact">WhatsApp Number *</Label>
+                  <Label htmlFor="contact">Contact Number (Whatsapp) *</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input

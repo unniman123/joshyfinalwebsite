@@ -121,7 +121,7 @@ const EnquiryForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="contactNumber">Whatsapp *</Label>
+          <Label htmlFor="contactNumber">Contact Number (Whatsapp) *</Label>
           <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
         </div>
 
