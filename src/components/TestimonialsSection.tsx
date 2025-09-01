@@ -8,8 +8,33 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import { testimonials } from "@/lib/types/testimonials";
+import type { CarouselApi } from "@/components/ui/carousel";
 
 const TestimonialsSection = () => {
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+
+  // Auto-rotation effect - same pattern as HeroBanner
+  React.useEffect(() => {
+    if (!api) return;
+
+    const timer = setInterval(() => {
+      const nextIndex = (current + 1) % testimonials.length;
+      api.scrollTo(nextIndex);
+      setCurrent(nextIndex);
+    }, 5000); // 5 second intervals like HeroBanner
+
+    return () => clearInterval(timer);
+  }, [api, current, testimonials.length]);
+
+  // Update current index when carousel changes
+  React.useEffect(() => {
+    if (!api) return;
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
   // Keyboard navigation handler
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent, api: any) => {
@@ -53,14 +78,15 @@ const TestimonialsSection = () => {
             Use arrow keys to navigate through customer testimonials, or click the navigation buttons.
           </div>
           <Carousel
+            setApi={setApi}
             opts={{
               align: "start",
-              loop: false,
+              loop: true, // Enable loop for seamless auto-rotation
               duration: 30, // 0.3s transition duration
               containScroll: "trimSnaps",
             }}
             className="relative"
-            onKeyDown={(event) => handleKeyDown(event, undefined)}
+            onKeyDown={(event) => handleKeyDown(event, api)}
           >
             <CarouselContent
               className="-ml-2 md:-ml-4"
