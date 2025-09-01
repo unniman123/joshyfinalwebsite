@@ -53,7 +53,7 @@ const Header = () => {
           {/* Logo and Company Name */}
           <Link to="/" className="flex items-center gap-3">
             <img src="/src/assets/logo-header.png.png" alt="Kerala Tours" className="h-10 w-auto cursor-pointer" />
-            <span className="text-lg font-semibold text-foreground">KeralaTours Travels & Organic Remedies</span>
+            <span className="text-lg font-semibold text-foreground" style={{fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif"}}>KeralaTours Travels & Organic Remedies</span>
           </Link>
 
           {/* Desktop Navigation */}
