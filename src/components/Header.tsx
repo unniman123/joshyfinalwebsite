@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navigationItems = [{
     name: "Home",
     href: "/"
@@ -26,6 +28,7 @@ const Header = () => {
     name: "Contact Us",
     href: "/contact"
   }];
+
   return <header className="w-full bg-background shadow-warm">
     {/* Top Contact Bar */}
     <div className="bg-gradient-golden px-4 py-2 text-sm font-medium text-primary-foreground">
@@ -53,7 +56,7 @@ const Header = () => {
           {/* Logo and Company Name */}
           <Link to="/" className="flex items-center gap-3">
             <img src="/src/assets/logo-header.png.png" alt="Kerala Tours" className="h-10 w-auto cursor-pointer" />
-            <span className="text-lg font-semibold text-foreground" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>KeralaTours Travels & Organic Remedies</span>
+            <span className="text-lg font-semibold text-golden" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>KeralaTours Travels & Organic Remedies</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -84,4 +87,5 @@ const Header = () => {
     </nav>
   </header>;
 };
+
 export default Header;
