@@ -70,7 +70,7 @@ const Header = () => {
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-10 w-auto cursor-pointer" />
-              <span className="text-lg font-semibold text-golden" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
+              <span className="text-lg font-semibold text-black" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -86,9 +86,9 @@ const Header = () => {
                     category={item.category}
                   />
                 ) : (
-                  <Link 
-                    key={item.name} 
-                    to={item.href} 
+                  <Link
+                    key={item.name}
+                    to={item.href}
                     className="text-foreground hover:text-golden transition-smooth font-medium relative group"
                   >
                     {item.name}
@@ -100,10 +100,10 @@ const Header = () => {
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={() => setIsMenuOpen(!isMenuOpen)} 
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -116,9 +116,9 @@ const Header = () => {
             <div className="md:hidden py-4 border-t border-border animate-fade-in">
               <div className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (
-                  <Link 
-                    key={item.name} 
-                    to={item.href} 
+                  <Link
+                    key={item.name}
+                    to={item.href}
                     className="text-foreground hover:text-golden transition-smooth font-medium py-2"
                     onClick={() => setIsMenuOpen(false)}
                   >
