@@ -174,7 +174,7 @@ const EnquiryForm = ({
         disabled={isSubmitting}
         aria-describedby="form-status"
       >
-        {isSubmitting ? "Submitting..." : "Submit"}
+        {isSubmitting ? "Sending..." : "Send Enquiry"}
       </Button>
 
       {/* Screen reader status region for accessibility */}

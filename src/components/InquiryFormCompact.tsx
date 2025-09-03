@@ -115,7 +115,7 @@ const EnquiryFormCompact = () => {
               type="submit"
               className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-6 text-[10px]"
             >
-              Submit
+              Send Enquiry
             </Button>
           </div>
         </form>

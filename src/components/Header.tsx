@@ -10,20 +10,20 @@ const Header = () => {
     name: "Home",
     href: "/"
   }, {
-    name: "Kerala Tours",
+    name: "Kerala Travels",
     href: "/tours?category=kerala"
   }, {
     name: "Discover India",
     href: "/tours?category=discover-india"
+  }, {
+    name: "Global Holidays",
+    href: "/tours?category=global"
   }, {
     name: "Top Destinations",
     href: "/top-destinations"
   }, {
     name: "Ayurveda",
     href: "/tours"
-  }, {
-    name: "Global Holidays",
-    href: "/tours?category=global"
   }, {
     name: "Contact Us",
     href: "/contact"
@@ -55,7 +55,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo and Company Name */}
           <Link to="/" className="flex items-center gap-3">
-            <img src="/src/assets/logo-header.png.png" alt="Kerala Tours" className="h-10 w-auto cursor-pointer" />
+            <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-10 w-auto cursor-pointer" />
             <span className="text-lg font-semibold text-golden" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>KeralaTours Travels & Organic Remedies</span>
           </Link>
 

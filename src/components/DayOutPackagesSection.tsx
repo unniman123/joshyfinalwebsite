@@ -328,9 +328,9 @@ const DayOutPackagesSection = ({
                   <div className="pt-1">
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
+                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300"
                     >
-                      Send Request
+                      Send Enquiry
                     </Button>
                   </div>
                 </form>

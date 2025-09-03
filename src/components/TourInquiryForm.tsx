@@ -174,7 +174,7 @@ const TourEnquiryForm = ({
               type="submit"
               className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
             >
-              Send Request
+              Send Enquiry
             </Button>
           </div>
         </form>

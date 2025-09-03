@@ -1,5 +1,5 @@
 // Testimonials types and interfaces
-// Customer testimonial data structure for Kerala Tours Global
+// Customer testimonial data structure for Kerala Travels Global
 
 export interface Testimonial {
   id: number;

@@ -4,20 +4,20 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { getSocialIconClass, getSocialPlatformConfig } from "@/lib/utils/socialUtils";
 const Footer = () => {
   const quickLinks = [{
-    name: "Kerala Tours",
+    name: "Kerala Travels",
     href: "/tours?category=kerala"
   }, {
     name: "Discover India",
     href: "/tours?category=discover-india"
+  }, {
+    name: "Global Holidays",
+    href: "/tours?category=global"
   }, {
     name: "Ayurveda",
     href: "/tours"
   }, {
     name: "Heritage Tours",
     href: "/tours?category=heritage"
-  }, {
-    name: "Global Holidays",
-    href: "/tours?category=global"
   }];
   const supportLinks = [{
     name: "Contact Us",

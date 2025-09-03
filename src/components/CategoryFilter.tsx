@@ -35,7 +35,7 @@ const CategoryFilter = ({ onFiltersChange }: CategoryFilterProps) => {
   ];
 
   const categories = [
-    "Kerala Tours",
+    "Kerala Travels",
     "Discover India",
     "Ayurveda", 
     "Heritage Tours",

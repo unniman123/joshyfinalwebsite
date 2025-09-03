@@ -31,12 +31,12 @@ const DynamicCategoryPage = () => {
   const mockCategories: CategoryPageData[] = [
     {
       id: "1",
-      name: "Kerala Tours",
+      name: "Kerala Travels",
       slug: "kerala-tours",
       description: "Explore the serene backwaters and lush landscapes of God's Own Country",
-      customPageTitle: "Kerala Tours - Experience God's Own Country",
+      customPageTitle: "Kerala Travels - Experience God's Own Country",
       customPageDescription: "Discover the enchanting beauty of Kerala through our specially curated tour packages. Experience pristine backwaters, aromatic spice gardens, and rich cultural heritage.",
-      seoTitle: "Best Kerala Tours & Packages | Wanderwise",
+      seoTitle: "Best Kerala Travels & Packages | Wanderwise",
       seoDescription: "Explore Kerala with our curated tour packages featuring backwaters, hill stations, and cultural experiences. Book your Kerala adventure today!",
       isActive: true,
       hasCustomPage: true

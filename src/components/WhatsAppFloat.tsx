@@ -54,7 +54,7 @@ const WhatsAppFloat = () => {
                 <WhatsAppIcon className="h-4 w-4 text-white" />
               </div>
               <div className="flex-1">
-                <p className="text-sm text-gray-800 font-medium mb-1">Kerala Tours Global</p>
+                <p className="text-sm text-gray-800 font-medium mb-1">Kerala Travels Global</p>
                 <p className="text-xs text-gray-600">Hi! How can we help you plan your perfect Kerala tour? 🌴</p>
                 <p className="text-xs text-gray-400 mt-1">Typically replies instantly</p>
               </div>

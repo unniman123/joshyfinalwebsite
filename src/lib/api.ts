@@ -173,7 +173,7 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       id: "1",
       title: "Kerala Backwaters Explorer",
       description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
-      category: "Kerala Tours",
+      category: "Kerala Travels",
       duration: 5,
       price: "₹45,000",
       image: keralaTourCard,
@@ -239,7 +239,7 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
       title: "Kerala Backwaters Explorer",
       description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
       detailedContent: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board.",
-      category: "Kerala Tours",
+      category: "Kerala Travels",
       duration: 5,
       price: "₹45,000",
       image: keralaTourCard,
@@ -862,7 +862,7 @@ export async function getRelatedTours(slug: string): Promise<Tour[]> {
 export async function getTourCategories(): Promise<string[]> {
   // Placeholder implementation
   return [
-    "Kerala Tours",
+    "Kerala Travels",
     "Discover India",
     "Ayurveda",
     "Heritage Tours",
