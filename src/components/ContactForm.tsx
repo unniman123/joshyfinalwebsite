@@ -174,7 +174,7 @@ const ContactForm = ({
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="specialComments">Special Comment</Label>
+        <Label htmlFor="specialComments">Special Comments</Label>
         <Textarea id="specialComments" name="specialComments" value={formData.specialComments} onChange={handleChange} placeholder="Any special requests, dietary requirements, accessibility needs, or other comments..." rows={4} />
       </div>
 

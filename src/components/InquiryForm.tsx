@@ -162,7 +162,7 @@ const EnquiryForm = ({
 
 
       <div className="space-y-2">
-        <Label htmlFor="message">Special Comment</Label>
+        <Label htmlFor="message">Special Comments</Label>
         <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} />
       </div>
 
