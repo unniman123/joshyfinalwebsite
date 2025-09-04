@@ -129,9 +129,6 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                   onClick={() => setIsOpen(false)}
                 >
                   <div className="font-semibold">{tour.title}</div>
-                  <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                    {tour.description}
-                  </div>
                 </Link>
               ))
             ) : (

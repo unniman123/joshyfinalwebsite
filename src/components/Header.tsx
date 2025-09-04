@@ -33,8 +33,7 @@ const Header = () => {
     },
     {
       name: "Ayurveda",
-      href: "/tours",
-      category: "ayurveda"
+      href: "/tours"
     },
     {
       name: "Contact Us",
