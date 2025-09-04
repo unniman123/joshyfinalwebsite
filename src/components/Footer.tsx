@@ -153,7 +153,7 @@ const Footer = () => {
 
     {/* Bottom Footer */}
     <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80">
-      <div style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
+      <div style={{ fontFamily: "'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif" }} className="font-medium">
         © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
       <div className="flex gap-4">

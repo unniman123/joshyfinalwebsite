@@ -20,7 +20,7 @@ const AboutUsSection = () => {
           <div className="lg:w-[85%] w-full">
             <div className="animate-fade-in">
               <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-6 text-left" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
-                Namaste!
+                Namaste !
               </h2>
 
               <div className="w-24 h-1 bg-gradient-golden mb-6"></div>
