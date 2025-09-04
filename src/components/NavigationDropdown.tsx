@@ -23,11 +23,11 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       if (isOpen && category) {
         // Don't fetch if we already have tours for this category
         if (tours.length > 0) return;
-        
+
         try {
           setLoading(true);
           const allTours = await getAllTours();
-          const categoryTours = allTours.filter(tour => 
+          const categoryTours = allTours.filter(tour =>
             tour.category.toLowerCase() === category.toLowerCase()
           );
           setTours(categoryTours);
@@ -49,12 +49,12 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       clearTimeout(closeTimeout);
       setCloseTimeout(null);
     }
-    
+
     // Clear any existing open timeout
     if (openTimeout) {
       clearTimeout(openTimeout);
     }
-    
+
     // Set new open timeout (150ms delay)
     const timeout = setTimeout(() => {
       setIsOpen(true);
@@ -69,12 +69,12 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       clearTimeout(openTimeout);
       setOpenTimeout(null);
     }
-    
+
     // Clear any existing close timeout
     if (closeTimeout) {
       clearTimeout(closeTimeout);
     }
-    
+
     // Set new close timeout (300ms delay)
     const timeout = setTimeout(() => {
       setIsOpen(false);
@@ -94,13 +94,13 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
   const hasDropdown = !!category;
 
   return (
-    <div 
+    <div
       className="relative group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link 
-        to={href} 
+      <Link
+        to={href}
         className="text-foreground hover:text-golden transition-smooth font-medium relative flex items-center gap-1 py-2"
       >
         {name}
@@ -109,7 +109,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       </Link>
 
       {hasDropdown && isOpen && (
-        <div 
+        <div
           className="absolute left-0 mt-0 w-80 bg-white rounded-lg shadow-xl border border-border z-50 animate-fade-in"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
