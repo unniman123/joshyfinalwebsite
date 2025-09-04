@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import { Helmet } from "react-helmet-async";
+
 const TourDetail = () => {
   const {
     slug
@@ -15,6 +16,7 @@ const TourDetail = () => {
   }>();
   const [tour, setTour] = useState<Tour | null>(null);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchTourData = async () => {
       if (slug) {
@@ -25,11 +27,13 @@ const TourDetail = () => {
     };
     fetchTourData();
   }, [slug]);
+
   if (loading) {
     return <div className="min-h-screen flex items-center justify-center">
       <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
     </div>;
   }
+
   if (!tour) {
     return <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
@@ -38,11 +42,12 @@ const TourDetail = () => {
       </div>
     </div>;
   }
+
   return <div className="min-h-screen bg-background">
-    {/* TODO: Add dynamic title and description meta tags using tour.title and tour.description */}
     <Helmet>
-      <title>{tour.title} | Tour Agency</title>
+      <title>{tour.title} | Kerala Tours Global</title>
       <meta name="description" content={tour.description} />
+      <link rel="icon" type="image/png" href="/logo-header.png" />
     </Helmet>
 
     <Header />
@@ -63,4 +68,5 @@ const TourDetail = () => {
     <WhatsAppFloat />
   </div>;
 };
+
 export default TourDetail;

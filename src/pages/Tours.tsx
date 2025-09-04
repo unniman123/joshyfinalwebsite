@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -76,8 +77,39 @@ const Tours = () => {
     setSearchParams(newParams);
   };
 
+  // Determine page title based on current view
+  const getPageTitle = () => {
+    if (selectedCategory) {
+      return selectedCategory === 'discover-india' 
+        ? 'Discover India Tours - Kerala Tours Global' 
+        : `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours - Kerala Tours Global`;
+    }
+    if (searchQuery) {
+      return `Search Results for "${searchQuery}" - Kerala Tours Global`;
+    }
+    return 'Explore Our Tours - Kerala Tours Global';
+  };
+
+  // Determine page description based on current view
+  const getPageDescription = () => {
+    if (selectedCategory) {
+      return selectedCategory === 'discover-india' 
+        ? 'Discover incredible journeys across India. From serene backwaters to majestic palaces, find your perfect adventure.' 
+        : `Explore amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.`;
+    }
+    if (searchQuery) {
+      return `Showing tour results for "${searchQuery}". Discover the best travel experiences across India and beyond.`;
+    }
+    return 'Discover incredible journeys across India and beyond. From serene backwaters to majestic palaces, find your perfect adventure.';
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{getPageTitle()}</title>
+        <meta name="description" content={getPageDescription()} />
+        <link rel="icon" type="image/png" href="/logo-header.png" />
+      </Helmet>
       <Header />
 
       <main className="py-12">
@@ -120,8 +152,7 @@ const Tours = () => {
                 />
                 <Button
                   type="submit"
-                  variant="cta"
-                  className="absolute right-2 h-12 px-6"
+                  className="absolute right-2 h-12 px-6 bg-blue-600 hover:bg-blue-700 text-white"
                 >
                   Search
                 </Button>
