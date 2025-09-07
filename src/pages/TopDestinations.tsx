@@ -81,7 +81,7 @@ const TopDestinations = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-center">
-              100 Top Destinations of India
+              100 Beautiful places in India
             </h1>
             <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
             <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
