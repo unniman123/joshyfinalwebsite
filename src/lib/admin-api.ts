@@ -383,7 +383,7 @@ export async function getHomepageConfiguration(): Promise<HomepageConfiguration 
         showMessage: true,
         showDate: false,
         showDestination: false,
-        messagePlaceholder: 'Describe your preferred destination and dates'
+        messagePlaceholder: 'Write in short of your requirements to customise a pacakge'
       },
       isVisible: true
     },
@@ -513,7 +513,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'message',
       fieldType: 'textarea',
       label: 'Message',
-      placeholder: 'Describe your preferred destination and dates',
+      placeholder: 'Write in short of your requirements to customise a pacakge',
       isRequired: true,
       isVisible: true,
       order: 2

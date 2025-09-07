@@ -34,7 +34,7 @@ interface DayOutPackagesSectionProps {
 }
 
 const DayOutPackagesSection = ({
-  sectionTitle = "Day Out Packages",
+  sectionTitle = "Kerala Day Out Packages",
   packages,
   formConfig = {
     phoneFieldPlaceholder: "",
@@ -251,7 +251,7 @@ const DayOutPackagesSection = ({
                   {/* Mobile No (WhatsApp) Field */}
                   <div className="space-y-0.5">
                     <Label htmlFor="dayOut-mobile" className="text-[10px] font-medium text-muted-foreground">
-                      Mobile No (WhatsApp) *
+                      Contact No (WhatsApp) *
                     </Label>
                     <div className="relative">
                       <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
@@ -330,7 +330,7 @@ const DayOutPackagesSection = ({
                       type="submit"
                       className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300"
                     >
-                      Send Enquiry
+                      Send Request
                     </Button>
                   </div>
                 </form>

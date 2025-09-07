@@ -79,9 +79,9 @@ const ContactFormSection = () => {
     <section className="py-16 bg-muted/50">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
-          <Card>
+          <Card className="border-2 border-golden/30 bg-muted/50">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2">Plan Your Perfect Trip</CardTitle>
+              <CardTitle className="text-2xl mb-2 text-golden">Plan Your Perfect Trip</CardTitle>
               <p className="text-muted-foreground">Let us create a customized itinerary just for you</p>
             </CardHeader>
             <CardContent>
@@ -107,7 +107,7 @@ const ContactFormSection = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="contact">Contact Number (Whatsapp) *</Label>
+                  <Label htmlFor="contact">Contact No (WhatsApp) *</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
@@ -207,7 +207,7 @@ const ContactFormSection = () => {
                   disabled={isSubmitting}
                   aria-describedby="form-status"
                 >
-                  {isSubmitting ? "Sending..." : "Send Enquiry"}
+                  {isSubmitting ? "Sending..." : "Send Request"}
                 </Button>
 
                 {/* Screen reader status region for accessibility */}

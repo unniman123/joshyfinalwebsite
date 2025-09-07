@@ -118,7 +118,7 @@ const ContactForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="contactNumber">Contact Number (Whatsapp) *</Label>
+          <Label htmlFor="contactNumber">Contact No (WhatsApp) *</Label>
           <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
         </div>
       </div>
@@ -130,8 +130,8 @@ const ContactForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="numberOfPersons">No of Persons *</Label>
-          <Input id="numberOfPersons" name="numberOfPersons" type="number" min="1" value={formData.numberOfPersons} onChange={handleChange} placeholder="e.g., 4" required />
+          <Label htmlFor="numberOfPersons">Number of Adults *</Label>
+          <Input id="numberOfPersons" name="numberOfPersons" type="number" min="1" value={formData.numberOfPersons} onChange={handleChange} placeholder="e.g., 2" required />
         </div>
 
         <div className="space-y-2">
@@ -175,7 +175,7 @@ const ContactForm = ({
 
       <div className="space-y-2">
         <Label htmlFor="specialComments">Special Comments</Label>
-        <Textarea id="specialComments" name="specialComments" value={formData.specialComments} onChange={handleChange} placeholder="Any special requests, dietary requirements, accessibility needs, or other comments..." rows={4} />
+        <Textarea id="specialComments" name="specialComments" value={formData.specialComments} onChange={handleChange} placeholder="Any other requirements than the above so we can customise accordingly " rows={4} />
       </div>
 
       <Button
@@ -186,7 +186,7 @@ const ContactForm = ({
         disabled={isSubmitting}
         aria-describedby="form-status"
       >
-        {isSubmitting ? "Sending..." : "Send Enquiry"}
+        {isSubmitting ? "Sending..." : "Send Request"}
       </Button>
 
       {/* Screen reader status region for accessibility */}
@@ -206,4 +206,5 @@ const ContactForm = ({
     </form>
   </div>;
 };
+
 export default ContactForm;

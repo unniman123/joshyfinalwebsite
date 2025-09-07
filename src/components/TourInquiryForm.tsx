@@ -24,7 +24,7 @@ const TourEnquiryForm = ({
   showMessage = true,
   showDate = false,
   showDestination = false,
-  messagePlaceholder = "Describe your preferred destination and dates",
+  messagePlaceholder = "Write in short of your requirements to customise a pacakge",
   phoneFieldPlaceholder = ""
 }: TourEnquiryFormProps) => {
   // Enquiry form state - dynamic based on admin config
@@ -93,7 +93,7 @@ const TourEnquiryForm = ({
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
             <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[10px] font-medium text-muted-foreground">
-              Mobile No (Whatsapp) *
+              Contact No (WhatsApp) *
             </Label>
             <div className="relative">
               <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
@@ -174,7 +174,7 @@ const TourEnquiryForm = ({
               type="submit"
               className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
             >
-              Send Enquiry
+              Send Request
             </Button>
           </div>
         </form>

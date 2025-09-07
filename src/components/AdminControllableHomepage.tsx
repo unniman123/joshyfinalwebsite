@@ -108,7 +108,7 @@ const AdminControllableHomepage = ({
         showMessage: true,
         showDate: false,
         showDestination: false,
-        messagePlaceholder: "Describe your preferred destination and dates"
+        messagePlaceholder: "Write in short of your requirements to customise a pacakge"
       },
       isVisible: true
     },
@@ -421,7 +421,7 @@ const AdminControllableHomepage = ({
                                 }
                               })
                             }
-                            placeholder="Describe your preferred destination and dates"
+                            placeholder="Write in short of your requirements to customise a pacakge"
                           />
                         </div>
                       )}
