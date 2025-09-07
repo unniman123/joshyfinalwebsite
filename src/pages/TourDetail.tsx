@@ -54,10 +54,10 @@ const TourDetail = () => {
     <main>
       <TourContentSections tour={tour} />
 
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-12 px-4 bg-muted/30">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Enquire</h2>
+          <div className="text-center mb-6">
+            <h2 className="text-3xl font-bold text-foreground mb-4 underline">Enquire</h2>
 
           </div>
           <EnquiryForm tourId={tour.id} />

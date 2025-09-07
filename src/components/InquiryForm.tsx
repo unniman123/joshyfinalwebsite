@@ -109,24 +109,24 @@ const EnquiryForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="numberOfPeople">Number of persons *</Label>
-          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
+          <Label htmlFor="nationality">Nationality *</Label>
+          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="nationality">Nationality *</Label>
-          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
+          <Label htmlFor="contactNumber">Contact No (WhatsApp) *</Label>
+          <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="contactNumber">Contact Number (Whatsapp) *</Label>
-          <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
+          <Label htmlFor="numberOfPeople">Number of adults (12 years and above) *</Label>
+          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="numberOfKids">No of Kids & their age (If any)</Label>
+          <Label htmlFor="numberOfKids">number of kids & their age (If any)</Label>
           <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
         </div>
       </div>
