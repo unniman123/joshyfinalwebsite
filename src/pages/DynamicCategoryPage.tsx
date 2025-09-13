@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import ToursGrid from "@/components/ToursGrid";
-import { getAllTours, TourSummary } from "@/lib/api";
+import { getToursByCategoryAndSubcategory, getAllTours, TourSummary } from "@/lib/api";
+import { useLocation } from 'react-router-dom';
 
 interface CategoryPageData {
   id: string;
@@ -75,6 +76,8 @@ const DynamicCategoryPage = () => {
     }
   ];
 
+  const location = useLocation();
+
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
@@ -96,11 +99,12 @@ const DynamicCategoryPage = () => {
 
         setCategoryData(categoryInfo);
 
-        // Fetch tours for this category
-        const allTours = await getAllTours();
-        const categoryTours = allTours.filter(tour =>
-          tour.category.toLowerCase().replace(/\s+/g, '-') === category
-        );
+        // Read optional subcategory from query param
+        const params = new URLSearchParams(location.search);
+        const subcategory = params.get('subcategory') || undefined;
+
+        // Fetch tours for this category and optional subcategory
+        const categoryTours = await getToursByCategoryAndSubcategory(categoryInfo.name.toLowerCase(), subcategory);
 
         setTours(categoryTours);
       } catch (error) {

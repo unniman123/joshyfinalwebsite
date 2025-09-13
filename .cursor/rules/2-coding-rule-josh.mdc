@@ -1,5 +1,4 @@
 ---
-trigger: always_on
 alwaysApply: true
 ---
 Objective: Ensure Cline proactively learns from tasks, captures knowledge in a structured way, distills fundamental insights, refines understanding, and improves efficiency and reliability. This protocol maintains two key files: memory-bank/raw_reflection_log.md for initial detailed logging, and memory-bank/consolidated_learnings.md for pruned, actionable, long-term knowledge. This is vital for optimal performance and avoiding redundant effort.

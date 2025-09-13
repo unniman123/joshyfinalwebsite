@@ -52,7 +52,7 @@ const Header = () => {
           <div className="flex items-center gap-4 text-sm">
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" />
-              <span>+91 - 95395-07516</span>
+              <span>+91 9539 50 7516</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
@@ -115,14 +115,33 @@ const Header = () => {
             <div className="md:hidden py-4 border-t border-border animate-fade-in">
               <div className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="text-foreground hover:text-golden transition-smooth font-medium py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                  item.category ? (
+                    <details key={item.name} className="group">
+                      <summary className="flex items-center justify-between text-foreground hover:text-golden transition-smooth font-medium py-2 list-none cursor-pointer">
+                        <span>{item.name}</span>
+                      </summary>
+
+                      <div className="pl-3 pb-2">
+                        {/* Lazy render a link to view all and let dropdown pages handle subcategory links */}
+                        <Link
+                          to={item.href}
+                          className="block text-sm text-foreground py-2 hover:text-golden"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          View all {item.name}
+                        </Link>
+                      </div>
+                    </details>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="text-foreground hover:text-golden transition-smooth font-medium py-2"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>

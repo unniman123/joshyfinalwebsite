@@ -20,7 +20,9 @@ export interface TourSummary {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category?: string; // legacy single category
+  categories?: string[]; // primary categories (preferred)
+  subcategories?: string[]; // taxonomy subcategory slugs
   duration: number; // in days
   price?: string;
   image: string;
@@ -174,6 +176,8 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Kerala Backwaters Explorer",
       description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
       category: "Kerala Travels",
+      categories: ["Kerala Travels"],
+      subcategories: ["backwater-trips"],
       duration: 5,
       price: "₹45,000",
       image: keralaTourCard,
@@ -184,6 +188,8 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Royal Rajasthan Heritage",
       description: "Journey through magnificent palaces, historic forts, and vibrant markets in the land of maharajas.",
       category: "Heritage Tours",
+      categories: ["Discover India"],
+      subcategories: ["rajasthan-heritage"],
       duration: 5,
       price: "₹65,000",
       image: rajasthanTourCard,
@@ -194,6 +200,8 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Ayurveda Wellness Retreat",
       description: "Rejuvenate your body and mind with authentic Ayurvedic treatments in peaceful Kerala settings.",
       category: "Ayurveda",
+      categories: ["Ayurveda"],
+      subcategories: [],
       duration: 5,
       price: "₹85,000",
       image: ayurvedaTourCard,
@@ -204,6 +212,8 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Golden Triangle Classic",
       description: "Discover India's most iconic destinations: Delhi, Agra, and Jaipur in this comprehensive tour.",
       category: "Discover India",
+      categories: ["Discover India"],
+      subcategories: ["golden-triangle"],
       duration: 5,
       price: "₹55,000",
       image: goldenTriangleTourCard,
@@ -214,6 +224,8 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       title: "Ultimate India Experience",
       description: "A comprehensive 12-day journey showcasing the best of India's culture, heritage, and natural beauty.",
       category: "Discover India",
+      categories: ["Discover India"],
+      subcategories: ["100-beautiful-places"],
       duration: 12,
       price: "₹125,000",
       image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop",
@@ -223,6 +235,50 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
 
   // TODO: Apply filters when connected to Supabase
   return mockTours;
+}
+
+/**
+ * Helper: fetch tours filtered by category slug or name and optional limit
+ */
+export async function getToursByCategory(category?: string, limit = 6): Promise<TourSummary[]> {
+  const all = await getAllTours();
+  if (!category) return all.slice(0, limit);
+
+  const key = category.toLowerCase().trim();
+  const filtered = all.filter((t) => t.category && t.category.toLowerCase().trim() === key);
+  return filtered.slice(0, limit);
+}
+
+/**
+ * Fetch tours by category and optional subcategory string. Subcategory is matched via slug in taxonomy or
+ * by checking tour sections/keywords. This is a lightweight helper; replace with DB query in production.
+ */
+export async function getToursByCategoryAndSubcategory(category?: string, subcategory?: string, limit = 12): Promise<TourSummary[]> {
+  let all = await getAllTours();
+  if (!category) return all.slice(0, limit);
+
+  const key = category.toLowerCase().trim();
+  all = all.filter((t) => t.category && t.category.toLowerCase().trim() === key);
+
+  if (!subcategory) return all.slice(0, limit);
+
+  const subKey = subcategory.toLowerCase().trim();
+
+  // First try matching slug-like fields in title/description
+  // Prefer explicit subcategories field when available
+  const explicit = all.filter((t) => Array.isArray(t.subcategories) && t.subcategories.some(s => s.toLowerCase().trim() === subKey));
+  if (explicit.length > 0) return explicit.slice(0, limit);
+
+  // Fallback: match title/description/slug
+  const matched = all.filter((t) => {
+    const title = t.title ? t.title.toLowerCase() : "";
+    const desc = t.description ? t.description.toLowerCase() : "";
+    if (title.includes(subKey) || desc.includes(subKey)) return true;
+    if (t.slug && t.slug.includes(subKey)) return true;
+    return false;
+  });
+
+  return matched.slice(0, limit);
 }
 
 /**

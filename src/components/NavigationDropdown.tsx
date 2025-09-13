@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { getAllTours } from "@/lib/api";
-import { TourSummary } from "@/lib/api";
+import { getAllTours, getTourCategories, getToursByCategory, TourSummary } from "@/lib/api";
+import navTaxonomy from "@/data/navTaxonomy";
 
 interface NavigationDropdownProps {
   name: string;
@@ -17,8 +17,10 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
   const [openTimeout, setOpenTimeout] = useState<NodeJS.Timeout | null>(null);
   const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
 
-  // Fetch tours for this category when dropdown is opened
+  // Fetch tours for this category when dropdown is opened (lazy-load)
   useEffect(() => {
+    let cancelled = false;
+
     const fetchTours = async () => {
       if (isOpen && category) {
         // Don't fetch if we already have tours for this category
@@ -26,20 +28,24 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
 
         try {
           setLoading(true);
-          const allTours = await getAllTours();
-          const categoryTours = allTours.filter(tour =>
-            tour.category.toLowerCase() === category.toLowerCase()
-          );
-          setTours(categoryTours);
+
+          // Use API helper to fetch tours for this category (with optional limit)
+          const categoryTours = await getToursByCategory(category, 8);
+
+          if (!cancelled) setTours(categoryTours);
         } catch (error) {
           console.error("Error fetching tours:", error);
         } finally {
-          setLoading(false);
+          if (!cancelled) setLoading(false);
         }
       }
     };
 
     fetchTours();
+
+    return () => {
+      cancelled = true;
+    };
   }, [isOpen, category, tours.length]);
 
   // Handle mouse enter with delay
@@ -90,7 +96,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     };
   }, [openTimeout, closeTimeout]);
 
-  // Only show dropdown for categories that have tours
+  // Only show dropdown for categories that have tours or category prop
   const hasDropdown = !!category;
 
   return (
@@ -114,25 +120,54 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="py-2 max-h-96 overflow-y-auto">
+          <div className="py-3 px-3 max-h-96 overflow-y-auto">
             {loading ? (
-              <div className="px-4 py-3 text-muted-foreground flex items-center">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-golden mr-2"></div>
-                Loading tours...
+              <div className="flex items-center gap-3 px-2 py-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-golden"></div>
+                <div className="text-sm text-muted-foreground">Loading tours...</div>
               </div>
             ) : tours.length > 0 ? (
-              tours.map((tour) => (
+              <div className="grid grid-cols-1 gap-2">
+                {/* If taxonomy exists for this category, render subcategory headings */}
+                {navTaxonomy[category?.toLowerCase() || ""] && (
+                  <div className="mb-2">
+                    {navTaxonomy[category!.toLowerCase()].map((sub) => (
+                      <Link
+                        key={sub.slug}
+                        to={`/tours?category=${category}&subcategory=${sub.slug}`}
+                        className="block text-sm text-foreground font-medium px-2 py-1 hover:bg-golden/5 rounded"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                    <div className="my-1 border-t border-border" />
+                  </div>
+                )}
+                {tours.map((tour) => (
+                  <Link
+                    key={tour.id}
+                    to={`/tours/${tour.slug}`}
+                    className="flex items-center gap-3 px-2 py-2 rounded hover:bg-golden/10 transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <img src={tour.image} alt={tour.title} className="h-12 w-20 object-cover rounded" />
+                    <div className="text-sm">
+                      <div className="font-semibold text-foreground line-clamp-2">{tour.title}</div>
+                      <div className="text-muted-foreground text-xs">{tour.duration} days</div>
+                    </div>
+                  </Link>
+                ))}
                 <Link
-                  key={tour.id}
-                  to={`/tours/${tour.slug}`}
-                  className="block px-4 py-3 text-sm text-foreground hover:bg-golden/10 hover:text-golden transition-all duration-200 border-b border-border last:border-b-0 hover:pl-6"
+                  to={href}
+                  className="mt-2 block text-center text-sm font-medium text-golden hover:underline"
                   onClick={() => setIsOpen(false)}
                 >
-                  <div className="font-semibold">{tour.title}</div>
+                  View all {name}
                 </Link>
-              ))
+              </div>
             ) : (
-              <div className="px-4 py-3 text-muted-foreground text-sm">
+              <div className="px-2 py-2 text-muted-foreground text-sm">
                 No tours available in this category
               </div>
             )}

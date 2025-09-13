@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
 import { TourSummary } from "@/lib/api";
+import navTaxonomy from '@/data/navTaxonomy';
 interface ToursGridProps {
   tours: TourSummary[];
   loading?: boolean;
@@ -56,6 +57,23 @@ const ToursGrid = ({
           <CardDescription className="line-clamp-3">
             {tour.description}
           </CardDescription>
+          <div className="mt-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {(tour.subcategories && tour.subcategories.length > 0 ? tour.subcategories.slice(0, 2) : (tour.categories || [])).map((sub) => {
+                // resolve label from taxonomy if available
+                const label = Object.values(navTaxonomy).flat().find(s => s.slug === sub)?.label || sub;
+                return (
+                  <Link key={sub} to={`/tours?category=${(tour.categories && tour.categories[0]) || (tour.category || '')}&subcategory=${sub}`} className="text-xs bg-golden/10 text-golden px-2 py-1 rounded font-medium hover:bg-golden/20">
+                    {label}
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="text-xs text-muted-foreground flex items-center gap-2">
+              <CalendarDays className="h-4 w-4" />
+              <span>{tour.duration} days</span>
+            </div>
+          </div>
         </CardHeader>
 
         <CardContent>

@@ -1,5 +1,4 @@
 ---
-trigger: always_on
 alwaysApply: true
 ---
 1. Fundamental Principles of Software Architecture

@@ -16,6 +16,7 @@ const Tours = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
 
   // Set search query and category from URL parameters
   useEffect(() => {
@@ -28,6 +29,8 @@ const Tours = () => {
     if (categoryParam) {
       setSelectedCategory(categoryParam);
     }
+    const subParam = searchParams.get('subcategory');
+    if (subParam) setSelectedSubcategory(subParam);
   }, [searchParams]);
 
   // TODO: Fetch all tours from Supabase and pass to components
@@ -52,17 +55,33 @@ const Tours = () => {
   const filteredTours = tours.filter(tour => {
     const matchesSearch = tour.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       tour.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      tour.category.toLowerCase().includes(searchQuery.toLowerCase());
+      ((tour.category || '') + ' ' + (tour.categories || []).join(' ')).toLowerCase().includes(searchQuery.toLowerCase());
 
     // Skip Ayurveda category if it's selected
     if (selectedCategory === 'ayurveda') {
       return false;
     }
 
-    const matchesCategory = !selectedCategory ||
-      tour.category.toLowerCase().includes(selectedCategory.replace('-', ' ').toLowerCase());
+    // Category matching (robust): check categories array, legacy category field, and partial matches
+    const catKey = selectedCategory ? selectedCategory.replace('-', ' ').toLowerCase() : '';
+    const matchesCategory = !selectedCategory || (
+      (tour.categories || []).some(c => c.toLowerCase().includes(catKey)) ||
+      (tour.category || '').toLowerCase().includes(catKey)
+    );
 
-    return matchesSearch && matchesCategory;
+    // Subcategory matching (if present): prefer tour.subcategories exact slug match, fallback to title/desc/slug
+    let matchesSubcategory = true;
+    if (selectedSubcategory) {
+      const subKey = selectedSubcategory.toLowerCase();
+      matchesSubcategory = !!(
+        (tour.subcategories || []).some(s => s.toLowerCase() === subKey) ||
+        (tour.slug && tour.slug.toLowerCase().includes(subKey)) ||
+        (tour.title && tour.title.toLowerCase().includes(subKey)) ||
+        (tour.description && tour.description.toLowerCase().includes(subKey))
+      );
+    }
+
+    return matchesSearch && matchesCategory && matchesSubcategory;
   });
 
   const handleSearch = (e: React.FormEvent) => {

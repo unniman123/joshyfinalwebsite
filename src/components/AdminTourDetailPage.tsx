@@ -268,6 +268,24 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                     />
                   </div>
                   <div>
+                    <Label htmlFor="categories">Categories (comma-separated)</Label>
+                    <Input
+                      id="categories"
+                      value={(tour.categories || []).join(', ')}
+                      onChange={(e) => updateTourBasicInfo({ categories: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })}
+                      placeholder="Kerala Travels, Discover India"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="subcategories">Subcategories (comma-separated slugs)</Label>
+                    <Input
+                      id="subcategories"
+                      value={(tour.subcategories || []).join(', ')}
+                      onChange={(e) => updateTourBasicInfo({ subcategories: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })}
+                      placeholder="backwater-trips, hillstations-wildlife"
+                    />
+                  </div>
+                  <div>
                     <Label htmlFor="duration">Duration (days)</Label>
                     <Input
                       id="duration"
