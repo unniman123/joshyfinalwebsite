@@ -63,7 +63,7 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
   };
 
   return (
-    <section className={`py-8 ${className}`}>
+    <section className={`py-6 ${className}`}>
       <div className="container mx-auto max-w-7xl px-4">
         <Card className="border-border hover:border-golden/50 transition-colors duration-300">
           <CardHeader>

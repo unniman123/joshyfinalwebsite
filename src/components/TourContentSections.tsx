@@ -24,7 +24,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
     return (
       <div className="w-full">
         {/* Tour Title Section - Center Aligned */}
-        <section className="py-4 md:py-6 lg:py-8 px-4">
+        <section className="py-2 md:py-3 lg:py-4 px-4">
           <div className="container mx-auto max-w-7xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center">
               {tour.title}
@@ -36,7 +36,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         {visibleSections.map((section) => {
           if (section.type === 'overview') {
             return (
-              <section key={section.id} className="py-6 md:py-8 lg:py-10">
+              <section key={section.id} className="py-3 md:py-4 lg:py-6">
                 <div className="container mx-auto max-w-7xl px-4">
                   {/* Full-width content layout (no images) */}
                   <div className="w-full">

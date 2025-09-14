@@ -19,7 +19,7 @@ const ItinerarySection = ({ tour }: ItinerarySectionProps) => {
   const itineraryContent = tour.itinerary?.trim() || "Detailed itinerary coming soon...";
 
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-muted/30">
+    <section className="py-6 md:py-8 lg:py-10 bg-muted/30">
       <div className="container mx-auto max-w-7xl px-4">
         {/* 30-70 Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
