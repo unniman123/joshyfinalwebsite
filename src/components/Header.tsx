@@ -27,10 +27,7 @@ const Header = () => {
       href: "/tours?category=global",
       category: "global"
     },
-    {
-      name: "Top Destinations",
-      href: "/top-destinations"
-    },
+    // Top Destinations removed from main header; reachable via Discover India dropdown
     {
       name: "Ayurveda",
       href: "/tours"

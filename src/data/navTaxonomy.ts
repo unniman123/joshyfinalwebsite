@@ -9,7 +9,7 @@ const navTaxonomy: Record<string, { label: string; slug: string }[]> = {
     { label: "Beach Paradise", slug: "beach-paradise" }
   ],
   "discover india": [
-    { label: "100 Beautiful Places", slug: "100-beautiful-places" },
+    { label: "100 Beautiful Places", slug: "100-beautiful-places", href: "/top-destinations" },
     { label: "Golden Triangle", slug: "golden-triangle" },
     { label: "Silver Triangle", slug: "silver-triangle" },
     { label: "Lakshadweep", slug: "lakshadweep" },
