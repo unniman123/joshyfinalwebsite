@@ -93,14 +93,14 @@ const TourEnquiryForm = ({
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
             <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[10px] font-medium text-muted-foreground">
-              Contact No (WhatsApp) *
+              Mobile No (Whatsapp) *
             </Label>
             <div className="relative">
               <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder={phoneFieldPlaceholder}
+                placeholder={phoneFieldPlaceholder || "+91 98765 43210"}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                 className="pl-6 h-6 text-[10px]"
@@ -174,7 +174,7 @@ const TourEnquiryForm = ({
               type="submit"
               className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
             >
-              Send Request
+              Send Enquiry
             </Button>
           </div>
         </form>
