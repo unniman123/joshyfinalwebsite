@@ -231,6 +231,43 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
       image: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&h=300&fit=crop",
       slug: "ultimate-india-experience"
     }
+    ,
+    {
+      id: "6",
+      title: "Maldives Island Getaway",
+      description: "Relax on white-sand beaches and enjoy crystal-clear lagoons in the Maldives.",
+      category: "Global",
+      categories: ["Global"],
+      subcategories: ["maldives"],
+      duration: 5,
+      price: "$1,200",
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
+      slug: "maldives-island-getaway"
+    },
+    {
+      id: "7",
+      title: "Thailand Beach Escape",
+      description: "Discover Thailand's tropical beaches, lively markets and coastal cuisine.",
+      category: "Global",
+      categories: ["Global"],
+      subcategories: ["thailand"],
+      duration: 6,
+      price: "$900",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+      slug: "thailand-beach-escape"
+    },
+    {
+      id: "8",
+      title: "Sri Lanka Cultural Tour",
+      description: "Explore ancient temples, tea country, and coastal towns in Sri Lanka.",
+      category: "Global",
+      categories: ["Global"],
+      subcategories: ["sri-lanka"],
+      duration: 8,
+      price: "$1,050",
+      image: "https://images.unsplash.com/photo-1526779259212-5f1b6ff9f3d4?w=800&h=600&fit=crop",
+      slug: "sri-lanka-cultural-tour"
+    }
   ];
 
   // TODO: Apply filters when connected to Supabase

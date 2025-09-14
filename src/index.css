@@ -127,6 +127,8 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Use Roboto as the industrial-standard sans-serif across the site */
+    font-family: 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
 }
 
@@ -140,5 +142,13 @@
 
   .form-card-height {
     min-height: calc(100% - 2rem);
+  }
+
+  /* Site title styling for navigation to make it stand out */
+  .site-title {
+    font-weight: 800; /* Extra bold for prominence */
+    letter-spacing: 0.6px;
+    text-transform: none; /* preserve capitalization */
+    color: hsl(var(--foreground));
   }
 }

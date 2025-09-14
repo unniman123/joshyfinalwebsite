@@ -159,7 +159,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                   </Link>
                 ))}
                 <Link
-                  to={href}
+                  to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
                   className="mt-2 block text-center text-sm font-medium text-golden hover:underline"
                   onClick={() => setIsOpen(false)}
                 >
