@@ -43,7 +43,7 @@ const TourOffersSection = ({
       showMessage: true,
       showDate: false,
       showDestination: false,
-      messagePlaceholder: "Write in short of your requirements to customise a pacakge"
+      messagePlaceholder: "Write us in short of your requirements to customise a package"
     }
   }
 }: TourOffersSectionProps = {}) => {

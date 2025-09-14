@@ -383,7 +383,7 @@ export async function getHomepageConfiguration(): Promise<HomepageConfiguration 
         showMessage: true,
         showDate: false,
         showDestination: false,
-        messagePlaceholder: 'Write in short of your requirements to customise a pacakge'
+        messagePlaceholder: 'Write us in short of your requirements to customise a package'
       },
       isVisible: true
     },
@@ -513,7 +513,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'message',
       fieldType: 'textarea',
       label: 'Message',
-      placeholder: 'Write in short of your requirements to customise a pacakge',
+      placeholder: 'Write us in short of your requirements to customise a package',
       isRequired: true,
       isVisible: true,
       order: 2

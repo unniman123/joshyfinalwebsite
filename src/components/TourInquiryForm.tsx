@@ -24,7 +24,7 @@ const TourEnquiryForm = ({
   showMessage = true,
   showDate = false,
   showDestination = false,
-  messagePlaceholder = "Write in short of your requirements to customise a pacakge",
+  messagePlaceholder = "Write us in short of your requirements to customise a package",
   phoneFieldPlaceholder = ""
 }: TourEnquiryFormProps) => {
   // Enquiry form state - dynamic based on admin config
