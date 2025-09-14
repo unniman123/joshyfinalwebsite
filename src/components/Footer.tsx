@@ -41,7 +41,7 @@ const Footer = () => {
           <h3 className="text-sm font-semibold mb-2">Quick Links</h3>
           <ul className="space-y-1">
             {quickLinks.map(link => <li key={link.name}>
-              <Link to={link.href} className="text-white/80 hover:text-golden transition-smooth">
+              <Link to={link.href} className="text-white/80 hover:text-brand-green transition-smooth">
                 {link.name}
               </Link>
             </li>)}
@@ -54,7 +54,7 @@ const Footer = () => {
           <ul className="space-y-1">
             {supportLinks.map(link => (
               <li key={link.name}>
-                <Link to={link.href} className="text-white/80 hover:text-golden transition-smooth">
+                <Link to={link.href} className="text-white/80 hover:text-brand-green transition-smooth">
                   {link.name}
                 </Link>
               </li>
@@ -69,15 +69,15 @@ const Footer = () => {
           {/* Contact Details */}
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-golden flex-shrink-0" />
+              <Phone className="h-4 w-4 text-brand-green flex-shrink-0" />
               <span className="text-xs text-white/80">+91-95395-07516, +91-471 2488880</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-golden flex-shrink-0" />
+              <Mail className="h-4 w-4 text-brand-green flex-shrink-0" />
               <span className="text-xs text-white/80">KeralaToursGlobal@gmail.com, flabour@gmail.com</span>
             </div>
             <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 text-golden flex-shrink-0 mt-1" />
+              <MapPin className="h-4 w-4 text-brand-green flex-shrink-0 mt-1" />
               <span className="text-xs text-white/80">
                 Kovalam Beach, Thiruvananthapuram, Kerala, India
               </span>
@@ -157,9 +157,9 @@ const Footer = () => {
         © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
       <div className="flex gap-4">
-        <Link to="/terms" className="hover:text-golden transition-smooth">Terms of Service</Link>
-        <Link to="/privacy" className="hover:text-golden transition-smooth">Privacy Policy</Link>
-        <Link to="/cookies" className="hover:text-golden transition-smooth">Cookie Policy</Link>
+        <Link to="/terms" className="hover:text-brand-green transition-smooth">Terms of Service</Link>
+        <Link to="/privacy" className="hover:text-brand-green transition-smooth">Privacy Policy</Link>
+        <Link to="/cookies" className="hover:text-brand-green transition-smooth">Cookie Policy</Link>
       </div>
     </div>
   </footer>;

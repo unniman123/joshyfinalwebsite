@@ -44,7 +44,7 @@ const Header = () => {
   return (
     <header className="w-full bg-background shadow-warm">
       {/* Top Contact Bar */}
-      <div className="bg-gradient-golden px-4 py-2 text-sm font-medium text-primary-foreground">
+      <div className="bg-gradient-brand px-4 py-2 text-sm font-medium text-primary-foreground">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
@@ -88,10 +88,10 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="text-foreground hover:text-golden transition-smooth font-medium relative group"
+                    className="text-foreground hover:text-brand-green transition-smooth font-medium relative group"
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
                   </Link>
                 )
               ))}
@@ -117,7 +117,7 @@ const Header = () => {
                 {navigationItems.map((item) => (
                   item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-foreground hover:text-golden transition-smooth font-medium py-2 list-none cursor-pointer">
+                      <summary className="flex items-center justify-between text-foreground hover:text-brand-green transition-smooth font-medium py-2 list-none cursor-pointer">
                         <span>{item.name}</span>
                       </summary>
 
@@ -125,7 +125,7 @@ const Header = () => {
                         {/* Lazy render a link to view all and let dropdown pages handle subcategory links */}
                         <Link
                           to={item.href}
-                          className="block text-sm text-foreground py-2 hover:text-golden"
+                          className="block text-sm text-foreground py-2 hover:text-brand-green"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           View all {item.name}
@@ -136,7 +136,7 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="text-foreground hover:text-golden transition-smooth font-medium py-2"
+                      className="text-foreground hover:text-brand-green transition-smooth font-medium py-2"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}

@@ -101,10 +101,10 @@ const HeroBanner = ({
       {/* Content Overlay - Search Bar and Button */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 pt-8 ${className}`}>
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
             {title}
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
             {subtitle}
           </p>
         </div>
@@ -120,13 +120,13 @@ const HeroBanner = ({
                   placeholder={searchPlaceholder}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-golden/50 focus:outline-none"
+                  className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
                 />
               </div>
               <Button
                 type="submit"
                 variant="default"
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="px-6 py-3 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-[var(--accent-foreground)] rounded-lg transition-colors btn-subtle-anim"
               >
                 Search
               </Button>
@@ -139,7 +139,8 @@ const HeroBanner = ({
           <Button
             variant="default"
             size="lg"
-            className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce"
+            className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce btn-subtle-anim animate-fade-in-up"
+            style={{ animationDelay: '0.22s' }}
             asChild
           >
             <Link to="/contact">

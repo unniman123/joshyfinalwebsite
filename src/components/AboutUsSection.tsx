@@ -19,23 +19,25 @@ const AboutUsSection = () => {
           {/* Content Section - Right Aligned - Expanded to 85% */}
           <div className="lg:w-[85%] w-full">
             <div className="animate-fade-in">
-              <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-6 text-left" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
-                Namaste !
-              </h2>
+              <div className="bg-namaste p-5 rounded-md text-namaste-foreground extend-right">
+                <h2 className="text-4xl md:text-5xl font-bold text-namaste-foreground mb-6 text-left" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
+                  Namaste !
+                </h2>
 
-              <div className="w-24 h-1 bg-gradient-golden mb-6"></div>
+                <div className="w-24 h-1 bg-gradient-brand mb-6"></div>
 
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                We are engaged in tourism industry for the last 3 decades. First half was in Kerala promoting Indian subcontinent to the Incoming tourists & Second half of the period was in Dubai promoting global tourism to the expatriates and locals. Back to India again as holiday makers with the sound geographical knowledge & experiences of exceptional services.
-              </p>
+                <p className="text-lg mb-6 leading-relaxed">
+                  We are engaged in tourism industry for the last 3 decades. First half was in Kerala promoting Indian subcontinent to the Incoming tourists & Second half of the period was in Dubai promoting global tourism to the expatriates and locals. Back to India again as holiday makers with the sound geographical knowledge & experiences of exceptional services.
+                </p>
 
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                We are also experienced in arranging Group Tours for Employees of Institutions, Corporate Executives, Government Officials, Families, Pilgrims, Special Interest Groups, School Children & others. The Programmes include Excursions, Get-togethers (Weekend & Vacations) and Sponsored Holidays, Meetings, Institutional Holidays, Conferences, Study Tours, Water Cruises, Pilgrim Centre Visits & more. Therefore we can confidently claim to offer the best services available in the industry to your complete satisfaction.
-              </p>
+                <p className="text-lg mb-6 leading-relaxed">
+                  We are also experienced in arranging Group Tours for Employees of Institutions, Corporate Executives, Government Officials, Families, Pilgrims, Special Interest Groups, School Children & others. The Programmes include Excursions, Get-togethers (Weekend & Vacations) and Sponsored Holidays, Meetings, Institutional Holidays, Conferences, Study Tours, Water Cruises, Pilgrim Centre Visits & more. Therefore we can confidently claim to offer the best services available in the industry to your complete satisfaction.
+                </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Now please click on your area of interest and reach us to enjoy your precious vacations, which can be either local or international. Whether your travel intention is Relaxation, Discovery, Exploration, Spiritual, Tourism, Vacationing, Research for gathering information, Building interpersonal relationships, Business, Healthcare, School Excursion we are at your finger tips.
-              </p>
+                <p className="text-lg leading-relaxed">
+                  Now please click on your area of interest and reach us to enjoy your precious vacations, which can be either local or international. Whether your travel intention is Relaxation, Discovery, Exploration, Spiritual, Tourism, Vacationing, Research for gathering information, Building interpersonal relationships, Business, Healthcare, School Excursion we are at your finger tips.
+                </p>
+              </div>
             </div>
           </div>
         </div>

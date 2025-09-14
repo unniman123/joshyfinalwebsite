@@ -107,11 +107,11 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     >
       <Link
         to={href}
-        className="text-foreground hover:text-golden transition-smooth font-medium relative flex items-center gap-1 py-2"
+        className="text-foreground hover:text-brand-green transition-smooth font-medium relative flex items-center gap-1 py-2"
       >
         {name}
         {hasDropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />}
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-golden transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
       </Link>
 
       {hasDropdown && isOpen && (
@@ -123,7 +123,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
           <div className="py-3 px-3 max-h-96 overflow-y-auto">
             {loading ? (
               <div className="flex items-center gap-3 px-2 py-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-golden"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-brand-green"></div>
                 <div className="text-sm text-muted-foreground">Loading tours...</div>
               </div>
             ) : tours.length > 0 ? (
@@ -135,7 +135,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                       <Link
                         key={sub.slug}
                         to={`/tours?category=${category}&subcategory=${sub.slug}`}
-                        className="block text-sm text-foreground font-medium px-2 py-1 hover:bg-golden/5 rounded"
+                        className="block text-sm text-foreground font-medium px-2 py-1 hover:bg-brand-green/5 rounded"
                         onClick={() => setIsOpen(false)}
                       >
                         {sub.label}
@@ -148,7 +148,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                   <Link
                     key={tour.id}
                     to={`/tours/${tour.slug}`}
-                    className="flex items-center gap-3 px-2 py-2 rounded hover:bg-golden/10 transition-all"
+                    className="flex items-center gap-3 px-2 py-2 rounded hover:bg-brand-green/10 transition-all"
                     onClick={() => setIsOpen(false)}
                   >
                     <img src={tour.image} alt={tour.title} className="h-12 w-20 object-cover rounded" />
@@ -160,7 +160,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                 ))}
                 <Link
                   to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
-                  className="mt-2 block text-center text-sm font-medium text-golden hover:underline"
+                  className="mt-2 block text-center text-sm font-medium text-brand-green hover:underline"
                   onClick={() => setIsOpen(false)}
                 >
                   View all {name}

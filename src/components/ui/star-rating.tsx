@@ -29,7 +29,7 @@ const StarRating = React.forwardRef<
           sizeClasses[size],
           "transition-colors duration-200",
           isFilled
-            ? "fill-golden text-golden"
+            ? "fill-brand-green text-brand-green"
             : "fill-none text-muted-foreground"
         )}
         aria-hidden="true"

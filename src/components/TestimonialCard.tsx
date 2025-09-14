@@ -14,11 +14,9 @@ const TestimonialCard = React.forwardRef<
     <Card
       ref={ref}
       className={cn(
-        "transition-all duration-300 ease-smooth",
-        "hover:shadow-warm hover:scale-[1.02]",
-        "bg-card border-2 border-golden/30 hover:border-golden/50",
-        "hover:shadow-golden/20",
-        "animate-fade-in",
+        "transition-all duration-300 ease-smooth card-hover-lift",
+        "bg-card border-2 border-brand-green/30 hover:border-brand-green/50",
+        "hover:shadow-brand-green/20 animate-fade-in-up",
         className
       )}
       {...props}

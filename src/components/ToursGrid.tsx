@@ -45,13 +45,13 @@ const ToursGrid = ({
       className="block group transition-all duration-300 hover:shadow-lg"
       aria-label={`View details for ${tour.title} tour`}
     >
-      <Card className="border-2 border-golden/30 hover:border-golden/50 group-hover:shadow-lg hover:shadow-golden/20 transition-all duration-300 h-full">
+      <Card className="border-2 border-brand-green/30 hover:border-brand-green/50 group-hover:shadow-lg hover:shadow-brand-green/20 transition-all duration-300 h-full">
         <div className="relative overflow-hidden rounded-t-lg">
           <img src={tour.image} alt={tour.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
         </div>
 
         <CardHeader>
-          <CardTitle className="line-clamp-2 group-hover:text-golden transition-colors">
+          <CardTitle className="line-clamp-2 group-hover:text-brand-green transition-colors">
             {tour.title}
           </CardTitle>
           <CardDescription className="line-clamp-3">
@@ -63,7 +63,7 @@ const ToursGrid = ({
                 // resolve label from taxonomy if available
                 const label = Object.values(navTaxonomy).flat().find(s => s.slug === sub)?.label || sub;
                 return (
-                  <Link key={sub} to={`/tours?category=${(tour.categories && tour.categories[0]) || (tour.category || '')}&subcategory=${sub}`} className="text-xs bg-golden/10 text-golden px-2 py-1 rounded font-medium hover:bg-golden/20">
+                  <Link key={sub} to={`/tours?category=${(tour.categories && tour.categories[0]) || (tour.category || '')}&subcategory=${sub}`} className="text-xs bg-brand-green/10 text-brand-green px-2 py-1 rounded font-medium hover:bg-brand-green/20">
                     {label}
                   </Link>
                 );

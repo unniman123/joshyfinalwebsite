@@ -59,7 +59,7 @@ const KeralaToursSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
           Kerala Travels
         </h2>
-        <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
+        <div className="w-24 h-1 bg-[var(--brand-green)] mx-auto mb-6"></div>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover the enchanting beauty of Kerala through our specially curated tour packages. Each tour is designed to give you an authentic experience of God's Own Country.
         </p>
