@@ -92,7 +92,7 @@ const ImageLightbox = ({
       {/* Image counter */}
       <div className="absolute top-4 left-4 z-60 px-4 py-2 rounded-full bg-black/50 text-white">
         <span className="text-sm">
-          <span className="text-golden font-medium">{currentIndex + 1}</span> of {images.length}
+          <span className="text-brand-green font-medium">{currentIndex + 1}</span> of {images.length}
         </span>
       </div>
 
@@ -112,14 +112,14 @@ const ImageLightbox = ({
         <>
           <button
             onClick={handlePrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-60 p-4 rounded-full bg-black/50 text-white hover:bg-golden/80 transition-all duration-300 hover:scale-110"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-60 p-4 rounded-full bg-black/50 text-white hover:bg-brand-green/80 transition-all duration-300 hover:scale-110"
             aria-label="Previous image"
           >
             <ChevronLeft className="h-8 w-8" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-60 p-4 rounded-full bg-black/50 text-white hover:bg-golden/80 transition-all duration-300 hover:scale-110"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-60 p-4 rounded-full bg-black/50 text-white hover:bg-brand-green/80 transition-all duration-300 hover:scale-110"
             aria-label="Next image"
           >
             <ChevronRight className="h-8 w-8" />
@@ -139,7 +139,7 @@ const ImageLightbox = ({
         />
 
         {/* Golden glow effect */}
-        <div className="absolute inset-0 rounded-lg shadow-golden/20 pointer-events-none" />
+        <div className="absolute inset-0 rounded-lg shadow-brand-green/20 pointer-events-none" />
       </div>
 
       {/* Image thumbnails for quick navigation */}
@@ -153,8 +153,8 @@ const ImageLightbox = ({
                 setIsZoomed(false);
               }}
               className={`flex-shrink-0 relative overflow-hidden rounded transition-all duration-300 ${index === currentIndex
-                  ? "ring-2 ring-golden shadow-golden/40 scale-110"
-                  : "hover:ring-2 hover:ring-golden/50 hover:scale-105 opacity-70 hover:opacity-100"
+                  ? "ring-2 ring-golden shadow-brand-green/40 scale-110"
+                  : "hover:ring-2 hover:ring-brand-green/50 hover:scale-105 opacity-70 hover:opacity-100"
                 }`}
             >
               <img
@@ -166,7 +166,7 @@ const ImageLightbox = ({
 
               {/* Golden overlay for active thumbnail */}
               {index === currentIndex && (
-                <div className="absolute inset-0 bg-gradient-to-br from-golden/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-green/30 to-transparent" />
               )}
             </button>
           ))}

@@ -138,7 +138,7 @@ const DayOutPackagesSection = ({
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             {sectionTitle}
           </h2>
-          <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-brand mx-auto mb-6"></div>
         </div>
 
         {/* Two-Column Layout: 70% Packages + 30% Enquiry Form */}
@@ -147,7 +147,7 @@ const DayOutPackagesSection = ({
           <div className="flex-1 lg:w-[70%]">
             <div className="relative">
               {/* Day Out Package Banner Slideshow */}
-              <div className="w-full h-64 sm:h-72 lg:h-80 relative overflow-hidden rounded-lg border-2 border-golden/30 hover:border-golden/50 shadow-card hover:shadow-golden/20 transition-all duration-300">
+              <div className="w-full h-64 sm:h-72 lg:h-80 relative overflow-hidden rounded-lg border-2 border-brand-green/30 hover:border-brand-green/50 shadow-card hover:shadow-brand-green/20 transition-all duration-300">
                 {(() => {
                   const currentPackage = getCurrentPackage();
                   return (
@@ -156,22 +156,24 @@ const DayOutPackagesSection = ({
                       className="block w-full h-full group"
                       aria-label={`View details for ${currentPackage.title} day out package`}
                     >
-                      {/* Banner Background Image */}
-                      <div className="absolute inset-0">
-                        <img
-                          src={currentPackage.image}
-                          alt={currentPackage.title}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+                      {/* Banner Background Image - pale red background limited to the banner area */}
+                      <div className="absolute inset-0 bg-dayOutImage flex items-center justify-center p-3">
+                        <div className="relative w-full h-full rounded-md overflow-hidden">
+                          <img
+                            src={currentPackage.image}
+                            alt={currentPackage.title}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors duration-300" />
+                        </div>
                       </div>
 
                       {/* Banner Content Overlay */}
                       <div className="absolute inset-0 flex flex-col justify-center items-start p-6 sm:p-8 lg:p-12 text-white">
                         <div className="max-w-2xl">
-                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg group-hover:text-golden-light transition-colors duration-300">
+                          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg group-hover:text-brand-green-light transition-colors duration-300">
                             {currentPackage.title}
                           </h3>
                           {/* Show description only if configured to show */}
@@ -184,7 +186,7 @@ const DayOutPackagesSection = ({
                           {currentPackage.showExploreButton && (
                             <Button
                               variant="default"
-                              className="bg-golden hover:bg-golden-dark text-white font-medium px-6 py-2 rounded-lg"
+                              className="bg-brand-green hover:bg-brand-green-dark text-white font-medium px-6 py-2 rounded-lg"
                             >
                               Explore Package
                             </Button>
@@ -206,7 +208,7 @@ const DayOutPackagesSection = ({
                 {dayOutPackages.map((pkg, index) => (
                   <button
                     key={pkg.id}
-                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-golden scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-brand-green scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
                       }`}
                     onClick={() => setCurrentIndex(index)}
                     aria-label={`Go to ${pkg.title} package`}
@@ -220,10 +222,10 @@ const DayOutPackagesSection = ({
           {/* Right Column - Enquiry Form (30% on desktop) */}
           <div className="lg:w-[30%] mt-8 lg:mt-0">
             {/* Form card */}
-            <Card className="border-2 border-golden/30 hover:border-golden/50 shadow-warm hover:shadow-golden/20 transition-all duration-300 w-full max-w-xs">
+            <Card className="border-2 border-brand-green/30 hover:border-brand-green/50 shadow-warm hover:shadow-brand-green/20 transition-all duration-300 w-full max-w-xs">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
-                  <User className="h-3 w-3 text-golden" />
+                  <User className="h-3 w-3 text-brand-green" />
                   Day Out Enquiry
                 </CardTitle>
               </CardHeader>
@@ -328,7 +330,7 @@ const DayOutPackagesSection = ({
                   <div className="pt-1">
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300"
+                      className="w-full bg-gradient-brand hover:shadow-brand transition-all duration-300"
                     >
                       Send Enquiry
                     </Button>

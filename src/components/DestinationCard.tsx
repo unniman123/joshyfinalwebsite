@@ -19,7 +19,7 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
   };
 
   return (
-    <Card className="border-2 border-golden/30 hover:border-golden/50 hover:shadow-lg hover:shadow-golden/20 transition-all duration-300 h-full">
+    <Card className="border-2 border-brand-green/30 hover:border-brand-green/50 hover:shadow-lg hover:shadow-brand-green/20 transition-all duration-300 h-full">
       {/* Image Section - 40-45% of vertical space for enhanced visual appeal */}
       <div className="relative overflow-hidden rounded-t-lg h-40">
         <img
@@ -57,7 +57,7 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
               variant="ghost"
               size="sm"
               onClick={toggleExpanded}
-              className="text-golden hover:text-golden-dark hover:bg-golden/10 transition-colors duration-200 gap-2 text-sm font-medium"
+              className="text-brand-green hover:text-brand-green-dark hover:bg-brand-green/10 transition-colors duration-200 gap-2 text-sm font-medium"
             >
               {isExpanded ? (
                 <>

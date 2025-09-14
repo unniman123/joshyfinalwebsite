@@ -40,6 +40,15 @@
     --warm-red-dark: 0 75% 35%;
     --warm-gray: 30 5% 50%;
     --success: 120 50% 45%;
+    /* Namaste section specific tint (uses success token as base) */
+    --namaste-bg: 120 40% 85%; /* darker tint for improved contrast */
+    --namaste-foreground: 120 18% 8%;
+    /* Light blue token for tour image backgrounds */
+    --tour-image-bg: 210 56% 88%; /* slightly darker light blue for better visibility */
+    --tour-image-bg-foreground: 210 22% 14%;
+    /* Light red token for day out package image areas */
+    --dayout-image-bg: 0 65% 82%; /* darker pale red for stronger visibility */
+    --dayout-image-bg-foreground: 0 20% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -61,6 +70,7 @@
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-subtle: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 
     --radius: 0.75rem;
 
@@ -151,4 +161,41 @@
     text-transform: none; /* preserve capitalization */
     color: hsl(var(--foreground));
   }
+
+  /* Animation keyframes and utilities */
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.5s var(--transition-smooth) both;
+  }
+
+  .btn-subtle-anim {
+    transition: var(--transition-subtle);
+    will-change: transform;
+  }
+
+  .card-hover-lift {
+    transition: box-shadow 0.22s ease, transform 0.22s ease;
+    will-change: transform, box-shadow;
+  }
+
+  .card-hover-lift:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+
+  /* Helper to visually extend a section's background to the viewport right edge */
+  .extend-right {
+    margin-right: calc(-1 * (100vw - 100%));
+    padding-right: calc(1.25rem + (100vw - 100%));
+  }
+  /* Helper to visually extend a section's background to the viewport left edge */
+  .extend-left {
+    margin-left: calc(-1 * (100vw - 100%));
+    padding-left: calc(1.5rem + (100vw - 100%));
+  }
+  /* edge gradient removed; keep rounded section edges */
 }

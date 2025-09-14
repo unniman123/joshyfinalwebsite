@@ -13,19 +13,21 @@ import type { CarouselApi } from "@/components/ui/carousel";
 const TestimonialsSection = () => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  const [isPaused, setIsPaused] = React.useState(false);
 
   // Auto-rotation effect - same pattern as HeroBanner
   React.useEffect(() => {
     if (!api) return;
 
     const timer = setInterval(() => {
+      if (isPaused) return; // respect pause on hover/focus
       const nextIndex = (current + 1) % testimonials.length;
       api.scrollTo(nextIndex);
       setCurrent(nextIndex);
     }, 5000); // 5 second intervals like HeroBanner
 
     return () => clearInterval(timer);
-  }, [api, current, testimonials.length]);
+  }, [api, current, testimonials.length, isPaused]);
 
   // Update current index when carousel changes
   React.useEffect(() => {
@@ -55,7 +57,7 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What our customer say
+            What our customers say's
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-golden to-golden-dark mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
@@ -87,6 +89,10 @@ const TestimonialsSection = () => {
             }}
             className="relative"
             onKeyDown={(event) => handleKeyDown(event, api)}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onFocus={() => setIsPaused(true)}
+            onBlur={() => setIsPaused(false)}
           >
             <CarouselContent
               className="-ml-2 md:-ml-4"
@@ -103,11 +109,26 @@ const TestimonialsSection = () => {
                 >
                   <TestimonialCard
                     testimonial={testimonial}
-                    className="animate-fade-in"
+                    className="animate-fade-in-up"
                   />
                 </CarouselItem>
               ))}
             </CarouselContent>
+            {/* Indicators (dots) */}
+            <div className="flex items-center justify-center gap-2 mt-6">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                  aria-current={current === idx}
+                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${current === idx ? 'bg-brand-green' : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'}`}
+                  onClick={() => {
+                    api?.scrollTo(idx);
+                    setCurrent(idx);
+                  }}
+                />
+              ))}
+            </div>
             <CarouselPrevious
               className="hidden sm:flex -left-6 md:-left-8 lg:-left-12 h-10 w-10 hover:bg-golden/10 hover:border-golden/30 hover:shadow-golden/20 transition-all duration-300 ease-smooth"
               aria-label="View previous testimonials"

@@ -40,7 +40,7 @@ const EnquiryFormCompact = () => {
     <Card className="shadow-warm w-full max-w-sm">
       <CardHeader className="pb-2 px-3 pt-3">
         <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
-          <User className="h-3 w-3 text-golden" />
+          <User className="h-3 w-3 text-brand-green" />
           Quick Enquiry
         </CardTitle>
       </CardHeader>
@@ -70,7 +70,7 @@ const EnquiryFormCompact = () => {
             <Input
               id="Enquiry-mobile"
               type="tel"
-              placeholder="+91 98765 43210"
+              placeholder="Enter your Whatsap number"
               value={formData.mobileNo}
               onChange={(e) => handleInputChange("mobileNo", e.target.value)}
               className="h-6 text-[10px] px-2"
@@ -113,7 +113,7 @@ const EnquiryFormCompact = () => {
           <div className="pt-1">
             <Button
               type="submit"
-              className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-6 text-[10px]"
+              className="w-full bg-[var(--brand-green)] text-white hover:shadow-brand transition-all duration-300 h-6 text-[10px]"
             >
               Send Enquiry
             </Button>

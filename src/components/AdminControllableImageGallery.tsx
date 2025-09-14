@@ -31,7 +31,7 @@ const AdminControllableImageGallery = ({
 
   if (!sectionImages.length) {
     return (
-      <div className={`w-full h-64 bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg flex items-center justify-center border-2 border-dashed border-golden/20 ${className}`}>
+      <div className={`w-full h-64 bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg flex items-center justify-center border-2 border-dashed border-brand-green/20 ${className}`}>
         <p className="text-muted-foreground">No images available</p>
       </div>
     );
@@ -43,7 +43,7 @@ const AdminControllableImageGallery = ({
       // Overview section - optimized for smaller 10-15% space
       if (sectionImages.length === 1) {
         return (
-          <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+          <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
             <img
               src={sectionImages[0].url}
               alt={sectionImages[0].alt}
@@ -51,7 +51,7 @@ const AdminControllableImageGallery = ({
               loading="lazy"
               onClick={() => handleImageClick(0)}
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Expand className="h-3 w-3" />
             </div>
@@ -67,7 +67,7 @@ const AdminControllableImageGallery = ({
       // Multiple images - simplified for small space (no thumbnails)
       return (
         <div className="space-y-2">
-          <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+          <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
             <img
               src={sectionImages[0].url}
               alt={sectionImages[0].alt}
@@ -75,7 +75,7 @@ const AdminControllableImageGallery = ({
               loading="lazy"
               onClick={() => handleImageClick(0)}
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Expand className="h-3 w-3" />
             </div>
@@ -90,7 +90,7 @@ const AdminControllableImageGallery = ({
           {sectionImages.length > 1 && (
             <div className="text-center">
               <span className="text-xs text-muted-foreground">
-                <span className="text-golden font-medium">1</span> of {sectionImages.length}
+                <span className="text-brand-green font-medium">1</span> of {sectionImages.length}
               </span>
             </div>
           )}
@@ -103,7 +103,7 @@ const AdminControllableImageGallery = ({
       return (
         <div className="space-y-4">
           {sectionImages.map((image, index) => (
-            <div key={image.id} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+            <div key={image.id} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
               <img
                 src={image.url}
                 alt={image.alt}
@@ -111,7 +111,7 @@ const AdminControllableImageGallery = ({
                 loading="lazy"
                 onClick={() => handleImageClick(index)}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-3 right-3 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Expand className="h-4 w-4" />
               </div>
@@ -125,7 +125,7 @@ const AdminControllableImageGallery = ({
     return (
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {sectionImages.map((image, index) => (
-          <div key={image.id} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+          <div key={image.id} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
             <img
               src={image.url}
               alt={image.alt}
@@ -133,7 +133,7 @@ const AdminControllableImageGallery = ({
               loading="lazy"
               onClick={() => handleImageClick(index)}
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <Expand className="h-3 w-3" />
             </div>

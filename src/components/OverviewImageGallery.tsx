@@ -35,7 +35,7 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
   if (galleryImages.length === 1) {
     return (
       <div className="w-full">
-        <div className="relative overflow-hidden rounded-lg shadow-card group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300">
+        <div className="relative overflow-hidden rounded-lg shadow-card group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300">
           <img
             src={galleryImages[0]}
             alt={`${tourTitle} overview`}
@@ -45,7 +45,7 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
           />
 
           {/* Golden overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
           {/* Expand icon */}
           <div className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -60,7 +60,7 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
   return (
     <div className="w-full space-y-4">
       {/* Main featured image */}
-      <div className="relative overflow-hidden rounded-lg shadow-card group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+      <div className="relative overflow-hidden rounded-lg shadow-card group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
         <img
           src={galleryImages[selectedImageIndex]}
           alt={`${tourTitle} overview ${selectedImageIndex + 1}`}
@@ -70,7 +70,7 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
         />
 
         {/* Golden gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Expand icon */}
         <div className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -86,8 +86,8 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
               key={index}
               onClick={() => setSelectedImageIndex(index)}
               className={`relative overflow-hidden rounded-lg transition-all duration-300 group ${index === selectedImageIndex
-                ? "ring-2 ring-golden shadow-golden/40 scale-105"
-                : "hover:ring-2 hover:ring-golden/50 hover:shadow-warm hover:scale-105"
+                ? "ring-2 ring-golden shadow-brand-green/40 scale-105"
+                : "hover:ring-2 hover:ring-brand-green/50 hover:shadow-warm hover:scale-105"
                 }`}
             >
               <img
@@ -102,12 +102,12 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
 
               {/* Golden gradient overlay for active thumbnail */}
               {index === selectedImageIndex && (
-                <div className="absolute inset-0 bg-gradient-to-br from-golden/20 to-transparent rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-green/20 to-transparent rounded-lg" />
               )}
 
               {/* Hover overlay for inactive thumbnails */}
               {index !== selectedImageIndex && (
-                <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
               )}
             </button>
           ))}
@@ -118,7 +118,7 @@ const OverviewImageGallery = ({ images, tourTitle, onImageClick }: OverviewImage
       {galleryImages.length > 1 && (
         <div className="text-center">
           <span className="text-sm text-muted-foreground">
-            <span className="text-golden font-medium">{selectedImageIndex + 1}</span> of {galleryImages.length}
+            <span className="text-brand-green font-medium">{selectedImageIndex + 1}</span> of {galleryImages.length}
           </span>
         </div>
       )}

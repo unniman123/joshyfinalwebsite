@@ -39,14 +39,14 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {section.settings?.images?.map((image: string, index: number) => (
-              <div key={index} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-golden/50 transition-all duration-300 hover:shadow-golden">
+              <div key={index} className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
                 <img
                   src={image}
                   alt={`${section.title} ${index + 1}`}
                   className="w-full h-32 md:h-40 object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-golden/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             ))}
           </div>
@@ -65,7 +65,7 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
   return (
     <section className={`py-6 ${className}`}>
       <div className="container mx-auto max-w-7xl px-4">
-        <Card className="border-border hover:border-golden/50 transition-colors duration-300">
+        <Card className="border-border hover:border-brand-green/50 transition-colors duration-300">
           <CardHeader>
             <CardTitle className="text-2xl md:text-3xl font-bold text-foreground">
               {section.title}

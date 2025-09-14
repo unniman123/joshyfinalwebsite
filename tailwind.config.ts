@@ -28,6 +28,9 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
+				textColor: theme => ({
+					"namaste-foreground": theme('colors.namaste.foreground')
+				}),
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
@@ -64,6 +67,21 @@ export default {
 				},
 				'warm-gray': 'hsl(var(--warm-gray))',
 				success: 'hsl(var(--success))',
+				/* namaste token for Tailwind use */
+				namaste: {
+					DEFAULT: 'hsl(var(--namaste-bg))',
+					foreground: 'hsl(var(--namaste-foreground))'
+				},
+				/* tour image background token */
+				tourImage: {
+					DEFAULT: 'hsl(var(--tour-image-bg))',
+					foreground: 'hsl(var(--tour-image-bg-foreground))'
+				},
+				/* day out package image bg */
+				dayOutImage: {
+					DEFAULT: 'hsl(var(--dayout-image-bg))',
+					foreground: 'hsl(var(--dayout-image-bg-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

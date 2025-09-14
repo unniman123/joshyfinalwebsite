@@ -62,10 +62,10 @@ const TourEnquiryForm = ({
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
-    <Card className="border-2 border-golden/30 hover:border-golden/50 shadow-warm hover:shadow-golden/20 transition-all duration-300 w-full max-w-xs">
+    <Card className="border-2 border-brand-green/30 hover:border-brand-green/50 shadow-warm hover:shadow-brand-green/20 transition-all duration-300 w-full max-w-xs">
       <CardHeader className="pb-1">
         <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1">
-          <User className="h-3 w-3 text-golden" />
+          <User className="h-3 w-3 text-brand-green" />
           {title}
         </CardTitle>
       </CardHeader>
@@ -100,7 +100,7 @@ const TourEnquiryForm = ({
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder={phoneFieldPlaceholder || "+91 98765 43210"}
+                placeholder={phoneFieldPlaceholder || "Enter your Whatsapp number"}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                 className="pl-6 h-6 text-[10px]"
@@ -172,7 +172,7 @@ const TourEnquiryForm = ({
           <div className="pt-1">
             <Button
               type="submit"
-              className="w-full bg-gradient-golden hover:shadow-golden transition-all duration-300 h-7 text-[10px]"
+              className="w-full bg-gradient-brand hover:shadow-brand transition-all duration-300 h-7 text-[10px]"
             >
               Send Enquiry
             </Button>

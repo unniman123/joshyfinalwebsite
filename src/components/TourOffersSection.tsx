@@ -124,19 +124,19 @@ const TourOffersSection = ({
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             {sectionTitle}
           </h2>
-          <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-brand mx-auto mb-6"></div>
         </div>
 
         {/* Two-Column Layout: 70% Tours + 30% Enquiry Form */}
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
           {/* Left Column - Tour Packages Carousel (70% on desktop) */}
-          <div className="flex-1 lg:w-[70%]">
+          <div className="flex-1 lg:w-[70%] bg-tourImage p-6 rounded-lg extend-left">
             <div className="relative px-12">
               {/* Navigation Buttons */}
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
+                className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
                 onClick={goToPrevious}
                 disabled={currentIndex === 0}
                 aria-label="Previous tours"
@@ -147,7 +147,7 @@ const TourOffersSection = ({
               <Button
                 variant="outline"
                 size="icon"
-                className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-golden/20 hover:bg-golden hover:text-white shadow-lg"
+                className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
                 onClick={goToNext}
                 disabled={currentIndex === totalPages - 1}
                 aria-label="Next tours"
@@ -165,7 +165,7 @@ const TourOffersSection = ({
                     aria-label={`View details for ${tour.title} tour`}
                   >
                     {/* Oval Image Area */}
-                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full border-2 border-golden/30 hover:border-golden/50 shadow-card hover:shadow-warm hover:shadow-golden/20 transition-all duration-300 mb-3">
+                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full border-2 border-brand-green/30 hover:border-brand-green/50 shadow-card hover:shadow-warm hover:shadow-brand-green/20 transition-all duration-300 mb-3 bg-tourImage flex items-center justify-center">
                       <img
                         src={tour.image}
                         alt={tour.title}
@@ -185,7 +185,7 @@ const TourOffersSection = ({
 
                     {/* Tour Name Below Card */}
                     <div className="text-center">
-                      <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight group-hover:text-golden transition-colors duration-300">
+                      <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight group-hover:text-brand-green transition-colors duration-300">
                         {tour.title}
                       </h3>
                       <p className="text-xs text-muted-foreground mt-1 line-clamp-2 max-w-[160px]">
@@ -201,7 +201,7 @@ const TourOffersSection = ({
                 {Array.from({ length: totalPages }).map((_, index) => (
                   <button
                     key={index}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-golden' : 'bg-muted-foreground/30'
+                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-brand-green' : 'bg-muted-foreground/30'
                       }`}
                     onClick={() => setCurrentIndex(index)}
                     aria-label={`Go to page ${index + 1}`}
