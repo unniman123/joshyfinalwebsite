@@ -99,9 +99,12 @@ const Tours = () => {
   // Determine page title based on current view
   const getPageTitle = () => {
     if (selectedCategory) {
-      return selectedCategory === 'discover-india' 
-        ? 'Discover India Tours - Kerala Tours Global' 
-        : `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours - Kerala Tours Global`;
+      // Normalize special category display names
+      if (selectedCategory === 'discover-india') return 'Discover India Tours - Kerala Tours Global';
+      if (selectedCategory === 'kerala') return 'Kerala Travels - Kerala Tours Global';
+      if (selectedCategory === 'global') return 'Global Holidays - Kerala Tours Global';
+
+      return `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours - Kerala Tours Global`;
     }
     if (searchQuery) {
       return `Search Results for "${searchQuery}" - Kerala Tours Global`;
@@ -112,9 +115,11 @@ const Tours = () => {
   // Determine page description based on current view
   const getPageDescription = () => {
     if (selectedCategory) {
-      return selectedCategory === 'discover-india' 
-        ? 'Discover incredible journeys across India. From serene backwaters to majestic palaces, find your perfect adventure.' 
-        : `Explore amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.`;
+      if (selectedCategory === 'discover-india') return 'Discover incredible journeys across India. From serene backwaters to majestic palaces, find your perfect adventure.';
+      if (selectedCategory === 'kerala') return 'Explore Kerala Travels experiences including backwaters, hill stations, and cultural tours.';
+      if (selectedCategory === 'global') return 'Explore our Global Holidays and international tour packages curated for every traveler.';
+
+      return `Explore amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.`;
     }
     if (searchQuery) {
       return `Showing tour results for "${searchQuery}". Discover the best travel experiences across India and beyond.`;
@@ -139,6 +144,10 @@ const Tours = () => {
               {selectedCategory ?
                 selectedCategory === 'discover-india' ?
                   'Discover India' :
+                selectedCategory === 'kerala' ?
+                  'Kerala Travels' :
+                selectedCategory === 'global' ?
+                  'Global Holidays' :
                   `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours` :
                 searchQuery ?
                 'Search Results' :
