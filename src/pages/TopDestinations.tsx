@@ -77,7 +77,7 @@ const TopDestinations = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-12 md:py-16">
+      <section className="bg-gradient-to-b from-primary/5 to-background py-6 md:py-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-center">
@@ -96,10 +96,10 @@ const TopDestinations = () => {
         </div>
       </section>
 
-      <main className="py-12">
+      <main className="py-6">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16">
+          <div className="max-w-2xl mx-auto mb-8">
             <form onSubmit={handleSearch}>
               <div className="relative flex items-center">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
