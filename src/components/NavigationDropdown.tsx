@@ -131,10 +131,10 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                 {/* If taxonomy exists for this category, render subcategory headings */}
                 {navTaxonomy[category?.toLowerCase() || ""] && (
                   <div className="mb-2">
-                    {navTaxonomy[category!.toLowerCase()].map((sub) => (
+                    {navTaxonomy[category!.toLowerCase()].map((sub: any) => (
                       <Link
                         key={sub.slug}
-                        to={`/tours?category=${category}&subcategory=${sub.slug}`}
+                        to={sub.href ? sub.href : `/tours?category=${category}&subcategory=${sub.slug}`}
                         className="block text-sm text-foreground font-medium px-2 py-1 hover:bg-brand-green/5 rounded"
                         onClick={() => setIsOpen(false)}
                       >
