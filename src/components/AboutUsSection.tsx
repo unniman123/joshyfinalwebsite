@@ -21,7 +21,8 @@ const AboutUsSection = () => {
             <div className="animate-fade-in">
               <div className="bg-namaste p-5 rounded-md text-namaste-foreground extend-right">
                 <h2 className="text-4xl md:text-5xl font-bold text-namaste-foreground mb-6 text-left" style={{ fontFamily: "'Book Antiqua', 'Palatino Linotype', Palatino, serif" }}>
-                  Namaste !
+                  HEY JOSHY , SORRY BRO COULDNT DO THE WORK LATELY , WAS CAUGHT UP IN WORK WILL FINISH OF YOUR WORK BY SATURDAY NIGHT 
+THEN WE CAN DESIGN AND COMPLET THE ADMIN PANEL BY 4TH SATURDAYT THIS MONTH
                 </h2>
 
                 <div className="w-24 h-1 bg-gradient-brand mb-6"></div>
