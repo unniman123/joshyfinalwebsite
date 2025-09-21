@@ -85,8 +85,9 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {navigationItems.map((item) => (
-                item.category ? (
+              {navigationItems.map((item) => {
+                // Insert Heli Taxi button immediately before Contact Us
+                const renderItem = item.category ? (
                   <NavigationDropdown
                     key={item.name}
                     name={item.name}
@@ -102,17 +103,21 @@ const Header = () => {
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
                   </Link>
-                )
-              ))}
+                );
 
-              {/* Heli Taxi button (no redirection) */}
-              <Button
-                variant="default"
-                onClick={() => {}}
-                className={`${useDarkLinks ? 'text-foreground' : 'text-white'} ml-2`}
-              >
-                Heli Taxi
-              </Button>
+                if (item.name === 'Contact Us') {
+                  return (
+                    <div key={item.name} className="flex items-center gap-4">
+                      <Button variant="default" onClick={() => {}} className={`${useDarkLinks ? 'text-foreground' : 'text-white'} ml-2`}>
+                        Heli Taxi
+                      </Button>
+                      {renderItem}
+                    </div>
+                  );
+                }
+
+                return renderItem;
+              })}
             </div>
 
             {/* Mobile menu button */}
@@ -132,7 +137,7 @@ const Header = () => {
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-border animate-fade-in">
               <div className="flex flex-col space-y-3">
-                {navigationItems.map((item) => (
+                {navigationItems.map((item) => {
                   item.category ? (
                     <details key={item.name} className="group">
                       <summary className="flex items-center justify-between text-foreground hover:text-brand-green transition-smooth font-medium py-2 list-none cursor-pointer">
@@ -151,21 +156,22 @@ const Header = () => {
                       </div>
                     </details>
                   ) : (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      className="text-foreground hover:text-brand-green transition-smooth font-medium py-2"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
+                    <div key={item.name}>
+                      {item.name === 'Contact Us' && (
+                        <div className="pb-2">
+                          <Button variant="default" onClick={() => setIsMenuOpen(false)} className="w-full mb-2">Heli Taxi</Button>
+                        </div>
+                      )}
+                      <Link
+                        to={item.href}
+                        className="text-foreground hover:text-brand-green transition-smooth font-medium py-2"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
                   )
-                ))}
-
-                {/* Mobile Heli Taxi button (no redirection) */}
-                <div className="pt-2">
-                  <Button variant="default" onClick={() => setIsMenuOpen(false)} className="w-full">Heli Taxi</Button>
-                </div>
+                })}
               </div>
             </div>
           )}
