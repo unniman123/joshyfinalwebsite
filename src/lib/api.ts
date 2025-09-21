@@ -173,13 +173,13 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
   const mockTours: TourSummary[] = [
     {
       id: "1",
-      title: "Kerala Backwaters Explorer",
-      description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
+      title: "WONDERS OF KERALA – 10 Nights",
+      description: "10 nights / 11 days journey across Kerala covering beaches, backwaters, hill stations, wildlife and cultural highlights.",
       category: "Kerala Travels",
       categories: ["Kerala Travels"],
-      subcategories: ["backwater-trips"],
-      duration: 5,
-      price: "₹45,000",
+      subcategories: ["kerala-wonders"],
+      duration: 11,
+      price: "TBD",
       image: keralaTourCard,
       slug: "kerala-backwaters-explorer"
     },
@@ -329,34 +329,97 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
   const mockTours: { [key: string]: Tour } = {
     "kerala-backwaters-explorer": {
       id: "1",
-      title: "Kerala Backwaters Explorer",
-      description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays and authentic local cuisine.",
-      detailedContent: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board.",
+      title: "WONDERS OF KERALA – 10 Nights",
+      description: "10 nights / 11 days journey across Kerala covering beaches, backwaters, hill stations, wildlife and cultural highlights.",
+      detailedContent: `Highlights: Kovalam Beach, Padmanabhapuram Wooden Palaces, Devi Kanyakumari Temple, Suchindram Temple, Triveni Sangam, Houseboat Cruise, Wildlife Safari, Periyar Wildlife Sanctuary, Eravikulam National Park, Tea Museum, Trekking, Bamboo Rafting, Waterfalls, Kayaking, Birding, Muziris Excavation Site, Heritage Market, 2000 years old Shiva Temple, First mosque in India AD 629, First Christian church in India, First Bagavathy Temple in India, Portuguese church, First European fort in India, Paravour Synagogue, Brahmins Colony, Natural Fiber Craft center, Chendamangalam Synagogue, Vypee kottaa seminary, Indo Portuguese museum, Dutch Cemetery, Mattancherry palace, Chinese Fishing Nets, St. Francis Church, Santa Cruz Basilica, Jewish Synagogue Bolgatty Palace, Jeep Safari, Tribal Village visit, Temples, Elephant Sanitarium, Tea, Coffee & Spices Plantations.
+
+Destinations Covered:
+
+Thiruvananthapuram–Kovalam–Kanyakumari–Kovalam–Alappuzha–Periyar (Thekkady)–Munnar–Thattekkad–Athirappally Waterfalls–Cherai Beach–Fort Kochi–Kochi
+
+Arrival Point: Thiruvananthapuram (TRV)
+Departure Point: Kochi (COK) / Thiruvananthapuram (TRV)
+Duration: 10 nights & 11 days`,
       category: "Kerala Travels",
-      duration: 5,
-      price: "₹45,000",
+      duration: 11,
+      price: "TBD",
       image: keralaTourCard,
       images: [
         { id: "1", url: heroKeralBackwaters, alt: "Kerala Backwaters Sunset", caption: "Serene backwaters at sunset", order: 1, section: "overview", isActive: true },
         { id: "2", url: galleryKerala1, alt: "Traditional Houseboat", caption: "Traditional Kerala houseboat", order: 2, section: "overview", isActive: true },
         { id: "3", url: galleryKerala2, alt: "Village Life", caption: "Local village experience", order: 3, section: "overview", isActive: true },
-        { id: "4", url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop", alt: "Backwater Cruise", caption: "Peaceful backwater cruise", order: 1, section: "itinerary", isActive: true },
-        { id: "5", url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop", alt: "Bird Sanctuary", caption: "Kumarakom bird sanctuary", order: 2, section: "itinerary", isActive: true },
-        { id: "6", url: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop", alt: "Cultural Performance", caption: "Traditional Kathakali dance", order: 3, section: "itinerary", isActive: true },
-        { id: "7", url: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop&auto=format&q=80", alt: "Spice Gardens", caption: "Local spice plantation", order: 4, section: "itinerary", isActive: true },
-        { id: "8", url: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop&auto=format&q=80", alt: "Cooking Class", caption: "Traditional cooking experience", order: 5, section: "itinerary", isActive: true }
+        { id: "it-1", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3b?w=1200&h=800&fit=crop", alt: "Kovalam Beach", caption: "Kovalam Beach", order: 1, section: "itinerary", isActive: true },
+        { id: "it-2", url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&h=800&fit=crop", alt: "Houseboat in Backwaters", caption: "Traditional Houseboat", order: 2, section: "itinerary", isActive: true },
+        { id: "it-3", url: "https://images.unsplash.com/photo-1526779259212-5f1b6ff9f3d4?w=1200&h=800&fit=crop", alt: "Periyar Wildlife", caption: "Periyar Wildlife Sanctuary", order: 3, section: "itinerary", isActive: true },
+        { id: "it-4", url: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1200&h=800&fit=crop", alt: "Munnar Tea Gardens", caption: "Munnar Tea Plantations", order: 4, section: "itinerary", isActive: true },
+        { id: "it-5", url: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1200&h=800&fit=crop", alt: "Bird Sanctuary", caption: "Thattekkad Bird Sanctuary", order: 5, section: "itinerary", isActive: true },
+        { id: "it-6", url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop", alt: "Athirappally Waterfalls", caption: "Athirappally Falls", order: 6, section: "itinerary", isActive: true },
+        { id: "it-7", url: "https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=1200&h=800&fit=crop", alt: "Cherai Beach", caption: "Cherai Beach", order: 7, section: "itinerary", isActive: true },
+        { id: "it-8", url: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1200&h=800&fit=crop", alt: "Fort Kochi Streets", caption: "Fort Kochi Heritage", order: 8, section: "itinerary", isActive: true },
+        { id: "it-9", url: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=800&fit=crop", alt: "Spice Plantation", caption: "Spice Plantation Visit", order: 9, section: "itinerary", isActive: true },
+        { id: "it-10", url: "https://images.unsplash.com/photo-1526779259212-5f1b6ff9f3d4?w=1200&h=800&fit=crop&auto=format&q=80", alt: "Local Village", caption: "Village visit and cultural interactions", order: 10, section: "itinerary", isActive: true }
       ],
       slug: "kerala-backwaters-explorer",
-      itinerary: "Day 1: Arrival and Welcome\nDay 2: Backwater Cruise Experience\nDay 3: Nature and Wildlife Exploration\nDay 4: Cultural Activities and Local Cuisine\nDay 5: Adventure and Departure",
-      inclusions: ["Houseboat accommodation", "All meals", "Local guide", "Transportation"],
+      itinerary: `Day 1 & 2: Kovalam
+Upon arrival transfer to Kovalam beach & check in to hotel, free & leisure at beach. Stay 2 nights & 3 days here. Kovalam is an internationally renowned village with three adjacent crescent beaches. A massive rocky promontory on the beach has created a beautiful bay of calm waters ideal for Swimming, Surfing & other activities. The leisure options at this beach are plenty and diverse, water sports, Sunbathing, swimming, herbal body toning massages, and catamaran cruising are some of them. Life on the beach begins late in the day and carries on well into midnight.
+
+Day 2: Day tour to Kanyakumari to see Padmanabhapuram Wooden Palaces, Triveni Sangam (Confluence of 3 oceans), Devi Kanyakumari Temple, Vivekananda Rock & Suchindram Temple
+
+Day 3: Houseboat Cruise from Alappuzha–Kumarakom: On day 3 after an early breakfast drive to Alappuzha “Venice of the East” for a 22 hours houseboat cruise from Alappuzha to Kumarakom. The cruise will be an experience of life time! Alappuzha is the major centre for inland waterways tourism in Kerala. You will love cruising along the inland waterways of Malabar backwaters, under the lush green leaves of coconut palms, give you a heavenly pleasure for the whole cruise. See the life of Inland water villages, Duck farming, Toddy tapping, backwater birds, Chinese fishing nets and much more is awaits you here
+
+Day 4: Periyar Wildlife Sanctuary (165 Km, 3 hours drive) Disembark from Houseboat & proceed to Periyar wildlife sanctuary. Check in to hotel. Attractions here are Tea & Spices Plantations, Tea factory, Tribal settlement, Chellar kovil, Anakkara, Mangaladevi Temple & a boating to see animals from their own habitat, stay 1night here.
+
+Day 5 & 6: Munnar (90 Km, 3 hours drive from Periyar)
+After breakfast a wonderful & scenic drive to Munnar for a 2 nights stay to enjoy the pleasures of Tea plantations & the majestic hill station. Attractions includes Eravikulam National Park, Anamudi Peak, Mattupetty Dam, Pallivasal Hydro-electric project, Tea Plantations, Eco point, Chinnakanal waterfalls, Anayirangal Dam, Top Station, Tea Museum & much more
+
+Day 7: Thattekkade Bird Sanctuary (70 Km from Munnar, 2 hours drive)
+After breakfast a 2 hours wonderful journey will take you to the Bird Sanctuary. Check in to the resort there. This is the richest bird habitat on Indian Peninsula. The region is an evergreen low-land forest located between the branches of Periyar River, the longest river in Kerala. Several species of birds, both forest birds as well as the water birds, visit the sanctuaries. 80% Kerala’s bird population is seen here. Enjoy 2 days & 1 night with Birding, River Kayaking & Village walks.
+
+Day 8: Athirappally Waterfalls (70 Km, 1.5 hours drive from Thattekkad)
+Then drive to the majestic waterfalls of Kerala. The Chalakudi River bursting forth from the jungles of Sholayar comes crashing down, plummeting 80 feet to form the dramatic Athirappilly Falls - the waterfalls as spirited and noisy as the forests are dark and silent. The cool spray that covers a large area near the falls makes this area a scenic location. Many eminent Indian film makers used this location for their movies. Overnight stay at Athirappilly.
+
+Day 9 & 10: Cherai Beach, Vypin Island (65 Km, 1.5 hours drive from Athirappally)
+Morning proceed to Cherai of Vypin Island (25 K.ms from Kochi). The Arabian Sea on the West and backwaters on the East give this upcoming tourist destination uniqueness which can be seen only in Kerala. Check in to the resort & enjoy the 10 Km long Golden Beach which is called “The Princess of the Arabian sea” will entice you with its exotic charm, serene backwaters, swaying coconut lagoons, lush green paddy fields, and Chinese fishing nets on the waterfront are another added attraction. The beach is shallow, calm and is ideal for swimming & sunbathing. Stay 2 nights here. Muziris Tour: Afternoon a sightseeing trip to visit Heritage Market, 2000 years old Shiva Temple, First mosque in India AD 629, First Christian church in India, First Bagavathy Temple in India, Muziris Excavation site, Portuguese church, First European fort in India, Paravour Synagogue, Brahmins Colony, Natural Fiber Craft center, Chendamangalam Synagogue, Vypee kottaa seminary, Indo Portuguese museum, Dutch Cemetery, Mattancherry palace, Chinese Fishing Nets, St. Francis Church, Santa Cruz Basilica, Jewish Synagogue Bolgatty Palace, Jeep Safari, Tribal Village visit, Temples, Elephant Sanitarium, Tea, Coffee & Spices Plantations,
+
+Day 10: Fort Kochi: An interesting trip to “Old Kochi” by “Jangar” & Car
+Fort Kochi was an obscure fishing village that became the first European township in India, The town was shaped by the Portuguese, the Dutch and later the British. The results of these cultural influences are seen in the many examples of Indo European architecture that still exist here.
+A leisurely stroll through its streets is one of the best ways to discover all that this city has to offer - each and every nook of this island is steeped in history. There is always something interesting awaiting you. In the evening (If interested)enjoy Kathakali – the exotic and universally popular performing art of Kerala. ‘Mudra & Make-up’ demonstration follows the performance. The two hours pass too soon. Have dinner from any of the “You Buy I Cook” shop of Fort Kochi. Return to Cherai Beach for overnight stay.
+
+Day 11: Departure Transfer
+Tour Includes:
+• Hotel Accommodations with Breakfast
+• All Meals in Houseboat
+• All Transfers and Sightseeing by A/c car.
+• All Land & Water Tours as per the Itinerary,
+• Airport/R.Station Pickup & Drop
+`,
+      inclusions: ["Hotel Accommodations with Breakfast", "All Meals in Houseboat", "All Transfers and Sightseeing by A/c car", "Airport/R.Station Pickup & Drop"],
       exclusions: ["Airfare", "Personal expenses", "Tips"],
       mapLocation: { lat: 9.9312, lng: 76.2673 },
       sections: [
         {
           id: "overview-1",
           type: "overview",
-          title: "Kerala Backwaters Explorer",
-          content: "Immerse yourself in the tranquil beauty of Kerala's backwaters on this unforgettable 5-day journey. Cruise through palm-fringed canals on traditional houseboats, witness local life along the waterways, and enjoy authentic Kerala cuisine prepared fresh on board. This comprehensive tour takes you through the most scenic waterways of Alleppey and Kumarakom, offering glimpses of traditional village life, exotic bird watching opportunities, and authentic culinary experiences that showcase the rich flavors of Kerala cuisine.",
+          title: "WONDERS OF KERALA – 10 Nights",
+          content: `Highlights: Kovalam Beach, Padmanabhapuram Wooden Palaces, Devi Kanyakumari
+Temple, Suchindram Temple, Triveni Sangam, Houseboat Cruise, Wildlife Safari,
+Periyar Wildlife Sanctuary, Eravikulam National Park, Tea Museum, Trekking, Bamboo
+Rafting, Waterfalls, Kayaking, Birding, Muziris Excavation Site, Heritage Market, 2000
+years old Shiva Temple, First mosque in India AD 629, First Christian church in India,
+First Bagavathy Temple in India, Portuguese church, First European fort in India,
+Paravour Synagogue, Brahmins Colony, Natural Fiber Craft center, Chendamangalam
+Synagogue, Vypee kottaa seminary, Indo Portuguese museum, Dutch Cemetery,
+Mattancherry palace, Chinese Fishing Nets, St. Francis Church, Santa Cruz Basilica,
+Jewish Synagogue Bolgatty Palace, Jeep Safari, Tribal Village visit, Temples, Elephant
+Sanitarium, Tea, Coffee &amp; Spices Plantations,
+Destinations Covered:
+
+Thiruvananthapuram–Kovalam–Kanyakumari–Kovalam–Alappuzha–Periyar
+(Thekkady)–Munnar–Thattekkad–Athirappally Waterfalls–Cherai Beach–Fort
+Kochi–Kochi
+Arrival Point: Thiruvananthapuram (TRV)
+Departure Point: Kochi (COK)/ Thiruvananthapuram (TRV)
+Duration: 10 nights &amp; 11 days`,
           isVisible: true,
           order: 1
         },
@@ -373,50 +436,287 @@ export async function getTourBySlug(slug: string): Promise<Tour | null> {
         {
           id: "day-1",
           dayNumber: 1,
-          title: "Arrival in Kochi & Backwater Introduction",
-          description: "Begin your Kerala adventure with a warm welcome in the historic port city of Kochi.",
+          title: "Kovalam - Arrival",
+          description: "Upon arrival transfer to Kovalam beach & check in to hotel, free & leisure at beach. Stay 2 nights & 3 days here. Kovalam is an internationally renowned village with three adjacent crescent beaches. A massive rocky promontory on the beach has created a beautiful bay of calm waters ideal for Swimming, Surfing & other activities. The leisure options at this beach are plenty and diverse, water sports. Sunbathing, swimming, herbal body toning massages, and catamaran cruising are some of them. Life on the beach begins late in the day and carries on well into midnight.",
           activities: [
-            { id: "act-1", title: "Airport pickup and transfer to heritage hotel", description: "Comfortable transfer in AC vehicle", duration: "1 hour", activityType: "arrival", isIncluded: true, order: 1 },
-            { id: "act-2", title: "Welcome drink and orientation session", description: "Traditional welcome with fresh coconut water", duration: "30 mins", activityType: "cultural", isIncluded: true, order: 2 },
-            { id: "act-3", title: "Evening stroll through Fort Kochi historic district", description: "Explore colonial architecture and Chinese fishing nets", duration: "2 hours", activityType: "sightseeing", isIncluded: true, order: 3 },
-            { id: "act-4", title: "Traditional Kathakali dance performance with dinner", description: "Authentic Kerala cultural performance", duration: "2 hours", activityType: "cultural", isIncluded: true, order: 4 }
+            { id: "act-day1-1", title: "Airport pickup and transfer to Kovalam", description: "Private AC transfer from Thiruvananthapuram airport to hotel in Kovalam.", duration: "45 mins", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day1-2", title: "Hotel check-in & welcome drink", description: "Traditional welcome with fresh coconut water and orientation.", duration: "30 mins", activityType: "cultural", isIncluded: true, order: 2 },
+            { id: "act-day1-3", title: "Evening beach stroll & sunset", description: "Relaxed walk along Kovalam beach and sunset viewing.", duration: "1.5 hours", activityType: "sightseeing", isIncluded: true, order: 3 }
           ],
-          highlights: ["Historic Fort Kochi", "Chinese fishing nets", "Kathakali performance"],
-          meals: ["Dinner"],
-          accommodation: "Heritage Hotel in Fort Kochi",
+          highlights: ["Kovalam Beach"],
+          meals: [],
+          accommodation: "Hotel at Kovalam",
           duration: "Full Day",
-          location: "Kochi",
+          location: "Kovalam",
           difficulty: "Easy",
-          images: ["https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop"],
+          images: ["https://images.unsplash.com/photo-1507525428034-b723cf961d3b?w=1200&h=800&fit=crop"],
           isActive: true,
           order: 1
         },
         {
           id: "day-2",
           dayNumber: 2,
-          title: "Houseboat Cruise & Village Experience",
-          description: "Experience the magic of Kerala's backwaters aboard a traditional houseboat.",
+          title: "Kovalam - Day tour to Kanyakumari",
+          description: "Day tour to Kanyakumari to see Padmanabhapuram Wooden Palaces, Triveni Sangam (Confluence of 3 oceans), Devi Kanyakumari Temple, Vivekananda Rock & Suchindram Temple.",
           activities: [
-            { id: "act-5", title: "Check-in to traditional Kerala houseboat", description: "Board your floating home for the next 24 hours", duration: "30 mins", activityType: "cruise", isIncluded: true, order: 1 },
-            { id: "act-6", title: "Cruise through palm-fringed canals and waterways", description: "Peaceful journey through scenic backwaters", duration: "4 hours", activityType: "cruise", isIncluded: true, order: 2 },
-            { id: "act-7", title: "Visit local village and interact with fishermen families", description: "Authentic cultural exchange experience", duration: "2 hours", activityType: "cultural", isIncluded: true, order: 3 },
-            { id: "act-8", title: "Sunset viewing from houseboat deck", description: "Magical sunset over the backwaters", duration: "1 hour", activityType: "sightseeing", isIncluded: true, order: 4 }
+            { id: "act-day2-1", title: "Drive to Kanyakumari & Padmanabhapuram", description: "Full day coach transfer to Kanyakumari with a stop at Padmanabhapuram Wooden Palace for a guided visit.", duration: "6-7 hours (including stops)", activityType: "sightseeing", isIncluded: true, order: 1 },
+            { id: "act-day2-2", title: "Visit Vivekananda Rock & Devi Kanyakumari Temple", description: "Ferry to Vivekananda Rock and visit the Devi Kanyakumari Temple; time for darshan and coastal views.", duration: "2 hours", activityType: "cultural", isIncluded: true, order: 2 },
+            { id: "act-day2-3", title: "Triveni Sangam & Suchindram Temple", description: "Visit Triveni Sangam (confluence) viewpoint and Suchindram Temple before returning to Kovalam.", duration: "2 hours", activityType: "temple", isIncluded: true, order: 3 }
           ],
-          highlights: ["Traditional houseboat stay", "Village interaction", "Backwater sunset"],
-          meals: ["Breakfast", "Lunch", "Dinner"],
-          accommodation: "Traditional Houseboat",
+          highlights: ["Beach activities", "Surfing"],
+          meals: [],
+          accommodation: "Hotel at Kovalam",
           duration: "Full Day",
-          location: "Alleppey Backwaters",
+          location: "Kovalam",
           difficulty: "Easy",
-          images: ["https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=800&h=600&fit=crop"],
+          images: ["https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=1200&h=800&fit=crop"],
           isActive: true,
           order: 2
+        },
+        {
+          id: "day-3",
+          dayNumber: 3,
+          title: "Houseboat Cruise (Alappuzha–Kumarakom)",
+          description: `Day 3: Houseboat Cruise from Alappuzha–Kumarakom: On day 3 after an early
+breakfast drive to Alappuzha “Venice of the East” for a 22 hours houseboat cruise from
+Alappuzha to Kumarakom. The cruise will be an experience of life time! Alappuzha is
+the major centre for inland waterways tourism in Kerala. You will love cruising along the
+inland waterways of Malabar backwaters, under the lush green leaves of coconut
+palms, give you a heavenly pleasure for the whole cruise. See the life of Inland water
+villages, Duck farming, Toddy tapping, backwater birds, Chinese fishing nets and much
+more is awaits you here`,
+          activities: [
+            { id: "act-day3-1", title: "Drive to Alappuzha & boarding", description: "Early morning drive to Alappuzha and board the traditional houseboat.", duration: "2 hours", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day3-2", title: "Cruise through backwaters", description: "Scenic cruise observing village life, duck farms and Chinese fishing nets.", duration: "6-8 hours", activityType: "cruise", isIncluded: true, order: 2 },
+            { id: "act-day3-3", title: "Village visit", description: "Short stops at backwater villages and interactions with locals.", duration: "1-2 hours", activityType: "cultural", isIncluded: true, order: 3 }
+          ],
+          highlights: ["Houseboat Cruise"],
+          meals: ["All meals on board"],
+          accommodation: "Houseboat",
+          duration: "Full Day",
+          location: "Alappuzha to Kumarakom",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 3
+        },
+        {
+          id: "day-4",
+          dayNumber: 4,
+          title: "Periyar Wildlife Sanctuary",
+          description: `Day 4: Periyar Wildlife Sanctuary (165 Km, 3 hours drive) Disembark from Houseboat
+& proceed to Periyar wildlife sanctuary. Check in to hotel. Attractions here are Tea &
+Spices Plantations, Tea factory, Tribal settlement, Chellar kovil, Anakkara, Mangaladevi
+Temple & a boating to see animals from their own habitat, stay 1night here.`,
+          activities: [
+            { id: "act-day4-1", title: "Disembark & transfer to Periyar", description: "Drive from Kumarakom to Periyar (approx 3 hours).", duration: "3 hours", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day4-2", title: "Boat safari on Periyar Lake", description: "Guided boat ride to spot elephants, deer and birds.", duration: "1.5 hours", activityType: "nature", isIncluded: true, order: 2 },
+            { id: "act-day4-3", title: "Tea & spice plantation visit", description: "Visit local plantations and a tea factory.", duration: "2 hours", activityType: "nature", isIncluded: true, order: 3 }
+          ],
+          highlights: ["Periyar Wildlife Sanctuary"],
+          meals: [],
+          accommodation: "Hotel near Periyar",
+          duration: "Full Day",
+          location: "Periyar (Thekkady)",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1526779259212-5f1b6ff9f3d4?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 4
+        },
+        {
+          id: "day-5",
+          dayNumber: 5,
+          title: "Munnar - Tea Plantations",
+          description: `Day 5 & 6: Munnar (90 Km, 3 hours drive from Periyar)
+After breakfast a wonderful & scenic drive to Munnar for a 2 nights stay to enjoy the
+pleasures of Tea plantations & the majestic hill station. Attractions includes Eravikulam
+National Park, Anamudi Peak, Mattupetty Dam, Pallivasal Hydro-electric project, Tea
+Plantations, Eco point, Chinnakanal waterfalls, Anayirangal Dam, Top Station, Tea
+Museum & much more`,
+          activities: [
+            { id: "act-day5-1", title: "Drive to Munnar", description: "Scenic drive from Periyar to Munnar.", duration: "3 hours", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day5-2", title: "Tea Museum visit", description: "Visit the Tea Museum and learn about tea processing.", duration: "1 hour", activityType: "cultural", isIncluded: true, order: 2 },
+            { id: "act-day5-3", title: "Mattupetty Dam & viewpoint", description: "Sightseeing at Mattupetty Dam and nearby viewpoints.", duration: "2 hours", activityType: "sightseeing", isIncluded: true, order: 3 }
+          ],
+          highlights: ["Eravikulam National Park", "Tea Museum"],
+          meals: [],
+          accommodation: "Hotel in Munnar",
+          duration: "Full Day",
+          location: "Munnar",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 5
+        },
+        {
+          id: "day-6",
+          dayNumber: 6,
+          title: "Munnar - Explore",
+          description: "Explore Munnar attractions like Anamudi, Mattupetty Dam, Top Station.",
+          activities: [
+            { id: "act-day6-1", title: "Eravikulam National Park visit", description: "Guided visit to Eravikulam NP (subject to park timings).", duration: "2-3 hours", activityType: "nature", isIncluded: true, order: 1 },
+            { id: "act-day6-2", title: "Top Station viewpoint", description: "Drive to Top Station for panoramic views.", duration: "1.5 hours", activityType: "sightseeing", isIncluded: true, order: 2 },
+            { id: "act-day6-3", title: "Tea tasting & local market", description: "Sample local teas and explore markets.", duration: "1 hour", activityType: "cultural", isIncluded: true, order: 3 }
+          ],
+          highlights: [],
+          meals: [],
+          accommodation: "Hotel in Munnar",
+          duration: "Full Day",
+          location: "Munnar",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1549880338-65ddcdfd017b?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 6
+        },
+        {
+          id: "day-7",
+          dayNumber: 7,
+          title: "Thattekkad Bird Sanctuary",
+          description: `Day 7: Thattekkade Bird Sanctuary (70 Km from Munnar, 2 hours drive)
+After breakfast a 2 hours wonderful journey will take you to the Bird Sanctuary. Check in
+to the resort there. This is the richest bird habitat on Indian Peninsula. The region is an
+evergreen low-land forest located between the branches of Periyar River, the longest
+river in Kerala. Several species of birds, both forest birds as well as the water birds, visit
+the sanctuaries. 80% Kerala’s bird population is seen here. Enjoy 2 days & 1 night with
+Birding, River Kayaking & Village walks.`,
+          activities: [
+            { id: "act-day7-1", title: "Thattekkad guided birding", description: "Early morning guided birdwatching session.", duration: "2-3 hours", activityType: "nature", isIncluded: true, order: 1 },
+            { id: "act-day7-2", title: "River kayaking", description: "Guided kayaking in the river channels (equipment provided).", duration: "2 hours", activityType: "adventure", isIncluded: true, order: 2 },
+            { id: "act-day7-3", title: "Village walk & cultural interaction", description: "Walk through local villages and meet residents.", duration: "1.5 hours", activityType: "cultural", isIncluded: true, order: 3 }
+          ],
+          highlights: ["Birding"],
+          meals: [],
+          accommodation: "Resort near Thattekkad",
+          duration: "Full Day",
+          location: "Thattekkad",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 7
+        },
+        {
+          id: "day-8",
+          dayNumber: 8,
+          title: "Athirappally Waterfalls",
+          description: `Day 8: Athirappally Waterfalls (70 Km, 1.5 hours drive from Thattekkad)
+Then drive to the majestic waterfalls of Kerala. The Chalakudi River bursting forth from
+the jungles of Sholayar comes crashing down, plummeting 80 feet to form the dramatic
+Athirappilly Falls - the waterfalls as spirited and noisy as the forests are dark and
+silent. The cool spray that covers a large area near the falls makes this area a scenic
+location. Many eminent Indian film makers used this location for their movies. Overnight
+stay at Athirappilly.`,
+          activities: [
+            { id: "act-day8-1", title: "Drive to Athirappally", description: "Scenic drive to the waterfalls from Thattekkad.", duration: "1.5 hours", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day8-2", title: "Athirappally Falls viewing & walk", description: "Explore viewpoints and nature trails around the falls.", duration: "2 hours", activityType: "sightseeing", isIncluded: true, order: 2 }
+          ],
+          highlights: ["Athirappally Falls"],
+          meals: [],
+          accommodation: "Hotel near Athirappally",
+          duration: "Full Day",
+          location: "Athirappally",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 8
+        },
+        {
+          id: "day-9",
+          dayNumber: 9,
+          title: "Cherai Beach & Muziris Tour",
+          description: `Day 9 & 10: Cherai Beach, Vypin Island (65 Km, 1.5 hours drive from Athirappally)
+Morning proceed to Cherai of Vypin Island (25 K.ms from Kochi). The Arabian Sea on
+
+the West and backwaters on the East give this upcoming tourist destination uniqueness
+which can be seen only in Kerala. Check in to the resort & enjoy the 10 Km long Golden
+Beach which is called “The Princess of the Arabian sea” will entice you with its exotic
+charm, serene backwaters, swaying coconut lagoons, lush green paddy fields, and
+Chinese fishing nets on the waterfront are another added attraction. The beach is
+shallow, calm and is ideal for swimming & sunbathing. Stay 2 nights here.
+
+Muziris Tour: Afternoon a sightseeing trip to visit Heritage Market, 2000 years old
+Shiva Temple, First mosque in India AD 629, First Christian church in India, First
+Bagavathy Temple in India, Muziris Excavation site, Portuguese church, First European
+fort in India, Paravour Synagogue, Brahmins Colony, Natural Fiber Craft center,
+Chendamangalam Synagogue, Vypee kottaa seminary. Back to the hotel & spend the
+night there.`,
+          activities: [
+            { id: "act-day9-1", title: "Transfer to Cherai (Vypin Island)", description: "Drive to Cherai and check-in at the beach resort.", duration: "1.5 hours", activityType: "arrival", isIncluded: true, order: 1 },
+            { id: "act-day9-2", title: "Beach time & leisure", description: "Relax on Cherai Beach; swimming and sunbathing.", duration: "3 hours", activityType: "sightseeing", isIncluded: true, order: 2 },
+            { id: "act-day9-3", title: "Muziris heritage tour (afternoon)", description: "Visit Heritage Market, ancient temples, mosques, churches and synagogues in Muziris area.", duration: "3-4 hours", activityType: "cultural", isIncluded: true, order: 3 }
+          ],
+          highlights: ["Cherai Beach", "Muziris heritage sites"],
+          meals: [],
+          accommodation: "Resort at Cherai",
+          duration: "Full Day",
+          location: "Cherai (Vypin Island)",
+          difficulty: "Easy",
+          images: ["https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=1200&h=800&fit=crop"],
+          isActive: true,
+          order: 9
+        },
+        {
+          id: "day-10",
+          dayNumber: 10,
+          title: "Fort Kochi",
+          description: `Day 10: Fort Kochi: An interesting trip to “Old Kochi” by “Jangar” & Car
+Fort Kochi was an obscure fishing village that became the first European township in
+India, The town was shaped by the Portuguese, the Dutch and later the British. The
+results of these cultural influences are seen in the many examples of Indo European
+architecture that still exist here.
+A leisurely stroll through its streets is one of the best ways to discover all that this city
+has to offer - each and every nook of this island is steeped in history. There is always
+something interesting awaiting you.
+
+A boat ride across the breathtaking blue lagoons and backwaters offers a glimpse of
+Kochi’s rural life and its inherent beauty. In the evening (If interested) enjoy Kathakali –
+the exotic and universally popular performing art of Kerala. ‘Mudra & Make-up’
+demonstration follows the performance. The two hours pass too soon. Have dinner from
+any of the “You Buy I Cook” shop of Fort Kochi. Return to Cherai Beach for overnight
+stay.`,
+          activities: [
+            { id: "act-day10-1", title: "Fort Kochi walking tour", description: "Explore Mattancherry Palace, Chinese fishing nets, Dutch Cemetery and local markets.", duration: "3 hours", activityType: "sightseeing", isIncluded: true, order: 1 },
+            { id: "act-day10-2", title: "Boat ride across lagoons", description: "Short boat ride to observe rural waterfront life.", duration: "1 hour", activityType: "sightseeing", isIncluded: true, order: 2 },
+            { id: "act-day10-3", title: "Optional Kathakali performance", description: "Evening performance and mudra/makeup demonstration (optional).", duration: "2 hours", activityType: "cultural", isIncluded: false, order: 3 }
+          ],
+          highlights: ["Fort Kochi"],
+          meals: [],
+          accommodation: "Resort at Cherai",
+          duration: "Full Day",
+          location: "Fort Kochi",
+          difficulty: "Easy",
+          images: ["/placeholder-day-10.jpg"],
+          isActive: true,
+          order: 10
+        },
+        {
+          id: "day-11",
+          dayNumber: 11,
+          title: "Departure Transfer",
+          description: `Day 11: Departure Transfer
+Tour Includes:
+• Hotel Accommodations with Breakfast
+• All Meals in Houseboat
+• All Transfers and Sightseeing by A/c car.
+• All Land & Water Tours as per the Itinerary,
+• Airport/R.Station Pickup & Drop`,
+          activities: [
+            { id: "act-day11-1", title: "Check-out & transfer to airport/rail", description: "Private transfer to Kochi or Thiruvananthapuram for departure.", duration: "Varies", activityType: "departure", isIncluded: true, order: 1 }
+          ],
+          highlights: [],
+          meals: [],
+          accommodation: "",
+          duration: "Half Day",
+          location: "Kochi / Thiruvananthapuram",
+          difficulty: "Easy",
+          images: [],
+          isActive: true,
+          order: 11
         }
       ],
       isPublished: true,
-      seoTitle: "Kerala Backwaters Tour - 5 Days Houseboat Experience",
-      seoDescription: "Experience Kerala's serene backwaters with traditional houseboat stays, village visits, and authentic cuisine on this 5-day tour.",
-      seoKeywords: ["Kerala backwaters", "houseboat tour", "Alleppey", "Kumarakom"],
+      seoTitle: "WONDERS OF KERALA – 10 Nights",
+      seoDescription: "10 nights / 11 days Wonders of Kerala covering Kovalam, Alappuzha houseboat, Periyar, Munnar, Thattekkad, Athirappally, Cherai and Fort Kochi.",
+      seoKeywords: ["Kerala tour", "backwaters", "houseboat", "Munnar", "Periyar"],
       adminSettings: {
         allowPublicBooking: true,
         showPricing: true,

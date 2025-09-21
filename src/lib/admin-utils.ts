@@ -16,9 +16,27 @@ export const getOverviewImages = (tour: Tour): string[] => {
 };
 
 export const getItineraryImages = (tour: Tour): string[] => {
-  // Note: Itinerary images no longer display captions in UI (as of latest update)
-  // Captions are preserved in data but not shown to users
+  // Prefer day-specific images when itineraryDays contain images
   const itineraryImages = getImagesBySection(tour, 'itinerary');
+
+  // If structured itinerary exists, map one image per active day (prefer day.images if present)
+  if (tour.itineraryDays && tour.itineraryDays.length > 0) {
+    const structured = tour.itineraryDays
+      .filter(d => d.isActive)
+      .sort((a, b) => a.order - b.order);
+
+    const mapped = structured.map((day, idx) => {
+      // day.images may contain urls (legacy/simple) — prefer first image
+      if (Array.isArray(day.images) && day.images.length > 0) return day.images[0];
+      // otherwise try to use the curated itinerary images by index
+      if (itineraryImages && itineraryImages[idx]) return itineraryImages[idx].url;
+      return undefined;
+    }).filter(Boolean) as string[];
+
+    if (mapped.length > 0) return mapped;
+  }
+
+  // Fallback to section-level itinerary images
   if (itineraryImages.length > 0) {
     return itineraryImages.map(img => img.url);
   }
@@ -43,9 +61,9 @@ export const getOverviewContent = (tour: Tour): string => {
     return overviewSection.content;
   }
 
-  // Fallback to legacy detailedContent
-  if (tour.detailedContent?.trim()) {
-    return tour.detailedContent.trim();
+  // Fallback to legacy detailedContent (preserve original formatting)
+  if (typeof tour.detailedContent === 'string' && tour.detailedContent.length > 0) {
+    return tour.detailedContent;
   }
 
   return "Tour overview coming soon...";

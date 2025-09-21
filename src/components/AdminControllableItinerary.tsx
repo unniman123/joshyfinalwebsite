@@ -36,7 +36,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <p className="text-muted-foreground leading-relaxed text-base mb-4">
+                <p className="text-muted-foreground leading-relaxed text-base mb-4 whitespace-pre-line">
                   {day.description}
                 </p>
               )}

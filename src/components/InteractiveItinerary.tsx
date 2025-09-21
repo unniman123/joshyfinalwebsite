@@ -7,27 +7,48 @@ interface ItineraryDay {
 }
 
 interface InteractiveItineraryProps {
-  itinerary: string;
+  itinerary?: string;
+  itineraryDays?: Array<Partial<ItineraryDay>>;
   tourTitle: string;
 }
 
-const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProps) => {
+const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: InteractiveItineraryProps) => {
   // Simplified parsing logic - admin controlled content
   const parseItinerary = (itineraryText: string): ItineraryDay[] => {
-    const lines = itineraryText.split('\n').filter(line => line.trim());
-    const days: ItineraryDay[] = [];
+    // If structured itineraryDays provided, prefer them (more reliable)
+    if (itineraryDays && itineraryDays.length) {
+      return itineraryDays
+        .map(d => ({
+          dayNumber: d.dayNumber || 0,
+          title: d.title || `Day ${d.dayNumber || 0}`,
+          description: (d.description || '').toString().trim()
+        }))
+        .filter(d => d.dayNumber > 0);
+    }
 
-    lines.forEach(line => {
-      const dayMatch = line.match(/Day (\d+):?\s*(.+)/i);
+    // Support multi-line day descriptions in legacy `itinerary` string: a line starting with "Day N:" begins a new day;
+    // subsequent non-header lines are appended to the previous day's description.
+    const rawLines = (itineraryText || '').split('\n');
+    const days: ItineraryDay[] = [];
+    let currentDay: ItineraryDay | null = null;
+
+    rawLines.forEach(line => {
+      const trimmed = line.trim();
+      if (!trimmed) return;
+
+      const dayMatch = trimmed.match(/Day (\d+):?\s*(.*)/i);
       if (dayMatch) {
         const dayNumber = parseInt(dayMatch[1]);
-        const content = dayMatch[2];
-
-        days.push({
+        const content = dayMatch[2] || '';
+        currentDay = {
           dayNumber,
           title: `Day ${dayNumber}`,
-          description: content,
-        });
+          description: content.trim(),
+        };
+        days.push(currentDay);
+      } else if (currentDay) {
+        // Append this line to the current day's description, preserving paragraph breaks
+        currentDay.description = `${currentDay.description}\n${trimmed}`.trim();
       }
     });
 
@@ -59,7 +80,7 @@ const InteractiveItinerary = ({ itinerary, tourTitle }: InteractiveItineraryProp
               <h3 className="text-lg font-semibold text-foreground mb-3">
                 Day {day.dayNumber}: {day.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base mb-4">
+              <p className="text-muted-foreground leading-relaxed text-base mb-4 whitespace-pre-line">
                 {day.description}
               </p>
             </div>
