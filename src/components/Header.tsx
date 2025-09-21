@@ -104,6 +104,15 @@ const Header = () => {
                   </Link>
                 )
               ))}
+
+              {/* Heli Taxi button (no redirection) */}
+              <Button
+                variant="default"
+                onClick={() => {}}
+                className={`${useDarkLinks ? 'text-foreground' : 'text-white'} ml-2`}
+              >
+                Heli Taxi
+              </Button>
             </div>
 
             {/* Mobile menu button */}
@@ -152,6 +161,11 @@ const Header = () => {
                     </Link>
                   )
                 ))}
+
+                {/* Mobile Heli Taxi button (no redirection) */}
+                <div className="pt-2">
+                  <Button variant="default" onClick={() => setIsMenuOpen(false)} className="w-full">Heli Taxi</Button>
+                </div>
               </div>
             </div>
           )}
