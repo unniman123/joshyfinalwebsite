@@ -577,7 +577,7 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
         topPercent: 50,
         rightOffset: '12',
         cardOpacity: 0.06,
-        cardBorder: 'border-white/10'
+        cardBorder: 'border-2 border-brand-green/30'
       }
     }
   };

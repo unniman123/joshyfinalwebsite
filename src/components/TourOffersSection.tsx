@@ -94,7 +94,7 @@ const TourOffersSection = ({
 
   // Carousel state management
   const [currentIndex, setCurrentIndex] = useState(0);
-  const toursPerPage = 3;
+  const toursPerPage = 4;
   const totalPages = Math.ceil(tourOffers.length / toursPerPage);
 
 
@@ -119,21 +119,30 @@ const TourOffersSection = ({
   return (
     <section className="relative">
       {/* Full-bleed background image extended to edges */}
-      <div className="relative extend-left rounded-tr-2xl rounded-br-2xl overflow-hidden" style={{ background: 'var(--offers-bg)' }}>
-        {/* optional scrim for subtle depth */}
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02))' }} />
+      <div className="relative extend-left overflow-hidden">
+        {/* Left colored panel that stops before the enquiry form (rounded right edge) */}
+        <div
+          className="absolute left-0 top-0 h-full"
+          style={{
+            width: 'calc(100% - 18rem)',
+            background: 'var(--offers-bg)',
+            borderTopRightRadius: '1rem',
+            borderBottomRightRadius: '1rem'
+          }}
+        />
+        {/* optional scrim for subtle depth over the colored panel */}
+        <div className="absolute left-0 top-0 h-full" style={{ width: 'calc(100% - 18rem)', background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} />
 
-        <div className="relative container mx-auto px-4 py-10 lg:py-12 max-w-6xl min-h-[280px]">
-          {/* Section Header overlay */}
-          <div className="text-center mb-10 text-white">
+        <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-6xl min-h-[220px]">
+          {/* Section Header overlay - shifted left on large screens */}
+          <div className="text-left mb-10 text-white lg:-translate-x-[10vw] transform">
             <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
-            <p className="max-w-2xl mx-auto text-lg opacity-90">Thousands of activities thought out for you</p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
             {/* Left Column - Tour Packages Carousel (takes left area, transparent cards) */}
             <div className="flex-1 lg:w-[65%] p-3 lg:pr-6">
-              <div className="relative px-6">
+                <div className="relative px-6" style={{ transform: 'translateX(-10vw)' }}>
                 <Button
                   variant="outline"
                   size="icon"
@@ -156,7 +165,7 @@ const TourOffersSection = ({
                   <ChevronRight className="h-5 w-5" />
                 </Button>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 transition-all duration-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 transition-all duration-300">
                   {getCurrentTours().map((tour) => (
                     <Link
                       key={tour.id}
@@ -164,7 +173,7 @@ const TourOffersSection = ({
                       className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
                       aria-label={`View details for ${tour.title} tour`}
                     >
-                    <div className="relative w-28 h-36 sm:w-32 sm:h-40 lg:w-36 lg:h-44 overflow-hidden rounded-full border-2 border-white/30 shadow-card transition-all duration-300 mb-2">
+                    <div className="relative w-28 h-32 sm:w-32 sm:h-36 lg:w-36 lg:h-40 overflow-hidden rounded-full border-2 border-white/30 shadow-card transition-all duration-300 mb-2">
                         <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-300" />
                       </div>
@@ -209,7 +218,7 @@ const TourOffersSection = ({
 
           {/* Desktop-overlayed enquiry form aligned with carousel center */}
           {showEnquiryForm && (
-          <div className="hidden lg:block absolute top-1/2 right-12 -translate-y-1/2 z-50">
+          <div className="hidden lg:block absolute -translate-y-1/2 z-50" style={{ top: '42%', right: '14rem' }}>
               <div className="-left-12 -mt-6">
                 <svg width="80" height="160" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                   <path d="M0 0 C30 20, 60 40, 80 80 C60 120, 30 140, 0 160 L0 0 Z" fill="rgba(255,255,255,0.06)" />
@@ -217,14 +226,16 @@ const TourOffersSection = ({
               </div>
               <div className="w-full lg:max-w-xs">
                 <div className="px-2">
-                  <TourEnquiryForm
-                  title={formConfig.title}
-                  formType="tour"
-                  showMessage={formConfig.fields.showMessage}
-                  showDate={formConfig.fields.showDate}
-                  showDestination={formConfig.fields.showDestination}
-                  messagePlaceholder={formConfig.fields.messagePlaceholder}
-                  />
+                  <div className="border-2 border-brand-green/30 rounded-xl p-2">
+                    <TourEnquiryForm
+                      title={formConfig.title}
+                      formType="tour"
+                      showMessage={formConfig.fields.showMessage}
+                      showDate={formConfig.fields.showDate}
+                      showDestination={formConfig.fields.showDestination}
+                      messagePlaceholder={formConfig.fields.messagePlaceholder}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

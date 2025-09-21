@@ -208,7 +208,7 @@ const DayOutPackagesSection = ({
                         return (
                           <div className="hidden lg:block" style={{ position: 'absolute', top: topStyle, right: `${rightRem}rem`, transform: 'translateY(-50%)', zIndex: 30 }}>
                             <div className="w-full lg:max-w-xs">
-                              <Card className={`shadow-warm h-auto rounded-xl overflow-hidden ${overlay.cardBorder || ''}`} style={{ background: cardBg }}>
+                              <Card className={`shadow-warm h-auto rounded-xl overflow-hidden ${overlay.cardBorder ? overlay.cardBorder : 'border-2 border-brand-green/30'}`} style={{ background: cardBg }}>
                                 <CardHeader className="pb-1">
                                   <CardTitle className="text-sm font-semibold text-white flex items-center gap-1">
                                     <User className="h-3 w-3 text-brand-green" />
@@ -356,9 +356,9 @@ const DayOutPackagesSection = ({
           </div>
 
           {/* Right Column - Enquiry Form (30% on desktop) */}
-          <div className="lg:w-[30%] mt-8 lg:mt-0 lg:hidden">
+            <div className="lg:w-[30%] mt-8 lg:mt-0 lg:hidden">
             {/* Form card */}
-            <Card className="border-0 shadow-none w-full max-w-xs bg-transparent">
+            <Card className="border-2 border-brand-green/30 shadow-warm transition-all duration-300 w-full max-w-xs rounded-xl" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18))', backdropFilter: 'blur(6px)' }}>
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm font-semibold text-white flex items-center gap-1">
                   <User className="h-3 w-3 text-white/90" />
