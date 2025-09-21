@@ -19,7 +19,7 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
   };
 
   return (
-    <Card className="border-2 border-brand-green/30 hover:border-brand-green/50 hover:shadow-lg hover:shadow-brand-green/20 transition-all duration-300 h-full">
+    <Card className="border-2 border-border/30 hover:border-border/50 hover:shadow-lg hover:shadow-brand-green/20 transition-all duration-300 h-full">
       {/* Image Section - 40-45% of vertical space for enhanced visual appeal */}
       <div className="relative overflow-hidden rounded-t-lg h-40">
         <img
@@ -29,6 +29,8 @@ const DestinationCard = ({ destination }: DestinationCardProps) => {
           loading="lazy"
           decoding="async"
         />
+        {/* image scrim to ensure readable overlay text */}
+        <div className="absolute inset-0" style={{ background: 'var(--image-scrim)', pointerEvents: 'none' }} />
         {/* State Badge */}
         <div className="absolute top-2 right-2">
           <div className="bg-black/70 text-white text-sm px-3 py-1 rounded">

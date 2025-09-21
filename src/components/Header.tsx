@@ -1,11 +1,23 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import NavigationDropdown from "@/components/NavigationDropdown";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  const useDarkLinks = !isHome || isScrolled;
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navigationItems = [
     {
@@ -39,9 +51,9 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full bg-background shadow-warm">
-      {/* Top Contact Bar */}
-      <div className="bg-gradient-brand px-4 py-2 text-sm font-medium text-primary-foreground">
+    <header className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white/95 text-foreground shadow-md' : 'bg-transparent text-white'}` : 'w-full relative bg-white/95 text-foreground shadow-md'}>
+      {/* Top Contact Bar - transparent to blend with hero */}
+      <div className={`${isScrolled ? 'bg-white/0 text-foreground' : 'bg-transparent text-white'} px-4 py-2 text-sm font-medium backdrop-blur-sm`}>
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
@@ -60,13 +72,13 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="border-b border-border">
+      <nav className="backdrop-blur-sm bg-white/5 border-b border-transparent">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-10 w-auto cursor-pointer" />
-              <span className="site-title text-lg font-extrabold text-black">
+              <span className={`site-title text-lg font-extrabold ${isScrolled ? 'text-foreground' : 'text-white/90'}`}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -85,7 +97,7 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="text-foreground hover:text-brand-green transition-smooth font-medium relative group"
+                    className={`transition-smooth font-medium relative group ${useDarkLinks ? 'text-foreground hover:text-brand-green' : 'text-white hover:text-white/80'}`}
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>

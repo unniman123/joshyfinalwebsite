@@ -79,74 +79,41 @@ const HeroBanner = ({
   };
 
   return (
-    <section className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
-      {/* Background Images */}
+    <section className="relative h-screen overflow-hidden mb-12 lg:mb-20">
+      {/* Background Images with scrim overlay for predictable contrast */}
       {bannerImages.map((image, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
         >
-          <img
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-full object-cover"
-          />
+          <div className="absolute inset-0 z-0">
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover"
+            />
+            {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
+            <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
+          </div>
         </div>
       ))}
 
-      {/* Search Overlay */}
-      <div className="absolute inset-0 bg-black/30 z-10"></div>
-
-      {/* Content Overlay - Search Bar and Button */}
-      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 pt-8 ${className}`}>
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
-            {title}
+      {/* Content Overlay - Full-screen center-aligned hero content */}
+      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
+        <div className="text-center max-w-4xl mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
+            Welcome to Kerala Tours Global
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
-            {subtitle}
+
+          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
+            Beautiful beaches, record-breaking attractions and experiences like no other — explore Kerala and beyond with expertly curated packages.
           </p>
-        </div>
 
-        {/* Search Bar - Simplified Design */}
-        <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
-          <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-            <div className="flex items-center gap-3">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
-                <Input
-                  type="text"
-                  placeholder={searchPlaceholder}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
-                />
-              </div>
-              <Button
-                type="submit"
-                variant="default"
-                className="px-6 py-3 bg-[var(--accent)] hover:bg-[var(--accent)]/90 text-[var(--accent-foreground)] rounded-lg transition-colors btn-subtle-anim"
-              >
-                Search
-              </Button>
-            </div>
+          <div className="mt-8 flex justify-center gap-4">
+            <Link to="/tours" className="inline-block bg-white/10 border border-white/40 text-white px-6 py-3 rounded-md hover:bg-white/20 transition">Find Tours</Link>
+            <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition">Plan My Trip</Link>
           </div>
-        </form>
-
-        {/* Plan My Trip Button */}
-        <div className="mt-8">
-          <Button
-            variant="default"
-            size="lg"
-            className="text-lg px-8 py-3 bg-red-800 hover:bg-red-900 text-white transition-bounce btn-subtle-anim animate-fade-in-up"
-            style={{ animationDelay: '0.22s' }}
-            asChild
-          >
-            <Link to="/contact">
-              Plan My Trip
-            </Link>
-          </Button>
         </div>
       </div>
 

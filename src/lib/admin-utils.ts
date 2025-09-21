@@ -462,6 +462,11 @@ export interface HomepageAdminConfig {
       messagePlaceholder: string;
     };
     isVisible: boolean;
+    /* Optional background selection for tour offers */
+    background?: {
+      type: 'image' | 'color' | 'video';
+      value: string;
+    };
   };
   dayOutPackages: {
     sectionTitle: string;
@@ -478,6 +483,12 @@ export interface HomepageAdminConfig {
       destinationFieldLabel: string;
     };
     isVisible: boolean;
+    overlay?: {
+      topPercent?: number; // vertical position of overlay (percent)
+      rightOffset?: string; // tailwind right offset (e.g., '12' for right-12)
+      cardOpacity?: number; // 0..1 for translucent card background
+      cardBorder?: string; // tailwind border class
+    };
   };
 }
 
@@ -507,7 +518,11 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
         showDestination: false,
         messagePlaceholder: 'Write us in short of your requirements to customise a package'
       },
-      isVisible: true
+      isVisible: true,
+      background: {
+        type: 'color',
+        value: '#006b8f'
+      }
     },
     dayOutPackages: {
       sectionTitle: 'Kerala Day Out Packages',
@@ -557,7 +572,13 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
         phoneFieldPlaceholder: '',
         destinationFieldLabel: 'Destination'
       },
-      isVisible: true
+      isVisible: true,
+      overlay: {
+        topPercent: 50,
+        rightOffset: '12',
+        cardOpacity: 0.06,
+        cardBorder: 'border-white/10'
+      }
     }
   };
 };
