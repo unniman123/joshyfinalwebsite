@@ -1,4 +1,26 @@
 ---
+Date: 2025-09-21
+TaskRef: "Tour detail: preserve multi-line itinerary and wire admin images"
+
+Learnings:
+- The UI collapsed multi-line itinerary text because legacy parsing and default paragraph rendering collapsed newlines; adding `whitespace-pre-line` and improving legacy parser preserves text.
+- `InteractiveItinerary` should prefer admin `itineraryDays` structured data when available; this avoids fragile legacy parsing.
+- Admin-managed `itineraryDays[].images` are the canonical source for day-specific images; `getItineraryImages` should prefer these.
+
+Difficulties:
+- Initial parser treated each non-empty line as a separate Day, losing multi-line day descriptions. Fixed by appending subsequent lines to the current day's description.
+- Admin view was not showing day images in the side gallery; I initially placed images inline in the admin itinerary which you asked to revert. Fixed by moving image display back to gallery and ensuring admin gallery uses `itineraryDays[].images`.
+
+Successes:
+- End-to-end: structured `itineraryDays` now store multi-line descriptions and images; frontend renders them with preserved formatting.
+- `ItinerarySection` now passes `structuredItinerary` to `InteractiveItinerary` and `dayImages` to `ItineraryImageGallery`.
+
+Improvements_Identified_For_Consolidation:
+- Document admin-side contract: `itineraryDays[].description` (string, allow multi-line), `itineraryDays[].images` (string[]), `itineraryDays[].isActive` (bool), `itineraryDays[].order` (number). Store this in `memory-bank/consolidated_learnings.md` later.
+
+---
+
+---
 Date: 2025-09-16T09:12:00Z
 TaskRef: "Homepage design audit — implementation notes"
 

@@ -30,6 +30,10 @@ const ItinerarySection = ({ tour }: ItinerarySectionProps) => {
               images={itineraryImages}
               tourTitle={tour.title}
               itineraryDays={itineraryDays}
+              dayImages={structuredItinerary.reduce((acc, day) => {
+                if (day.images && day.images.length) acc[day.dayNumber] = day.images[0];
+                return acc;
+              }, {} as Record<number, string>)}
             />
           </div>
 
@@ -37,6 +41,7 @@ const ItinerarySection = ({ tour }: ItinerarySectionProps) => {
           <div className="order-1 lg:order-2 lg:col-span-7">
             <InteractiveItinerary
               itinerary={itineraryContent}
+              itineraryDays={structuredItinerary}
               tourTitle={tour.title}
             />
           </div>

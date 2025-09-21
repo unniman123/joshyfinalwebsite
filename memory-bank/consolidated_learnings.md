@@ -1,3 +1,32 @@
+## Itinerary & Admin Data Contract
+
+- **Pattern:** Prefer structured `itineraryDays[]` for all itinerary rendering and editing in the admin panel.
+- **Fields:**
+  - `id`: string
+  - `dayNumber`: number (1-based)
+  - `title`: string
+  - `description`: string (multi-line allowed; frontend renders with `whitespace-pre-line`)
+  - `images`: string[] (URLs; first image used as representative day image)
+  - `isActive`: boolean
+  - `order`: number
+
+- **Rationale:** Structured data avoids fragile text-parsing and allows direct association of images and metadata to each day.
+
+## Frontend Rendering Rules
+
+- `InteractiveItinerary` will prefer `itineraryDays` when present; fallback to legacy `itinerary` parsing only if structured data is absent.
+- Multi-line descriptions are preserved by rendering with `whitespace-pre-line` CSS.
+- `ItineraryImageGallery` will prefer `itineraryDays[].images[0]` as day images; when missing, falls back to section-level itinerary images.
+
+## Admin UX Requirements (for implementation)
+
+- Add CRUD controls for `itineraryDays` including an image uploader for each day (store URLs in `itineraryDays[].images`).
+- Ensure admin saves `description` without trimming or sanitizing line breaks (store raw text); the admin preview should render with `whitespace-pre-line`.
+
+## Migration Notes
+
+- Existing legacy `itinerary` strings should be parsed into `itineraryDays` during import; keep legacy `itinerary` as a fallback source until admin panel is fully populated.
+
 ## Homepage Design — Consolidated Learnings
 
 - **Canonical color tokens**: Keep a small set of canonical tokens (primary, secondary, accent, destructive, background, foreground). Use `--golden` for decorative highlights only; pick `--accent` or `--primary` for primary CTAs and align visual language so teal/orange seen in screenshots map to documented tokens.

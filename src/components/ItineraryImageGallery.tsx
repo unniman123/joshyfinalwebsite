@@ -7,9 +7,11 @@ interface ItineraryImageGalleryProps {
   tourTitle: string;
   itineraryDays?: number;
   className?: string;
+  // Optional mapping: one image URL per day index (preferred)
+  dayImages?: Record<number, string>;
 }
 
-const ItineraryImageGallery = ({ images, tourTitle, itineraryDays = 6, className = "" }: ItineraryImageGalleryProps) => {
+const ItineraryImageGallery = ({ images, tourTitle, itineraryDays = 6, className = "", dayImages = {} }: ItineraryImageGalleryProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -19,12 +21,19 @@ const ItineraryImageGallery = ({ images, tourTitle, itineraryDays = 6, className
 
     if (!filteredImages.length) return [];
 
+    // If caller provided explicit dayImages mapping, prefer that (ordered by day index)
+    const mappedDayImages: string[] = [];
+    for (let i = 0; i < itineraryDays; i++) {
+      if (dayImages[i + 1]) mappedDayImages.push(dayImages[i + 1]);
+    }
+    if (mappedDayImages.length) return mappedDayImages;
+
     // If we have enough images, try to match itinerary days
     if (filteredImages.length >= itineraryDays) {
       return filteredImages.slice(0, itineraryDays);
     }
 
-    // If we have fewer images than days, distribute them evenly
+    // If we have fewer images than days, return what we have
     return filteredImages;
   };
 
