@@ -110,6 +110,31 @@ const HeroBanner = ({
             Beautiful beaches, record-breaking attractions and experiences like no other — explore Kerala and beyond with expertly curated packages.
           </p>
 
+          {/* Search Bar - restored */}
+          <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto mt-6">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
+                  <Input
+                    type="text"
+                    placeholder={searchPlaceholder}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  variant="cta"
+                  className="bg-button-primary text-white px-6 py-3 rounded-lg btn-subtle-anim"
+                >
+                  Search
+                </Button>
+              </div>
+            </div>
+          </form>
+
           <div className="mt-8 flex justify-center gap-4">
             <Link to="/tours" className="inline-block bg-white/10 border border-white/40 text-white px-6 py-3 rounded-md hover:bg-white/20 transition">Find Tours</Link>
             <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition">Plan My Trip</Link>
