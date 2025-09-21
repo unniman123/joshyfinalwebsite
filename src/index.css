@@ -43,12 +43,30 @@
     /* Namaste section specific tint (uses success token as base) */
     --namaste-bg: 120 40% 85%; /* darker tint for improved contrast */
     --namaste-foreground: 120 18% 8%;
+    /* Promo magenta used for marketing panels */
+    --promo-magenta: 328 40% 30%;
+    --promo-magenta-foreground: 0 0% 98%;
+    /* Offers section solid background color (teal sample) - tuned HSL for better contrast */
+    --offers-bg: hsl(195 70% 32%);
+    --offers-bg-foreground: 0 0% 100%;
+    /* Form placeholder token */
+    --form-placeholder: rgba(255,255,255,0.6);
+    /* Form label color (defaults to near-black for legibility) */
+    --form-label: #07121a;
     /* Light blue token for tour image backgrounds */
     --tour-image-bg: 210 56% 88%; /* slightly darker light blue for better visibility */
     --tour-image-bg-foreground: 210 22% 14%;
     /* Light red token for day out package image areas */
     --dayout-image-bg: 0 65% 82%; /* darker pale red for stronger visibility */
     --dayout-image-bg-foreground: 0 20% 12%;
+
+    /* Image scrim for predictable text contrast over photos */
+    --image-scrim: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.55) 100%);
+
+    /* Button tokens (use H S L numeric triplet pattern used across the file) */
+    --button-primary-bg: 28 100% 47%; /* orange CTA (H S L) */
+    --button-primary-foreground: 210 40% 98%;
+    --button-focus-ring: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;

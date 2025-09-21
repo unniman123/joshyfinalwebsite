@@ -47,6 +47,11 @@ export default {
 					DEFAULT: 'hsl(var(--accent))',
 					foreground: 'hsl(var(--accent-foreground))'
 				},
+				/* button primary maps to token for consistent CTA styling */
+				'button-primary': {
+					DEFAULT: 'hsl(var(--button-primary-bg))',
+					foreground: 'hsl(var(--button-primary-foreground))'
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -71,6 +76,10 @@ export default {
 				namaste: {
 					DEFAULT: 'hsl(var(--namaste-bg))',
 					foreground: 'hsl(var(--namaste-foreground))'
+				},
+				promo: {
+					magenta: 'hsl(var(--promo-magenta))',
+					'foreground': 'hsl(var(--promo-magenta-foreground))'
 				},
 				/* tour image background token */
 				tourImage: {

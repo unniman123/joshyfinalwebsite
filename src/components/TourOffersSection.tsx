@@ -117,111 +117,116 @@ const TourOffersSection = ({
 
 
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {sectionTitle}
-          </h2>
-          <div className="w-24 h-1 bg-gradient-brand mx-auto mb-6"></div>
-        </div>
+    <section className="relative">
+      {/* Full-bleed background image extended to edges */}
+      <div className="relative extend-left rounded-tr-2xl rounded-br-2xl overflow-hidden" style={{ background: 'var(--offers-bg)' }}>
+        {/* optional scrim for subtle depth */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.08), rgba(0,0,0,0.02))' }} />
 
-        {/* Two-Column Layout: 70% Tours + 30% Enquiry Form */}
-        <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-          {/* Left Column - Tour Packages Carousel (70% on desktop) */}
-          <div className="flex-1 lg:w-[70%] bg-tourImage p-6 rounded-lg extend-left">
-            <div className="relative px-12">
-              {/* Navigation Buttons */}
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
-                onClick={goToPrevious}
-                disabled={currentIndex === 0}
-                aria-label="Previous tours"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
-                onClick={goToNext}
-                disabled={currentIndex === totalPages - 1}
-                aria-label="Next tours"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </Button>
-
-              {/* Tour Cards Carousel - Oval Shaped Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300">
-                {getCurrentTours().map((tour) => (
-                  <Link
-                    key={tour.id}
-                    to={`/tours/${tour.slug}`}
-                    className="group flex flex-col items-center transition-[transform] duration-300 hover:scale-[1.05] focus:scale-[1.05]"
-                    aria-label={`View details for ${tour.title} tour`}
-                  >
-                    {/* Oval Image Area */}
-                    <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-48 overflow-hidden rounded-full border-2 border-brand-green/30 hover:border-brand-green/50 shadow-card hover:shadow-warm hover:shadow-brand-green/20 transition-all duration-300 mb-3 bg-tourImage flex items-center justify-center">
-                      <img
-                        src={tour.image}
-                        alt={tour.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300" />
-
-                      {/* Tour Name Overlay on Hover */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h3 className="text-white text-sm sm:text-base font-bold text-center px-3 leading-tight drop-shadow-lg">
-                          {tour.title}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Tour Name Below Card */}
-                    <div className="text-center">
-                      <h3 className="text-sm sm:text-base font-semibold text-foreground leading-tight group-hover:text-brand-green transition-colors duration-300">
-                        {tour.title}
-                      </h3>
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2 max-w-[160px]">
-                        {tour.description}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Carousel Indicators */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <button
-                    key={index}
-                    className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-brand-green' : 'bg-muted-foreground/30'
-                      }`}
-                    onClick={() => setCurrentIndex(index)}
-                    aria-label={`Go to page ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
+        <div className="relative container mx-auto px-4 py-10 lg:py-12 max-w-6xl min-h-[280px]">
+          {/* Section Header overlay */}
+          <div className="text-center mb-10 text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
+            <p className="max-w-2xl mx-auto text-lg opacity-90">Thousands of activities thought out for you</p>
           </div>
 
-          {/* Right Column - Enquiry Form (30% on desktop) */}
+          <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
+            {/* Left Column - Tour Packages Carousel (takes left area, transparent cards) */}
+            <div className="flex-1 lg:w-[65%] p-3 lg:pr-6">
+              <div className="relative px-6">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
+                  onClick={goToPrevious}
+                  disabled={currentIndex === 0}
+                  aria-label="Previous tours"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
+                  onClick={goToNext}
+                  disabled={currentIndex === totalPages - 1}
+                  aria-label="Next tours"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </Button>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 transition-all duration-300">
+                  {getCurrentTours().map((tour) => (
+                    <Link
+                      key={tour.id}
+                      to={`/tours/${tour.slug}`}
+                      className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
+                      aria-label={`View details for ${tour.title} tour`}
+                    >
+                    <div className="relative w-28 h-36 sm:w-32 sm:h-40 lg:w-36 lg:h-44 overflow-hidden rounded-full border-2 border-white/30 shadow-card transition-all duration-300 mb-2">
+                        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-300" />
+                      </div>
+
+                    <div className="text-center">
+                      <h3 className="text-sm sm:text-sm font-semibold text-white leading-tight">{tour.title}</h3>
+                      <p className="text-xs text-white/80 mt-1 line-clamp-2 max-w-[140px]">{tour.description}</p>
+                    </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="flex justify-center mt-4 space-x-2">
+                  {Array.from({ length: totalPages }).map((_, index) => (
+                    <button
+                      key={index}
+                      className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-white' : 'bg-white/40'}`}
+                      onClick={() => setCurrentIndex(index)}
+                      aria-label={`Go to page ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - mobile stacked form (desktop overlay will be absolute below) */}
+            {showEnquiryForm && (
+              <div className="lg:w-[30%] mt-6 lg:mt-0 lg:relative">
+                <div className="lg:hidden w-full">
+                  <TourEnquiryForm
+                    title={formConfig.title}
+                    formType="tour"
+                    showMessage={formConfig.fields.showMessage}
+                    showDate={formConfig.fields.showDate}
+                    showDestination={formConfig.fields.showDestination}
+                    messagePlaceholder={formConfig.fields.messagePlaceholder}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop-overlayed enquiry form aligned with carousel center */}
           {showEnquiryForm && (
-            <div className="lg:w-[30%] mt-8 lg:mt-0">
-              <TourEnquiryForm
-                title={formConfig.title}
-                formType="tour"
-                showMessage={formConfig.fields.showMessage}
-                showDate={formConfig.fields.showDate}
-                showDestination={formConfig.fields.showDestination}
-                messagePlaceholder={formConfig.fields.messagePlaceholder}
-              />
+          <div className="hidden lg:block absolute top-1/2 right-12 -translate-y-1/2 z-50">
+              <div className="-left-12 -mt-6">
+                <svg width="80" height="160" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M0 0 C30 20, 60 40, 80 80 C60 120, 30 140, 0 160 L0 0 Z" fill="rgba(255,255,255,0.06)" />
+                </svg>
+              </div>
+              <div className="w-full lg:max-w-xs">
+                <div className="px-2">
+                  <TourEnquiryForm
+                  title={formConfig.title}
+                  formType="tour"
+                  showMessage={formConfig.fields.showMessage}
+                  showDate={formConfig.fields.showDate}
+                  showDestination={formConfig.fields.showDestination}
+                  messagePlaceholder={formConfig.fields.messagePlaceholder}
+                  />
+                </div>
+              </div>
             </div>
           )}
         </div>

@@ -9,7 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-brand transition-smooth hover:-translate-y-0.5 hover:scale-105 active:translate-y-0 border border-[var(--brand-green)]",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-brand transition-smooth hover:-translate-y-0.5 hover:scale-105 active:translate-y-0",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -18,8 +18,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-[var(--brand-green)] text-white hover:shadow-brand hover:scale-105 transition-bounce font-semibold hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-[var(--brand-green)]/40 border border-[var(--brand-green)]",
-        cta: "bg-[var(--brand-green)] text-white hover:bg-[var(--brand-green)]/90 shadow-warm transition-smooth font-semibold hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-[var(--brand-green)]/40 border border-[var(--brand-green)]",
+        hero: "bg-gradient-brand text-primary-foreground hover:shadow-brand hover:scale-105 transition-bounce font-semibold hover:-translate-y-0.5 active:translate-y-0",
+        cta: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-warm transition-smooth font-semibold hover:-translate-y-0.5 active:translate-y-0",
         "outline-white": "border-2 border-white/20 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm transition-smooth",
       },
       size: {
