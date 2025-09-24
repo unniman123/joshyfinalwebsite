@@ -9,31 +9,42 @@ interface TourDetailHeaderProps {
 const TourDetailHeader = ({
   tour
 }: TourDetailHeaderProps) => {
-  return <div className="relative">
-      {/* TODO: Replace hero image stub with TourImageGallery slideshow */}
-      <TourImageGallery images={tour.images} />
-      
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        
-      {/* Overlay content */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-end">
-            <div className="lg:col-span-2">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{tour.title}</h1>
-              <p className="text-lg text-white/90 mb-4 max-w-2xl">{tour.description}</p>
-              
-              
+  return (
+    <div className="bg-background">
+      <div className="container mx-auto max-w-7xl px-4 py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          {/* Left: Large image */}
+          <div className="lg:col-span-7">
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <img src={(tour.images && tour.images[0] && tour.images[0].url) || '/placeholder-1200x600.png'} alt={tour.title} className="w-full h-80 object-cover lg:h-96" />
             </div>
-            
-            <div className="lg:text-right">
-              <Button variant="hero" size="lg" className="w-full lg:w-auto" asChild>
-                
-              </Button>
+          </div>
+
+          {/* Right: Title and meta */}
+          <div className="lg:col-span-5">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">{tour.title}</h1>
+            <p className="text-base md:text-lg text-muted-foreground mb-6">{tour.description}</p>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Clock className="text-muted-foreground" />
+                <span className="text-sm text-foreground">{tour.duration ? `${tour.duration} days` : 'Duration TBA'}</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <MapPin className="text-muted-foreground" />
+                <span className="text-sm text-foreground">{tour.category || 'Various destinations'}</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <IndianRupee className="text-muted-foreground" />
+                <span className="text-sm text-foreground">{tour.price || 'Price on request'}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
 export default TourDetailHeader;

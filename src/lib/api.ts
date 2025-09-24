@@ -49,6 +49,8 @@ export interface ItineraryDay {
   dayNumber: number;
   title: string;
   description?: string;
+  /** Optional calendar date for the itinerary day (ISO string) */
+  date?: string;
   activities: ItineraryActivity[];
   highlights: string[];
   meals: string[];

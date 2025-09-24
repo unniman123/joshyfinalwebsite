@@ -135,6 +135,8 @@ export async function createItineraryDay(tourId: string, dayData: Partial<Itiner
     location: dayData.location,
     difficulty: dayData.difficulty,
     images: dayData.images || [],
+    // Persist optional date field if provided
+    date: dayData.date,
     isActive: dayData.isActive !== false,
     order: dayData.order || 0
   };
@@ -144,7 +146,10 @@ export async function createItineraryDay(tourId: string, dayData: Partial<Itiner
 
 export async function updateItineraryDay(dayId: string, updates: Partial<ItineraryDay>): Promise<ItineraryDay> {
   // TODO: Implement Supabase itinerary day update
-  return updates as ItineraryDay;
+  // Ensure date field is preserved in updates
+  return {
+    ...(updates as ItineraryDay),
+  } as ItineraryDay;
 }
 
 export async function deleteItineraryDay(dayId: string): Promise<boolean> {

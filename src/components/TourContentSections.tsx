@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Tour } from "@/lib/api";
 import OverviewSection from "@/components/OverviewSection";
 import ItinerarySection from "@/components/ItinerarySection";
 import AdminControllableSection from "@/components/AdminControllableSection";
 import AdminControllableItinerary from "@/components/AdminControllableItinerary";
 import AdminControllableImageGallery from "@/components/AdminControllableImageGallery";
+import ItineraryHighlightCarousel from "./ItineraryHighlightCarousel";
+import ItineraryHighlightList from "./ItineraryHighlightList";
 
 interface TourContentSectionsProps {
   tour: Tour;
@@ -32,6 +35,32 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           </div>
         </section>
 
+        {/* Optional itinerary highlight list (admin data present) - vertical cards replacing detailed itinerary */}
+        {tour.itineraryDays && tour.itineraryDays.length > 0 && (
+          <section className="py-8 px-4">
+            <div className="container mx-auto max-w-7xl">
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">Highlights</h2>
+
+              <div className="relative">
+                {/* Decorative left-side vertical stripe / artwork */}
+                <div className="absolute left-[-40px] top-0 bottom-0 hidden lg:block" aria-hidden="true">
+                  <div className="w-32 h-full bg-gradient-to-b from-brand-100 to-brand-200 rounded-r-xl shadow-inner opacity-80" />
+                </div>
+
+                <div className="pl-10">
+                  {/* Mobile: show carousel, Desktop: show vertical list */}
+                  <div className="block lg:hidden">
+                    <ItineraryHighlightCarousel days={tour.itineraryDays} images={tour.images} />
+                  </div>
+                  <div className="hidden lg:block">
+                    <ItineraryHighlightList days={tour.itineraryDays} images={tour.images} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Admin-controlled sections */}
         {visibleSections.map((section) => {
           if (section.type === 'overview') {
@@ -56,44 +85,8 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           }
 
           if (section.type === 'itinerary') {
-            return (
-              <section key={section.id} className="py-12 md:py-16 lg:py-20 bg-muted/30">
-                <div className="container mx-auto max-w-7xl px-4">
-                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
-                    {/* Left side - Images (30%) */}
-                    <div className="order-2 lg:order-1 lg:col-span-3">
-                      {hasStructuredImages && (
-                        <AdminControllableImageGallery
-                          images={tour.images}
-                          section="itinerary"
-                          tourTitle={tour.title}
-                        />
-                      )}
-                    </div>
-
-                    {/* Right side - Itinerary (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7">
-                      {hasStructuredItinerary ? (
-                        <AdminControllableItinerary
-                          itineraryDays={tour.itineraryDays}
-                          tourTitle={tour.title}
-                        />
-                      ) : (
-                        <div className="space-y-6">
-                          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                            {section.title}
-                          </h2>
-                          <div
-                            className="text-muted-foreground leading-relaxed"
-                            dangerouslySetInnerHTML={{ __html: section.content || '' }}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </section>
-            );
+            // Replace legacy detailed itinerary with the highlights list — treat highlights as canonical itinerary now.
+            return null;
           }
 
           // Other admin-controlled sections
