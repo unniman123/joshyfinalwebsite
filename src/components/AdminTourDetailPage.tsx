@@ -489,14 +489,6 @@ const AdminTourDetailPage: React.FC<AdminTourDetailPageProps> = ({ tourId }) => 
                           rows={4}
                         />
                       </div>
-                      <div>
-                        <Label>Date (optional)</Label>
-                        <Input
-                          type="date"
-                          value={day.date || ''}
-                          onChange={(e) => updateItineraryDay(day.id, { date: e.target.value || undefined })}
-                        />
-                      </div>
                     </CardContent>
                   )}
                 </Card>
