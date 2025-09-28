@@ -174,7 +174,8 @@ const TourEnquiryForm = ({
           <div className="pt-1">
             <Button
               type="submit"
-              className="w-full bg-gradient-brand hover:shadow-brand transition-all duration-300 h-9 text-[12px] text-white"
+              className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px]"
+              style={{ background: 'hsl(var(--button-primary-bg))', color: 'hsl(var(--button-primary-foreground))' }}
             >
               Send Enquiry
             </Button>
