@@ -33,9 +33,7 @@ const AboutUsSection = () => {
             <p className="text-base leading-relaxed max-w-3xl text-justify">
               Now please click on your area of interest and reach us to enjoy your precious vacations, which can be either local or international. Whether your travel intention is Relaxation, Discovery, Exploration, Spiritual, Tourism, Vacationing, Research for gathering information, Building interpersonal relationships, Business, Healthcare, School Excursion we are at your finger tips.
             </p>
-            <a href="/contact" className="inline-block w-max border border-white/60 rounded-md px-5 py-2 hover:bg-white/10 transition focus:outline-none focus:ring-4 focus:ring-white/20 mt-6 text-sm" aria-label="Contact Us">
-              Contact us
-            </a>
+            {/* Contact button removed as requested */}
           </div>
 
         </div>
