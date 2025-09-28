@@ -94,11 +94,12 @@ const EnquiryForm = ({
     }));
   };
   return <div className="max-w-2xl mx-auto">
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="bg-slate-100/60 text-foreground rounded-lg p-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
-          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" required />
+          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name " required />
         </div>
 
         <div className="space-y-2">
@@ -170,7 +171,7 @@ const EnquiryForm = ({
         type="submit"
         variant="hero"
         size="lg"
-        className="w-full"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
         disabled={isSubmitting}
         aria-describedby="form-status"
       >
@@ -192,7 +193,8 @@ const EnquiryForm = ({
       {/* TODO: Wire to real API endpoint when Supabase is integrated */}
       {/* TODO: Map new form fields to Supabase columns on integration */}
       {/* TODO: Add email notifications to admin on Quick Enquiry submission */}
-    </form>
+      </form>
+    </div>
   </div>;
 };
 export default EnquiryForm;
