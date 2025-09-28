@@ -136,14 +136,15 @@ const TourOffersSection = ({
         <div
           className="absolute left-0 top-0 h-full"
           style={{
-            width: 'calc(100% - 18rem)',
+            // Reduce the blue panel width so the enquiry form sits visually outside the panel
+            width: 'calc(100% - 36rem)',
             background: 'var(--offers-bg)',
             borderTopRightRadius: '1rem',
             borderBottomRightRadius: '1rem'
           }}
         />
         {/* optional scrim for subtle depth over the colored panel */}
-        <div className="absolute left-0 top-0 h-full" style={{ width: 'calc(100% - 18rem)', background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} />
+        <div className="absolute left-0 top-0 h-full" style={{ width: 'calc(100% - 36rem)', background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} />
 
         <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-6xl min-h-[220px]">
           {/* Section Header overlay - shifted left on large screens */}
@@ -198,11 +199,12 @@ const TourOffersSection = ({
               </div>
             </div>
 
-            {/* Right Column - mobile stacked form (desktop overlay will be absolute below) */}
+            {/* Right Column - enquiry form shown as a sibling column (mobile: dark card, desktop: semi-opaque light card) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-6 lg:mt-0 lg:relative">
-                <div className="lg:hidden w-full">
-                  <div className="bg-slate-900 text-white rounded-lg p-3">
+              <div className="lg:w-[30%] mt-6 lg:mt-0 lg:block">
+                <div className="w-full">
+                  {/* Change form panel color to green: dark green on mobile, subtle green overlay on desktop */}
+                  <div className="bg-green-900 lg:bg-green-600/10 text-white lg:text-green-900 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
                       formType="tour"
@@ -217,40 +219,7 @@ const TourOffersSection = ({
             )}
           </div>
 
-          {/* Desktop-overlayed enquiry form aligned with carousel center */}
-          {showEnquiryForm && (
-            <div
-              className="hidden lg:block absolute z-50"
-              style={{
-                top: '42%',
-                right: '14rem',
-                transform: 'translateY(-50%)',
-                maxWidth: '28rem'
-              }}
-            >
-              <div className="-left-12 -mt-6">
-                <svg width="80" height="160" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                  <path d="M0 0 C30 20, 60 40, 80 80 C60 120, 30 140, 0 160 L0 0 Z" fill="rgba(255,255,255,0.06)" />
-                </svg>
-              </div>
-              <div className="w-full lg:max-w-xs">
-                <div className="px-2">
-                  {/* Stronger visual separation: semi-opaque backdrop, larger shadow, and border */}
-                  {/* remove outer border to avoid double-border with inner Card */}
-                  <div className="bg-white/6 backdrop-blur-sm text-white rounded-xl p-4 shadow-2xl">
-                    <TourEnquiryForm
-                      title={formConfig.title}
-                      formType="tour"
-                      showMessage={formConfig.fields.showMessage}
-                      showDate={formConfig.fields.showDate}
-                      showDestination={formConfig.fields.showDestination}
-                      messagePlaceholder={formConfig.fields.messagePlaceholder}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {/* Desktop overlay removed; form is now a right-column sibling for clearer layout and accessibility */}
         </div>
       </div>
     </section>
