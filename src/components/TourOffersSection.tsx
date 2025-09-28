@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -94,6 +94,9 @@ const TourOffersSection = ({
 
   // Carousel state management
   const [currentIndex, setCurrentIndex] = useState(0);
+  // Autoplay state: pause when user hovers or focuses the carousel
+  const [isPaused, setIsPaused] = useState(false);
+  const AUTOPLAY_INTERVAL_MS = 4000;
   const toursPerPage = 4;
   const totalPages = Math.ceil(tourOffers.length / toursPerPage);
 
@@ -107,6 +110,15 @@ const TourOffersSection = ({
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
   };
+
+  // Autoplay effect: advance slide every AUTOPLAY_INTERVAL_MS when not paused
+  useEffect(() => {
+    if (isPaused || totalPages <= 1) return;
+    const id = window.setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalPages);
+    }, AUTOPLAY_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [isPaused, totalPages]);
 
   // Get current tours to display
   const getCurrentTours = () => {
@@ -143,29 +155,15 @@ const TourOffersSection = ({
             {/* Left Column - Tour Packages Carousel (takes left area, transparent cards) */}
             <div className="flex-1 lg:w-[65%] p-3 lg:pr-6">
                 <div className="relative px-6" style={{ transform: 'translateX(-10vw)' }}>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute left-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
-                  onClick={goToPrevious}
-                  disabled={currentIndex === 0}
-                  aria-label="Previous tours"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </Button>
+                {/* Autoplay slideshow: prev/next buttons removed. Pause on hover implemented on parent wrapper. */}
 
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="absolute right-0 top-1/3 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm border-brand-green/20 hover:bg-brand-green hover:text-white shadow-lg"
-                  onClick={goToNext}
-                  disabled={currentIndex === totalPages - 1}
-                  aria-label="Next tours"
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 transition-all duration-300"
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
+                  onFocus={() => setIsPaused(true)}
+                  onBlur={() => setIsPaused(false)}
                 >
-                  <ChevronRight className="h-5 w-5" />
-                </Button>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 transition-all duration-300">
                   {getCurrentTours().map((tour) => (
                     <Link
                       key={tour.id}
