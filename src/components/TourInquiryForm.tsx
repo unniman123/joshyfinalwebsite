@@ -65,8 +65,8 @@ const TourEnquiryForm = ({
     // Add a subtle defined border so the enquiry form reads as a distinct panel (green theme)
     <Card className="border border-green-200/20 shadow-none w-full bg-transparent">
       <CardHeader className="pb-1">
-        <CardTitle className="text-sm font-semibold text-green-50 flex items-center gap-1">
-          <User className="h-3 w-3 text-white/90" />
+        <CardTitle className="text-sm font-semibold text-black flex items-center gap-1">
+          <User className="h-3 w-3 text-black/60" />
           {title}
         </CardTitle>
       </CardHeader>
