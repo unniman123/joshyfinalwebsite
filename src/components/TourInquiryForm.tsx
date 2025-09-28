@@ -62,14 +62,16 @@ const TourEnquiryForm = ({
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
-    <Card className="border-0 shadow-none w-full bg-transparent">
+    // Add a subtle defined border so the enquiry form reads as a distinct panel
+    <Card className="border border-white/12 shadow-none w-full bg-transparent">
       <CardHeader className="pb-1">
         <CardTitle className="text-sm font-semibold text-white flex items-center gap-1">
           <User className="h-3 w-3 text-white/90" />
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className="px-2 py-2" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18))', backdropFilter: 'blur(6px)', boxShadow: '0 8px 24px rgba(0,0,0,0.25)' }}>
+      {/* Make inner background transparent to avoid doubling-up dark scrims - parent overlay already provides a subtle backdrop */}
+      <CardContent className="px-2 py-2" style={{ background: 'transparent', backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.12)' }}>
         <form onSubmit={handleFormSubmit} className="space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
