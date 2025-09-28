@@ -19,7 +19,7 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
 
             {/* Full overview content with no line limitations */}
             <div className="prose prose-lg max-w-none">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line text-justify">
                 {overviewContent}
               </p>
             </div>

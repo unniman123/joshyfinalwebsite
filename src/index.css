@@ -1,5 +1,7 @@
 /* Custom component styles */
 @import './styles/socialIcons.css';
+/* Load font pairing for Option 1: Inter (UI) + Merriweather (headings) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -155,8 +157,21 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Use Roboto as the industrial-standard sans-serif across the site */
-    font-family: 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    /* Option 1 font pairing: Inter for UI/body, Merriweather for headings */
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  /* Use Merriweather for all major headings to create an editorial, readable contrast */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

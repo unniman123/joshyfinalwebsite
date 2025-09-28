@@ -112,6 +112,19 @@ export default {
 				'gradient-warm': 'var(--gradient-warm)',
 				'gradient-hero': 'var(--gradient-hero)'
 			},
+				// Typography variants for special content areas (itinerary, overview etc.)
+				typography: {
+					itinerary: {
+						css: {
+							p: {
+								textAlign: 'justify'
+							},
+							'pre, code': {
+								whiteSpace: 'pre-line'
+							}
+						}
+					}
+				},
 			boxShadow: {
 				'golden': 'var(--shadow-golden)',
 				'warm': 'var(--shadow-warm)',
@@ -160,5 +173,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"), require('@tailwindcss/typography')],
 } satisfies Config;
