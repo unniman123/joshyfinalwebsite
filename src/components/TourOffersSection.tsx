@@ -173,9 +173,10 @@ const TourOffersSection = ({
                       className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
                       aria-label={`View details for ${tour.title} tour`}
                     >
-                    <div className="relative w-28 h-32 sm:w-32 sm:h-36 lg:w-36 lg:h-40 overflow-hidden rounded-full border-2 border-white/30 shadow-card transition-all duration-300 mb-2">
+                        {/* Increased oval card height and stronger border for prominence */}
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-44 lg:h-56 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
                         <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-300" />
+                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
                       </div>
 
                     <div className="text-center">
@@ -203,14 +204,16 @@ const TourOffersSection = ({
             {showEnquiryForm && (
               <div className="lg:w-[30%] mt-6 lg:mt-0 lg:relative">
                 <div className="lg:hidden w-full">
-                  <TourEnquiryForm
-                    title={formConfig.title}
-                    formType="tour"
-                    showMessage={formConfig.fields.showMessage}
-                    showDate={formConfig.fields.showDate}
-                    showDestination={formConfig.fields.showDestination}
-                    messagePlaceholder={formConfig.fields.messagePlaceholder}
-                  />
+                  <div className="bg-slate-900 text-white rounded-lg p-3">
+                    <TourEnquiryForm
+                      title={formConfig.title}
+                      formType="tour"
+                      showMessage={formConfig.fields.showMessage}
+                      showDate={formConfig.fields.showDate}
+                      showDestination={formConfig.fields.showDestination}
+                      messagePlaceholder={formConfig.fields.messagePlaceholder}
+                    />
+                  </div>
                 </div>
               </div>
             )}
@@ -218,7 +221,15 @@ const TourOffersSection = ({
 
           {/* Desktop-overlayed enquiry form aligned with carousel center */}
           {showEnquiryForm && (
-          <div className="hidden lg:block absolute -translate-y-1/2 z-50" style={{ top: '42%', right: '14rem' }}>
+            <div
+              className="hidden lg:block absolute z-50"
+              style={{
+                top: '42%',
+                right: '14rem',
+                transform: 'translateY(-50%)',
+                maxWidth: '28rem'
+              }}
+            >
               <div className="-left-12 -mt-6">
                 <svg width="80" height="160" viewBox="0 0 80 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                   <path d="M0 0 C30 20, 60 40, 80 80 C60 120, 30 140, 0 160 L0 0 Z" fill="rgba(255,255,255,0.06)" />
@@ -226,7 +237,8 @@ const TourOffersSection = ({
               </div>
               <div className="w-full lg:max-w-xs">
                 <div className="px-2">
-                  <div className="border-2 border-brand-green/30 rounded-xl p-2">
+                  {/* Stronger visual separation: semi-opaque backdrop, larger shadow, and border */}
+                  <div className="bg-white/6 backdrop-blur-sm border border-white/10 text-white rounded-xl p-4 shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
                       formType="tour"
