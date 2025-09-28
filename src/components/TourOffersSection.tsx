@@ -236,7 +236,8 @@ const TourOffersSection = ({
               <div className="w-full lg:max-w-xs">
                 <div className="px-2">
                   {/* Stronger visual separation: semi-opaque backdrop, larger shadow, and border */}
-                  <div className="bg-white/6 backdrop-blur-sm border border-white/10 text-white rounded-xl p-4 shadow-2xl">
+                  {/* remove outer border to avoid double-border with inner Card */}
+                  <div className="bg-white/6 backdrop-blur-sm text-white rounded-xl p-4 shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
                       formType="tour"
