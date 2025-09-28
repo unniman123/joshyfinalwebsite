@@ -6,19 +6,21 @@ const AboutUsSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-stretch max-w-5xl mx-auto shadow-card rounded-2xl overflow-hidden">
 
-          {/* Left: Image (20%) */}
-          <div className="w-full lg:w-1/5 h-40 lg:h-auto">
-            <img
-              src={aboutImage}
-              alt="Family enjoying attractions"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+          {/* Left: Image Card */}
+          <div className="w-full lg:w-1/4 flex items-start lg:items-center justify-center p-6 lg:p-8">
+            <div className="w-40 h-40 lg:w-48 lg:h-48 bg-white rounded-xl overflow-hidden shadow-card">
+              <img
+                src={aboutImage}
+                alt="Family enjoying attractions"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
           </div>
 
-          {/* Right: Content (80%) */}
-          <div className="w-full lg:w-4/5 p-6 lg:pl-8 flex flex-col justify-center text-white bg-promo-magenta rounded-tr-2xl rounded-br-2xl" role="region" aria-labelledby="about-heading">
-            <h2 id="about-heading" className="text-3xl md:text-4xl lg:text-4xl font-bold mb-4">
+          {/* Right: Content (75%) */}
+          <div className="w-full lg:w-3/4 p-6 lg:pl-8 flex flex-col justify-center text-gray-900 bg-gray-100 rounded-tr-2xl rounded-br-2xl" role="region" aria-labelledby="about-heading">
+            <h2 id="about-heading" className="text-3xl md:text-4xl lg:text-4xl font-bold mb-4 text-green-600">
               NAMASTE !
             </h2>
 
