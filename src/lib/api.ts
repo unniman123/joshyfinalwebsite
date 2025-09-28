@@ -426,7 +426,7 @@ Duration: 10 nights &amp; 11 days`,
         {
           id: "itinerary-1",
           type: "itinerary",
-          title: "Detailed Itinerary",
+          title: "Itinerary",
           content: "",
           isVisible: true,
           order: 2
@@ -762,7 +762,7 @@ Tour Includes:
         {
           id: "itinerary-2",
           type: "itinerary",
-          title: "Detailed Itinerary",
+          title: "Itinerary",
           content: "",
           isVisible: true,
           order: 2
@@ -862,7 +862,7 @@ Tour Includes:
         {
           id: "itinerary-3",
           type: "itinerary",
-          title: "Detailed Itinerary",
+          title: "Itinerary",
           content: "",
           isVisible: true,
           order: 2
@@ -960,7 +960,7 @@ Tour Includes:
         {
           id: "itinerary-4",
           type: "itinerary",
-          title: "Detailed Itinerary",
+          title: "Itinerary",
           content: "",
           isVisible: true,
           order: 2
@@ -1086,7 +1086,7 @@ Tour Includes:
         {
           id: "itinerary-5",
           type: "itinerary",
-          title: "Detailed Itinerary",
+          title: "Itinerary",
           content: "",
           isVisible: true,
           order: 2

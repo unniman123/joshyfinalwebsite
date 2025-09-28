@@ -60,7 +60,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
   if (!days.length) {
     return (
       <div className="text-center py-8">
-        <p className="text-muted-foreground">Detailed itinerary coming soon...</p>
+        <p className="text-muted-foreground">Itinerary coming soon...</p>
       </div>
     );
   }
@@ -69,7 +69,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
     <div className="space-y-6">
       {/* Section heading */}
       <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-        Detailed Itinerary
+        Itinerary
       </h2>
 
       {/* Single content box with paragraphed content */}

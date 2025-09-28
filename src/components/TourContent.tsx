@@ -32,7 +32,7 @@ const TourContent = ({
         
         <TabsContent value="itinerary" className="mt-6">
           <div className="prose max-w-none">
-            <h3 className="text-2xl font-semibold mb-4">Detailed Itinerary</h3>
+            <h3 className="text-2xl font-semibold mb-4">Itinerary</h3>
             {/* TODO: Populate with tour.itinerary */}
             <div className="bg-muted/30 p-6 rounded-lg">
               <p className="text-muted-foreground">
