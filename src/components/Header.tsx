@@ -108,9 +108,13 @@ const Header = () => {
                 if (item.name === 'Contact Us') {
                   return (
                     <div key={item.name} className="flex items-center gap-4">
-                      <Button variant="default" onClick={() => {}} className={`${useDarkLinks ? 'text-foreground' : 'text-white'} ml-2`}>
+                      <Link
+                        to="/heli-taxi"
+                        className={`transition-smooth font-medium relative group ${useDarkLinks ? 'text-foreground hover:text-brand-green' : 'text-white hover:text-white/80'} ml-2`}
+                      >
                         Heli Taxi
-                      </Button>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
+                      </Link>
                       {renderItem}
                     </div>
                   );
