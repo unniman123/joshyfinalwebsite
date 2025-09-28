@@ -229,7 +229,7 @@ export const createDefaultItinerarySection = (): TourSection => {
   return {
     id: `itinerary-${Date.now()}`,
     type: 'itinerary',
-    title: 'Detailed Itinerary',
+    title: 'Itinerary',
     content: '',
     isVisible: true,
     order: 1,
