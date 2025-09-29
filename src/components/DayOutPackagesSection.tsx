@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getCurrentHomepageConfig } from '@/lib/admin-utils';
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -142,15 +141,14 @@ const DayOutPackagesSection = ({
           <div className="w-24 h-1 bg-gradient-brand mx-auto mb-6"></div>
         </div>
 
-        {/* Two-Column Layout: 70% Packages + 30% Enquiry Form */}
+        {/* Two-Column Layout: Image extends to left edge + Form on right */}
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
-          {/* Left Column - Day Out Packages Carousel (now full-bleed with form overlay on desktop) */}
+          {/* Left Column - Day Out Packages Carousel (full-bleed left) */}
           <div className="flex-1 lg:w-[70%]">
             <div className="relative">
-              {/* Make the slideshow visually full-bleed using helper utilities and place the enquiry form overlay inside on desktop */}
-              {/* Full-bleed slideshow: move outside container flow using viewport margins so image spans edge-to-edge */}
-              <div className="relative w-full" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
-                <div className="w-full h-64 sm:h-72 lg:h-[420px] relative overflow-hidden shadow-card hover:shadow-brand transition-all duration-300 rounded-tr-2xl rounded-br-2xl">
+              {/* Slideshow banner - full-bleed to left edge, extends almost to form */}
+              <div className="relative w-full" style={{ marginLeft: 'calc(-50vw + 50%)', width: 'calc(100% + 50vw - 50%)' }}>
+                <div className="w-full h-64 sm:h-72 lg:h-[420px] relative overflow-hidden shadow-card hover:shadow-brand transition-all duration-300 lg:rounded-tr-2xl lg:rounded-br-2xl">
                 {(() => {
                   const currentPackage = getCurrentPackage();
                   return (
@@ -174,8 +172,8 @@ const DayOutPackagesSection = ({
                       </div>
 
                       {/* Banner Content Overlay */}
-                      <div className="absolute inset-0 flex flex-col justify-center items-start p-6 sm:p-8 lg:p-12 text-white">
-                        <div className="max-w-2xl">
+                      <div className="absolute inset-0 flex flex-col justify-center items-center p-6 sm:p-8 text-white">
+                        <div className="max-w-2xl text-center">
                           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 drop-shadow-lg group-hover:text-brand-green-light transition-colors duration-300">
                             {currentPackage.title}
                           </h3>
@@ -196,138 +194,6 @@ const DayOutPackagesSection = ({
                           )}
                         </div>
                       </div>
-
-                      {/* Enquiry form overlay (desktop) - placed inside the slideshow; positioned and styled via admin config */}
-                      {(() => {
-                        const cfg = getCurrentHomepageConfig ? getCurrentHomepageConfig() : null;
-                        const overlay = cfg?.dayOutPackages?.overlay || { topPercent: 50, rightOffset: '12', cardOpacity: 0.06, cardBorder: 'border-white/10' };
-                        const topStyle = `${overlay.topPercent || 50}%`;
-                        const rightRem = (parseInt(String(overlay.rightOffset || '12'), 10) || 12) * 0.25; // convert tailwind spacing to rem
-                        const cardBg = `rgba(255,255,255,${overlay.cardOpacity ?? 0.06})`;
-
-                        return (
-                          <div className="hidden lg:block" style={{ position: 'absolute', top: topStyle, right: `${rightRem}rem`, transform: 'translateY(-50%)', zIndex: 30 }}>
-                            <div className="w-full lg:max-w-xs">
-                              <Card className={`shadow-warm h-auto rounded-xl overflow-hidden ${overlay.cardBorder ? overlay.cardBorder : 'border-2 border-brand-green/30'}`} style={{ background: cardBg }}>
-                                <CardHeader className="pb-1">
-                                  <CardTitle className="text-sm font-semibold text-white flex items-center gap-1">
-                                    <User className="h-3 w-3 text-brand-green" />
-                                    Day Out Enquiry
-                                  </CardTitle>
-                                </CardHeader>
-                                <CardContent className="px-4 py-3">
-                                  <form onSubmit={handleFormSubmit} className="space-y-1.5">
-                                    {/* Name Field */}
-                                    <div className="space-y-0.5">
-                                        <Label htmlFor="dayOut-name" className="text-[10px] font-medium text-[var(--form-label)]">
-                                        Name *
-                                      </Label>
-                                      <div className="relative">
-                                        <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                        <Input
-                                          id="dayOut-name"
-                                          type="text"
-                                          placeholder="Your name"
-                                          value={formData.name}
-                                          onChange={(e) => handleInputChange("name", e.target.value)}
-                                          className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
-
-                                    {/* Mobile No (WhatsApp) Field */}
-                                    <div className="space-y-0.5">
-                                        <Label htmlFor="dayOut-mobile" className="text-[10px] font-medium text-[var(--form-label)]">
-                                        Mobile No (Whatsapp) *
-                                      </Label>
-                                      <div className="relative">
-                                        <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                        <Input
-                                          id="dayOut-mobile"
-                                          type="tel"
-                                          placeholder={formConfig.phoneFieldPlaceholder || "+91 98765 43210"}
-                                          value={formData.mobileNo}
-                                          onChange={(e) => handleInputChange("mobileNo", e.target.value)}
-                                          className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
-
-                                    {/* Date Field */}
-                                    <div className="space-y-0.5">
-                                      <Label htmlFor="dayOut-date" className="text-[10px] font-medium text-[var(--form-label)]">
-                                        Preferred Date *
-                                      </Label>
-                                      <div className="relative">
-                                        <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                        <Input
-                                          id="dayOut-date"
-                                          type="date"
-                                          value={formData.date}
-                                          onChange={(e) => handleInputChange("date", e.target.value)}
-                                          className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
-
-                                    {/* Number of People Field */}
-                                    <div className="space-y-0.5">
-                                      <Label htmlFor="dayOut-people" className="text-[10px] font-medium text-[var(--form-label)]">
-                                        Number of People *
-                                      </Label>
-                                      <div className="relative">
-                                        <Users className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                        <Input
-                                          id="dayOut-people"
-                                          type="number"
-                                          min="1"
-                                          placeholder="e.g., 2"
-                                          value={formData.numberOfPeople}
-                                          onChange={(e) => handleInputChange("numberOfPeople", e.target.value)}
-                                          className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
-
-                                    {/* Destination Field */}
-                                    <div className="space-y-0.5">
-                                      <Label htmlFor="dayOut-destination" className="text-[10px] font-medium text-[var(--form-label)]">
-                                        {formConfig.destinationFieldLabel} *
-                                      </Label>
-                                      <div className="relative">
-                                        <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                        <Input
-                                          id="dayOut-destination"
-                                          type="text"
-                                          placeholder="Backwater, Beach, Hill Station..."
-                                          value={formData.destination}
-                                          onChange={(e) => handleInputChange("destination", e.target.value)}
-                                          className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                          required
-                                        />
-                                      </div>
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <div className="pt-1">
-                                      <Button
-                                        type="submit"
-                                        className="w-full bg-gradient-brand hover:shadow-brand transition-all duration-300"
-                                      >
-                                        Send Enquiry
-                                      </Button>
-                                    </div>
-                                  </form>
-                                </CardContent>
-                              </Card>
-                            </div>
-                          </div>
-                        );
-                      })()}
 
                       {/* Package Number Indicator */}
                       <div className="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -356,31 +222,31 @@ const DayOutPackagesSection = ({
           </div>
 
           {/* Right Column - Enquiry Form (30% on desktop) */}
-            <div className="lg:w-[30%] mt-8 lg:mt-0 lg:hidden">
+            <div className="lg:w-[30%] mt-8 lg:mt-0">
             {/* Form card */}
-            <Card className="border-2 border-brand-green/30 shadow-warm transition-all duration-300 w-full max-w-xs rounded-xl" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18))', backdropFilter: 'blur(6px)' }}>
+            <Card className="border border-green-200/20 shadow-none transition-all duration-300 w-full max-w-xs rounded-xl" style={{ background: 'linear-gradient(180deg, rgba(144, 238, 144, 0.15), rgba(144, 238, 144, 0.08))' }}>
               <CardHeader className="pb-1">
-                <CardTitle className="text-sm font-semibold text-white flex items-center gap-1">
-                  <User className="h-3 w-3 text-white/90" />
+                <CardTitle className="text-sm font-semibold text-black flex items-center gap-1">
+                  <User className="h-3 w-3 text-black/60" />
                   Day Out Enquiry
                 </CardTitle>
               </CardHeader>
-              <CardContent className="px-3 py-3" style={{ background: 'linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18))', backdropFilter: 'blur(6px)' }}>
+              <CardContent className="px-2 py-2" style={{ backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
                 <form onSubmit={handleFormSubmit} className="space-y-1.5">
                   {/* Name Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-name" className="text-[10px] font-medium text-muted-foreground">
+                    <Label htmlFor="dayOut-name" className="text-[10px] font-medium text-black">
                       Name *
                     </Label>
                     <div className="relative">
-                      <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
+                      <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
                       <Input
                         id="dayOut-name"
                         type="text"
                         placeholder="Your name"
                         value={formData.name}
                         onChange={(e) => handleInputChange("name", e.target.value)}
-                        className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
+                        className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                         required
                       />
                     </div>
@@ -388,36 +254,36 @@ const DayOutPackagesSection = ({
 
                   {/* Mobile No (WhatsApp) Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-mobile" className="text-[10px] font-medium text-muted-foreground">
+                    <Label htmlFor="dayOut-mobile" className="text-[10px] font-medium text-black">
                       Mobile No (Whatsapp) *
                     </Label>
                     <div className="relative">
-                                    <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-white/70" />
-                                    <Input
-                                      id="dayOut-mobile"
-                                      type="tel"
-                                      placeholder={formConfig.phoneFieldPlaceholder || "+91 98765 43210"}
-                                      value={formData.mobileNo}
-                                      onChange={(e) => handleInputChange("mobileNo", e.target.value)}
-                                      className="pl-6 h-8 text-[12px] bg-white/8 text-white placeholder-[color:var(--form-placeholder)]"
-                                      required
-                                    />
+                      <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
+                      <Input
+                        id="dayOut-mobile"
+                        type="tel"
+                        placeholder={formConfig.phoneFieldPlaceholder || "+91 98765 43210"}
+                        value={formData.mobileNo}
+                        onChange={(e) => handleInputChange("mobileNo", e.target.value)}
+                        className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
+                        required
+                      />
                     </div>
                   </div>
 
                   {/* Date Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-date" className="text-[10px] font-medium text-muted-foreground">
+                    <Label htmlFor="dayOut-date" className="text-[10px] font-medium text-black">
                       Preferred Date *
                     </Label>
                     <div className="relative">
-                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
+                      <Calendar className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
                       <Input
                         id="dayOut-date"
                         type="date"
                         value={formData.date}
                         onChange={(e) => handleInputChange("date", e.target.value)}
-                        className="pl-6 h-6 text-[10px]"
+                        className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                         required
                       />
                     </div>
@@ -425,11 +291,11 @@ const DayOutPackagesSection = ({
 
                   {/* Number of People Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-people" className="text-[10px] font-medium text-muted-foreground">
+                    <Label htmlFor="dayOut-people" className="text-[10px] font-medium text-black">
                       Number of People *
                     </Label>
                     <div className="relative">
-                      <Users className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
+                      <Users className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
                       <Input
                         id="dayOut-people"
                         type="number"
@@ -437,7 +303,7 @@ const DayOutPackagesSection = ({
                         placeholder="e.g., 2"
                         value={formData.numberOfPeople}
                         onChange={(e) => handleInputChange("numberOfPeople", e.target.value)}
-                        className="pl-6 h-6 text-[10px]"
+                        className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                         required
                       />
                     </div>
@@ -445,18 +311,18 @@ const DayOutPackagesSection = ({
 
                   {/* Destination Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-destination" className="text-[10px] font-medium text-muted-foreground">
+                    <Label htmlFor="dayOut-destination" className="text-[10px] font-medium text-black">
                       {formConfig.destinationFieldLabel} *
                     </Label>
                     <div className="relative">
-                      <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-muted-foreground" />
+                      <MapPin className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
                       <Input
                         id="dayOut-destination"
                         type="text"
                         placeholder="Backwater, Beach, Hill Station..."
                         value={formData.destination}
                         onChange={(e) => handleInputChange("destination", e.target.value)}
-                        className="pl-6 h-6 text-[10px]"
+                        className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                         required
                       />
                     </div>
@@ -466,7 +332,8 @@ const DayOutPackagesSection = ({
                   <div className="pt-1">
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-brand hover:shadow-brand transition-all duration-300"
+                      className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px]"
+                      style={{ background: 'hsl(var(--success))', color: 'hsl(var(--button-primary-foreground))' }}
                     >
                       Send Enquiry
                     </Button>
