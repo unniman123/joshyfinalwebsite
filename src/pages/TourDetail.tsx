@@ -56,9 +56,15 @@ const TourDetail = () => {
 
       <section id="enquiry-section" className="py-6 px-4 bg-muted/30 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-4">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Enquire</h2>
-
+          <div className="mb-6">
+            {/* Title panel with rectangular shape, white text on dark background */}
+            <div className="flex items-center justify-center">
+              <div className="inline-block bg-slate-900 text-white rounded-md px-8 py-3 flex items-center">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold leading-none">
+                  Enquiry
+                </h2>
+              </div>
+            </div>
           </div>
           <EnquiryForm tourId={tour.id} />
         </div>

@@ -209,6 +209,17 @@
     animation: fade-in-up 0.5s var(--transition-smooth) both;
   }
 
+  /* Smooth infinite scroll animation for carousel */
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 30s linear infinite;
+    will-change: transform;
+  }
+
   .btn-subtle-anim {
     transition: var(--transition-subtle);
     will-change: transform;

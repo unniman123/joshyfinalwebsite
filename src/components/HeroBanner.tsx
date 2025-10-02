@@ -103,7 +103,7 @@ const HeroBanner = ({
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
         <div className="text-center max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
-            Welcome to Kerala Tours Global
+            
           </h1>
 
           <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
@@ -127,7 +127,7 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-button-primary text-white px-6 py-3 rounded-lg btn-subtle-anim"
+                  className="bg-blue-900 hover:bg-blue-950 text-white px-6 py-3 rounded-lg btn-subtle-anim"
                 >
                   Search
                 </Button>
@@ -136,7 +136,7 @@ const HeroBanner = ({
           </form>
 
           <div className="mt-8 flex justify-center gap-4">
-            <Link to="/tours" className="inline-block bg-white/10 border border-white/40 text-white px-6 py-3 rounded-md hover:bg-white/20 transition">Find Tours</Link>
+            <Link to="/tours" className="inline-block bg-blue-900 hover:bg-blue-950 text-white px-6 py-3 rounded-md transition">Find Tours</Link>
             <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition">Plan My Trip</Link>
           </div>
         </div>
