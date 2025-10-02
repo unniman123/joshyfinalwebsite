@@ -92,39 +92,11 @@ const TourOffersSection = ({
     }
   ];
 
-  // Carousel state management
-  const [currentIndex, setCurrentIndex] = useState(0);
-  // Autoplay state: pause when user hovers or focuses the carousel
+  // Infinite loop carousel state with smooth CSS animation
   const [isPaused, setIsPaused] = useState(false);
-  const AUTOPLAY_INTERVAL_MS = 4000;
-  const toursPerPage = 4;
-  const totalPages = Math.ceil(tourOffers.length / toursPerPage);
-
-
-
-  // Carousel navigation functions
-  const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
-  };
-
-  const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
-  // Autoplay effect: advance slide every AUTOPLAY_INTERVAL_MS when not paused
-  useEffect(() => {
-    if (isPaused || totalPages <= 1) return;
-    const id = window.setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % totalPages);
-    }, AUTOPLAY_INTERVAL_MS);
-    return () => window.clearInterval(id);
-  }, [isPaused, totalPages]);
-
-  // Get current tours to display
-  const getCurrentTours = () => {
-    const startIndex = currentIndex * toursPerPage;
-    return tourOffers.slice(startIndex, startIndex + toursPerPage);
-  };
+  
+  // Duplicate tours multiple times for seamless infinite loop
+  const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
 
 
 
@@ -151,76 +123,57 @@ const TourOffersSection = ({
                 style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} 
               />
 
-              {/* Section Header */}
+              {/* Section Header - positioned at left edge */}
               <div className="relative z-10 text-left mb-10 text-white">
                 <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
               </div>
 
-              {/* Tour Carousel */}
-              <div className="relative z-10">
+              {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
+              <div className="relative z-10 -ml-8 lg:-ml-24">
                 <div className="relative overflow-hidden">
-                  {/* Sliding carousel wrapper */}
+                  {/* Continuous sliding carousel wrapper with smooth CSS animation */}
                   <div
-                    className="flex transition-transform duration-700 ease-in-out"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    className={`flex gap-6 md:gap-8 ${isPaused ? '' : 'animate-scroll-left'}`}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     onFocus={() => setIsPaused(true)}
                     onBlur={() => setIsPaused(false)}
                   >
-                    {Array.from({ length: totalPages }).map((_, pageIndex) => (
-                      <div
-                        key={pageIndex}
-                        className="min-w-full flex-shrink-0"
+                    {duplicatedTours.map((tour, index) => (
+                      <Link
+                        key={`${tour.id}-${index}`}
+                        to={`/tours/${tour.slug}`}
+                        className="group flex flex-col items-center flex-shrink-0 transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
+                        aria-label={`View details for ${tour.title} tour`}
                       >
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pl-2 pr-4">
-                          {tourOffers
-                            .slice(pageIndex * toursPerPage, (pageIndex + 1) * toursPerPage)
-                            .map((tour) => (
-                              <Link
-                                key={tour.id}
-                                to={`/tours/${tour.slug}`}
-                                className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
-                                aria-label={`View details for ${tour.title} tour`}
-                              >
-                                {/* Oval tour card */}
-                                <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
-                                  <img 
-                                    src={tour.image} 
-                                    alt={tour.title} 
-                                    className="w-full h-full object-cover" 
-                                    loading="lazy" 
-                                    decoding="async" 
-                                  />
-                                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
-                                </div>
-
-                                {/* Only title - description removed */}
-                                <div className="text-center">
-                                  <h3 className="text-sm sm:text-base font-semibold text-white leading-tight">
-                                    {tour.title}
-                                  </h3>
-                                </div>
-                              </Link>
-                            ))}
+                        {/* Oval tour card */}
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
+                          <img 
+                            src={tour.image} 
+                            alt={tour.title} 
+                            className="w-full h-full object-cover" 
+                            loading="lazy" 
+                            decoding="async" 
+                          />
+                          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
                         </div>
-                      </div>
+
+                        {/* Only title - description removed */}
+                        <div className="text-center max-w-[160px]">
+                          <h3 className="text-sm sm:text-base font-semibold text-white leading-tight">
+                            {tour.title}
+                          </h3>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
 
-                {/* Carousel indicators */}
-                <div className="flex justify-center mt-6 space-x-2">
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <button
-                      key={index}
-                      className={`w-2 h-2 rounded-full transition-colors duration-200 ${
-                        index === currentIndex ? 'bg-white' : 'bg-white/40'
-                      }`}
-                      onClick={() => setCurrentIndex(index)}
-                      aria-label={`Go to page ${index + 1}`}
-                    />
-                  ))}
+                {/* Scroll indicator - shows continuous animation */}
+                <div className="flex justify-center mt-6">
+                  <div className="text-white/60 text-xs">
+                    Hover to pause
+                  </div>
                 </div>
               </div>
             </div>
