@@ -107,7 +107,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     >
       <Link
         to={href}
-        className="text-foreground hover:text-brand-green transition-smooth font-medium relative flex items-center gap-1 py-2"
+        className="text-foreground hover:text-brand-green transition-smooth font-bold relative flex items-center gap-1 py-2"
       >
         {name}
         {hasDropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />}

@@ -96,7 +96,7 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="transition-smooth font-medium relative group text-foreground hover:text-brand-green"
+                    className="transition-smooth font-bold relative group text-foreground hover:text-brand-green"
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
@@ -108,7 +108,7 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className="transition-smooth font-medium relative group text-foreground hover:text-brand-green ml-2"
+                        className="transition-smooth font-bold relative group text-foreground hover:text-brand-green"
                       >
                         Heli Taxi
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
@@ -142,7 +142,7 @@ const Header = () => {
                 {navigationItems.map((item) => {
                   item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-foreground hover:text-brand-green transition-smooth font-medium py-2 list-none cursor-pointer">
+                      <summary className="flex items-center justify-between text-foreground hover:text-brand-green transition-smooth font-bold py-2 list-none cursor-pointer">
                         <span>{item.name}</span>
                       </summary>
 
@@ -166,7 +166,7 @@ const Header = () => {
                       )}
                       <Link
                         to={item.href}
-                        className="text-foreground hover:text-brand-green transition-smooth font-medium py-2"
+                        className="text-foreground hover:text-brand-green transition-smooth font-bold py-2"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}
