@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What our customers say's
+            What our customers say
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-golden to-golden-dark mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">

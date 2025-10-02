@@ -42,6 +42,10 @@
     --warm-red-dark: 0 75% 35%;
     --warm-gray: 30 5% 50%;
     --success: 120 50% 45%;
+    /* Brand green colors */
+    --brand-green: 120 50% 45%;
+    --brand-green-dark: 120 60% 35%;
+    --brand-green-light: 120 40% 85%;
     /* Namaste section specific tint (uses success token as base) */
     --namaste-bg: 120 40% 85%; /* darker tint for improved contrast */
     --namaste-foreground: 120 18% 8%;
