@@ -169,13 +169,12 @@ const EnquiryForm = ({
 
       <Button
         type="submit"
-        variant="hero"
         size="lg"
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+        className="w-full !bg-brand-green hover:!bg-brand-green-dark !text-black font-semibold shadow-md hover:shadow-lg transition-all duration-300"
         disabled={isSubmitting}
         aria-describedby="form-status"
       >
-        {isSubmitting ? "Sending..." : "Send Enquiry"}
+        {isSubmitting ? "Sending..." : "Send Request"}
       </Button>
 
       {/* Screen reader status region for accessibility */}
