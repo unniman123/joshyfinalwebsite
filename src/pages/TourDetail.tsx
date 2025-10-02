@@ -54,7 +54,7 @@ const TourDetail = () => {
     <main>
       <TourContentSections tour={tour} />
 
-      <section className="py-6 px-4 bg-muted/30">
+      <section id="enquiry-section" className="py-6 px-4 bg-muted/30 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-4">
             <h2 className="text-3xl font-bold text-foreground mb-4">Enquire</h2>
