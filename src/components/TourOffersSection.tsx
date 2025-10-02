@@ -130,67 +130,93 @@ const TourOffersSection = ({
 
   return (
     <section className="relative">
-      {/* Full-bleed background image extended to edges */}
+      {/* Full-bleed background with blue panel */}
       <div className="relative extend-left overflow-hidden">
-        {/* Left colored panel that stops before the enquiry form (rounded right edge) */}
-        <div
-          className="absolute left-0 top-0 h-full"
-          style={{
-            // Reduce the blue panel width so the enquiry form sits visually outside the panel
-            width: 'calc(100% - 36rem)',
-            background: 'var(--offers-bg)',
-            borderTopRightRadius: '1rem',
-            borderBottomRightRadius: '1rem'
-          }}
-        />
-        {/* optional scrim for subtle depth over the colored panel */}
-        <div className="absolute left-0 top-0 h-full" style={{ width: 'calc(100% - 36rem)', background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} />
-
-        <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-6xl min-h-[220px]">
-          {/* Section Header overlay - shifted left on large screens */}
-          <div className="text-left mb-10 text-white lg:-translate-x-[10vw] transform">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
-          </div>
-
+        <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
-            {/* Left Column - Tour Packages Carousel (takes left area, transparent cards) */}
-            <div className="flex-1 lg:w-[65%] p-3 lg:pr-6">
-                <div className="relative px-6" style={{ transform: 'translateX(-10vw)' }}>
-                {/* Autoplay slideshow: prev/next buttons removed. Pause on hover implemented on parent wrapper. */}
+            {/* Left side - Blue panel with tours (70% width) */}
+            <div className="flex-1 lg:w-[70%] relative">
+              {/* Blue background panel - only covers the tours area */}
+              <div
+                className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0"
+                style={{
+                  background: 'var(--offers-bg)',
+                  borderTopRightRadius: '1rem',
+                  borderBottomRightRadius: '1rem'
+                }}
+              />
+              {/* Scrim overlay */}
+              <div 
+                className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0" 
+                style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} 
+              />
 
-                <div
-                  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 transition-all duration-300"
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                  onFocus={() => setIsPaused(true)}
-                  onBlur={() => setIsPaused(false)}
-                >
-                  {getCurrentTours().map((tour) => (
-                    <Link
-                      key={tour.id}
-                      to={`/tours/${tour.slug}`}
-                      className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
-                      aria-label={`View details for ${tour.title} tour`}
-                    >
-                        {/* Increased oval card height and stronger border for prominence */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-44 lg:h-56 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
-                        <img src={tour.image} alt={tour.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
-                        <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
+              {/* Section Header */}
+              <div className="relative z-10 text-left mb-10 text-white">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
+              </div>
+
+              {/* Tour Carousel */}
+              <div className="relative z-10">
+                <div className="relative overflow-hidden">
+                  {/* Sliding carousel wrapper */}
+                  <div
+                    className="flex transition-transform duration-700 ease-in-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                    onFocus={() => setIsPaused(true)}
+                    onBlur={() => setIsPaused(false)}
+                  >
+                    {Array.from({ length: totalPages }).map((_, pageIndex) => (
+                      <div
+                        key={pageIndex}
+                        className="min-w-full flex-shrink-0"
+                      >
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pl-2 pr-4">
+                          {tourOffers
+                            .slice(pageIndex * toursPerPage, (pageIndex + 1) * toursPerPage)
+                            .map((tour) => (
+                              <Link
+                                key={tour.id}
+                                to={`/tours/${tour.slug}`}
+                                className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
+                                aria-label={`View details for ${tour.title} tour`}
+                              >
+                                {/* Oval tour card */}
+                                <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
+                                  <img 
+                                    src={tour.image} 
+                                    alt={tour.title} 
+                                    className="w-full h-full object-cover" 
+                                    loading="lazy" 
+                                    decoding="async" 
+                                  />
+                                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
+                                </div>
+
+                                {/* Only title - description removed */}
+                                <div className="text-center">
+                                  <h3 className="text-sm sm:text-base font-semibold text-white leading-tight">
+                                    {tour.title}
+                                  </h3>
+                                </div>
+                              </Link>
+                            ))}
+                        </div>
                       </div>
-
-                    <div className="text-center">
-                      <h3 className="text-sm sm:text-sm font-semibold text-white leading-tight">{tour.title}</h3>
-                      <p className="text-xs text-white/80 mt-1 line-clamp-2 max-w-[140px]">{tour.description}</p>
-                    </div>
-                    </Link>
-                  ))}
+                    ))}
+                  </div>
                 </div>
 
-                <div className="flex justify-center mt-4 space-x-2">
+                {/* Carousel indicators */}
+                <div className="flex justify-center mt-6 space-x-2">
                   {Array.from({ length: totalPages }).map((_, index) => (
                     <button
                       key={index}
-                      className={`w-2 h-2 rounded-full transition-colors duration-200 ${index === currentIndex ? 'bg-white' : 'bg-white/40'}`}
+                      className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                        index === currentIndex ? 'bg-white' : 'bg-white/40'
+                      }`}
                       onClick={() => setCurrentIndex(index)}
                       aria-label={`Go to page ${index + 1}`}
                     />
@@ -199,11 +225,11 @@ const TourOffersSection = ({
               </div>
             </div>
 
-            {/* Right Column - enquiry form shown as a sibling column (mobile: dark card, desktop: semi-opaque light card) */}
+            {/* Right side - Enquiry form (30% width, outside blue panel) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-6 lg:mt-0 lg:block">
+              <div className="lg:w-[30%] mt-6 lg:mt-0">
                 <div className="w-full">
-                  {/* Change form panel color to green: dark green on mobile, subtle green overlay on desktop */}
+                  {/* Form with green theme */}
                   <div className="bg-green-900 lg:bg-green-600/10 text-white lg:text-green-900 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
@@ -218,8 +244,6 @@ const TourOffersSection = ({
               </div>
             )}
           </div>
-
-          {/* Desktop overlay removed; form is now a right-column sibling for clearer layout and accessibility */}
         </div>
       </div>
     </section>

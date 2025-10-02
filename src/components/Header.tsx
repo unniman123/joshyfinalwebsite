@@ -10,8 +10,6 @@ const Header = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  const useDarkLinks = !isHome || isScrolled;
-
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
     onScroll();
@@ -53,7 +51,7 @@ const Header = () => {
   return (
     <header className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white/95 text-foreground shadow-md' : 'bg-transparent text-white'}` : 'w-full relative bg-white/95 text-foreground shadow-md'}>
       {/* Top Contact Bar - transparent to blend with hero */}
-      <div className={`${isScrolled ? 'bg-white/0 text-foreground' : 'bg-transparent text-white'} px-4 py-2 text-sm font-medium backdrop-blur-sm`}>
+      <div className="bg-transparent text-foreground px-4 py-2 text-sm font-medium backdrop-blur-sm">
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
@@ -78,7 +76,7 @@ const Header = () => {
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-10 w-auto cursor-pointer" />
-              <span className={`site-title text-lg font-extrabold ${isScrolled ? 'text-foreground' : 'text-white/90'}`}>
+              <span className="site-title text-lg font-extrabold text-foreground">
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -98,7 +96,7 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`transition-smooth font-medium relative group ${useDarkLinks ? 'text-foreground hover:text-brand-green' : 'text-white hover:text-white/80'}`}
+                    className="transition-smooth font-medium relative group text-foreground hover:text-brand-green"
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
@@ -110,7 +108,7 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className={`transition-smooth font-medium relative group ${useDarkLinks ? 'text-foreground hover:text-brand-green' : 'text-white hover:text-white/80'} ml-2`}
+                        className="transition-smooth font-medium relative group text-foreground hover:text-brand-green ml-2"
                       >
                         Heli Taxi
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
