@@ -23,7 +23,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Section heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
         Itinerary
       </h2>
 
@@ -36,9 +36,13 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <p className="text-muted-foreground leading-relaxed text-base mb-4 whitespace-pre-line">
-                  {day.description}
-                </p>
+                <div className="text-muted-foreground leading-relaxed text-base mb-4 text-justify">
+                  {day.description.split('\n\n').map((paragraph, idx) => (
+                    <p key={idx} className="mb-3 last:mb-0">
+                      {paragraph.trim()}
+                    </p>
+                  ))}
+                </div>
               )}
             </div>
           ))}

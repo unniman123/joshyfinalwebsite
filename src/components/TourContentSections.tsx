@@ -70,7 +70,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                         <div className="space-y-6">
                           <div className="prose prose-lg max-w-none">
                             <div
-                              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+                              className="text-lg md:text-xl text-muted-foreground leading-relaxed text-justify"
                               dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
                             />
                           </div>
@@ -87,11 +87,11 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                             />
                           ) : (
                             <>
-                              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
                                 {itinerarySection.title}
                               </h2>
                               <div
-                                className="text-muted-foreground leading-relaxed"
+                                className="text-muted-foreground leading-relaxed text-justify"
                                 dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
                               />
                             </>

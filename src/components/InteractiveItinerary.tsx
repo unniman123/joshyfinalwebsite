@@ -68,7 +68,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
   return (
     <div className="space-y-6">
       {/* Section heading */}
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
         Itinerary
       </h2>
 
@@ -80,9 +80,13 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
               <h3 className="text-lg font-semibold text-foreground mb-3">
                 Day {day.dayNumber}: {day.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base mb-4 whitespace-pre-line">
-                {day.description}
-              </p>
+              <div className="text-muted-foreground leading-relaxed text-base mb-4 text-justify">
+                {day.description.split('\n\n').map((paragraph, idx) => (
+                  <p key={idx} className="mb-3 last:mb-0">
+                    {paragraph.trim()}
+                  </p>
+                ))}
+              </div>
             </div>
           ))}
         </div>
