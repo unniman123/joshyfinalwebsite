@@ -49,7 +49,7 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-semibold">Summary</h4>
               </div>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line mt-2">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify mt-2">
                 {tldr}
               </p>
             </div>
@@ -80,9 +80,13 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
 
             {/* Full overview content with progressive disclosure */}
             <div className="prose prose-lg max-w-none">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line text-justify">
-                {collapsedContent}
-              </p>
+              <div className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+                {collapsedContent.split('\n\n').map((paragraph, idx) => (
+                  <p key={idx} className="mb-3 last:mb-0">
+                    {paragraph.trim()}
+                  </p>
+                ))}
+              </div>
               {needsCollapse && (
                 <div className="mt-3">
                   <button

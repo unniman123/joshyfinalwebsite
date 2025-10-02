@@ -19,7 +19,7 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
         return (
           <div className="prose prose-lg max-w-none">
             <div
-              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed text-justify"
               dangerouslySetInnerHTML={{ __html: section.content || '' }}
             />
           </div>
@@ -29,7 +29,7 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
         return (
           <div className="space-y-4">
             <div
-              className="text-muted-foreground leading-relaxed"
+              className="text-muted-foreground leading-relaxed text-justify"
               dangerouslySetInnerHTML={{ __html: section.content || '' }}
             />
           </div>
@@ -55,7 +55,7 @@ const AdminControllableSection = ({ section, className = "" }: AdminControllable
       default:
         return (
           <div
-            className="text-muted-foreground leading-relaxed"
+            className="text-muted-foreground leading-relaxed text-justify"
             dangerouslySetInnerHTML={{ __html: section.content || '' }}
           />
         );
