@@ -37,35 +37,21 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           </div>
         </section>
 
-        {/* Admin-controlled sections */}
-        {visibleSections.map((section) => {
-          if (section.type === 'overview') {
-            return (
-              <section key={section.id} className="py-3 md:py-4 lg:py-6">
-                <div className="container mx-auto max-w-7xl px-4">
-                  {/* Full-width content layout (no images) */}
-                  <div className="w-full">
-                    <div className="space-y-6">
-                      {/* Removed duplicate title - using general tour title above */}
-                      <div className="prose prose-lg max-w-none">
-                        <div
-                          className="text-lg md:text-xl text-muted-foreground leading-relaxed"
-                          dangerouslySetInnerHTML={{ __html: section.content || '' }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            );
-          }
+        {/* Combined Overview + Itinerary Section with Fluid Image Column */}
+        {(() => {
+          const overviewSection = visibleSections.find(s => s.type === 'overview');
+          const itinerarySection = visibleSections.find(s => s.type === 'itinerary');
+          const otherSections = visibleSections.filter(s => s.type !== 'overview' && s.type !== 'itinerary');
 
-          if (section.type === 'itinerary') {
+          // If we have overview or itinerary, render them in unified layout
+          if (overviewSection || itinerarySection) {
             return (
-              <section key={section.id} className="py-12 md:py-16 lg:py-20 bg-muted/30">
+              <section className="pt-6 md:pt-8 lg:pt-10 pb-12 md:pb-16 lg:pb-20 bg-muted/30">
                 <div className="container mx-auto max-w-7xl px-4">
+                  {/* 30-70 Grid Layout - Images flow continuously through both sections */}
                   <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
-                    {/* Left side - Images (30%) */}
+                    
+                    {/* Left side - Continuous Image Gallery (30%) - Spans both overview & itinerary */}
                     <div className="order-2 lg:order-1 lg:col-span-3">
                       {hasStructuredImages && (
                         <AdminControllableImageGallery
@@ -76,39 +62,64 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       )}
                     </div>
 
-                    {/* Right side - Itinerary (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7">
-                      {hasStructuredItinerary ? (
-                        <AdminControllableItinerary
-                          itineraryDays={tour.itineraryDays}
-                          tourTitle={tour.title}
-                        />
-                      ) : (
+                    {/* Right side - Stacked Content (70%) */}
+                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-12 md:space-y-16 lg:space-y-20">
+                      
+                      {/* Overview Content */}
+                      {overviewSection && (
                         <div className="space-y-6">
-                          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                            {section.title}
-                          </h2>
-                          <div
-                            className="text-muted-foreground leading-relaxed"
-                            dangerouslySetInnerHTML={{ __html: section.content || '' }}
-                          />
+                          <div className="prose prose-lg max-w-none">
+                            <div
+                              className="text-lg md:text-xl text-muted-foreground leading-relaxed"
+                              dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
+                            />
+                          </div>
                         </div>
                       )}
+
+                      {/* Itinerary Content */}
+                      {itinerarySection && (
+                        <div className="space-y-6">
+                          {hasStructuredItinerary ? (
+                            <AdminControllableItinerary
+                              itineraryDays={tour.itineraryDays}
+                              tourTitle={tour.title}
+                            />
+                          ) : (
+                            <>
+                              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                                {itinerarySection.title}
+                              </h2>
+                              <div
+                                className="text-muted-foreground leading-relaxed"
+                                dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
+                              />
+                            </>
+                          )}
+                        </div>
+                      )}
+                      
                     </div>
+                    
                   </div>
                 </div>
               </section>
             );
           }
 
-          // Other admin-controlled sections
-          return (
+          return null;
+        })()}
+
+        {/* Other admin-controlled sections */}
+        {visibleSections
+          .filter(s => s.type !== 'overview' && s.type !== 'itinerary')
+          .map((section) => (
             <AdminControllableSection
               key={section.id}
               section={section}
             />
-          );
-        })}
+          ))
+        }
       </div>
     );
   }
