@@ -45,12 +45,12 @@ const TourContent = ({
         <TabsContent value="inclusions" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-2xl font-semibold mb-4 text-green-600">What's Included</h3>
+              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'hsl(345 65% 45%)' }}>What's Included</h3>
               {/* TODO: Populate with tour.inclusions */}
-              <div className="bg-green-50 p-6 rounded-lg">
+              <div className="p-6 rounded-lg" style={{ backgroundColor: 'hsl(345 50% 95%)' }}>
                 <ul className="space-y-2">
                   {tour.inclusions.map((item, index) => <li key={index} className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">✓</span>
+                      <span className="mt-1" style={{ color: 'hsl(345 65% 45%)' }}>✓</span>
                       <span>{item}</span>
                     </li>)}
                 </ul>

@@ -34,26 +34,25 @@
     --accent: 45 100% 88%;
     --accent-foreground: 30 10% 15%;
 
-    /* Tour agency specific colors */
-    --golden: 45 95% 50%;
-    --golden-dark: 45 85% 40%;
-    --golden-light: 45 100% 96%;
-    --warm-red: 0 65% 45%;
-    --warm-red-dark: 0 75% 35%;
+    /* Tour agency specific colors - Burgundy/Red theme */
+    --burgundy: 345 65% 45%;
+    --burgundy-dark: 345 75% 35%;
+    --burgundy-light: 345 50% 85%;
+    --burgundy-hover: 345 70% 55%;
     --warm-gray: 30 5% 50%;
-    --success: 120 50% 45%;
-    /* Brand green colors */
-    --brand-green: 120 50% 45%;
-    --brand-green-dark: 120 60% 35%;
-    --brand-green-light: 120 40% 85%;
-    /* Namaste section specific tint (uses success token as base) */
-    --namaste-bg: 120 40% 85%; /* darker tint for improved contrast */
-    --namaste-foreground: 120 18% 8%;
+    --success: 345 65% 45%; /* Burgundy for success/CTA buttons */
+    /* Primary brand color (burgundy) */
+    --brand-primary: 345 65% 45%;
+    --brand-primary-dark: 345 75% 35%;
+    --brand-primary-light: 345 50% 85%;
+    /* Namaste section specific tint (uses burgundy theme) */
+    --namaste-bg: 345 30% 92%; /* light burgundy tint for improved contrast */
+    --namaste-foreground: 345 18% 8%;
     /* Promo magenta used for marketing panels */
     --promo-magenta: 328 40% 30%;
     --promo-magenta-foreground: 0 0% 98%;
-    /* Offers section solid background color (teal sample) - tuned HSL for better contrast */
-    --offers-bg: hsl(195 70% 32%);
+    /* Offers section solid background color (burgundy) - tuned HSL for better contrast */
+    --offers-bg: hsl(345 65% 35%);
     --offers-bg-foreground: 0 0% 100%;
     /* Form placeholder token */
     --form-placeholder: rgba(255,255,255,0.6);
@@ -81,13 +80,13 @@
     --input: 45 20% 94%;
     --ring: 45 95% 50%;
 
-    /* Gradients */
-    --gradient-golden: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--golden-dark)));
-    --gradient-warm: linear-gradient(180deg, hsl(var(--golden-light)), hsl(var(--background)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--golden) / 0.9), hsl(var(--warm-red) / 0.8));
+    /* Gradients - Burgundy theme */
+    --gradient-brand: linear-gradient(135deg, hsl(var(--burgundy)), hsl(var(--burgundy-dark)));
+    --gradient-warm: linear-gradient(180deg, hsl(var(--burgundy-light)), hsl(var(--background)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--burgundy) / 0.9), hsl(var(--burgundy-dark) / 0.8));
 
     /* Shadows */
-    --shadow-golden: 0 4px 20px hsl(var(--golden) / 0.3);
+    --shadow-brand: 0 4px 20px hsl(var(--burgundy) / 0.3);
     --shadow-warm: 0 8px 30px hsl(var(--warm-gray) / 0.2);
     --shadow-card: 0 4px 12px hsl(var(--warm-gray) / 0.15);
 
@@ -220,6 +219,10 @@
     will-change: transform;
   }
 
+  .animate-scroll-left.paused {
+    animation-play-state: paused;
+  }
+
   .btn-subtle-anim {
     transition: var(--transition-subtle);
     will-change: transform;
@@ -233,6 +236,16 @@
   .card-hover-lift:hover {
     transform: translateY(-6px) scale(1.01);
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+
+  /* Hide scrollbar while maintaining scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
   }
 
   /* Helper to visually extend a section's background to the viewport right edge */

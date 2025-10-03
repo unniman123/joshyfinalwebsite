@@ -543,7 +543,7 @@ export const getCurrentHomepageConfig = (): HomepageAdminConfig => {
       }
     },
     dayOutPackages: {
-      sectionTitle: 'Kerala Day Out Packages',
+      sectionTitle: 'Kerala Kerala Day Out Packages',
       packages: [
         {
           id: 'backwater-cruise',
@@ -624,10 +624,10 @@ export const validateHomepageConfig = (config: HomepageAdminConfig): { isValid: 
     errors.push('Tour Enquiry form title is required when form is enabled');
   }
 
-  // Day out packages validation
+  // Kerala Day Out Packages validation
   if (config.dayOutPackages.isVisible) {
     if (!config.dayOutPackages.sectionTitle.trim()) {
-      errors.push('Day out packages section title is required when section is visible');
+      errors.push('Kerala Day Out Packages section title is required when section is visible');
     }
 
     const activePackages = config.dayOutPackages.packages.filter(p => p.isActive);
@@ -637,7 +637,7 @@ export const validateHomepageConfig = (config: HomepageAdminConfig): { isValid: 
 
     const packagesWithoutTitles = activePackages.filter(p => !p.title.trim());
     if (packagesWithoutTitles.length > 0) {
-      errors.push('All active day out packages must have titles');
+      errors.push('All active Kerala Day Out Packages must have titles');
     }
   }
 
@@ -739,15 +739,15 @@ const detectConfigChanges = (config: HomepageAdminConfig): string[] => {
     changes.push('Tour Enquiry form fields modified');
   }
 
-  // Detect day out packages changes
+  // Detect Kerala Day Out Packages changes
   if (config.dayOutPackages.formConfig.destinationFieldLabel !== defaultConfig.dayOutPackages.formConfig.destinationFieldLabel) {
-    changes.push('Day out packages form labels updated');
+    changes.push('Kerala Day Out Packages form labels updated');
   }
 
   const activePackageCount = config.dayOutPackages.packages.filter(p => p.isActive).length;
   const defaultActiveCount = defaultConfig.dayOutPackages.packages.filter(p => p.isActive).length;
   if (activePackageCount !== defaultActiveCount) {
-    changes.push('Day out packages configuration changed');
+    changes.push('Kerala Day Out Packages configuration changed');
   }
 
   return changes;
@@ -765,8 +765,8 @@ export const exportHomepageConfig = (config: HomepageAdminConfig) => {
       implementedChanges: [
         'Hero banner search button color changed to blue',
         'Hero banner content positioned slightly down',
-        'Day out packages explore button removed',
-        'Day out packages description hidden',
+        'Kerala Day Out Packages explore button removed',
+        'Kerala Day Out Packages description hidden',
         'Destination field renamed in day out form',
         'Tour Enquiry form simplified to message field',
         'Phone placeholders removed from both forms'

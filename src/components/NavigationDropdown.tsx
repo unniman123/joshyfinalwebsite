@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { getAllTours, getTourCategories, getToursByCategory, TourSummary } from "@/lib/api";
 import navTaxonomy from "@/data/navTaxonomy";
@@ -11,6 +11,8 @@ interface NavigationDropdownProps {
 }
 
 const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const [isOpen, setIsOpen] = useState(false);
   const [tours, setTours] = useState<TourSummary[]>([]);
   const [loading, setLoading] = useState(false);
@@ -107,11 +109,14 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     >
       <Link
         to={href}
-        className="text-foreground hover:text-brand-green transition-smooth font-bold relative flex items-center gap-1 py-2"
+        className={`transition-smooth font-bold relative flex items-center gap-1 py-2 ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
+        style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
+        onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+        onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
       >
         {name}
         {hasDropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />}
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
       </Link>
 
       {hasDropdown && isOpen && (
@@ -123,7 +128,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
           <div className="py-3 px-3 max-h-96 overflow-y-auto">
             {loading ? (
               <div className="flex items-center gap-3 px-2 py-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-brand-green"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2" style={{ borderBottomColor: 'hsl(345 65% 45%)' }}></div>
                 <div className="text-sm text-muted-foreground">Loading tours...</div>
               </div>
             ) : tours.length > 0 ? (
@@ -135,7 +140,10 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                       <Link
                         key={sub.slug}
                         to={sub.href ? sub.href : `/tours?category=${category}&subcategory=${sub.slug}`}
-                        className="block text-sm text-foreground font-medium px-2 py-1 hover:bg-brand-green/5 rounded"
+                        className="block text-sm text-foreground font-medium px-2 py-1 rounded transition-colors"
+                        style={{ ['--hover-bg' as string]: 'hsl(345 50% 95%)' } as React.CSSProperties}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'hsl(345 50% 95%)'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                         onClick={() => setIsOpen(false)}
                       >
                         {sub.label}
@@ -148,7 +156,9 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                   <Link
                     key={tour.id}
                     to={`/tours/${tour.slug}`}
-                    className="flex items-center gap-3 px-2 py-2 rounded hover:bg-brand-green/10 transition-all"
+                    className="flex items-center gap-3 px-2 py-2 rounded transition-all"
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'hsl(345 50% 95%)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                     onClick={() => setIsOpen(false)}
                   >
                     <img src={tour.image} alt={tour.title} className="h-12 w-20 object-cover rounded" />
@@ -160,7 +170,8 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
                 ))}
                 <Link
                   to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
-                  className="mt-2 block text-center text-sm font-medium text-brand-green hover:underline"
+                  className="mt-2 block text-center text-sm font-medium hover:underline"
+                  style={{ color: 'hsl(345 65% 45%)' }}
                   onClick={() => setIsOpen(false)}
                 >
                   View all {name}

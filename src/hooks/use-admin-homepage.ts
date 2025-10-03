@@ -89,7 +89,7 @@ export const useAdminHomepage = () => {
       isVisible: true
     },
     dayOutPackages: {
-      sectionTitle: "Kerala Day Out Packages",
+      sectionTitle: "Kerala Kerala Day Out Packages",
       packages: [
         {
           id: "backwater-cruise",
@@ -262,10 +262,10 @@ export const useAdminHomepage = () => {
       errors.push('Tour offers section title is required');
     }
 
-    // Validate day out packages
+    // Validate Kerala Day Out Packages
     if (configToValidate.dayOutPackages.isVisible) {
       if (!configToValidate.dayOutPackages.sectionTitle.trim()) {
-        errors.push('Day out packages section title is required');
+        errors.push('Kerala Day Out Packages section title is required');
       }
 
       const activePackages = configToValidate.dayOutPackages.packages.filter(p => p.isActive);

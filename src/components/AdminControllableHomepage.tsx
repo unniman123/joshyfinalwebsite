@@ -113,7 +113,7 @@ const AdminControllableHomepage = ({
       isVisible: true
     },
     dayOutPackages: {
-      sectionTitle: "Day Out Packages",
+      sectionTitle: "Kerala Day Out Packages",
       packages: [
         {
           id: "1",
@@ -205,7 +205,7 @@ const AdminControllableHomepage = ({
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="hero">Hero Banner</TabsTrigger>
           <TabsTrigger value="tours">Tour Offers</TabsTrigger>
-          <TabsTrigger value="dayouts">Day Out Packages</TabsTrigger>
+          <TabsTrigger value="dayouts">Kerala Day Out Packages</TabsTrigger>
         </TabsList>
 
         {/* Hero Banner Configuration */}
@@ -463,13 +463,13 @@ const AdminControllableHomepage = ({
           </Card>
         </TabsContent>
 
-        {/* Day Out Packages Configuration */}
+        {/* Kerala Day Out Packages Configuration */}
         <TabsContent value="dayouts" className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageSquare className="h-5 w-5" />
-                Day Out Packages Section
+                Kerala Day Out Packages Section
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -481,7 +481,7 @@ const AdminControllableHomepage = ({
                     updateConfig('dayOutPackages', { isVisible: checked })
                   }
                 />
-                <Label>Show Day Out Packages Section</Label>
+                <Label>Show Kerala Day Out Packages Section</Label>
               </div>
 
               <div>
@@ -492,7 +492,7 @@ const AdminControllableHomepage = ({
                   onChange={(e) =>
                     updateConfig('dayOutPackages', { sectionTitle: e.target.value })
                   }
-                  placeholder="Day Out Packages"
+                  placeholder="Kerala Day Out Packages"
                 />
               </div>
 
@@ -680,7 +680,7 @@ const AdminControllableHomepage = ({
               [
                 config.heroBanner.isVisible && "Hero Banner",
                 config.tourOffers.isVisible && "Tour Offers",
-                config.dayOutPackages.isVisible && "Day Out Packages"
+                config.dayOutPackages.isVisible && "Kerala Day Out Packages"
               ].filter(Boolean).join(", ")
             }</p>
           </div>

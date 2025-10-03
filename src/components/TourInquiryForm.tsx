@@ -62,8 +62,8 @@ const TourEnquiryForm = ({
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
-    // Add a subtle defined border so the enquiry form reads as a distinct panel (green theme)
-    <Card className="border border-green-200/20 shadow-none w-full bg-transparent">
+    // Add a subtle defined border so the enquiry form reads as a distinct panel (burgundy theme)
+    <Card className="border shadow-none w-full bg-transparent" style={{ borderColor: 'hsl(345 50% 85% / 0.3)' }}>
       <CardHeader className="pb-1">
         <CardTitle className="text-sm font-semibold text-black flex items-center gap-1">
           <User className="h-3 w-3 text-black/60" />
@@ -83,7 +83,7 @@ const TourEnquiryForm = ({
               <Input
                 id={`${formIdPrefix}-name`}
                 type="text"
-                placeholder="Your name"
+                placeholder="Enter Your Name"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
@@ -177,7 +177,7 @@ const TourEnquiryForm = ({
               className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px]"
               style={{ background: 'hsl(var(--success))', color: 'hsl(var(--button-primary-foreground))' }}
             >
-              Send Enquiry
+              Send Request
             </Button>
           </div>
         </form>

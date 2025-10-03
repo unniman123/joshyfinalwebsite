@@ -23,7 +23,7 @@ const Index = () => {
       <div id="about">
         <AboutUsSection />
       </div>
-      {/* Day Out Packages Section positioned after about us */}
+      {/* Kerala Day Out Packages Section positioned after about us */}
       <DayOutPackagesSection />
       {/* Customer Testimonials Section */}
       <TestimonialsSection />

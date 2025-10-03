@@ -54,7 +54,7 @@ const EnquiryFormCompact = () => {
             <Input
               id="Enquiry-name"
               type="text"
-              placeholder="Your name"
+              placeholder="Enter Your Name"
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               className="h-6 text-[10px] px-2"
@@ -115,7 +115,7 @@ const EnquiryFormCompact = () => {
               type="submit"
               className="w-full bg-[var(--brand-green)] text-white hover:shadow-brand transition-all duration-300 h-6 text-[10px]"
             >
-              Send Enquiry
+              Send Request
             </Button>
           </div>
         </form>
