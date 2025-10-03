@@ -388,7 +388,7 @@ export async function getHomepageConfiguration(): Promise<HomepageConfiguration 
       isVisible: true
     },
     dayOutPackages: {
-      sectionTitle: 'Day Out Packages',
+      sectionTitle: 'Kerala Day Out Packages',
       packages: [
         {
           id: 'backwater-cruise',
@@ -468,7 +468,7 @@ export async function updateTourOffersConfig(updates: Partial<HomepageConfigurat
 }
 
 export async function updateDayOutPackagesConfig(updates: Partial<HomepageConfiguration['dayOutPackages']>): Promise<boolean> {
-  // TODO: Implement day out packages specific updates
+  // TODO: Implement Kerala Day Out Packages specific updates
   return true;
 }
 
@@ -495,7 +495,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'name',
       fieldType: 'text',
       label: 'Name',
-      placeholder: 'Your name',
+      placeholder: 'Enter Your Name',
       isRequired: true,
       isVisible: true,
       order: 0
@@ -525,7 +525,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'name',
       fieldType: 'text',
       label: 'Name',
-      placeholder: 'Your name',
+      placeholder: 'Enter Your Name',
       isRequired: true,
       isVisible: true,
       order: 0

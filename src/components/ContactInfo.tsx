@@ -74,16 +74,28 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             href={`https://wa.me/${info.whatsapp.replace(/[^0-9]/g, '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block p-4 md:p-6 rounded-xl border border-border hover:border-green-200 hover:bg-green-50 transition-all duration-300 cursor-pointer"
+            className="group block p-4 md:p-6 rounded-xl border border-border transition-all duration-300 cursor-pointer"
+            style={{ 
+              ['--hover-border' as string]: 'hsl(345 60% 80%)',
+              ['--hover-bg' as string]: 'hsl(345 50% 95%)'
+            } as React.CSSProperties}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'hsl(345 60% 80%)';
+              e.currentTarget.style.backgroundColor = 'hsl(345 50% 95%)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '';
+              e.currentTarget.style.backgroundColor = '';
+            }}
           >
             <div className="flex items-center space-x-3 md:space-x-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/10 group-hover:bg-green-500/20 rounded-full flex items-center justify-center transition-colors">
-                <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6 text-green-600" />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: 'hsl(345 65% 90%)' }}>
+                <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" style={{ color: 'hsl(345 65% 45%)' }} />
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-base md:text-lg mb-1">Whatsapp</h3>
-                <p className="text-muted-foreground text-xs md:text-sm group-hover:text-green-600 transition-colors">
-                  {info.whatsapp || "+91 98765 43210"}
+                <p className="text-muted-foreground text-xs md:text-sm transition-colors group-hover:opacity-80">
+                  {info.whatsapp || "Enter Your Whatsaap Number"}
                 </p>
               </div>
             </div>

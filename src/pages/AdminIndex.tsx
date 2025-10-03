@@ -71,7 +71,7 @@ const AdminAwareDayOutPackagesSection: React.FC = () => {
   return (
     <AdminControllableSection
       sectionKey="dayOutPackages"
-      title="Day Out Packages"
+      title="Kerala Day Out Packages"
     >
       <DayOutPackagesSection
         // Pass admin-controlled props that reflect the changes
@@ -109,7 +109,7 @@ const AdminIndex: React.FC = () => {
           <AboutUsSection />
         </div>
 
-        {/* Admin-controllable Day Out Packages with button/description removal and form changes */}
+        {/* Admin-controllable Kerala Day Out Packages with button/description removal and form changes */}
         <AdminAwareDayOutPackagesSection />
 
         {/* Customer Testimonials Section (not admin-controlled) */}

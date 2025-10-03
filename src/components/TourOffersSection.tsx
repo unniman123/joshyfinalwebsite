@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -94,9 +94,41 @@ const TourOffersSection = ({
 
   // Infinite loop carousel state with smooth CSS animation
   const [isPaused, setIsPaused] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
   
   // Duplicate tours multiple times for seamless infinite loop
   const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
+
+  // Manual navigation handlers
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      const cardWidth = 160; // w-40 (160px) at lg breakpoint
+      const gap = 32; // gap-8 (32px)
+      const scrollAmount = cardWidth + gap;
+      
+      // Pause auto-scroll and manually scroll
+      setIsPaused(true);
+      carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      
+      // Resume auto-scroll after 5 seconds of inactivity
+      setTimeout(() => setIsPaused(false), 5000);
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      const cardWidth = 160; // w-40 (160px) at lg breakpoint
+      const gap = 32; // gap-8 (32px)
+      const scrollAmount = cardWidth + gap;
+      
+      // Pause auto-scroll and manually scroll
+      setIsPaused(true);
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      
+      // Resume auto-scroll after 5 seconds of inactivity
+      setTimeout(() => setIsPaused(false), 5000);
+    }
+  };
 
 
 
@@ -123,17 +155,35 @@ const TourOffersSection = ({
                 style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} 
               />
 
-              {/* Section Header - positioned at left edge */}
-              <div className="relative z-10 text-left mb-10 text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-3">{sectionTitle}</h2>
+              {/* Section Header - positioned with proper spacing from top */}
+              <div className="relative z-10 text-left mb-10 mt-4 text-white">
+                <h2 className="text-xl md:text-2xl font-bold mb-3">{sectionTitle}</h2>
               </div>
 
               {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
               <div className="relative z-10 -ml-8 lg:-ml-24">
-                <div className="relative overflow-hidden">
+                {/* Left Navigation Button */}
+                <button
+                  onClick={scrollLeft}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Previous tours"
+                >
+                  <ChevronLeft className="h-5 w-5 text-gray-800" />
+                </button>
+
+                {/* Right Navigation Button */}
+                <button
+                  onClick={scrollRight}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Next tours"
+                >
+                  <ChevronRight className="h-5 w-5 text-gray-800" />
+                </button>
+
+                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth' }}>
                   {/* Continuous sliding carousel wrapper with smooth CSS animation */}
                   <div
-                    className={`flex gap-6 md:gap-8 ${isPaused ? '' : 'animate-scroll-left'}`}
+                    className={`flex gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     onFocus={() => setIsPaused(true)}

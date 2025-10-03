@@ -49,20 +49,20 @@ const Header = () => {
   ];
 
   return (
-    <header className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white/95 text-foreground shadow-md' : 'bg-transparent text-white'}` : 'w-full relative bg-white/95 text-foreground shadow-md'}>
-      {/* Top Contact Bar - transparent to blend with hero */}
-      <div className="bg-transparent text-foreground px-4 py-2 text-sm font-medium backdrop-blur-sm">
+    <header className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white text-foreground shadow-md' : 'bg-black/30 text-white'}` : 'w-full sticky top-0 bg-white text-foreground shadow-md z-40'}>
+      {/* Top Contact Bar */}
+      <div className={`px-4 py-2 text-sm font-medium ${isHome ? 'bg-transparent' : 'bg-gray-50'}`}>
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
           </div>
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-4 text-sm" style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}>
             <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span>+91 9539 50 7516</span>
+              <Phone className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
+              <span>+91-9539507516</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4" />
+              <Mail className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
               <span>KeralaToursGlobal@gmail.com</span>
             </div>
           </div>
@@ -70,13 +70,13 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="backdrop-blur-sm bg-white/5 border-b border-transparent">
+      <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
-              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-10 w-auto cursor-pointer" />
-              <span className="site-title text-lg font-extrabold text-foreground">
+              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className={`h-10 w-auto cursor-pointer ${isHome ? 'drop-shadow-lg' : ''}`} />
+              <span className={`site-title text-lg font-extrabold ${isHome ? '' : 'text-foreground'}`} style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -96,10 +96,13 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="transition-smooth font-bold relative group text-foreground hover:text-brand-green"
+                    className={`transition-smooth font-bold relative group ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
+                    style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
+                    onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+                    onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
                   </Link>
                 );
 
@@ -108,10 +111,13 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className="transition-smooth font-bold relative group text-foreground hover:text-brand-green"
+                        className={`transition-smooth font-bold relative group ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
+                        style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
+                        onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+                        onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
                       >
                         Heli Taxi
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-green transition-all duration-300 group-hover:w-full"></span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
                       </Link>
                       {renderItem}
                     </div>
@@ -129,6 +135,7 @@ const Header = () => {
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
+                className="drop-shadow-lg"
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
@@ -137,12 +144,12 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-border animate-fade-in">
+            <div className="md:hidden py-4 border-t border-white/20 animate-fade-in bg-black/40">
               <div className="flex flex-col space-y-3">
                 {navigationItems.map((item) => {
                   item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-foreground hover:text-brand-green transition-smooth font-bold py-2 list-none cursor-pointer">
+                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-bold py-2 list-none cursor-pointer" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
                         <span>{item.name}</span>
                       </summary>
 
@@ -150,7 +157,7 @@ const Header = () => {
                         {/* Lazy render a link to view all and let dropdown pages handle subcategory links */}
                         <Link
                           to={item.href}
-                          className="block text-sm text-foreground py-2 hover:text-brand-green"
+                          className="block text-sm text-white/90 py-2 hover:text-rose-300"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           View all {item.name}
@@ -166,7 +173,8 @@ const Header = () => {
                       )}
                       <Link
                         to={item.href}
-                        className="text-foreground hover:text-brand-green transition-smooth font-bold py-2"
+                        className="text-white hover:text-rose-300 transition-smooth font-bold py-2"
+                        style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}

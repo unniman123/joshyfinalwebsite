@@ -99,7 +99,7 @@ const EnquiryForm = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
-          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name " required />
+          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter Enter Your Name " required />
         </div>
 
         <div className="space-y-2">
@@ -127,7 +127,7 @@ const EnquiryForm = ({
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="numberOfKids">number of kids & their age (If any)</Label>
+          <Label htmlFor="numberOfKids">Number of kids & their age (If any)</Label>
           <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
         </div>
       </div>
