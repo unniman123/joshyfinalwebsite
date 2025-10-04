@@ -13,11 +13,20 @@ interface NavigationDropdownProps {
 const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) => {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [tours, setTours] = useState<TourSummary[]>([]);
   const [loading, setLoading] = useState(false);
   const [openTimeout, setOpenTimeout] = useState<NodeJS.Timeout | null>(null);
   const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  // Track scroll position
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Fetch tours for this category when dropdown is opened (lazy-load)
   useEffect(() => {
@@ -109,14 +118,14 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     >
       <Link
         to={href}
-        className={`transition-smooth font-bold relative flex items-center gap-1 py-2 ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
-        style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
-        onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
-        onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
+        className={`transition-smooth font-semibold relative flex items-center gap-1 py-2 ${(isHome && !isScrolled) ? 'text-white hover:text-rose-300' : 'text-foreground'}`}
+        style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
+        onMouseEnter={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+        onMouseLeave={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = '' : undefined}
       >
         {name}
         {hasDropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />}
-        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
+        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
       </Link>
 
       {hasDropdown && isOpen && (

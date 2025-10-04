@@ -56,13 +56,13 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
           </div>
-          <div className="flex items-center gap-4 text-sm" style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}>
+          <div className="flex items-center gap-4 text-sm" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
             <div className="flex items-center gap-2">
-              <Phone className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
+              <Phone className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'hsl(345 65% 45%)' }} />
               <span>+91-9539-507516</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
+              <Mail className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'hsl(345 65% 45%)' }} />
               <span>KeralaToursGlobal@gmail.com</span>
             </div>
           </div>
@@ -75,8 +75,8 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
-              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className={`h-10 w-auto cursor-pointer ${isHome ? 'drop-shadow-lg' : ''}`} />
-              <span className={`site-title text-lg font-extrabold ${isHome ? '' : 'text-foreground'}`} style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}>
+              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-14 w-auto cursor-pointer" />
+              <span className={`text-lg font-bold tracking-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -96,13 +96,13 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`transition-smooth font-bold relative group ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
-                    style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
-                    onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
-                    onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
+                    className={`transition-smooth font-semibold relative group ${(isHome && !isScrolled) ? 'text-white hover:text-rose-300' : 'text-foreground'}`}
+                    style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
+                    onMouseEnter={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+                    onMouseLeave={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = '' : undefined}
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
                   </Link>
                 );
 
@@ -111,13 +111,13 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className={`transition-smooth font-bold relative group ${isHome ? 'hover:text-rose-300' : 'text-foreground'}`}
-                        style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}
-                        onMouseEnter={!isHome ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
-                        onMouseLeave={!isHome ? (e) => e.currentTarget.style.color = '' : undefined}
+                        className={`transition-smooth font-semibold relative group ${(isHome && !isScrolled) ? 'text-white hover:text-rose-300' : 'text-foreground'}`}
+                        style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
+                        onMouseEnter={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = 'hsl(345 65% 45%)' : undefined}
+                        onMouseLeave={!(isHome && !isScrolled) ? (e) => e.currentTarget.style.color = '' : undefined}
                       >
                         Heli Taxi
-                        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: isHome ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgb(253 164 175)' : 'hsl(345 65% 45%)' }}></span>
                       </Link>
                       {renderItem}
                     </div>
@@ -149,7 +149,7 @@ const Header = () => {
                 {navigationItems.map((item) => {
                   item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-bold py-2 list-none cursor-pointer" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}>
+                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
                         <span>{item.name}</span>
                       </summary>
 
@@ -173,8 +173,8 @@ const Header = () => {
                       )}
                       <Link
                         to={item.href}
-                        className="text-white hover:text-rose-300 transition-smooth font-bold py-2"
-                        style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8)' }}
+                        className="text-white hover:text-rose-300 transition-smooth font-semibold py-2"
+                        style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}
