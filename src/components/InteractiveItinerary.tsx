@@ -16,7 +16,6 @@ interface InteractiveItineraryProps {
 
 const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: InteractiveItineraryProps) => {
   const [showFloatingButton, setShowFloatingButton] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   // Smooth scroll to enquiry section
   const scrollToEnquiry = () => {
@@ -130,40 +129,17 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
 
       {/* Floating Enquire Button - appears on scroll */}
       <div 
-        className={`fixed bottom-24 left-6 z-40 transition-all duration-500 ${
+        className={`fixed bottom-6 left-6 z-40 transition-all duration-500 ${
           showFloatingButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
       >
-        <div className="relative group">
-          {/* Pulse Animation Ring */}
-          <div className="absolute inset-0 bg-brand-green rounded-full animate-ping opacity-20"></div>
-
-          {/* Main Enquire Button */}
-          <button
-            onClick={scrollToEnquiry}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative bg-brand-green hover:bg-brand-green-dark text-black p-4 rounded-full shadow-2xl hover:shadow-brand-green/50 transition-all duration-300 transform hover:scale-110 active:scale-95"
-            aria-label="Scroll to enquiry form"
-          >
-            <MessageSquare className="h-7 w-7" />
-            
-            {/* Notification Badge */}
-            <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse font-semibold">
-              !
-            </div>
-          </button>
-
-          {/* Tooltip on Hover */}
-          <div 
-            className={`absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap transition-all duration-300 ${
-              isHovered ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible -translate-x-2'
-            }`}
-          >
-            <span className="font-medium">Send Enquiry</span>
-            <div className="absolute top-1/2 -translate-y-1/2 right-full border-4 border-transparent border-r-gray-900"></div>
-          </div>
-        </div>
+        <Button 
+          onClick={scrollToEnquiry}
+          className="bg-brand-green hover:bg-brand-green-dark text-black font-semibold px-6 py-3 rounded-lg shadow-2xl hover:shadow-brand-green/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+        >
+          <MessageSquare className="h-5 w-5" />
+          <span>Enquire</span>
+        </Button>
       </div>
     </>
   );

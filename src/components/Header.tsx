@@ -59,7 +59,7 @@ const Header = () => {
           <div className="flex items-center gap-4 text-sm" style={isHome ? { textShadow: '0 2px 4px rgba(0,0,0,0.8)' } : {}}>
             <div className="flex items-center gap-2">
               <Phone className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
-              <span>+91-9539507516</span>
+              <span>+91-9539-507516</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className={`h-4 w-4 ${isHome ? 'drop-shadow-lg' : ''}`} style={!isHome ? { color: 'hsl(345 65% 45%)' } : {}} />
