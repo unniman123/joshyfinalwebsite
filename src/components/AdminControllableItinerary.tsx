@@ -65,7 +65,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
         </div>
 
         {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border p-2">
+      <div className="bg-white rounded-lg shadow-warm border border-border py-2 px-12 md:px-16 lg:px-20">
         <div className="max-w-none">
           {activeDays.map((day, index) => (
             <div key={day.id} className={`${index > 0 ? 'mt-2' : ''}`}>
