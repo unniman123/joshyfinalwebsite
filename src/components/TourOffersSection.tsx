@@ -197,7 +197,7 @@ const TourOffersSection = ({
                         aria-label={`View details for ${tour.title} tour`}
                       >
                         {/* Oval tour card */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 border-white/40 shadow-card transition-all duration-300 mb-3">
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 shadow-card transition-all duration-300 mb-3" style={{ borderColor: '#3b82f6' }}>
                           <img 
                             src={tour.image} 
                             alt={tour.title} 
