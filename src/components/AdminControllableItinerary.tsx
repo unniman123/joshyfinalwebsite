@@ -53,16 +53,16 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
 
       {/* Single content box with paragraphed content */}
       <div className="bg-white rounded-lg shadow-warm border border-border p-2">
-        <div className="prose prose-lg max-w-none">
+        <div className="max-w-none">
           {activeDays.map((day, index) => (
-            <div key={day.id} className="mb-0 last:mb-0">
-              <h3 className="text-lg font-semibold text-foreground mb-1">
+            <div key={day.id} className={`${index > 0 ? 'mt-2' : ''}`}>
+              <h3 className="text-lg font-semibold text-foreground !m-0 !p-0 leading-tight">
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <div className="text-muted-foreground leading-relaxed text-base mb-0 text-justify">
+                <div className="text-muted-foreground text-base text-justify !m-0 !p-0 leading-relaxed space-y-1">
                   {day.description.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="mb-0 last:mb-0">
+                    <p key={idx} className="!m-0 !p-0">
                       {paragraph.trim()}
                     </p>
                   ))}
