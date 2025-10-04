@@ -213,9 +213,8 @@ const DayOutPackagesSection = ({
                 {dayOutPackages.map((pkg, index) => (
                   <button
                     key={pkg.id}
-                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex ? 'scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentIndex ? 'bg-gray-400 scale-110' : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
                       }`}
-                    style={index === currentIndex ? { backgroundColor: 'hsl(345 65% 45%)' } : {}}
                     onClick={() => setCurrentIndex(index)}
                     aria-label={`Go to ${pkg.title} package`}
                     title={pkg.title}

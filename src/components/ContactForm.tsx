@@ -182,7 +182,7 @@ const ContactForm = ({
         type="submit"
         variant="hero"
         size="lg"
-        className="w-full"
+        className="w-full !bg-blue-400 hover:!bg-blue-500 !text-white"
         disabled={isSubmitting}
         aria-describedby="form-status"
       >

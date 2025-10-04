@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ItineraryDay } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { MessageSquare } from "lucide-react";
@@ -9,6 +10,8 @@ interface AdminControllableItineraryProps {
 }
 
 const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }: AdminControllableItineraryProps) => {
+  const [showFloatingButton, setShowFloatingButton] = useState(false);
+
   // Filter only active days and sort by order
   const activeDays = itineraryDays
     .filter(day => day.isActive)
@@ -25,6 +28,24 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
     }
   };
 
+  // Show/hide floating button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Show button after scrolling 300px
+      if (scrollPosition > 300) {
+        setShowFloatingButton(true);
+      } else {
+        setShowFloatingButton(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   if (!activeDays.length) {
     return (
       <div className={`text-center py-8 ${className}`}>
@@ -34,35 +55,29 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
   }
 
   return (
-    <div className={`space-y-0 ${className}`}>
-      {/* Section heading with sticky floating enquiry button */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
-        <h2 className="text-lg font-semibold text-foreground">
-          Itinerary
-        </h2>
-        <div className="sm:sticky sm:top-20 sm:z-10">
-          <Button 
-            onClick={scrollToEnquiry}
-            className="bg-brand-green hover:bg-brand-green-dark text-black font-semibold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 w-full sm:w-auto"
-          >
-            <MessageSquare className="h-5 w-5" />
-            <span>Enquire</span>
-          </Button>
+    <>
+      <div className={`space-y-0 ${className}`}>
+        {/* Section heading in Red Box */}
+        <div className="flex items-center mb-4">
+          <div className="inline-block bg-red-600 text-white rounded-md px-6 py-3 shadow-lg shadow-red-500/30">
+            <h2 className="text-lg font-semibold leading-none">
+              Itinerary
+            </h2>
+          </div>
         </div>
-      </div>
 
-      {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border p-2">
-        <div className="prose prose-lg max-w-none">
+        {/* Single content box with paragraphed content */}
+      <div className="bg-white rounded-lg shadow-warm border border-border py-2 px-12 md:px-16 lg:px-20">
+        <div className="max-w-none">
           {activeDays.map((day, index) => (
-            <div key={day.id} className="mb-0 last:mb-0">
-              <h3 className="text-lg font-semibold text-foreground mb-1">
+            <div key={day.id} className={`${index > 0 ? 'mt-2' : ''}`}>
+              <h3 className="text-lg font-semibold text-foreground !m-0 !p-0 leading-tight">
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <div className="text-muted-foreground leading-relaxed text-base mb-0 text-justify">
+                <div className="text-muted-foreground text-base text-justify !m-0 !p-0 leading-relaxed space-y-1">
                   {day.description.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="mb-0 last:mb-0">
+                    <p key={idx} className="!m-0 !p-0">
                       {paragraph.trim()}
                     </p>
                   ))}
@@ -72,7 +87,23 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
           ))}
         </div>
       </div>
-    </div>
+      </div>
+
+      {/* Floating Enquire Button - appears on scroll */}
+      <div 
+        className={`fixed bottom-6 left-6 z-40 transition-all duration-500 ${
+          showFloatingButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
+      >
+        <Button 
+          onClick={scrollToEnquiry}
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(220,38,38,0.4)]"
+        >
+          <MessageSquare className="h-5 w-5" />
+          <span>Enquire</span>
+        </Button>
+      </div>
+    </>
   );
 };
 

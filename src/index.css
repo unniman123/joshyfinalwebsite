@@ -51,8 +51,8 @@
     /* Promo magenta used for marketing panels */
     --promo-magenta: 328 40% 30%;
     --promo-magenta-foreground: 0 0% 98%;
-    /* Offers section solid background color (burgundy) - tuned HSL for better contrast */
-    --offers-bg: hsl(345 65% 35%);
+    /* Offers section solid background color (light ash gray) - tuned HSL for better contrast */
+    --offers-bg: hsl(210 10% 75%);
     --offers-bg-foreground: 0 0% 100%;
     /* Form placeholder token */
     --form-placeholder: rgba(255,255,255,0.6);

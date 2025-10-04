@@ -52,7 +52,7 @@ const Contact = () => {
       {/* Simplified Hero Section */}
       <section className="bg-gradient-to-b from-primary/5 to-background py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground text-center underline">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center underline">
             Contact Us
           </h1>
         </div>
@@ -69,7 +69,7 @@ const Contact = () => {
 
             {/* Right Column: Contact Form */}
             <div className="space-y-6">
-              <div className="text-center lg:text-left -mt-6">
+              <div className="text-center lg:text-left -mt-6 bg-primary/10 border border-primary/20 rounded-xl p-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 underline">
                   Plan My Trip
                 </h2>
