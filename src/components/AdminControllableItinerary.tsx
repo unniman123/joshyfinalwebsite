@@ -57,11 +57,13 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
   return (
     <>
       <div className={`space-y-0 ${className}`}>
-        {/* Section heading */}
-        <div className="flex items-center mb-2">
-          <h2 className="text-lg font-semibold text-foreground">
-            Itinerary
-          </h2>
+        {/* Section heading in Red Box */}
+        <div className="flex items-center mb-4">
+          <div className="inline-block bg-red-600 text-white rounded-md px-6 py-3 shadow-lg shadow-red-500/30">
+            <h2 className="text-lg font-semibold leading-none">
+              Itinerary
+            </h2>
+          </div>
         </div>
 
         {/* Single content box with paragraphed content */}
@@ -95,7 +97,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
       >
         <Button 
           onClick={scrollToEnquiry}
-          className="bg-brand-green hover:bg-brand-green-dark text-black font-semibold px-6 py-3 rounded-lg shadow-2xl hover:shadow-brand-green/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(220,38,38,0.4)]"
         >
           <MessageSquare className="h-5 w-5" />
           <span>Enquire</span>

@@ -26,10 +26,10 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         {/* Tour Title Section - Center Aligned */}
         <section className="pt-12 md:pt-16 lg:pt-20 pb-2 md:py-3 lg:py-4 px-4">
           <div className="container mx-auto max-w-7xl px-4">
-            {/* Title pill aligned left with footer color, white text, rounded end */}
+            {/* Title with red background box */}
             <div className="flex items-center">
-              <div className="inline-block bg-slate-900 text-white rounded-r-full px-4 h-10 flex items-center">
-                <h1 className="text-lg md:text-xl lg:text-2xl font-bold leading-none">
+              <div className="inline-block bg-red-600 text-white rounded-md px-8 py-4 shadow-lg shadow-red-500/30">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-none">
                   {tour.title}
                 </h1>
               </div>
@@ -131,8 +131,8 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         <section className="py-8 md:py-12 lg:py-16 px-4">
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex items-center">
-              <div className="inline-block bg-slate-900 text-white rounded-r-full px-4 h-10 flex items-center">
-                <h1 className="text-lg md:text-xl lg:text-2xl font-bold leading-none">
+              <div className="inline-block bg-red-600 text-white rounded-md px-8 py-4 shadow-lg shadow-red-500/30">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-none">
                   {tour.title}
                 </h1>
               </div>
