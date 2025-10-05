@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageSquare } from "lucide-react";
 
 interface ItineraryDay {
   dayNumber: number;
@@ -109,7 +108,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
         </div>
 
         {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border pt-12 pb-2 px-12 md:px-16 lg:px-20">
+      <div className="bg-white rounded-lg shadow-warm border border-border pt-12 pb-12 px-12 md:px-16 lg:px-20">
         <div className="max-w-none">
           {days.map((day, index) => (
             <div key={day.dayNumber} className={`${index > 0 ? 'mt-2' : ''}`}>
@@ -131,15 +130,14 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
 
       {/* Floating Enquire Button - appears on scroll */}
       <div 
-        className={`fixed bottom-6 right-6 z-40 transition-all duration-500 ${
+        className={`fixed bottom-6 right-20 md:right-24 lg:right-32 z-40 transition-all duration-500 ${
           showFloatingButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
       >
         <Button 
           onClick={scrollToEnquiry}
-          className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg shadow-2xl hover:shadow-red-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(220,38,38,0.4)]"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 rounded-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(234,179,8,0.4)]"
         >
-          <MessageSquare className="h-5 w-5" />
           <span>Enquire</span>
         </Button>
       </div>
