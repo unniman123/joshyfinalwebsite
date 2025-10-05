@@ -61,14 +61,14 @@ const Header = () => {
             {/* Removed KeralaToursGlobal text */}
           </div>
           <div className="flex items-center gap-4 text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
-            <div className="flex items-center gap-2">
+            <a href="tel:+919539507516" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'black' }} />
               <span>+91-9539-507516</span>
-            </div>
-            <div className="flex items-center gap-2">
+            </a>
+            <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'black' }} />
               <span>KeralaToursGlobal@gmail.com</span>
-            </div>
+            </a>
           </div>
         </div>
       </div>

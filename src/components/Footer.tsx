@@ -70,11 +70,19 @@ const Footer = () => {
           <div className="space-y-1.5" style={{ fontFamily: "'Poppins', sans-serif" }}>
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 flex-shrink-0 text-white" />
-              <span className="text-xs text-white/80">+91-95395-07516, +91-471-2488880</span>
+              <span className="text-xs text-white/80">
+                <a href="tel:+919539507516" className="hover:text-white transition-colors">+91-95395-07516</a>
+                {", "}
+                <a href="tel:+914712488880" className="hover:text-white transition-colors">+91-471-2488880</a>
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 flex-shrink-0 text-white" />
-              <span className="text-xs text-white/80">KeralaToursGlobal@gmail.com, flabour@gmail.com</span>
+              <span className="text-xs text-white/80">
+                <a href="mailto:KeralaToursGlobal@gmail.com" className="hover:text-white transition-colors">KeralaToursGlobal@gmail.com</a>
+                {", "}
+                <a href="mailto:flabour@gmail.com" className="hover:text-white transition-colors">flabour@gmail.com</a>
+              </span>
             </div>
             <div className="flex items-start gap-2">
               <MapPin className="h-4 w-4 flex-shrink-0 mt-1 text-white" />
