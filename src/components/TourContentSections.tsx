@@ -24,12 +24,12 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
     return (
       <div className="w-full">
         {/* Tour Title Section - Center Aligned */}
-        <section className="pt-12 md:pt-16 lg:pt-20 pb-2 md:py-3 lg:py-4 px-4">
-          <div className="container mx-auto max-w-7xl px-4">
+        <section className="pt-6 md:pt-12 lg:pt-16 pb-2 md:py-3 lg:py-4 px-2 md:px-4">
+          <div className="container mx-auto max-w-7xl px-2 md:px-4">
             {/* Title with red background box */}
-            <div className="flex items-center">
-              <div className="inline-block bg-red-600 text-white rounded-md px-8 py-4 shadow-lg shadow-red-500/30">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-none">
+            <div className="flex items-center justify-center md:justify-start">
+              <div className="inline-block bg-red-600 text-white rounded-md px-4 py-3 md:px-8 md:py-4 shadow-lg shadow-red-500/30 max-w-full">
+                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight break-words">
                   {tour.title}
                 </h1>
               </div>
@@ -46,10 +46,10 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           // If we have overview or itinerary, render them in unified layout
           if (overviewSection || itinerarySection) {
             return (
-              <section className="pt-6 md:pt-8 lg:pt-10 pb-6 md:pb-8 lg:pb-10 bg-muted/30">
-                <div className="container mx-auto max-w-7xl px-4">
+              <section className="pt-4 md:pt-6 lg:pt-8 pb-4 md:pb-6 lg:pb-8 bg-muted/30">
+                <div className="container mx-auto max-w-7xl px-2 md:px-4">
                   {/* 30-70 Grid Layout - Images flow continuously through both sections */}
-                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 md:gap-6 lg:gap-10">
                     
                     {/* Left side - Continuous Image Gallery (30%) - Spans both overview & itinerary */}
                     <div className="order-2 lg:order-1 lg:col-span-3">
@@ -63,14 +63,14 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     </div>
 
                     {/* Right side - Stacked Content (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-6 md:space-y-8 lg:space-y-10">
+                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 md:space-y-6 lg:space-y-8">
                       
                       {/* Overview Content */}
                       {overviewSection && (
-                        <div className="space-y-6">
-                          <div className="prose prose-lg max-w-none">
+                        <div className="space-y-4 md:space-y-6">
+                          <div className="prose prose-base md:prose-lg max-w-none px-3 md:px-0">
                             <div
-                              className="text-lg md:text-xl text-muted-foreground leading-relaxed text-justify"
+                              className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
                               dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
                             />
                           </div>
