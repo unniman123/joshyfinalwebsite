@@ -67,7 +67,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
         </div>
 
         {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border py-2 px-12 md:px-16 lg:px-20">
+      <div className="bg-white rounded-lg shadow-warm border border-border pt-12 pb-2 px-12 md:px-16 lg:px-20">
         <div className="max-w-none">
           {activeDays.map((day, index) => (
             <div key={day.id} className={`${index > 0 ? 'mt-2' : ''}`}>
@@ -91,7 +91,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
 
       {/* Floating Enquire Button - appears on scroll */}
       <div 
-        className={`fixed bottom-6 left-6 z-40 transition-all duration-500 ${
+        className={`fixed bottom-6 right-6 z-40 transition-all duration-500 ${
           showFloatingButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
       >
