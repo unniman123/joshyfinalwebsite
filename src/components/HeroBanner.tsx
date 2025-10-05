@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { unifiedSearch } from "@/lib/api";
 import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
 import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
@@ -71,10 +72,32 @@ const HeroBanner = ({
     setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
   };
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/tours?search=${encodeURIComponent(searchQuery.trim())}`);
+    const query = searchQuery.trim();
+    
+    if (!query) return;
+
+    // Perform unified search across tours and destinations
+    const results = await unifiedSearch(query);
+
+    // Smart routing based on search results
+    if (results.totalResults === 0) {
+      // No results found - go to tours page with search (will show "no results")
+      navigate(`/tours?search=${encodeURIComponent(query)}`);
+    } else if (results.hasDestinationsOnly) {
+      // Only destinations found - go to top destinations page
+      navigate(`/top-destinations?search=${encodeURIComponent(query)}`);
+    } else if (results.hasToursOnly) {
+      // Only tours found - go to tours page
+      navigate(`/tours?search=${encodeURIComponent(query)}`);
+    } else if (results.hasBoth) {
+      // Both found - prioritize tours page but user can navigate to destinations
+      // Tours page will show link to destination results
+      navigate(`/tours?search=${encodeURIComponent(query)}&hasDestinations=true`);
+    } else {
+      // Fallback to tours page
+      navigate(`/tours?search=${encodeURIComponent(query)}`);
     }
   };
 

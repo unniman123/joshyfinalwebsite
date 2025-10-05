@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,8 +7,8 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import ToursGrid from "@/components/ToursGrid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { getAllTours, TourSummary } from "@/lib/api";
+import { Search, MapPin } from "lucide-react";
+import { getAllTours, TourSummary, unifiedSearch } from "@/lib/api";
 
 const Tours = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,14 +17,23 @@ const Tours = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
+  const [destinationResultsCount, setDestinationResultsCount] = useState<number>(0);
 
   // Set search query and category from URL parameters
   useEffect(() => {
     const searchParam = searchParams.get('search');
     const categoryParam = searchParams.get('category');
+    const hasDestinationsParam = searchParams.get('hasDestinations');
     
     if (searchParam) {
       setSearchQuery(decodeURIComponent(searchParam));
+      
+      // If search has destinations flag, check for destination results
+      if (hasDestinationsParam === 'true') {
+        unifiedSearch(decodeURIComponent(searchParam)).then(results => {
+          setDestinationResultsCount(results.destinations.length);
+        });
+      }
     }
     if (categoryParam) {
       setSelectedCategory(categoryParam);
@@ -167,7 +176,7 @@ const Tours = () => {
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-16">
+          <div className="max-w-2xl mx-auto mb-8">
             <form onSubmit={handleSearch}>
               <div className="relative flex items-center">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
@@ -187,6 +196,26 @@ const Tours = () => {
               </div>
             </form>
           </div>
+
+          {/* Alert for destination results */}
+          {destinationResultsCount > 0 && searchQuery && (
+            <div className="mb-8 max-w-4xl mx-auto">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm text-blue-900 font-medium mb-1">
+                    Also found {destinationResultsCount} destination{destinationResultsCount !== 1 ? 's' : ''} in "100 Beautiful places in India"
+                  </p>
+                  <Link
+                    to={`/top-destinations?search=${encodeURIComponent(searchQuery)}`}
+                    className="text-sm text-blue-600 hover:text-blue-800 font-semibold underline"
+                  >
+                    View destination results →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Results Section */}
           <div className="space-y-8">
