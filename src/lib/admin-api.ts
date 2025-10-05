@@ -495,7 +495,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'name',
       fieldType: 'text',
       label: 'Name',
-      placeholder: 'Enter Your Name',
+      placeholder: 'Enter your name',
       isRequired: true,
       isVisible: true,
       order: 0
@@ -525,7 +525,7 @@ export async function getFormConfiguration(formType: 'tour_Enquiry' | 'day_out_E
       id: 'name',
       fieldType: 'text',
       label: 'Name',
-      placeholder: 'Enter Your Name',
+      placeholder: 'Enter your name',
       isRequired: true,
       isVisible: true,
       order: 0

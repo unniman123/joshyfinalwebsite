@@ -83,7 +83,7 @@ const TourEnquiryForm = ({
               <Input
                 id={`${formIdPrefix}-name`}
                 type="text"
-                placeholder="Enter Your Name"
+                placeholder="Enter your name"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
