@@ -134,17 +134,17 @@ const TourOffersSection = ({
 
   return (
     <section className="relative">
-      {/* Full-bleed background with white panel and golden border */}
+      {/* Full-bleed background with Pink Sand panel and golden border */}
       <div className="relative extend-left overflow-hidden">
         <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
-            {/* Left side - White panel with golden border and tours (70% width) */}
+            {/* Left side - Pink Sand panel with golden border and tours (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* White background panel with golden border - only covers the tours area */}
+              {/* Pink Sand background panel with golden border - only covers the tours area */}
               <div
                 className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0"
                 style={{
-                  background: '#FFFFFF',
+                  background: '#FFA8B6',
                   borderTopRightRadius: '1rem',
                   borderBottomRightRadius: '1rem',
                   borderTop: '1px solid #D4AF37',
@@ -160,7 +160,7 @@ const TourOffersSection = ({
 
               {/* Section Header - positioned with proper spacing from top */}
               <div className="relative z-10 text-left mb-10 mt-4">
-                <div className="inline-block bg-[var(--promo-red)] text-[var(--promo-red-foreground)] px-4 py-2 rounded-md shadow-md">
+                <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#c89666', color: '#ffffff' }}>
                   <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
                 </div>
               </div>
@@ -202,7 +202,7 @@ const TourOffersSection = ({
                         aria-label={`View details for ${tour.title} tour`}
                       >
                         {/* Oval tour card */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 shadow-card transition-all duration-300 mb-3" style={{ borderColor: 'var(--promo-red)' }}>
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-3" style={{ borderColor: '#c89666' }}>
                           <img 
                             src={tour.image} 
                             alt={tour.title} 
@@ -215,7 +215,7 @@ const TourOffersSection = ({
 
                         {/* Only title - description removed */}
                         <div className="text-center max-w-[160px]">
-                          <h3 className="text-sm sm:text-base font-semibold text-gray-800 leading-tight">
+                          <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-tight">
                             {tour.title}
                           </h3>
                         </div>
@@ -226,14 +226,14 @@ const TourOffersSection = ({
 
                 {/* Scroll indicator - shows continuous animation */}
                 <div className="flex justify-center mt-6">
-                  <div className="text-gray-500 text-xs">
+                  <div className="text-gray-700 text-xs">
                     Hover to pause
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right side - Enquiry form (30% width, outside white panel) */}
+            {/* Right side - Enquiry form (30% width, outside Pink Sand panel) */}
             {showEnquiryForm && (
               <div className="lg:w-[30%] mt-6 lg:mt-0">
                 <div className="w-full">
