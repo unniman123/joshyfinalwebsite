@@ -38,8 +38,8 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         {/* Quick Links */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>Quick Links</h3>
-          <ul className="space-y-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
+          <ul className="space-y-1" style={{ fontFamily: "'Sora', sans-serif" }}>
             {quickLinks.map(link => <li key={link.name}>
               <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth">
                 {link.name}
@@ -50,8 +50,8 @@ const Footer = () => {
 
         {/* Support Links */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>Support</h3>
-          <ul className="space-y-1" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
+          <ul className="space-y-1" style={{ fontFamily: "'Sora', sans-serif" }}>
             {supportLinks.map(link => (
               <li key={link.name}>
                 <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth">
@@ -64,10 +64,10 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>Get In Touch</h3>
+          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
 
           {/* Contact Details */}
-          <div className="space-y-1.5" style={{ fontFamily: "'Poppins', sans-serif" }}>
+          <div className="space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 flex-shrink-0 text-white" />
               <span className="text-xs text-white/80">
@@ -95,7 +95,7 @@ const Footer = () => {
 
         {/* Find Us Section - Right Side */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>Follow Us</h3>
+          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
           <nav aria-label="Social media links" className="flex flex-wrap gap-2">
             <a
               href="https://www.Facebook.com/GoIntoAllTheWorld.in"
@@ -160,7 +160,7 @@ const Footer = () => {
     <Separator className="bg-white/20 mb-2" />
 
     {/* Bottom Footer */}
-    <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80" style={{ fontFamily: "'Poppins', sans-serif" }}>
+    <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80" style={{ fontFamily: "'Sora', sans-serif" }}>
       <div className="font-medium">
         © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
