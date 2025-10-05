@@ -170,9 +170,12 @@ const EnquiryForm = ({
       <Button
         type="submit"
         size="lg"
-        className="w-full !bg-brand-green hover:!bg-brand-green-dark !text-black font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+        className="w-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+        style={{ backgroundColor: '#5cbdb9', color: '#000000' }}
         disabled={isSubmitting}
         aria-describedby="form-status"
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4aa9a5'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#5cbdb9'}
       >
         {isSubmitting ? "Sending..." : "Send Request"}
       </Button>
