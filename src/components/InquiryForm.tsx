@@ -99,7 +99,7 @@ const EnquiryForm = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="name">Name *</Label>
-          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter Enter Your Name " required />
+          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name " required />
         </div>
 
         <div className="space-y-2">

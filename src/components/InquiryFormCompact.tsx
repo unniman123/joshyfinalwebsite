@@ -54,7 +54,7 @@ const EnquiryFormCompact = () => {
             <Input
               id="Enquiry-name"
               type="text"
-              placeholder="Enter Your Name"
+              placeholder="Enter your name"
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               className="h-6 text-[10px] px-2"
