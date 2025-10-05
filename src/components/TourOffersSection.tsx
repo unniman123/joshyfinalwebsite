@@ -134,17 +134,17 @@ const TourOffersSection = ({
 
   return (
     <section className="relative">
-      {/* Full-bleed background with Pink Sand panel and golden border */}
+      {/* Full-bleed background with Blue Greeny panel and golden border */}
       <div className="relative extend-left overflow-hidden">
         <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
-            {/* Left side - Pink Sand panel with golden border and tours (70% width) */}
+            {/* Left side - Blue Greeny panel with golden border and tours (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Pink Sand background panel with golden border - only covers the tours area */}
+              {/* Blue Greeny background panel with golden border - only covers the tours area */}
               <div
                 className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0"
                 style={{
-                  background: '#FFA8B6',
+                  background: '#5cbdb9',
                   borderTopRightRadius: '1rem',
                   borderBottomRightRadius: '1rem',
                   borderTop: '1px solid #D4AF37',
@@ -233,7 +233,7 @@ const TourOffersSection = ({
               </div>
             </div>
 
-            {/* Right side - Enquiry form (30% width, outside Pink Sand panel) */}
+            {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}
             {showEnquiryForm && (
               <div className="lg:w-[30%] mt-6 lg:mt-0">
                 <div className="w-full">
