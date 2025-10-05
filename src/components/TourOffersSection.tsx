@@ -157,7 +157,9 @@ const TourOffersSection = ({
 
               {/* Section Header - positioned with proper spacing from top */}
               <div className="relative z-10 text-left mb-10 mt-4 text-white">
-                <h2 className="text-xl md:text-2xl font-bold mb-3">{sectionTitle}</h2>
+                <div className="inline-block bg-[var(--promo-red)] text-[var(--promo-red-foreground)] px-4 py-2 rounded-md shadow-md">
+                  <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+                </div>
               </div>
 
               {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
