@@ -88,7 +88,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
       </div>
       </div>
 
-      {/* Floating Enquire Button - appears on scroll */}
+      {/* Floating ENQUIRE Button - appears on scroll */}
       <div 
         className={`fixed ${
           typeof window !== 'undefined' && window.innerWidth < 768 
@@ -102,7 +102,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
           onClick={scrollToEnquiry}
           className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(234,179,8,0.4)]"
         >
-          <span>Enquire</span>
+          <span>ENQUIRE</span>
         </Button>
       </div>
     </>
