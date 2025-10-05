@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import DestinationsGrid from "@/components/DestinationsGrid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { getAllDestinations, DestinationSummary } from "@/lib/api";
+import { Search, Package } from "lucide-react";
+import { getAllDestinations, DestinationSummary, unifiedSearch } from "@/lib/api";
 
 const TopDestinations = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +15,7 @@ const TopDestinations = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedState, setSelectedState] = useState<string>("");
+  const [tourResultsCount, setTourResultsCount] = useState<number>(0);
 
   // Set search query and state from URL parameters
   useEffect(() => {
@@ -22,7 +23,13 @@ const TopDestinations = () => {
     const stateParam = searchParams.get('state');
 
     if (searchParam) {
-      setSearchQuery(decodeURIComponent(searchParam));
+      const decodedSearch = decodeURIComponent(searchParam);
+      setSearchQuery(decodedSearch);
+      
+      // Check if there are also tour results for this search
+      unifiedSearch(decodedSearch).then(results => {
+        setTourResultsCount(results.tours.length);
+      });
     }
     if (stateParam) {
       setSelectedState(stateParam);
@@ -120,6 +127,26 @@ const TopDestinations = () => {
               </div>
             </form>
           </div>
+
+          {/* Alert for tour results */}
+          {tourResultsCount > 0 && searchQuery && (
+            <div className="mb-8 max-w-4xl mx-auto">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
+                <Package className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm text-green-900 font-medium mb-1">
+                    Also found {tourResultsCount} tour package{tourResultsCount !== 1 ? 's' : ''} matching your search
+                  </p>
+                  <Link
+                    to={`/tours?search=${encodeURIComponent(searchQuery)}`}
+                    className="text-sm text-green-600 hover:text-green-800 font-semibold underline"
+                  >
+                    View tour packages →
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Results Section */}
           <div className="space-y-8">

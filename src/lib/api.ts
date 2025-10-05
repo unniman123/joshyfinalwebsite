@@ -1263,6 +1263,73 @@ export async function getTourCategories(): Promise<string[]> {
   ];
 }
 
+// Unified Search API - searches across tours and destinations
+export interface UnifiedSearchResult {
+  tours: TourSummary[];
+  destinations: DestinationSummary[];
+  totalResults: number;
+  hasToursOnly: boolean;
+  hasDestinationsOnly: boolean;
+  hasBoth: boolean;
+}
+
+/**
+ * Perform a comprehensive search across tours and destinations
+ * Returns unified results with smart categorization
+ */
+export async function unifiedSearch(query: string): Promise<UnifiedSearchResult> {
+  if (!query || query.trim().length === 0) {
+    return {
+      tours: [],
+      destinations: [],
+      totalResults: 0,
+      hasToursOnly: false,
+      hasDestinationsOnly: false,
+      hasBoth: false
+    };
+  }
+
+  const searchTerm = query.toLowerCase().trim();
+
+  // Search tours
+  const allTours = await getAllTours();
+  const matchingTours = allTours.filter(tour => {
+    return (
+      tour.title.toLowerCase().includes(searchTerm) ||
+      tour.description.toLowerCase().includes(searchTerm) ||
+      (tour.category || '').toLowerCase().includes(searchTerm) ||
+      (tour.categories || []).some(c => c.toLowerCase().includes(searchTerm)) ||
+      (tour.slug || '').toLowerCase().includes(searchTerm)
+    );
+  });
+
+  // Search destinations
+  const allDestinations = await getAllDestinations();
+  const matchingDestinations = allDestinations.filter(dest => {
+    return (
+      dest.title.toLowerCase().includes(searchTerm) ||
+      dest.shortDescription.toLowerCase().includes(searchTerm) ||
+      dest.state.toLowerCase().includes(searchTerm) ||
+      dest.region.toLowerCase().includes(searchTerm) ||
+      (dest.famousFor || []).some(f => f.toLowerCase().includes(searchTerm))
+    );
+  });
+
+  const totalResults = matchingTours.length + matchingDestinations.length;
+  const hasToursOnly = matchingTours.length > 0 && matchingDestinations.length === 0;
+  const hasDestinationsOnly = matchingDestinations.length > 0 && matchingTours.length === 0;
+  const hasBoth = matchingTours.length > 0 && matchingDestinations.length > 0;
+
+  return {
+    tours: matchingTours,
+    destinations: matchingDestinations,
+    totalResults,
+    hasToursOnly,
+    hasDestinationsOnly,
+    hasBoth
+  };
+}
+
 // Destination API functions for Top Destinations of India page
 
 /**
