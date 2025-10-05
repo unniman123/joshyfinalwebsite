@@ -57,24 +57,24 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
     <>
       <div className={`space-y-0 ${className}`}>
         {/* Section heading in Red Box */}
-        <div className="flex items-center mb-4">
-          <div className="inline-block bg-red-600 text-white rounded-md px-6 py-3 shadow-lg shadow-red-500/30">
-            <h2 className="text-lg font-semibold leading-none">
+        <div className="flex items-center justify-center md:justify-start mb-3 md:mb-4">
+          <div className="inline-block bg-red-600 text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-red-500/30">
+            <h2 className="text-base md:text-lg font-semibold leading-none">
               Itinerary
             </h2>
           </div>
         </div>
 
         {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border pt-12 pb-12 px-12 md:px-16 lg:px-20">
+      <div className="bg-white rounded-lg shadow-warm border border-border pt-6 pb-6 px-4 md:pt-10 md:pb-10 md:px-12 lg:px-16">
         <div className="max-w-none">
           {activeDays.map((day, index) => (
-            <div key={day.id} className={`${index > 0 ? 'mt-2' : ''}`}>
-              <h3 className="text-lg font-semibold text-foreground !m-0 !p-0 leading-tight">
+            <div key={day.id} className={`${index > 0 ? 'mt-3 md:mt-4' : ''}`}>
+              <h3 className="text-base md:text-lg font-semibold text-foreground !m-0 !p-0 leading-tight mb-2">
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <div className="text-muted-foreground text-base text-justify !m-0 !p-0 leading-relaxed space-y-1">
+                <div className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed space-y-2">
                   {day.description.split('\n\n').map((paragraph, idx) => (
                     <p key={idx} className="!m-0 !p-0">
                       {paragraph.trim()}
@@ -90,13 +90,17 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
 
       {/* Floating Enquire Button - appears on scroll */}
       <div 
-        className={`fixed top-1/2 -translate-y-1/2 right-6 z-40 transition-all duration-500 ${
+        className={`fixed ${
+          typeof window !== 'undefined' && window.innerWidth < 768 
+            ? 'bottom-20 right-4' 
+            : 'top-1/2 -translate-y-1/2 right-6'
+        } z-40 transition-all duration-500 ${
           showFloatingButton ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10 pointer-events-none'
         }`}
       >
         <Button 
           onClick={scrollToEnquiry}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3 rounded-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(234,179,8,0.4)]"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(234,179,8,0.4)]"
         >
           <span>Enquire</span>
         </Button>
