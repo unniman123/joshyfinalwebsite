@@ -206,13 +206,8 @@
   }
 
   /* Scoped font utility classes */
-  .site-header {
-    font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  }
-
-  .site-footer {
-    font-family: 'Merriweather', 'Georgia', serif;
-  }
+  /* Header and footer now use Poppins font via inline styles for consistency with modern UI design */
+  /* Inspired by Dubai Tourism website's clean, geometric sans-serif approach */
 
   /* Animation keyframes and utilities */
   @keyframes fade-in-up {
