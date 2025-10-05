@@ -60,7 +60,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
           </div>
-          <div className="flex items-center gap-4 text-sm" style={{ fontFamily: "'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+          <div className="flex items-center gap-4 text-sm" style={{ fontFamily: "'Poppins', sans-serif" }}>
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'black' }} />
               <span>+91-9539-507516</span>
@@ -80,7 +80,7 @@ const Header = () => {
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-14 w-auto cursor-pointer" />
-              <span className={`text-lg font-bold tracking-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'} site-header`}>
+              <span className={`text-lg font-bold tracking-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Poppins', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -100,7 +100,8 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`transition-smooth font-semibold relative group site-header ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                    className={`transition-smooth font-semibold relative group ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {item.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
@@ -112,7 +113,8 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className={`transition-smooth font-semibold relative group site-header ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                        className={`transition-smooth font-semibold relative group ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
                         Heli Taxi
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
@@ -147,7 +149,7 @@ const Header = () => {
                 {navigationItems.map((item) => {
                   item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}>
+                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Poppins', sans-serif" }}>
                         <span>{item.name}</span>
                       </summary>
 
@@ -172,7 +174,7 @@ const Header = () => {
                       <Link
                         to={item.href}
                         className="text-white hover:text-rose-300 transition-smooth font-semibold py-2"
-                        style={{ fontFamily: "'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}

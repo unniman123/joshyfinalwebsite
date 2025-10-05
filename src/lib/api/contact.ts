@@ -17,9 +17,9 @@ export async function getContactInfo(): Promise<ContactInfo> {
   // TODO: Fetch contactInfo via getContactInfo() API
   return {
     address: "Kovalam Beach, Thiruvananthapuram, Kerala, India",
-    phone: "+91 - 95395-07516, +91 - 47124 88880",
+    phone: "+91-95395-07516,+91-471-2488880",
     email: "KeralaToursGlobal@gmail.com, flabour@gmail.com",
-    whatsapp: "+91 - 95395-07516",
+    whatsapp: "+91-95395-07516",
     locations: [
       { lat: 8.4004, lng: 76.9784 }, // Kovalam Beach, Thiruvananthapuram
     ],

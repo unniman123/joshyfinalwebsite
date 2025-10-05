@@ -119,7 +119,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       <Link
         to={href}
         className={`transition-smooth font-semibold relative flex items-center gap-1 py-2 ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
-        style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" }}
+        style={{ fontFamily: "'Poppins', sans-serif" }}
       >
         {name}
         {hasDropdown && <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />}
@@ -129,6 +129,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
       {hasDropdown && isOpen && (
         <div
           className="absolute left-0 mt-0 w-80 bg-white rounded-lg shadow-xl border border-border z-50 animate-fade-in"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
