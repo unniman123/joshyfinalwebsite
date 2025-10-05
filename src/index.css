@@ -1,5 +1,6 @@
 /* Custom component styles */
 @import './styles/socialIcons.css';
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap');
 /* Load font pairing for Option 1: Inter (UI) + Merriweather (headings) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap');
 
@@ -52,7 +53,13 @@
     --promo-magenta: 328 40% 30%;
     --promo-magenta-foreground: 0 0% 98%;
     /* Offers section solid background color (light ash gray) - tuned HSL for better contrast */
-    --offers-bg: hsl(210 10% 75%);
+    /* Very bright sky blue for offers panel */
+    --offers-bg: hsl(203 95% 60%);
+    --offers-bg-foreground: 0 0% 100%;
+
+    /* Promo red for section title badges */
+    --promo-red: hsl(6 90% 50%);
+    --promo-red-foreground: 0 0% 100%;
     --offers-bg-foreground: 0 0% 100%;
     /* Form placeholder token */
     --form-placeholder: rgba(255,255,255,0.6);
@@ -196,6 +203,15 @@
     letter-spacing: 0.6px;
     text-transform: none; /* preserve capitalization */
     color: hsl(var(--foreground));
+  }
+
+  /* Scoped font utility classes */
+  .site-header {
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  .site-footer {
+    font-family: 'Merriweather', 'Georgia', serif;
   }
 
   /* Animation keyframes and utilities */

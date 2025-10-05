@@ -46,7 +46,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           // If we have overview or itinerary, render them in unified layout
           if (overviewSection || itinerarySection) {
             return (
-              <section className="pt-6 md:pt-8 lg:pt-10 pb-12 md:pb-16 lg:pb-20 bg-muted/30">
+              <section className="pt-6 md:pt-8 lg:pt-10 pb-6 md:pb-8 lg:pb-10 bg-muted/30">
                 <div className="container mx-auto max-w-7xl px-4">
                   {/* 30-70 Grid Layout - Images flow continuously through both sections */}
                   <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12">
@@ -63,7 +63,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     </div>
 
                     {/* Right side - Stacked Content (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-12 md:space-y-16 lg:space-y-20">
+                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-6 md:space-y-8 lg:space-y-10">
                       
                       {/* Overview Content */}
                       {overviewSection && (

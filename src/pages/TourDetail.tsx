@@ -54,7 +54,7 @@ const TourDetail = () => {
     <main>
       <TourContentSections tour={tour} />
 
-      <section id="enquiry-section" className="py-6 px-4 bg-muted/30 scroll-mt-20">
+      <section id="enquiry-section" className="pt-4 pb-6 px-4 bg-muted/30 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
           <div className="mb-6">
             {/* Title panel with rectangular shape, white text on dark background */}

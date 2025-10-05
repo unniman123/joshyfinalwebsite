@@ -69,15 +69,17 @@ const Contact = () => {
 
             {/* Right Column: Contact Form */}
             <div className="space-y-6">
-              <div className="text-center lg:text-left -mt-6 bg-primary/10 border border-primary/20 rounded-xl p-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 underline">
-                  Plan My Trip
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                   Need a custom itinerary? We'd love to hear from you.
-                </p>
+              <div className="bg-gray-100 border border-gray-200 rounded-xl p-6 md:p-8">
+                <div className="text-center lg:text-left mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2 underline">
+                    Plan My Trip
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                     Need a custom itinerary? We'd love to hear from you.
+                  </p>
+                </div>
+                <ContactForm />
               </div>
-              <ContactForm />
             </div>
           </div>
         </div>

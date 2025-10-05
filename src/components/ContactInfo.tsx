@@ -76,12 +76,12 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             rel="noopener noreferrer"
             className="group block p-4 md:p-6 rounded-xl border border-border transition-all duration-300 cursor-pointer"
             style={{ 
-              ['--hover-border' as string]: 'hsl(345 60% 80%)',
-              ['--hover-bg' as string]: 'hsl(345 50% 95%)'
+              ['--hover-border' as string]: 'hsl(145 70% 65%)',
+              ['--hover-bg' as string]: 'hsl(145 60% 95%)'
             } as React.CSSProperties}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'hsl(345 60% 80%)';
-              e.currentTarget.style.backgroundColor = 'hsl(345 50% 95%)';
+              e.currentTarget.style.borderColor = 'hsl(145 70% 65%)';
+              e.currentTarget.style.backgroundColor = 'hsl(145 60% 95%)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = '';
@@ -89,8 +89,8 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             }}
           >
             <div className="flex items-center space-x-3 md:space-x-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: 'hsl(345 65% 90%)' }}>
-                <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" style={{ color: 'hsl(345 65% 45%)' }} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors" style={{ backgroundColor: 'hsl(145 60% 90%)' }}>
+                <WhatsAppIcon className="w-5 h-5 md:w-6 md:h-6" style={{ color: 'hsl(145 70% 40%)' }} />
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-base md:text-lg mb-1">Whatsapp</h3>

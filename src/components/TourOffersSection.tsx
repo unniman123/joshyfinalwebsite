@@ -157,7 +157,9 @@ const TourOffersSection = ({
 
               {/* Section Header - positioned with proper spacing from top */}
               <div className="relative z-10 text-left mb-10 mt-4 text-white">
-                <h2 className="text-xl md:text-2xl font-bold mb-3">{sectionTitle}</h2>
+                <div className="inline-block bg-[var(--promo-red)] text-[var(--promo-red-foreground)] px-4 py-2 rounded-md shadow-md">
+                  <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+                </div>
               </div>
 
               {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
@@ -197,7 +199,7 @@ const TourOffersSection = ({
                         aria-label={`View details for ${tour.title} tour`}
                       >
                         {/* Oval tour card */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 shadow-card transition-all duration-300 mb-3" style={{ borderColor: '#3b82f6' }}>
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border-4 shadow-card transition-all duration-300 mb-3" style={{ borderColor: 'var(--promo-red)' }}>
                           <img 
                             src={tour.image} 
                             alt={tour.title} 
