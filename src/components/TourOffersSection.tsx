@@ -134,22 +134,19 @@ const TourOffersSection = ({
 
   return (
     <section className="relative">
-      {/* Full-bleed background with Blue Greeny panel and golden border */}
+      {/* Full-bleed background with white panel */}
       <div className="relative extend-left overflow-hidden">
         <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
-            {/* Left side - Blue Greeny panel with golden border and tours (70% width) */}
+            {/* Left side - White panel with tours (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Blue Greeny background panel with golden border - only covers the tours area */}
+              {/* Rich vibrant white background panel - only covers the tours area */}
               <div
                 className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0"
                 style={{
-                  background: '#5cbdb9',
+                  background: '#FEFEFE',
                   borderTopRightRadius: '1rem',
-                  borderBottomRightRadius: '1rem',
-                  borderTop: '1px solid #D4AF37',
-                  borderRight: '1px solid #D4AF37',
-                  borderBottom: '1px solid #D4AF37'
+                  borderBottomRightRadius: '1rem'
                 }}
               />
               {/* Scrim overlay */}
@@ -160,7 +157,7 @@ const TourOffersSection = ({
 
               {/* Section Header - positioned with proper spacing from top */}
               <div className="relative z-10 text-left mb-10 mt-4">
-                <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#c89666', color: '#ffffff' }}>
+                <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#C9A32E', color: '#000000' }}>
                   <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
                 </div>
               </div>
@@ -202,7 +199,7 @@ const TourOffersSection = ({
                         aria-label={`View details for ${tour.title} tour`}
                       >
                         {/* Oval tour card */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-3" style={{ borderColor: '#c89666' }}>
+                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-3" style={{ borderColor: 'rgba(0, 0, 0, 0.2)' }}>
                           <img 
                             src={tour.image} 
                             alt={tour.title} 
