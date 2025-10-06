@@ -19,7 +19,7 @@ interface TourEnquiryFormProps {
 }
 
 const TourEnquiryForm = ({
-  title = "Quick Enquiry",
+  title = "KeralaTours Travels & Organic Remedies",
   formType = "tour",
   showMessage = true,
   showDate = false,
@@ -65,7 +65,7 @@ const TourEnquiryForm = ({
     // Add a subtle defined border so the enquiry form reads as a distinct panel (burgundy theme)
     <Card className="border shadow-none w-full bg-transparent" style={{ borderColor: 'hsl(345 50% 85% / 0.3)' }}>
       <CardHeader className="pb-1">
-        <CardTitle className="text-sm font-semibold text-black flex items-center gap-1">
+        <CardTitle className="text-sm md:text-base font-bold text-black flex items-center gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
           <User className="h-3 w-3 text-black/60" />
           {title}
         </CardTitle>
