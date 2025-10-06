@@ -229,7 +229,7 @@ const DayOutPackagesSection = ({
             {/* Form card */}
             <Card className="border shadow-none transition-all duration-300 w-full max-w-xs rounded-xl" style={{ borderColor: 'hsl(345 50% 85% / 0.3)', background: 'linear-gradient(180deg, hsl(345 50% 90% / 0.15), hsl(345 50% 90% / 0.08))' }}>
               <CardHeader className="pb-1">
-                <CardTitle className="text-sm font-semibold text-black flex items-center gap-1">
+                <CardTitle className="text-sm md:text-base font-bold text-black flex items-center gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
                   <User className="h-3 w-3 text-black/60" />
                   Day Out Enquiry
                 </CardTitle>
