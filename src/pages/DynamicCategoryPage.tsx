@@ -132,7 +132,7 @@ const DynamicCategoryPage = () => {
     return <Navigate to="/tours" replace />;
   }
 
-  const pageTitle = categoryData.customPageTitle || `${categoryData.name} | Wanderwise`;
+  const pageTitle = categoryData.customPageTitle || 'KeralaToursGlobal';
   const pageDescription = categoryData.customPageDescription || categoryData.description;
   const seoTitle = categoryData.seoTitle || pageTitle;
   const seoDescription = categoryData.seoDescription || pageDescription;
