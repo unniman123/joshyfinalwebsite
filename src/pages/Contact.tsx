@@ -43,7 +43,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Contact Us - Kerala Tours Global</title>
+        <title>KeralaToursGlobal</title>
         <meta name="description" content="Get in touch with Kerala Tours Global. Plan your perfect trip to India with our expert travel consultants." />
         <link rel="icon" type="image/png" href="/logo-header.png" />
       </Helmet>

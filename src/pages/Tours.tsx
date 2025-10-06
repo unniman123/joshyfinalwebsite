@@ -109,16 +109,16 @@ const Tours = () => {
   const getPageTitle = () => {
     if (selectedCategory) {
       // Normalize special category display names
-      if (selectedCategory === 'discover-india') return 'Discover India Tours - Kerala Tours Global';
-      if (selectedCategory === 'kerala') return 'Kerala Travels - Kerala Tours Global';
-      if (selectedCategory === 'global') return 'Global Holidays - Kerala Tours Global';
+      if (selectedCategory === 'discover-india') return 'KeralaToursGlobal';
+      if (selectedCategory === 'kerala') return 'KeralaToursGlobal';
+      if (selectedCategory === 'global') return 'KeralaToursGlobal';
 
-      return `${selectedCategory.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Tours - Kerala Tours Global`;
+      return 'KeralaToursGlobal';
     }
     if (searchQuery) {
-      return `Search Results for "${searchQuery}" - Kerala Tours Global`;
+      return 'KeralaToursGlobal';
     }
-    return 'Explore Our Tours - Kerala Tours Global';
+    return 'KeralaToursGlobal';
   };
 
   // Determine page description based on current view

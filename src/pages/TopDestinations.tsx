@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -81,6 +82,9 @@ const TopDestinations = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>KeralaToursGlobal</title>
+      </Helmet>
       <Header />
 
       {/* Hero Section */}
