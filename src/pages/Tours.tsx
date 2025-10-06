@@ -167,6 +167,10 @@ const Tours = () => {
               {selectedCategory ?
                 selectedCategory === 'discover-india' ?
                   '' :
+                selectedCategory === 'kerala' ?
+                  '' :
+                selectedCategory === 'global' ?
+                  '' :
                   `Discover amazing ${selectedCategory.replace('-', ' ')} experiences and create unforgettable memories.` :
                 searchQuery ?
                 `Showing results for "${searchQuery}"` :
