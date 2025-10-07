@@ -265,7 +265,7 @@ const DayOutPackagesSection = ({
                       <Input
                         id="dayOut-mobile"
                         type="tel"
-                        placeholder={formConfig.phoneFieldPlaceholder || "Enter your whatsaap number"}
+                        placeholder={formConfig.phoneFieldPlaceholder || "Enter your Whatsaap number"}
                         value={formData.mobileNo}
                         onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                         className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"

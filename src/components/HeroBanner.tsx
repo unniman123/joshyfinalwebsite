@@ -129,8 +129,8 @@ const HeroBanner = ({
             
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
-            Beautiful beaches, record-breaking attractions and experiences like no other — explore Kerala and beyond with expertly curated packages.
+          <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
+            GoIntoAllTheWorld.
           </p>
 
           {/* Search Bar - restored */}
