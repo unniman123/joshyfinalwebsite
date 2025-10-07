@@ -102,7 +102,7 @@ const HeroBanner = ({
   };
 
   return (
-    <section className="relative h-screen overflow-hidden mb-12 lg:mb-20">
+    <section className="relative h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden mb-12 lg:mb-20">
       {/* Background Images with scrim overlay for predictable contrast */}
       {bannerImages.map((image, index) => (
         <div
@@ -129,14 +129,14 @@ const HeroBanner = ({
             
           </h1>
 
-          <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
+          <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
             GoIntoAllTheWorld.
           </p>
 
-          {/* Search Bar - restored */}
+          {/* Search Bar - responsive stacking */}
           <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto mt-6">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-              <div className="flex items-center gap-3">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-lg">
+              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
                   <Input
@@ -144,13 +144,13 @@ const HeroBanner = ({
                     placeholder={searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-4 py-3 text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
+                    className="pl-10 pr-4 py-3 text-sm md:text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
                   />
                 </div>
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-lg btn-subtle-anim"
+                  className="bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto"
                 >
                   Search
                 </Button>
@@ -158,9 +158,9 @@ const HeroBanner = ({
             </div>
           </form>
 
-          <div className="mt-8 flex justify-center gap-4">
-            <Link to="/tours" className="inline-block bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-md transition">Find Tours</Link>
-            <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition">Plan My Trip</Link>
+          <div className="mt-6 md:mt-8 flex flex-col md:flex-row justify-center gap-3 md:gap-4 w-full max-w-md md:max-w-none mx-auto">
+            <Link to="/tours" className="inline-block bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-md transition text-center">Find Tours</Link>
+            <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition text-center">Plan My Trip</Link>
           </div>
         </div>
       </div>
