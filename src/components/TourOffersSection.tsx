@@ -138,23 +138,8 @@ const TourOffersSection = ({
       <div className="relative extend-left overflow-hidden">
         <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
           <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
-            {/* Left side - White panel with tours (70% width) */}
+            {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Rich vibrant white background panel - only covers the tours area */}
-              <div
-                className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0"
-                style={{
-                  background: '#FEFEFE',
-                  borderTopRightRadius: '1rem',
-                  borderBottomRightRadius: '1rem'
-                }}
-              />
-              {/* Scrim overlay */}
-              <div 
-                className="absolute left-0 top-0 bottom-0 -ml-[50vw] w-[calc(100%+50vw)] z-0" 
-                style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.06), rgba(0,0,0,0.01))' }} 
-              />
-
               {/* Section Header - positioned with proper spacing from top */}
               <div className="relative z-10 text-left mb-10 mt-4">
                 <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#C9A32E', color: '#000000' }}>

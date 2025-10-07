@@ -265,7 +265,7 @@ const DayOutPackagesSection = ({
                       <Input
                         id="dayOut-mobile"
                         type="tel"
-                        placeholder={formConfig.phoneFieldPlaceholder || "Enter your whatsaap number"}
+                        placeholder={formConfig.phoneFieldPlaceholder || "Enter your Whatsaap number"}
                         value={formData.mobileNo}
                         onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                         className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
@@ -335,7 +335,7 @@ const DayOutPackagesSection = ({
                   <div className="pt-1">
                     <Button
                       type="submit"
-                      className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px]"
+                      className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
                       style={{ background: 'hsl(var(--success))', color: 'hsl(var(--button-primary-foreground))' }}
                     >
                       Send Request

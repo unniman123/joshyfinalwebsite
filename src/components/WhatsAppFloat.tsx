@@ -5,8 +5,8 @@ const WhatsAppFloat = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "919539507516"; // Updated with actual WhatsApp number
-    const message = "Hi! I'm interested in your Kerala tour packages. Could you please provide more information?";
+    const phoneNumber = "918593834054"; // WhatsApp number: +91 8593834054
+    const message = "welcome to keralatoursglobal";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
