@@ -118,7 +118,7 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     >
       <Link
         to={href}
-        className={`transition-smooth font-semibold relative flex items-center gap-1 py-2 ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+        className={`transition-smooth font-semibold relative flex items-center gap-1 py-2 whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
         style={{ fontFamily: "'Sora', sans-serif" }}
       >
         {name}

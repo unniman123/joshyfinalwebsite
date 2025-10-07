@@ -79,8 +79,8 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             <Link to="/" className="flex items-center gap-3">
-              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-20 sm:h-16 md:h-20 w-auto cursor-pointer" />
-              <span className={`text-lg sm:text-sm md:text-lg font-bold tracking-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
+              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-20 sm:h-16 md:h-20 w-auto cursor-pointer -translate-y-2" />
+              <span className={`text-lg sm:text-sm md:text-lg font-bold tracking-tight whitespace-nowrap ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -113,7 +113,7 @@ const Header = () => {
                     <div key={item.name} className="flex items-center gap-4">
                       <Link
                         to="/heli-taxi"
-                        className={`transition-smooth font-semibold relative group ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                        className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
                         style={{ fontFamily: "'Sora', sans-serif" }}
                       >
                         Heli Taxi
