@@ -78,11 +78,11 @@ const Header = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
-            <Link to="/" className="flex items-center gap-2 md:gap-3">
+            {/* On very small screens stack logo above full brand name so the complete title is visible */}
+            <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-12 md:h-16 w-auto cursor-pointer" />
-              <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight whitespace-nowrap ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
-                <span className="hidden lg:inline">KeralaTours Travels & Organic Remedies</span>
-                <span className="lg:hidden">KeralaTours Travels</span>
+              <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight text-center sm:text-left ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
+                KeralaTours Travels & Organic Remedies
               </span>
             </Link>
 
@@ -145,58 +145,74 @@ const Header = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-white/20 animate-fade-in bg-black/90 backdrop-blur-sm">
-              {/* Mobile Contact Info */}
-              <div className="pb-4 mb-4 border-b border-white/20">
-                <a href="tel:+919539507516" className="flex items-center gap-2 px-2 py-2 text-white/90 hover:text-white transition-smooth">
-                  <Phone className="h-4 w-4" />
-                  <span className="text-sm">+91-9539-507516</span>
-                </a>
-                <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 px-2 py-2 text-white/90 hover:text-white transition-smooth">
-                  <Mail className="h-4 w-4" />
-                  <span className="text-sm">KeralaToursGlobal@gmail.com</span>
-                </a>
-              </div>
+            // Overlay drawer for mobile menu to avoid layout shifting and title overlap
+            <div className="md:hidden fixed inset-0 z-50">
+              {/* Backdrop */}
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
 
-              <div className="flex flex-col space-y-3">
-                {navigationItems.map((item) => {
-                  return item.category ? (
+              {/* Panel */}
+              <div className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <img src="/src/assets/logo-header.png.png" alt="Kerala" className="h-10 w-auto" />
+                    <div className="font-semibold">KeralaTours</div>
+                  </div>
+                  <button aria-label="Close menu" className="p-2 rounded-md hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                <div className="pb-3 mb-3 border-b border-border">
+                  <a href="tel:+919539507516" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth">
+                    <Phone className="h-4 w-4" />
+                    <span className="text-sm">+91-9539-507516</span>
+                  </a>
+                  <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth">
+                    <Mail className="h-4 w-4" />
+                    <span className="text-sm">KeralaToursGlobal@gmail.com</span>
+                  </a>
+                </div>
+
+                <div className="flex flex-col space-y-3">
+                  {navigationItems.map((item) => {
+                    return item.category ? (
                     <details key={item.name} className="group">
-                      <summary className="flex items-center justify-between text-white hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Sora', sans-serif" }}>
-                        <span>{item.name}</span>
-                      </summary>
+                        <summary className="flex items-center justify-between text-foreground hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Sora', sans-serif" }}>
+                          <span>{item.name}</span>
+                        </summary>
 
-                      <div className="pl-3 pb-2">
-                        {/* Lazy render a link to view all and let dropdown pages handle subcategory links */}
-                        <Link
-                          to={item.href}
-                          className="block text-sm text-white/90 py-2 hover:text-rose-300"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          View all {item.name}
-                        </Link>
-                      </div>
-                    </details>
-                  ) : (
-                    <div key={item.name}>
-                      {item.name === 'Contact Us' && (
-                        <div className="pb-2">
-                          <Link to="/heli-taxi" onClick={() => setIsMenuOpen(false)}>
-                            <Button variant="default" className="w-full mb-2">Heli Taxi</Button>
+                        <div className="pl-3 pb-2">
+                          <Link
+                            to={item.href}
+                            className="block text-sm text-foreground py-2 hover:text-foreground/80"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            View all {item.name}
                           </Link>
                         </div>
-                      )}
-                      <Link
-                        to={item.href}
-                        className="block text-white hover:text-rose-300 transition-smooth font-semibold py-2"
-                        style={{ fontFamily: "'Sora', sans-serif" }}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    </div>
-                  );
-                })}
+                      </details>
+                    ) : (
+                      <div key={item.name}>
+                        {item.name === 'Contact Us' && (
+                          <>
+                            <Link to="/heli-taxi" onClick={() => setIsMenuOpen(false)}>
+                              {/* Make Heli Taxi match nav link styling instead of a full-width button */}
+                              <span className="text-foreground font-semibold">Heli Taxi</span>
+                            </Link>
+                          </>
+                        )}
+                        <Link
+                          to={item.href}
+                          className="block text-foreground hover:text-foreground/80 transition-smooth font-semibold py-2"
+                          style={{ fontFamily: "'Sora', sans-serif" }}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           )}
