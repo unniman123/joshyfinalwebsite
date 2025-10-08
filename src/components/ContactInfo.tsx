@@ -95,7 +95,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
               <div className="flex-1">
                 <h3 className="font-semibold text-base md:text-lg mb-1">Whatsapp</h3>
                 <p className="text-muted-foreground text-xs md:text-sm transition-colors group-hover:opacity-80">
-                  {info.whatsapp || "Enter your whatsaap number"}
+                  {info.whatsapp || "Enter your whatsapp number"}
                 </p>
               </div>
             </div>
