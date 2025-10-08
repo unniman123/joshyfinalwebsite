@@ -130,7 +130,7 @@ const HeroBanner = ({
           </h1>
 
           <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
-            GoIntoAllTheWorld.
+            GoIntoAllTheWorld
           </p>
 
           {/* Search Bar - responsive stacking */}
@@ -158,9 +158,8 @@ const HeroBanner = ({
             </div>
           </form>
 
-          <div className="mt-6 md:mt-8 flex flex-col md:flex-row justify-center gap-3 md:gap-4 w-full max-w-md md:max-w-none mx-auto">
-            <Link to="/tours" className="inline-block bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-md transition text-center">Find Tours</Link>
-            <Link to="/contact" className="inline-block bg-button-primary text-white px-6 py-3 rounded-md hover:brightness-90 transition text-center">Plan My Trip</Link>
+          <div className="mt-6 md:mt-8 flex justify-center w-full mx-auto">
+            <Link to="/contact" className="inline-block bg-button-primary text-white px-8 py-3 rounded-md hover:brightness-90 transition text-center font-semibold">Plan My Trip</Link>
           </div>
         </div>
       </div>

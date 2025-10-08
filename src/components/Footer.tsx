@@ -98,7 +98,7 @@ const Footer = () => {
           <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
           <nav aria-label="Social media links" className="flex flex-wrap gap-2">
             <a
-              href="https://www.Facebook.com/GoIntoAllTheWorld.in"
+              href="https://www.Facebook.com/GoIntoAllTheWorldin"
               target="_blank"
               rel="noopener noreferrer"
               className={getSocialIconClass('facebook')}
