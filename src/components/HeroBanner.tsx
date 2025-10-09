@@ -127,17 +127,14 @@ const HeroBanner = ({
 
       {/* Content Overlay - Full-screen center-aligned hero content */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
-        <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="font-extrabold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
-            {title || 'KeralaTours Travels & Organic Remedies'}
+        <div className="text-center w-full mx-auto px-4">
+          {/* Main Title */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            GoIntoAllTheWorld
           </h1>
 
-          <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
-            GoIntoAllTheWorld
-          </p>
-
           {/* Search Bar - responsive stacking */}
-          <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto mt-6">
+          <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
             <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-lg">
               <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
                 <div className="relative flex-1">
