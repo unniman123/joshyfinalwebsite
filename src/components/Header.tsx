@@ -44,7 +44,7 @@ const Header = () => {
     // Top Destinations removed from main header; reachable via Discover India dropdown
     {
       name: "Ayurveda",
-      href: "/tours"
+      href: "/ayurveda-coming-soon"
     },
     {
       name: "Contact Us",
