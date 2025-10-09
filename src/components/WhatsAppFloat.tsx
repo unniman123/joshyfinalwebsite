@@ -6,7 +6,7 @@ const WhatsAppFloat = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "918593834054"; // WhatsApp number: +91 8593834054
-    const message = "welcome to keralatoursglobal";
+    const message = "Need to plan my trip";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
   };
@@ -29,7 +29,7 @@ const WhatsAppFloat = () => {
               animationDuration: '2s',
               animationIterationCount: 'infinite'
             }}
-            aria-label="Contact us on WhatsApp - Click to start chat"
+            aria-label="Contact KeralaToursGlobal on WhatsApp - Click to start chat"
           >
             <WhatsAppIcon className="h-8 w-8 text-white" />
 
@@ -42,7 +42,7 @@ const WhatsAppFloat = () => {
           {/* Tooltip on Hover */}
           <div className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap transition-all duration-300 ${isHovered ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-2'
             }`}>
-            <span className="font-medium">Chat with us on WhatsApp!</span>
+            <span className="font-medium">Need to plan my trip</span>
             <div className="absolute top-1/2 -translate-y-1/2 left-full border-4 border-transparent border-l-gray-900"></div>
           </div>
 
@@ -54,8 +54,8 @@ const WhatsAppFloat = () => {
                 <WhatsAppIcon className="h-4 w-4 text-white" />
               </div>
               <div className="flex-1">
-                <p className="text-sm text-gray-800 font-medium mb-1">Kerala Travels Global</p>
-                <p className="text-xs text-gray-600">Hi! How can we help you plan your perfect Kerala tour? 🌴</p>
+                <p className="text-sm text-gray-800 font-medium mb-1">KeralaToursGlobal</p>
+                <p className="text-xs text-gray-600">Need to plan my trip</p>
                 <p className="text-xs text-gray-400 mt-1">Typically replies instantly</p>
               </div>
             </div>
