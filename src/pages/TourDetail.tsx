@@ -45,7 +45,7 @@ const TourDetail = () => {
 
   return <div className="min-h-screen bg-background">
     <Helmet>
-      <title>KeralaToursGlobal</title>
+      <title>{tour.title} - KeralaToursGlobal</title>
       <meta name="description" content={tour.description} />
       <link rel="icon" type="image/png" href="/logo-header.png" />
     </Helmet>

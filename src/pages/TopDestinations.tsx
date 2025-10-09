@@ -83,7 +83,9 @@ const TopDestinations = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>KeralaToursGlobal</title>
+        <title>Top Destinations - KeralaToursGlobal</title>
+        <meta name="description" content="Explore India's most beautiful destinations. From Kerala's backwaters to Rajasthan's palaces, discover your perfect travel destination." />
+        <link rel="icon" type="image/png" href="/logo-header.png" />
       </Helmet>
       <Header />
 
