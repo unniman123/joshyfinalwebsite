@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { User, Calendar, Phone, MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
@@ -99,7 +100,8 @@ const DayOutPackagesSection = ({
     mobileNo: "",
     date: "",
     numberOfPeople: "",
-    destination: ""
+    destination: "",
+    specialComments: ""
   });
 
   // Get current package to display in banner
@@ -118,7 +120,8 @@ const DayOutPackagesSection = ({
       mobileNo: "",
       date: "",
       numberOfPeople: "",
-      destination: ""
+      destination: "",
+      specialComments: ""
     });
   };
 
@@ -328,6 +331,23 @@ const DayOutPackagesSection = ({
                         onChange={(e) => handleInputChange("destination", e.target.value)}
                         className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                         required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Special Comments Field */}
+                  <div className="space-y-0.5">
+                    <Label htmlFor="dayOut-special-comments" className="text-[10px] font-medium text-black">
+                      Special Comment
+                    </Label>
+                    <div className="relative">
+                      <Textarea
+                        id="dayOut-special-comments"
+                        value={formData.specialComments}
+                        onChange={(e) => handleInputChange("specialComments", e.target.value)}
+                        placeholder="Any other information than the above that can help us customise your tour"
+                        rows={3}
+                        className="pl-2 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                       />
                     </div>
                   </div>
