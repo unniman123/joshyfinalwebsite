@@ -110,11 +110,14 @@ const HeroBanner = ({
           className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
         >
-          <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0">
             <img
               src={image.src}
               alt={image.alt}
               className="w-full h-full object-cover"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              srcSet={`${image.src} 1200w, ${image.src} 800w, ${image.src} 480w`}
             />
             {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
             <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
@@ -125,8 +128,8 @@ const HeroBanner = ({
       {/* Content Overlay - Full-screen center-aligned hero content */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
         <div className="text-center max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s' }}>
-            
+          <h1 className="font-extrabold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.05s', fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
+            {title || 'KeralaTours Travels & Organic Remedies'}
           </h1>
 
           <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 max-w-3xl mx-auto drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.12s' }}>
@@ -150,7 +153,7 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[var(--promo-red)] hover:bg-[var(--promo-red)]/90 text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto"
+                  className="bg-button-primary hover:bg-button-primary/90 text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto"
                 >
                   Search
                 </Button>

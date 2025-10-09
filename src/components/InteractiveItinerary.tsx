@@ -100,7 +100,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
       <div className="space-y-0">
         {/* Section heading in Red Box */}
         <div className="flex items-center justify-center md:justify-start mb-3 md:mb-4">
-          <div className="inline-block bg-red-600 text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-red-500/30">
+          <div className="inline-block bg-[hsl(var(--promo-red))] text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-warm">
             <h2 className="text-base md:text-lg font-semibold leading-none">
               Itinerary
             </h2>
@@ -140,7 +140,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
       >
         <Button 
           onClick={scrollToEnquiry}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95 shadow-[0_8px_30px_rgb(234,179,8,0.4)]"
+          className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground font-semibold px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-warm transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
         >
           <span>ENQUIRE</span>
         </Button>
