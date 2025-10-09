@@ -61,7 +61,7 @@ const TourDetail = () => {
             <div className="flex items-center justify-center">
               <div className="inline-block bg-slate-900 text-white rounded-md px-3 py-1.5 md:px-6 md:py-2 flex items-center">
                 <h2 className="text-base md:text-lg lg:text-xl font-bold leading-none">
-                  Enquiry
+                  Enquire
                 </h2>
               </div>
             </div>
