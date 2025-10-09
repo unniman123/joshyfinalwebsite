@@ -180,9 +180,9 @@ const ContactForm = ({
 
       <Button
         type="submit"
-        variant="hero"
+        variant="cta"
         size="lg"
-        className="w-full !bg-blue-400 hover:!bg-blue-500 !text-white"
+        className="w-full"
         disabled={isSubmitting}
         aria-describedby="form-status"
       >

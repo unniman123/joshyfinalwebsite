@@ -166,6 +166,7 @@ const DayOutPackagesSection = ({
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
                             decoding="async"
+                            srcSet={`${currentPackage.image} 1200w, ${currentPackage.image} 800w, ${currentPackage.image} 480w`}
                           />
                           <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
                         </div>

@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import NavigationDropdown from "@/components/NavigationDropdown";
+import useFocusTrap from "@/hooks/use-focus-trap";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,9 @@ const Header = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+  useFocusTrap(drawerRef, isMenuOpen, () => setIsMenuOpen(false));
 
   const navigationItems = [
     {
@@ -75,11 +79,11 @@ const Header = () => {
 
       {/* Main Navigation */}
       <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`}>
-        <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4" aria-hidden={isMenuOpen ? 'true' : 'false'}>
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             {/* On very small screens stack logo above full brand name so the complete title is visible */}
-            <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3">
+            <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3" aria-label="Go to homepage">
               <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-12 md:h-16 w-auto cursor-pointer" />
               <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight text-center sm:text-left ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
@@ -151,7 +155,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
 
               {/* Panel */}
-              <div className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
+          <div role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <img src="/src/assets/logo-header.png.png" alt="Kerala" className="h-10 w-auto" />
@@ -163,12 +167,12 @@ const Header = () => {
                 </div>
 
                 <div className="pb-3 mb-3 border-b border-border">
-                  <a href="tel:+919539507516" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth">
-                    <Phone className="h-4 w-4" />
+                  <a href="tel:+919539507516" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth min-h-[44px]">
+                    <Phone className="h-4 w-4 text-foreground" />
                     <span className="text-sm">+91-9539-507516</span>
                   </a>
-                  <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth">
-                    <Mail className="h-4 w-4" />
+                  <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth min-h-[44px]">
+                    <Mail className="h-4 w-4 text-foreground" />
                     <span className="text-sm">KeralaToursGlobal@gmail.com</span>
                   </a>
                 </div>
@@ -184,7 +188,7 @@ const Header = () => {
                         <div className="pl-3 pb-2">
                           <Link
                             to={item.href}
-                            className="block text-sm text-foreground py-2 hover:text-foreground/80"
+                            className="block text-sm text-foreground py-2 hover:text-foreground/80 min-h-[44px] flex items-center"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             View all {item.name}
@@ -203,7 +207,7 @@ const Header = () => {
                         )}
                         <Link
                           to={item.href}
-                          className="block text-foreground hover:text-foreground/80 transition-smooth font-semibold py-2"
+                          className="block text-foreground hover:text-foreground/80 transition-smooth font-semibold py-2 min-h-[44px] flex items-center"
                           style={{ fontFamily: "'Sora', sans-serif" }}
                           onClick={() => setIsMenuOpen(false)}
                         >

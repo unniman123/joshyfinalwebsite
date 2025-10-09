@@ -14,6 +14,14 @@
 
 @layer base {
   :root {
+    /* Font tokens */
+    --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    --font-heading: 'Merriweather', Georgia, serif;
+    /* Typographic scale tokens */
+    --h1-min: 1.5rem;
+    --h1-max: 3rem;
+    --h2-min: 1.25rem;
+    --h2-max: 2rem;
     --background: 0 0% 100%;
     --foreground: 30 10% 15%;
 
@@ -51,16 +59,16 @@
     /* Namaste section specific tint (uses burgundy theme) */
     --namaste-bg: 345 30% 92%; /* light burgundy tint for improved contrast */
     --namaste-foreground: 345 18% 8%;
-    /* Promo magenta used for marketing panels */
-    --promo-magenta: 328 40% 30%;
-    --promo-magenta-foreground: 0 0% 98%;
+    /* Promo magenta used for marketing panels - aligned to brand primary for consistency */
+    --promo-magenta: 345 65% 45%;
+    --promo-magenta-foreground: 0 0% 100%;
     /* Offers section solid background color (light ash gray) - tuned HSL for better contrast */
     /* Very bright sky blue for offers panel */
     --offers-bg: hsl(203 95% 60%);
     --offers-bg-foreground: 0 0% 100%;
 
-    /* Promo red for section title badges */
-    --promo-red: hsl(6 90% 50%);
+    /* Promo red for section title badges - aligned to brand primary */
+    --promo-red: 345 65% 45%;
     --promo-red-foreground: 0 0% 100%;
     --offers-bg-foreground: 0 0% 100%;
     /* Form placeholder token */
@@ -78,8 +86,9 @@
     --image-scrim: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.55) 100%);
 
     /* Button tokens (use H S L numeric triplet pattern used across the file) */
-    --button-primary-bg: 28 100% 47%; /* orange CTA (H S L) */
-    --button-primary-foreground: 210 40% 98%;
+    /* Use brand primary (burgundy) as the single source of truth for primary CTAs */
+    --button-primary-bg: 345 65% 45%; /* matches --brand-primary */
+    --button-primary-foreground: 0 0% 100%;
     --button-focus-ring: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -169,8 +178,10 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Option 1 font pairing: Inter for UI/body, Merriweather for headings */
-    font-family: 'Inter', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    /* Use tokens for fonts */
+    font-family: var(--font-ui);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Use Merriweather for all major headings to create an editorial, readable contrast */
@@ -180,10 +191,28 @@
   h4,
   h5,
   h6 {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+    font-family: var(--font-heading);
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Responsive heading sizes using clamp() */
+  h1 {
+    font-size: clamp(var(--h1-min), 5vw, var(--h1-max));
+    line-height: 1.05;
+  }
+
+  h2 {
+    font-size: clamp(var(--h2-min), 3.6vw, var(--h2-max));
+    line-height: 1.08;
+  }
+
+  /* Focus-visible styles for accessibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 3px solid hsl(var(--button-focus-ring));
+    outline-offset: 2px;
+    border-radius: 6px;
   }
 }
 
