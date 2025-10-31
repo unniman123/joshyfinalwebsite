@@ -20,9 +20,33 @@ const AdminControllableImageGallery = ({
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   // Filter images by section and active status, then sort by order
+  // For itinerary section, show all images (gallery, overview, itinerary)
+  // For other sections, filter by specific section
   const sectionImages = images
-    .filter(img => img.section === section && img.isActive)
+    .filter(img => {
+      if (!img.isActive) return false;
+      
+      // Itinerary section shows all images
+      if (section === 'itinerary') {
+        return ['itinerary', 'gallery', 'overview'].includes(img.section);
+      }
+      
+      // Other sections show only their specific images
+      return img.section === section;
+    })
     .sort((a, b) => a.order - b.order);
+  
+  console.log('🖼️ AdminControllableImageGallery:', {
+    section,
+    totalImages: images.length,
+    filteredImages: sectionImages.length,
+    imageDetails: sectionImages.map(img => ({
+      id: img.id,
+      url: img.url,
+      section: img.section,
+      order: img.order
+    }))
+  });
 
   const handleImageClick = (index: number) => {
     setLightboxIndex(index);

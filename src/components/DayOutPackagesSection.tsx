@@ -6,6 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getDayOutPackages } from "@/lib/supabase-api";
+import { submitDayOutInquiry } from "@/lib/supabase-inquiries";
+import { useToast } from "@/hooks/use-toast";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -13,7 +16,7 @@ import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
 
 // Day out package interface
 interface DayOutPackage {
-  id: number;
+  id: string | number;
   title: string;
   image: string;
   slug: string;
@@ -42,7 +45,38 @@ const DayOutPackagesSection = ({
     destinationFieldLabel: "Destination"
   }
 }: DayOutPackagesSectionProps = {}) => {
-  const dayOutPackages: DayOutPackage[] = packages || [
+  const { toast } = useToast();
+  // State for Supabase-fetched packages
+  const [fetchedPackages, setFetchedPackages] = useState<DayOutPackage[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch day-out packages from Supabase on component mount
+  useEffect(() => {
+    const loadDayOutPackages = async () => {
+      try {
+        setIsLoading(true);
+        const supabasePackages = await getDayOutPackages();
+        
+        if (supabasePackages && supabasePackages.length > 0) {
+          setFetchedPackages(supabasePackages);
+        }
+      } catch (error) {
+        console.error('Failed to load day-out packages:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    // Only fetch if no packages provided via props (admin override)
+    if (!packages || packages.length === 0) {
+      loadDayOutPackages();
+    } else {
+      setIsLoading(false);
+    }
+  }, [packages]);
+
+  // Use provided packages (admin), fetched packages (Supabase), or fallback to mock
+  const dayOutPackages: DayOutPackage[] = packages || (fetchedPackages.length > 0 ? fetchedPackages : [
     {
       id: 1,
       title: "Backwater Day Cruise",
@@ -78,7 +112,7 @@ const DayOutPackagesSection = ({
       slug: "cultural-village-tour",
       description: "Immerse yourself in authentic Kerala village life and traditions"
     }
-  ];
+  ]);
 
   // Carousel state management for banner slideshow
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -110,19 +144,59 @@ const DayOutPackagesSection = ({
   };
 
   // Form submission handler
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log("Day Out Package Enquiry submitted:", formData);
-    // Reset form after submission
-    setFormData({
-      name: "",
-      mobileNo: "",
-      date: "",
-      numberOfPeople: "",
-      destination: "",
-      specialComments: ""
-    });
+
+    try {
+      // Get current package for the inquiry
+      const currentPackage = getCurrentPackage();
+
+      // Validate required fields
+      if (!currentPackage?.id) {
+        throw new Error("No package selected");
+      }
+
+      if (!formData.numberOfPeople || parseInt(formData.numberOfPeople, 10) < 1) {
+        throw new Error("Please enter a valid number of people");
+      }
+
+      // Submit to Supabase
+      await submitDayOutInquiry({
+        package_id: String(currentPackage.id),
+        name: formData.name,
+        mobile_no: formData.mobileNo,
+        preferred_date: formData.date,
+        number_of_people: parseInt(formData.numberOfPeople, 10),
+        destination: formData.destination || null,
+        special_comments: formData.specialComments || null
+      });
+
+      // Show success toast
+      toast({
+        title: "Day Out Enquiry Submitted Successfully!",
+        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        variant: "default"
+      });
+
+      // Reset form after submission
+      setFormData({
+        name: "",
+        mobileNo: "",
+        date: "",
+        numberOfPeople: "",
+        destination: "",
+        specialComments: ""
+      });
+
+    } catch (error) {
+      // Show error toast
+      toast({
+        title: "Submission Failed",
+        description: error instanceof Error ? error.message : "Failed to submit day out enquiry. Please try again or contact us directly.",
+        variant: "destructive"
+      });
+      console.error("Day out enquiry submission error:", error);
+    }
   };
 
   // Form input handler
@@ -132,6 +206,30 @@ const DayOutPackagesSection = ({
       [field]: value
     }));
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              {sectionTitle}
+            </h2>
+            <div className="w-24 h-1 bg-gradient-brand mx-auto mb-6"></div>
+          </div>
+          <div className="flex justify-center items-center py-20">
+            <div className="text-muted-foreground">Loading day-out packages...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Don't render section if no packages available
+  if (!dayOutPackages || dayOutPackages.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-12 bg-background">
@@ -156,7 +254,7 @@ const DayOutPackagesSection = ({
                   const currentPackage = getCurrentPackage();
                   return (
                     <Link
-                      to={`/day-out/${currentPackage.slug}`}
+                      to={`/tours/${currentPackage.slug}`}
                       className="block w-full h-full group"
                       aria-label={`View details for ${currentPackage.title} day out package`}
                     >

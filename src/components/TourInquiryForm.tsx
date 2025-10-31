@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { submitQuickEnquiry } from "@/lib/supabase-inquiries";
+import { useToast } from "@/hooks/use-toast";
 
 interface TourEnquiryFormProps {
   title?: string;
@@ -27,6 +29,9 @@ const TourEnquiryForm = ({
   messagePlaceholder = "Write us in short of your requirements to customise a package",
   phoneFieldPlaceholder = ""
 }: TourEnquiryFormProps) => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Enquiry form state - dynamic based on admin config
   const [formData, setFormData] = useState({
     name: "",
@@ -37,18 +42,48 @@ const TourEnquiryForm = ({
   });
 
   // Form submission handler
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission logic
-    console.log(`${formType} Enquiry submitted:`, formData);
-    // Reset form after submission - dynamic fields
-    setFormData({
-      name: "",
-      mobileNo: "",
-      ...(showMessage && { message: "" }),
-      ...(showDate && { date: "" }),
-      ...(showDestination && { destination: "" })
-    });
+    setIsSubmitting(true);
+
+    try {
+      // Submit to Supabase quick_enquiries table
+      await submitQuickEnquiry({
+        name: formData.name,
+        mobile_no: formData.mobileNo,
+        preferred_date: formData.date || null,
+        number_of_people: null, // Not collected in this form
+        destination: formData.destination || null,
+        special_comments: formData.message || null
+      });
+
+      // Show success toast
+      toast({
+        title: "Quick Enquiry Submitted Successfully!",
+        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        variant: "default"
+      });
+
+      // Reset form after submission - dynamic fields
+      setFormData({
+        name: "",
+        mobileNo: "",
+        ...(showMessage && { message: "" }),
+        ...(showDate && { date: "" }),
+        ...(showDestination && { destination: "" })
+      });
+
+    } catch (error) {
+      // Show error toast
+      toast({
+        title: "Submission Failed",
+        description: "Failed to submit quick enquiry. Please try again or contact us directly.",
+        variant: "destructive"
+      });
+      console.error("Quick enquiry submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Form input handler
@@ -176,8 +211,9 @@ const TourEnquiryForm = ({
               type="submit"
               className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
               style={{ background: 'hsl(var(--button-primary-bg))', color: 'hsl(var(--button-primary-foreground))' }}
+              disabled={isSubmitting}
             >
-              Send Request
+              {isSubmitting ? "Sending..." : "Send Request"}
             </Button>
           </div>
         </form>

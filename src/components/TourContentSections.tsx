@@ -37,21 +37,40 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           </div>
         </section>
 
-        {/* Combined Overview + Itinerary Section with Fluid Image Column */}
+        {/* Overview Section - Directly below title */}
         {(() => {
           const overviewSection = visibleSections.find(s => s.type === 'overview');
-          const itinerarySection = visibleSections.find(s => s.type === 'itinerary');
-          const otherSections = visibleSections.filter(s => s.type !== 'overview' && s.type !== 'itinerary');
+          
+          if (overviewSection) {
+            return (
+              <section className="pt-4 md:pt-6 pb-4 md:pb-6 px-2 md:px-4">
+                <div className="container mx-auto max-w-7xl px-2 md:px-4">
+                  <div className="prose prose-base md:prose-lg max-w-none">
+                    <div
+                      className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
+                      dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
+                    />
+                  </div>
+                </div>
+              </section>
+            );
+          }
+          
+          return null;
+        })()}
 
-          // If we have overview or itinerary, render them in unified layout
-          if (overviewSection || itinerarySection) {
+        {/* Itinerary Section with Image Gallery */}
+        {(() => {
+          const itinerarySection = visibleSections.find(s => s.type === 'itinerary');
+
+          if (itinerarySection) {
             return (
               <section className="pt-4 md:pt-6 lg:pt-8 pb-4 md:pb-6 lg:pb-8 bg-muted/30">
                 <div className="container mx-auto max-w-7xl px-2 md:px-4">
-                  {/* 30-70 Grid Layout - Images flow continuously through both sections */}
+                  {/* 30-70 Grid Layout - Images with Itinerary */}
                   <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 md:gap-6 lg:gap-10">
                     
-                    {/* Left side - Continuous Image Gallery (30%) - Spans both overview & itinerary */}
+                    {/* Left side - Image Gallery (30%) */}
                     <div className="order-2 lg:order-1 lg:col-span-3">
                       {hasStructuredImages && (
                         <AdminControllableImageGallery
@@ -62,43 +81,24 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       )}
                     </div>
 
-                    {/* Right side - Stacked Content (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 md:space-y-6 lg:space-y-8">
-                      
-                      {/* Overview Content */}
-                      {overviewSection && (
-                        <div className="space-y-4 md:space-y-6">
-                          <div className="prose prose-base md:prose-lg max-w-none px-3 md:px-0">
-                            <div
-                              className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
-                              dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
-                            />
-                          </div>
-                        </div>
+                    {/* Right side - Itinerary Content (70%) */}
+                    <div className="order-1 lg:order-2 lg:col-span-7">
+                      {hasStructuredItinerary ? (
+                        <AdminControllableItinerary
+                          itineraryDays={tour.itineraryDays}
+                          tourTitle={tour.title}
+                        />
+                      ) : (
+                        <>
+                          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                            {itinerarySection.title}
+                          </h2>
+                          <div
+                            className="text-muted-foreground leading-relaxed text-justify"
+                            dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
+                          />
+                        </>
                       )}
-
-                      {/* Itinerary Content */}
-                      {itinerarySection && (
-                        <div className="space-y-6">
-                          {hasStructuredItinerary ? (
-                            <AdminControllableItinerary
-                              itineraryDays={tour.itineraryDays}
-                              tourTitle={tour.title}
-                            />
-                          ) : (
-                            <>
-                              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-                                {itinerarySection.title}
-                              </h2>
-                              <div
-                                className="text-muted-foreground leading-relaxed text-justify"
-                                dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
-                              />
-                            </>
-                          )}
-                        </div>
-                      )}
-                      
                     </div>
                     
                   </div>

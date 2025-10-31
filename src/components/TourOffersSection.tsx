@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TourEnquiryForm from "@/components/TourInquiryForm";
+import { getAllTours } from "@/lib/api";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
@@ -10,7 +11,7 @@ import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
 
 // Enhanced tour card interface with descriptions
 interface TourOffer {
-  id: number;
+  id: string;
   title: string;
   image: string;
   slug: string;
@@ -47,55 +48,42 @@ const TourOffersSection = ({
     }
   }
 }: TourOffersSectionProps = {}) => {
-  const tourOffers: TourOffer[] = [
-    {
-      id: 1,
-      title: "Kerala Backwaters",
-      image: keralaTourCard,
-      slug: "kerala-backwaters-explorer",
-      description: "Experience the serene beauty of Kerala's famous backwaters with traditional houseboat stays"
-    },
-    {
-      id: 2,
-      title: "Rajasthan Royal",
-      image: heroRajasthanPalace,
-      slug: "royal-rajasthan-heritage",
-      description: "Journey through magnificent palaces, historic forts, and vibrant markets in the land of maharajas"
-    },
-    {
-      id: 3,
-      title: "Ayurveda Wellness",
-      image: heroAyurvedaSpa,
-      slug: "ayurveda-wellness-retreat",
-      description: "Rejuvenate your body and mind with authentic Ayurvedic treatments in peaceful Kerala settings"
-    },
-    {
-      id: 4,
-      title: "Golden Triangle",
-      image: goldenTriangleTourCard,
-      slug: "golden-triangle-classic",
-      description: "Discover India's most iconic destinations: Delhi, Agra, and Jaipur in this comprehensive tour"
-    },
-    {
-      id: 5,
-      title: "Kerala Heritage",
-      image: keralaTourCard,
-      slug: "kerala-heritage-explorer",
-      description: "Explore Kerala's rich cultural heritage, ancient temples, and traditional art forms"
-    },
-    {
-      id: 6,
-      title: "Goa Beach Paradise",
-      image: heroAyurvedaSpa,
-      slug: "goa-beach-paradise",
-      description: "Relax on pristine beaches, enjoy water sports, and experience Goa's vibrant nightlife"
-    }
-  ];
+  const [tourOffers, setTourOffers] = useState<TourOffer[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Infinite loop carousel state with smooth CSS animation
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  
+
+  // Fetch tours from database on component mount
+  useEffect(() => {
+    const fetchTours = async () => {
+      try {
+        setLoading(true);
+        const toursData = await getAllTours();
+
+        // Transform database tours to TourOffer format
+        const transformedTours: TourOffer[] = toursData.slice(0, 6).map((tour: any) => ({
+          id: tour.id,
+          title: tour.title,
+          image: tour.image || keralaTourCard, // fallback to default image
+          slug: tour.slug,
+          description: tour.description || tour.short_description || `${tour.title} - Discover amazing experiences`
+        }));
+
+        setTourOffers(transformedTours);
+      } catch (error) {
+        console.error("Error fetching tours for TourOffersSection:", error);
+        // Fallback to empty array on error
+        setTourOffers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTours();
+  }, []);
+
   // Duplicate tours multiple times for seamless infinite loop
   const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
 
@@ -147,8 +135,16 @@ const TourOffersSection = ({
                 </div>
               </div>
 
+              {/* Loading State */}
+              {loading && (
+                <div className="flex justify-center items-center py-12">
+                  <div className="text-gray-600">Loading tours...</div>
+                </div>
+              )}
+
               {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
-              <div className="relative z-10 -ml-8 lg:-ml-24">
+              {!loading && tourOffers.length > 0 && (
+                <div className="relative z-10 -ml-8 lg:-ml-24">
                 {/* Left Navigation Button */}
                 <button
                   onClick={scrollLeft}
@@ -206,13 +202,21 @@ const TourOffersSection = ({
                   </div>
                 </div>
 
-                {/* Scroll indicator - shows continuous animation */}
-                <div className="flex justify-center mt-6">
-                  <div className="text-gray-700 text-xs">
-                    Hover to pause
+                  {/* Scroll indicator - shows continuous animation */}
+                  <div className="flex justify-center mt-6">
+                    <div className="text-gray-700 text-xs">
+                      Hover to pause
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* No tours message */}
+              {!loading && tourOffers.length === 0 && (
+                <div className="flex justify-center items-center py-12">
+                  <div className="text-gray-600">No tours available at the moment.</div>
+                </div>
+              )}
             </div>
 
             {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}

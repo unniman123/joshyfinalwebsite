@@ -6,9 +6,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { TourImage } from "@/lib/api";
 
 interface TourImageGalleryProps {
-  images: string[];
+  images: TourImage[] | string[];
 }
 
 const TourImageGallery = ({ images }: TourImageGalleryProps) => {
@@ -26,15 +27,27 @@ const TourImageGallery = ({ images }: TourImageGalleryProps) => {
     <div className="relative h-96 overflow-hidden">
       <Carousel className="w-full h-full">
         <CarouselContent className="h-full">
-          {images.map((image, index) => (
-            <CarouselItem key={index} className="h-full">
-              <img 
-                src={image} 
-                alt={`Tour image ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </CarouselItem>
-          ))}
+          {images.map((image, index) => {
+            // Handle both TourImage objects and string URLs for backward compatibility
+            const imageUrl = typeof image === 'string' ? image : image.url;
+            const imageAlt = typeof image === 'string' ? `Tour image ${index + 1}` : (image.alt || `Tour image ${index + 1}`);
+            const imageCaption = typeof image === 'string' ? undefined : image.caption;
+            
+            return (
+              <CarouselItem key={typeof image === 'string' ? index : image.id} className="h-full">
+                <img 
+                  src={imageUrl} 
+                  alt={imageAlt}
+                  className="w-full h-full object-cover"
+                />
+                {imageCaption && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 backdrop-blur-sm">
+                    <p className="text-sm md:text-base">{imageCaption}</p>
+                  </div>
+                )}
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         
         {images.length > 1 && (
