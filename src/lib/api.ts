@@ -1,7 +1,8 @@
 // API functions for tour agency website
-// TODO: Replace with actual Supabase integration
+// This file now proxies to Supabase API or fallback to mock data
+// Primary implementation: src/lib/supabase-api.ts
 
-// Import placeholder images
+// Import placeholder images (for fallback mock data only)
 import keralaTourCard from "@/assets/tour-kerala-backwaters-card.jpg";
 import rajasthanTourCard from "@/assets/tour-heritage-palace.jpg";
 import ayurvedaTourCard from "@/assets/tour-ayurveda-wellness.jpg";
@@ -162,11 +163,27 @@ export interface DestinationSummary {
 
 
 
+// Import Supabase API functions
+import * as SupabaseAPI from './supabase-api';
+
+// Feature flag: Set to false to use mock data (for development without Supabase connection)
+const USE_SUPABASE = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+
 /**
  * Fetch all tours from the database
- * TODO: Fetch all tours from Supabase and pass to components
+ * Now powered by Supabase (or falls back to mock data if not configured)
  */
 export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]> {
+  // Use Supabase if configured
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getAllTours();
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+  
+  // Fallback to mock data
   // Placeholder implementation - replace with actual Supabase query
   await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API delay
 
@@ -278,6 +295,15 @@ export async function getAllTours(filters?: TourFilters): Promise<TourSummary[]>
  * Helper: fetch tours filtered by category slug or name and optional limit
  */
 export async function getToursByCategory(category?: string, limit = 6): Promise<TourSummary[]> {
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getToursByCategory(category, limit);
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+
+  // Fallback
   const all = await getAllTours();
   if (!category) return all.slice(0, limit);
 
@@ -291,6 +317,15 @@ export async function getToursByCategory(category?: string, limit = 6): Promise<
  * by checking tour sections/keywords. This is a lightweight helper; replace with DB query in production.
  */
 export async function getToursByCategoryAndSubcategory(category?: string, subcategory?: string, limit = 12): Promise<TourSummary[]> {
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getToursByCategoryAndSubcategory(category, subcategory, limit);
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+
+  // Fallback
   let all = await getAllTours();
   if (!category) return all.slice(0, limit);
 
@@ -320,10 +355,18 @@ export async function getToursByCategoryAndSubcategory(category?: string, subcat
 
 /**
  * Get tour by slug for detail page
- * TODO: Fetch tour data via getTourBySlug(slug) from Supabase
+ * Now powered by Supabase (or falls back to mock data)
  */
 export async function getTourBySlug(slug: string): Promise<Tour | null> {
-  // Placeholder implementation - replace with actual Supabase query
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getTourBySlug(slug);
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+
+  // Fallback to mock data
   await new Promise(resolve => setTimeout(resolve, 500)); // Simulate API delay
 
   const mockTours: { [key: string]: Tour } = {
@@ -1176,10 +1219,18 @@ Tour Includes:
 
 /**
  * Get related tours for tour detail page
- * TODO: Fetch related tours from Supabase based on category or tags
+ * Now powered by Supabase (or falls back to mock data)
  */
 export async function getRelatedTours(slug: string): Promise<Tour[]> {
-  // Placeholder implementation - replace with actual Supabase query
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getRelatedTours(slug);
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+
+  // Fallback to mock data
   await new Promise(resolve => setTimeout(resolve, 300)); // Simulate API delay
 
   const mockRelatedTours: Tour[] = [
@@ -1250,10 +1301,18 @@ export async function getRelatedTours(slug: string): Promise<Tour[]> {
 
 /**
  * Get available tour categories for filtering
- * TODO: Fetch categories from Supabase tours table
+ * Now powered by Supabase (or falls back to mock data)
  */
 export async function getTourCategories(): Promise<string[]> {
-  // Placeholder implementation
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getTourCategories();
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to mock data:', error);
+    }
+  }
+
+  // Fallback to mock data
   return [
     "Kerala Travels",
     "Discover India",
@@ -1287,6 +1346,14 @@ export async function unifiedSearch(query: string): Promise<UnifiedSearchResult>
       hasDestinationsOnly: false,
       hasBoth: false
     };
+  }
+
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.unifiedSearch(query);
+    } catch (error) {
+      console.error('Supabase search failed, falling back to mock data:', error);
+    }
   }
 
   const searchTerm = query.toLowerCase().trim();
@@ -1527,5 +1594,21 @@ export async function getAllDestinations(): Promise<DestinationSummary[]> {
   return mockDestinations;
 }
 
+/**
+ * Get homepage settings including hero banner image and text
+ * Used for dynamic homepage configuration
+ */
+export async function getHomepageSettings(): Promise<{ hero_image_url: string | null; hero_title: string | null; hero_subtitle: string | null } | null> {
+  if (USE_SUPABASE) {
+    try {
+      return await SupabaseAPI.getHomepageSettings();
+    } catch (error) {
+      console.error('Supabase fetch failed, falling back to null:', error);
+    }
+  }
+
+  // Fallback - no homepage settings in mock data
+  return null;
+}
 
 

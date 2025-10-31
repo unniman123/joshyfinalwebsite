@@ -3,58 +3,76 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
-import { unifiedSearch } from "@/lib/api";
+import { unifiedSearch, getHomepageSettings } from "@/lib/api";
 import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
 import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
 import stiltFishing from "@/assets/Stilt Fishing in Sri Lanka.jpg";
 
-// Admin-controllable props interface
+// Hero banner props (search-related only, content comes from database)
 interface HeroBannerProps {
-  title?: string;
-  subtitle?: string;
   searchPlaceholder?: string;
   searchButtonClassName?: string;
   className?: string;
 }
 
 const HeroBanner = ({
-  title = "",
-  subtitle = "Explore the best travel experiences across India and beyond",
   searchPlaceholder = "Search destinations, tours, or activities...",
   searchButtonClassName = "px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors",
   className = ""
 }: HeroBannerProps = {}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
+  const [heroTitle, setHeroTitle] = useState<string | null>(null);
+  const [heroSubtitle, setHeroSubtitle] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const bannerImages = [
+  // Fallback banner images for when database image is not available
+  const fallbackImages = [
     {
       src: ayurvedaTreatments,
-      alt: "Ayurveda Treatments Kerala",
-      title: "Authentic Ayurveda Treatments",
-      subtitle: "Experience traditional healing therapies in Kerala's serene settings"
+      alt: "Ayurveda Treatments Kerala"
     },
     {
       src: ktgAmmachi,
-      alt: "Kerala Traditional Culture",
-      title: "Discover Kerala's Rich Heritage",
-      subtitle: "Immerse yourself in authentic local culture and traditions"
+      alt: "Kerala Traditional Culture"
     },
     {
       src: rameswaramTemple,
-      alt: "Rameswaram Temple",
-      title: "Sacred Temples of South India",
-      subtitle: "Explore ancient temples and spiritual destinations"
+      alt: "Rameswaram Temple"
     },
     {
       src: stiltFishing,
-      alt: "Stilt Fishing in Sri Lanka",
-      title: "Unique Cultural Experiences",
-      subtitle: "Witness traditional fishing methods and coastal life"
+      alt: "Stilt Fishing in Sri Lanka"
     }
   ];
+
+  // Use hero image from database or fallback to rotating images
+  const bannerImages = heroImageUrl
+    ? [{ src: heroImageUrl, alt: "Hero Banner" }]
+    : fallbackImages;
+
+  // Fetch hero settings from database
+  useEffect(() => {
+    const fetchHeroSettings = async () => {
+      try {
+        const settings = await getHomepageSettings();
+        if (settings) {
+          setHeroImageUrl(settings.hero_image_url);
+          setHeroTitle(settings.hero_title);
+          setHeroSubtitle(settings.hero_subtitle);
+        }
+      } catch (error) {
+        console.error('Failed to fetch hero settings:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHeroSettings();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -128,10 +146,19 @@ const HeroBanner = ({
       {/* Content Overlay - Full-screen center-aligned hero content */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
         <div className="text-center w-full mx-auto px-4">
-          {/* Main Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            GoIntoAllTheWorld
-          </h1>
+          {/* Main Title - fetched from database */}
+          {heroTitle && (
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              {heroTitle}
+            </h1>
+          )}
+
+          {/* Subtitle - fetched from database */}
+          {heroSubtitle && (
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              {heroSubtitle}
+            </p>
+          )}
 
           {/* Search Bar - responsive stacking */}
           <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">

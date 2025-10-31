@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { submitTourEnquiry } from "@/lib/api/tours";
+import { submitContactEnquiry } from "@/lib/api/contact";
 interface ContactFormProps {
   tourId?: string;
 }
@@ -33,19 +34,46 @@ const ContactForm = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Wire form submit to submitTourEnquiry(tourId, data) API
-      await submitTourEnquiry(tourId || "default", {
-        name: formData.name,
-        email: formData.email,
-        nationality: formData.nationality,
-        contactNumber: formData.contactNumber,
-        numberOfDays: formData.numberOfDaysTourNeeded,
-        dateOfTravel: formData.dateOfTravel,
-        hotelCategory: formData.hotelCategory,
-        numberOfRooms: formData.numberOfRooms,
-        specialComments: formData.specialComments,
-        message: `Destinations: ${formData.destinationsInterested}, Persons: ${formData.numberOfPersons}, Kids: ${formData.numberOfKidsAndAge || 'None'}`
-      });
+      // Detect contact page usage (tourId is null/undefined) vs tour page usage
+      const isContactPage = !tourId;
+
+      if (isContactPage) {
+        // Submit to contact_inquiry table for contact page
+        const contactMessage = [
+          `Destinations: ${formData.destinationsInterested}`,
+          `Nationality: ${formData.nationality}`,
+          `Adults: ${formData.numberOfPersons}`,
+          `Kids: ${formData.numberOfKidsAndAge}`,
+          `Rooms: ${formData.numberOfRooms}`,
+          `Duration: ${formData.numberOfDaysTourNeeded} days`,
+          `Travel Date: ${formData.dateOfTravel}`,
+          `Hotel Category: ${formData.hotelCategory}`,
+          formData.specialComments ? `Special Comments: ${formData.specialComments}` : '',
+        ].filter(Boolean).join('\n');
+
+        await submitContactEnquiry({
+          name: formData.name,
+          email: formData.email,
+          subject: `Contact Inquiry - ${formData.destinationsInterested || 'General'}`,
+          message: contactMessage
+        });
+      } else {
+        // Submit to inquiries table for tour page
+        await submitTourEnquiry(tourId, {
+          name: formData.name,
+          email: formData.email,
+          nationality: formData.nationality,
+          contactNumber: formData.contactNumber,
+          numberOfDays: formData.numberOfDaysTourNeeded,
+          dateOfTravel: formData.dateOfTravel,
+          hotelCategory: formData.hotelCategory,
+          numberOfRooms: formData.numberOfRooms,
+          numberOfPersons: formData.numberOfPersons,
+          numberOfKids: formData.numberOfKidsAndAge,
+          specialComments: formData.specialComments,
+          message: `Destinations: ${formData.destinationsInterested}`
+        });
+      }
 
       // Show success toast
       toast({

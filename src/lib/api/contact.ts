@@ -1,4 +1,7 @@
 // Contact API types and functions
+// Now wired to Supabase for form submissions
+
+import { submitContactInquiry as submitToSupabase } from '../supabase-inquiries';
 
 export interface ContactInfo {
   address: string;
@@ -9,12 +12,14 @@ export interface ContactInfo {
   socialLinks: { name: string; url: string }[];
 }
 
-// TODO: Replace with actual API call to fetch contact information
+/**
+ * Fetch contact information
+ * TODO: Move to Supabase site_content table when admin controls this
+ */
 export async function getContactInfo(): Promise<ContactInfo> {
   // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 100));
 
-  // TODO: Fetch contactInfo via getContactInfo() API
   return {
     address: "Kovalam Beach, Thiruvananthapuram, Kerala, India",
     phone: "+91-95395-07516,+91-471-2488880",
@@ -24,23 +29,35 @@ export async function getContactInfo(): Promise<ContactInfo> {
       { lat: 8.4004, lng: 76.9784 }, // Kovalam Beach, Thiruvananthapuram
     ],
     socialLinks: [
-      { name: "Facebook", url: "https://facebook.com/indiantours" },
-      { name: "Instagram", url: "https://instagram.com/indiantours" },
-      { name: "Twitter", url: "https://twitter.com/indiantours" },
-      { name: "Youtube", url: "https://youtube.com/indiantours" },
+      { name: "Facebook", url: "https://facebook.com/keralatoursglobal" },
+      { name: "Instagram", url: "https://instagram.com/keralatoursglobal" },
+      { name: "Twitter", url: "https://twitter.com/keralatoursglobal" },
+      { name: "Youtube", url: "https://youtube.com/keralatoursglobal" },
     ]
   };
 }
 
-// TODO: Wire form submit to submitContactEnquiry(data) API
+/**
+ * Submit a contact enquiry
+ * Now wired to Supabase contact_inquiry table
+ */
 export async function submitContactEnquiry(data: {
   name: string;
   email: string;
+  phone?: string;
+  subject?: string;
   message: string;
 }): Promise<void> {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  const inquiry = {
+    name: data.name,
+    email: data.email,
+    subject: data.subject || null,
+    message: data.message,
+  };
 
-  // TODO: Implement actual API call to submit contact Enquiry
-  console.log("Contact Enquiry submitted:", data);
+  const result = await submitToSupabase(inquiry);
+
+  if (!result.success) {
+    throw new Error(result.error || 'Failed to submit contact enquiry');
+  }
 }

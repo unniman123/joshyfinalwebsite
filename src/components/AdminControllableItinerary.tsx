@@ -57,7 +57,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
     <>
       <div className={`space-y-0 ${className}`}>
         {/* Section heading in Red Box */}
-        <div className="flex items-center justify-center md:justify-start mb-3 md:mb-4">
+        <div className="flex items-center justify-center md:justify-start mb-4 md:mb-6">
           <div className="inline-block bg-[hsl(var(--promo-red))] text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-warm">
             <h2 className="text-base md:text-lg font-semibold leading-none">
               Itinerary
@@ -74,13 +74,10 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <div className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed space-y-2">
-                  {day.description.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="!m-0 !p-0">
-                      {paragraph.trim()}
-                    </p>
-                  ))}
-                </div>
+                <div 
+                  className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: day.description }}
+                />
               )}
             </div>
           ))}

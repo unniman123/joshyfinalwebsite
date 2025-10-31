@@ -31,7 +31,7 @@ const EnquiryForm = ({
     setIsSubmitting(true);
 
     try {
-      // TODO: Submit all fields via submitTourEnquiry(tourId, data) API
+      // Submit all fields via submitTourEnquiry(tourId, data) API
       await submitTourEnquiry(tourId, {
         name: formData.name,
         email: formData.email,
@@ -41,8 +41,10 @@ const EnquiryForm = ({
         dateOfTravel: formData.dateOfTravel,
         hotelCategory: formData.hotelCategory,
         numberOfRooms: formData.numberOfRooms,
+        numberOfPersons: formData.numberOfPeople,
+        numberOfKids: formData.numberOfKids,
         specialComments: "", // Removed field, sending empty string for API compatibility
-        message: `${formData.message} | People: ${formData.numberOfPeople}, Kids: ${formData.numberOfKids || 'None'}`
+        message: formData.message
       });
 
       // Show success toast with accessibility
