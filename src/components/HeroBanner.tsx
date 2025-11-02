@@ -23,9 +23,7 @@ const HeroBanner = ({
 }: HeroBannerProps = {}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [heroImageUrl, setHeroImageUrl] = useState<string | null>(null);
-  const [heroTitle, setHeroTitle] = useState<string | null>(null);
-  const [heroSubtitle, setHeroSubtitle] = useState<string | null>(null);
+  const [heroData, setHeroData] = useState<{ title: string; subtitle: string; images: Array<{ url: string; order: number }> } | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -49,9 +47,11 @@ const HeroBanner = ({
     }
   ];
 
-  // Use hero image from database or fallback to rotating images
-  const bannerImages = heroImageUrl
-    ? [{ src: heroImageUrl, alt: "Hero Banner" }]
+  // Use hero images from database or fallback to rotating images
+  const bannerImages = heroData?.images && heroData.images.length > 0
+    ? heroData.images
+        .sort((a, b) => a.order - b.order) // Sort by order field
+        .map(img => ({ src: img.url, alt: "Hero Banner" }))
     : fallbackImages;
 
   // Fetch hero settings from database
@@ -60,9 +60,7 @@ const HeroBanner = ({
       try {
         const settings = await getHomepageSettings();
         if (settings) {
-          setHeroImageUrl(settings.hero_image_url);
-          setHeroTitle(settings.hero_title);
-          setHeroSubtitle(settings.hero_subtitle);
+          setHeroData(settings);
         }
       } catch (error) {
         console.error('Failed to fetch hero settings:', error);
@@ -147,16 +145,16 @@ const HeroBanner = ({
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
         <div className="text-center w-full mx-auto px-4">
           {/* Main Title - fetched from database */}
-          {heroTitle && (
+          {heroData?.title && (
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              {heroTitle}
+              {heroData.title}
             </h1>
           )}
 
           {/* Subtitle - fetched from database */}
-          {heroSubtitle && (
+          {heroData?.subtitle && (
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              {heroSubtitle}
+              {heroData.subtitle}
             </p>
           )}
 

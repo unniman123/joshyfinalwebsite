@@ -29,12 +29,12 @@ const Header = () => {
     {
       name: "Kerala Travels",
       href: "/tours?category=kerala",
-      category: "kerala travels"
+      category: "kerala"
     },
     {
       name: "Discover India",
       href: "/tours?category=discover-india",
-      category: "discover india"
+      category: "discover-india"
     },
     {
       name: "Global Holidays",
