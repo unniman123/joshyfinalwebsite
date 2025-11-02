@@ -495,14 +495,15 @@ export async function getDayOutPackages(limit = 10): Promise<any[]> {
 }
 
 /**
- * Fetch homepage settings including hero banner image and text
- * Used for dynamic homepage configuration
+ * Fetch homepage settings including hero banner images and text from site_content table
+ * Used for dynamic homepage configuration with multiple hero images
  */
-export async function getHomepageSettings(): Promise<{ hero_image_url: string | null; hero_title: string | null; hero_subtitle: string | null } | null> {
+export async function getHomepageSettings(): Promise<{ title: string; subtitle: string; images: Array<{ url: string; order: number }> } | null> {
   try {
     const { data, error } = await supabase
-      .from('homepage_settings')
-      .select('hero_image_url, hero_title, hero_subtitle')
+      .from('site_content')
+      .select('content_value')
+      .eq('element_key', 'homepage_hero_banner')
       .single();
 
     if (error) {
@@ -510,7 +511,8 @@ export async function getHomepageSettings(): Promise<{ hero_image_url: string | 
       return null;
     }
 
-    return data;
+    // The data structure matches the expected format from site_content
+    return data?.content_value || null;
   } catch (err) {
     console.error('Unexpected error fetching homepage settings:', err);
     return null;
