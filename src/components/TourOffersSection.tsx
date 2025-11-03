@@ -140,10 +140,19 @@ const TourOffersSection = ({
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
             {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Section Header - positioned with proper spacing from top */}
-              <div className="relative z-10 text-left mb-10 mt-4">
-                <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#2C5282', color: '#FFFFFF' }}>
-                  <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+              {/* Section Header - hanging board style */}
+              <div className="relative z-10 text-center mb-10 mt-4">
+                <div className="hanging-board inline-flex items-start justify-center" aria-hidden="false">
+                  {/* Chains (decorative) - two strands each side for realistic hanging look */}
+                  <span className="rope rope-left" aria-hidden="true" />
+                  <span className="rope rope-left-dup" aria-hidden="true" />
+                  <span className="rope rope-right-dup" aria-hidden="true" />
+                  <span className="rope rope-right" aria-hidden="true" />
+
+                  {/* Board */}
+                  <div className="board inline-block px-6 py-2 rounded-md shadow-md" style={{ backgroundColor: '#6b4b3a', color: '#FFFFFF' }}>
+                    <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+                  </div>
                 </div>
               </div>
 
