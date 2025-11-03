@@ -8,6 +8,7 @@ import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
 import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
+import heroKeralaBackwaters from "@/assets/hero-kerala-backwaters.jpg";
 
 // Enhanced tour card interface with descriptions
 interface TourOffer {
@@ -121,7 +122,19 @@ const TourOffersSection = ({
 
 
   return (
-    <section className="relative">
+    <section
+      className="relative"
+      style={{
+        // Subtle peach background with decorative image and soft top blend to hero
+        background: `linear-gradient(to top, rgba(251,242,237,0) 0%, rgba(251,242,237,0.95) 40%), linear-gradient(180deg, #fbf2ed 0%, #fbf2ed 100%), url(${heroKeralaBackwaters})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'right top',
+        backgroundSize: '45% auto',
+        // Pull section up to overlap hero slightly for a graceful infusion
+        marginTop: '-48px',
+        paddingTop: '56px'
+      }}
+    >
       {/* Main container with proper layout */}
       <div className="relative container mx-auto py-6 lg:py-8 max-w-7xl min-h-[220px]">
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
@@ -162,7 +175,7 @@ const TourOffersSection = ({
                   <ChevronRight className="h-5 w-5 text-gray-800" />
                 </button>
 
-                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth' }}>
+                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth', paddingLeft: 'min(6vw, 48px)', paddingRight: 'min(6vw, 48px)' }}>
                   {/* Continuous sliding carousel wrapper with smooth CSS animation */}
                   <div
                     className={`flex gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
@@ -201,6 +214,10 @@ const TourOffersSection = ({
                     ))}
                   </div>
                 </div>
+
+                {/* Soft edge fades to avoid abrupt clipping of oval cards */}
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, #fbf2ed 0%, rgba(251,242,237,0) 100%)', zIndex: 15 }} />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, #fbf2ed 0%, rgba(251,242,237,0) 100%)', zIndex: 15 }} />
 
                   {/* Scroll indicator - shows continuous animation */}
                   <div className="flex justify-center mt-6">
