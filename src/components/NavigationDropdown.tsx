@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { getAllTours, getTourCategories, getToursByCategory, TourSummary } from "@/lib/api";
 import navTaxonomy from "@/data/navTaxonomy";
 
 interface NavigationDropdownProps {
@@ -15,8 +14,6 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
   const isHome = location.pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [tours, setTours] = useState<TourSummary[]>([]);
-  const [loading, setLoading] = useState(false);
   const [openTimeout, setOpenTimeout] = useState<NodeJS.Timeout | null>(null);
   const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout | null>(null);
 
@@ -28,47 +25,8 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Fetch tours for this category when dropdown is opened (lazy-load)
-  useEffect(() => {
-    let cancelled = false;
-
-    const fetchTours = async () => {
-      if (isOpen && category) {
-        // Don't fetch if we already have tours for this category
-        if (tours.length > 0) return;
-
-        try {
-          setLoading(true);
-
-          // Use API helper to fetch tours for this category (with optional limit)
-          const categoryTours = await getToursByCategory(category, 8);
-
-          console.log('📦 NavigationDropdown - Fetched tours:', {
-            category,
-            tourCount: categoryTours.length,
-            tours: categoryTours.map(t => ({
-              id: t.id,
-              title: t.title,
-              image: t.image,
-              slug: t.slug
-            }))
-          });
-
-          if (!cancelled) setTours(categoryTours);
-        } catch (error) {
-          console.error("Error fetching tours:", error);
-        } finally {
-          if (!cancelled) setLoading(false);
-        }
-      }
-    };
-
-    fetchTours();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [isOpen, category, tours.length]);
+  // Note: Removed tour preview fetching/rendering per design request.
+  // Dropdown now only shows subcategory links and the "View all" link.
 
   // Handle mouse enter with delay
   const handleMouseEnter = () => {
@@ -145,85 +103,33 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
           onMouseLeave={handleMouseLeave}
         >
           <div className="py-3 px-3 max-h-96 overflow-y-auto">
-            {loading ? (
-              <div className="flex items-center gap-3 px-2 py-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-400"></div>
-                <div className="text-sm text-muted-foreground">Loading tours...</div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-2">
-                {/* Render subcategory headings if taxonomy exists - ALWAYS show regardless of tours */}
-                {navTaxonomy[category?.toLowerCase() || ""] && (
-                  <div className="mb-2">
-                    {navTaxonomy[category!.toLowerCase()].map((sub: any) => (
-                      <Link
-                        key={sub.slug}
-                        to={sub.href ? sub.href : `/tours?category=${category}&subcategory=${sub.slug}`}
-                        className="block text-sm text-foreground font-medium px-2 py-1 rounded transition-colors hover:bg-gray-100"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                    <div className="my-1 border-t border-border" />
-                  </div>
-                )}
-                
-                {/* Render tour cards if available */}
-                {tours.length > 0 ? (
-                  <>
-                    {tours.map((tour) => {
-                      console.log('🖼️ Rendering tour card:', {
-                        id: tour.id,
-                        title: tour.title,
-                        imageUrl: tour.image
-                      });
-                      return (
-                        <Link
-                          key={tour.id}
-                          to={`/tours/${tour.slug}`}
-                          className="flex items-center gap-3 px-2 py-2 rounded transition-all hover:bg-gray-100"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <img 
-                            src={tour.image} 
-                            alt={tour.title} 
-                            className="h-12 w-20 object-cover rounded"
-                            onError={(e) => {
-                              console.error('❌ Image failed to load:', tour.image);
-                              console.error('Image element:', e.currentTarget);
-                            }}
-                            onLoad={() => {
-                              console.log('✅ Image loaded successfully:', tour.image);
-                            }}
-                          />
-                          <div className="text-sm">
-                            <div className="font-semibold text-foreground line-clamp-2">{tour.title}</div>
-                            <div className="text-muted-foreground text-xs">{tour.duration} days</div>
-                          </div>
-                        </Link>
-                      );
-                    })}
-                  </>
-                ) : (
-                  // Only show "no tours" message if no subcategories exist either
-                  !navTaxonomy[category?.toLowerCase() || ""] && (
-                    <div className="px-2 py-2 text-muted-foreground text-sm">
-                      No tours available in this category
-                    </div>
-                  )
-                )}
-                
-                {/* View all link - always show */}
-                <Link
-                  to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
-                  className="mt-2 block text-center text-sm font-medium text-gray-600 hover:text-gray-800 hover:underline"
-                  onClick={() => setIsOpen(false)}
-                >
-                  View all {name}
-                </Link>
-              </div>
-            )}
+            <div className="grid grid-cols-1 gap-2">
+              {/* Render subcategory headings if taxonomy exists - ALWAYS show regardless of tours */}
+              {navTaxonomy[category?.toLowerCase() || ""] && (
+                <div className="mb-2">
+                  {navTaxonomy[category!.toLowerCase()].map((sub: any) => (
+                    <Link
+                      key={sub.slug}
+                      to={sub.href ? sub.href : `/tours?category=${category}&subcategory=${sub.slug}`}
+                      className="block text-sm text-foreground font-medium px-2 py-1 rounded transition-colors hover:bg-gray-100"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                  <div className="my-1 border-t border-border" />
+                </div>
+              )}
+
+              {/* View all link - always show */}
+              <Link
+                to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
+                className="mt-2 block text-center text-sm font-medium text-gray-600 hover:text-gray-800 hover:underline"
+                onClick={() => setIsOpen(false)}
+              >
+                View all {name}
+              </Link>
+            </div>
           </div>
         </div>
       )}
