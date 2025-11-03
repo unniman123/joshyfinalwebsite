@@ -134,8 +134,7 @@ const DayOutPackagesSection = ({
     mobileNo: "",
     date: "",
     numberOfPeople: "",
-    destination: "",
-    specialComments: ""
+    destination: ""
   });
 
   // Get current package to display in banner
@@ -168,7 +167,7 @@ const DayOutPackagesSection = ({
         preferred_date: formData.date,
         number_of_people: parseInt(formData.numberOfPeople, 10),
         destination: formData.destination || null,
-        special_comments: formData.specialComments || null
+        special_comments: null
       });
 
       // Show success toast
@@ -184,8 +183,7 @@ const DayOutPackagesSection = ({
         mobileNo: "",
         date: "",
         numberOfPeople: "",
-        destination: "",
-        specialComments: ""
+        destination: ""
       });
 
     } catch (error) {
@@ -360,7 +358,7 @@ const DayOutPackagesSection = ({
                   {/* Mobile No (WhatsApp) Field */}
                   <div className="space-y-0.5">
                     <Label htmlFor="dayOut-mobile" className="text-[10px] font-medium text-black">
-                      Mobile No (Whatsapp) *
+                      Mobile No (WhatsApp) *
                     </Label>
                     <div className="relative">
                       <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
@@ -433,29 +431,13 @@ const DayOutPackagesSection = ({
                     </div>
                   </div>
 
-                  {/* Special Comments Field */}
-                  <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-special-comments" className="text-[10px] font-medium text-black">
-                      Special Comment
-                    </Label>
-                    <div className="relative">
-                      <Textarea
-                        id="dayOut-special-comments"
-                        value={formData.specialComments}
-                        onChange={(e) => handleInputChange("specialComments", e.target.value)}
-                        placeholder="Any other information than the above that can help us customise your tour"
-                        rows={3}
-                        className="pl-2 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
-                      />
-                    </div>
-                  </div>
 
                   {/* Submit Button */}
                   <div className="pt-1">
                     <Button
                       type="submit"
                       className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
-                      style={{ background: 'hsl(var(--success))', color: 'hsl(var(--button-primary-foreground))' }}
+                      style={{ background: 'hsl(25 45% 35%)', color: 'hsl(var(--button-primary-foreground))' }}
                     >
                       Send Request
                     </Button>
