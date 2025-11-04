@@ -8,7 +8,7 @@ import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
 import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
-import heroKeralaBackwaters from "@/assets/hero-kerala-backwaters.jpg";
+// heroKeralaBackwaters removed per design change
 
 // Enhanced tour card interface with descriptions
 interface TourOffer {
@@ -122,19 +122,7 @@ const TourOffersSection = ({
 
 
   return (
-    <section
-      className="relative"
-      style={{
-        // Subtle peach background with decorative image and soft top blend to hero
-        background: `linear-gradient(to top, rgba(251,242,237,0) 0%, rgba(251,242,237,0.95) 40%), linear-gradient(180deg, #fbf2ed 0%, #fbf2ed 100%), url(${heroKeralaBackwaters})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right top',
-        backgroundSize: '45% auto',
-        // Pull section up to overlap hero slightly for a graceful infusion
-        marginTop: '-48px',
-        paddingTop: '56px'
-      }}
-    >
+    <section className="relative">
       {/* Main container with proper layout */}
       <div className="relative container mx-auto py-6 lg:py-8 max-w-7xl min-h-[220px]">
         <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
@@ -225,8 +213,8 @@ const TourOffersSection = ({
                 </div>
 
                 {/* Soft edge fades to avoid abrupt clipping of oval cards */}
-                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, #fbf2ed 0%, rgba(251,242,237,0) 100%)', zIndex: 15 }} />
-                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, #fbf2ed 0%, rgba(251,242,237,0) 100%)', zIndex: 15 }} />
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
 
                   {/* Scroll indicator - shows continuous animation */}
                   <div className="flex justify-center mt-6">
@@ -247,7 +235,7 @@ const TourOffersSection = ({
 
             {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-6 lg:mt-0 lg:mr-6">
+              <div className="lg:w-[30%] mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
                 <div className="w-full">
                   {/* Form with light theme - consistent across all devices */}
                   <div className="bg-green-600/10 text-green-900 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
