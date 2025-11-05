@@ -8,6 +8,7 @@ import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
 import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
+// heroKeralaBackwaters removed per design change
 
 // Enhanced tour card interface with descriptions
 interface TourOffer {
@@ -122,16 +123,24 @@ const TourOffersSection = ({
 
   return (
     <section className="relative">
-      {/* Full-bleed background with white panel */}
-      <div className="relative extend-left overflow-hidden">
-        <div className="relative container mx-auto px-4 py-6 lg:py-8 max-w-7xl min-h-[220px]">
-          <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
+      {/* Main container with proper layout */}
+      <div className="relative container mx-auto py-6 lg:py-8 max-w-7xl min-h-[220px]">
+        <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
             {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Section Header - positioned with proper spacing from top */}
-              <div className="relative z-10 text-left mb-10 mt-4">
-                <div className="inline-block px-4 py-2 rounded-md shadow-md" style={{ backgroundColor: '#C9A32E', color: '#000000' }}>
-                  <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+              {/* Section Header - hanging board style */}
+              <div className="relative z-10 text-center mb-10 mt-4">
+                <div className="hanging-board inline-flex items-start justify-center" aria-hidden="false">
+                  {/* Chains (decorative) - two strands each side for realistic hanging look */}
+                  <span className="rope rope-left" aria-hidden="true" />
+                  <span className="rope rope-left-dup" aria-hidden="true" />
+                  <span className="rope rope-right-dup" aria-hidden="true" />
+                  <span className="rope rope-right" aria-hidden="true" />
+
+                  {/* Board */}
+                  <div className="board inline-block px-6 py-2 rounded-md shadow-md" style={{ backgroundColor: '#6b4b3a', color: '#FFFFFF' }}>
+                    <h2 className="text-xl md:text-2xl font-bold mb-0">{sectionTitle}</h2>
+                  </div>
                 </div>
               </div>
 
@@ -142,9 +151,9 @@ const TourOffersSection = ({
                 </div>
               )}
 
-              {/* Tour Carousel - Infinite Loop starting from absolute left edge */}
+              {/* Tour Carousel - Infinite Loop without background card */}
               {!loading && tourOffers.length > 0 && (
-                <div className="relative z-10 -ml-8 lg:-ml-24">
+                <div className="relative">
                 {/* Left Navigation Button */}
                 <button
                   onClick={scrollLeft}
@@ -163,7 +172,7 @@ const TourOffersSection = ({
                   <ChevronRight className="h-5 w-5 text-gray-800" />
                 </button>
 
-                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth' }}>
+                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth', paddingLeft: 'min(6vw, 48px)', paddingRight: 'min(6vw, 48px)' }}>
                   {/* Continuous sliding carousel wrapper with smooth CSS animation */}
                   <div
                     className={`flex gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
@@ -171,6 +180,7 @@ const TourOffersSection = ({
                     onMouseLeave={() => setIsPaused(false)}
                     onFocus={() => setIsPaused(true)}
                     onBlur={() => setIsPaused(false)}
+                    style={{ transform: 'translateX(0px)' }}
                   >
                     {duplicatedTours.map((tour, index) => (
                       <Link
@@ -202,6 +212,10 @@ const TourOffersSection = ({
                   </div>
                 </div>
 
+                {/* Soft edge fades to avoid abrupt clipping of oval cards */}
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
+
                   {/* Scroll indicator - shows continuous animation */}
                   <div className="flex justify-center mt-6">
                     <div className="text-gray-700 text-xs">
@@ -221,7 +235,7 @@ const TourOffersSection = ({
 
             {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-6 lg:mt-0">
+              <div className="lg:w-[30%] mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
                 <div className="w-full">
                   {/* Form with light theme - consistent across all devices */}
                   <div className="bg-green-600/10 text-green-900 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
@@ -237,7 +251,6 @@ const TourOffersSection = ({
                 </div>
               </div>
             )}
-          </div>
         </div>
       </div>
     </section>

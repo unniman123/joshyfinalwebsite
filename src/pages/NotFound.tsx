@@ -15,7 +15,7 @@ const NotFound = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <Helmet>
-        <title>404 - Page Not Found | KeralaToursGlobal</title>
+        <title>404 - Page Not Found | KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
         <meta name="description" content="The page you're looking for could not be found. Return to KeralaToursGlobal homepage." />
         <link rel="icon" type="image/png" href="/logo-header.png" />
       </Helmet>

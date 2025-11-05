@@ -132,7 +132,7 @@ const DynamicCategoryPage = () => {
     return <Navigate to="/tours" replace />;
   }
 
-  const pageTitle = categoryData.customPageTitle || 'KeralaToursGlobal';
+  const pageTitle = categoryData.customPageTitle || 'KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays';
   const pageDescription = categoryData.customPageDescription || categoryData.description;
   const seoTitle = categoryData.seoTitle || pageTitle;
   const seoDescription = categoryData.seoDescription || pageDescription;

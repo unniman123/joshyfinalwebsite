@@ -26,12 +26,22 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         {/* Tour Title Section - Center Aligned */}
         <section className="pt-6 md:pt-12 lg:pt-16 pb-2 md:py-3 lg:py-4 px-2 md:px-4">
           <div className="container mx-auto max-w-7xl px-2 md:px-4">
-            {/* Title with red background box */}
+            {/* Title in wood signboard design */}
             <div className="flex items-center justify-center md:justify-start">
-              <div className="inline-block bg-red-600 text-white rounded-md px-4 py-3 md:px-8 md:py-4 shadow-lg shadow-red-500/30 max-w-full">
-                <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight break-words">
-                  {tour.title}
-                </h1>
+              <div className="relative inline-flex items-center">
+                <div className="wood-signboard px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 font-bold relative">
+                  <h1 className="wood-signboard-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight break-words text-center md:text-left">
+                    {tour.title}
+                  </h1>
+                  <div
+                    className="absolute top-0 right-0 translate-x-full h-full w-0"
+                    style={{
+                      borderTop: '30px solid transparent',
+                      borderBottom: '30px solid transparent',
+                      borderLeft: '20px solid #8B4513',
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -130,11 +140,21 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
         {/* Tour Title Section - Center Aligned */}
         <section className="py-8 md:py-12 lg:py-16 px-4">
           <div className="container mx-auto max-w-7xl px-4">
-            <div className="flex items-center">
-              <div className="inline-block bg-red-600 text-white rounded-md px-8 py-4 shadow-lg shadow-red-500/30">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-none">
-                  {tour.title}
-                </h1>
+            <div className="flex items-center justify-center">
+              <div className="relative inline-flex items-center">
+                <div className="wood-signboard px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 font-bold relative">
+                  <h1 className="wood-signboard-text text-2xl md:text-3xl lg:text-4xl font-bold leading-tight break-words text-center">
+                    {tour.title}
+                  </h1>
+                  <div
+                    className="absolute top-0 right-0 translate-x-full h-full w-0"
+                    style={{
+                      borderTop: '35px solid transparent',
+                      borderBottom: '35px solid transparent',
+                      borderLeft: '25px solid #8B4513',
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

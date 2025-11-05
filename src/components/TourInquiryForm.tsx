@@ -130,14 +130,14 @@ const TourEnquiryForm = ({
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
             <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[10px] font-medium text-black">
-              Mobile No (Whatsapp) *
+              Mobile No (WhatsApp) *
             </Label>
             <div className="relative">
               <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-2 w-2 text-black/60" />
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder={phoneFieldPlaceholder || "Enter your Whatsapp number"}
+                placeholder={phoneFieldPlaceholder || "Enter your WhatsApp number"}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                 className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
@@ -210,7 +210,7 @@ const TourEnquiryForm = ({
             <Button
               type="submit"
               className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
-              style={{ background: 'hsl(var(--button-primary-bg))', color: 'hsl(var(--button-primary-foreground))' }}
+              style={{ background: 'hsl(25 45% 35%)', color: 'hsl(var(--button-primary-foreground))' }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send Request"}

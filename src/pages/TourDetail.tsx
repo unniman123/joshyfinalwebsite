@@ -45,7 +45,7 @@ const TourDetail = () => {
 
   return <div className="min-h-screen bg-background">
     <Helmet>
-      <title>{tour.title} - KeralaToursGlobal</title>
+      <title>{tour.title} - KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
       <meta name="description" content={tour.description} />
       <link rel="icon" type="image/png" href="/logo-header.png" />
     </Helmet>

@@ -118,7 +118,7 @@ const HeroBanner = ({
   };
 
   return (
-    <section className="relative h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden mb-12 lg:mb-20">
+    <section className="relative h-[70vh] md:h-[80vh] lg:h-screen overflow-hidden mb-0">
       {/* Background Images with scrim overlay for predictable contrast */}
       {bannerImages.map((image, index) => (
         <div
