@@ -57,10 +57,13 @@ const TourDetail = () => {
       <section id="enquiry-section" className="pt-2 pb-3 px-2 md:pt-3 md:pb-4 md:px-4 bg-muted/30 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
           <div className="mb-3 md:mb-4">
-            {/* Title panel with rectangular shape, white text on dark background */}
+            {/* Title panel styled as a pill to match booking CTA */}
             <div className="flex items-center justify-center">
-              <div className="inline-block bg-slate-900 text-white rounded-md px-3 py-1.5 md:px-6 md:py-2 flex items-center">
-                <h2 className="text-base md:text-lg lg:text-xl font-bold leading-none">
+              <div
+                className="inline-block rounded-full px-4 md:px-6 py-2 md:py-3 flex items-center justify-center shadow-warm"
+                style={{ background: 'linear-gradient(90deg, #f07f71 0%, #ff6b6b 100%)', color: '#ffffff' }}
+              >
+                <h2 className="text-sm md:text-base lg:text-lg font-semibold leading-none tracking-wide">
                   Enquire
                 </h2>
               </div>
