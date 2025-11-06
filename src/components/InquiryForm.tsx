@@ -173,11 +173,11 @@ const EnquiryForm = ({
         type="submit"
         size="lg"
         className="w-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
-        style={{ backgroundColor: '#5cbdb9', color: '#000000' }}
+        style={{ background: 'linear-gradient(90deg, #cfe145 0%, #b7d12a 100%)', color: '#07121a' }}
         disabled={isSubmitting}
         aria-describedby="form-status"
-        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#4aa9a5'}
-        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#5cbdb9'}
+        onMouseEnter={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #b7d12a 0%, #9eb51a 100%)')}
+        onMouseLeave={(e) => (e.currentTarget.style.background = 'linear-gradient(90deg, #cfe145 0%, #b7d12a 100%)')}
       >
         {isSubmitting ? "Sending..." : "Send Request"}
       </Button>

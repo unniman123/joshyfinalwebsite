@@ -107,18 +107,7 @@ const Tours = () => {
 
   // Determine page title based on current view
   const getPageTitle = () => {
-    if (selectedCategory) {
-      // Normalize special category display names
-      if (selectedCategory === 'discover-india') return 'KeralaToursGlobal';
-      if (selectedCategory === 'kerala') return 'KeralaToursGlobal';
-      if (selectedCategory === 'global') return 'KeralaToursGlobal';
-
-      return 'KeralaToursGlobal';
-    }
-    if (searchQuery) {
-      return 'KeralaToursGlobal';
-    }
-    return 'KeralaToursGlobal';
+    return 'KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays';
   };
 
   // Determine page description based on current view

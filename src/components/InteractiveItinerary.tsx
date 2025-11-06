@@ -140,7 +140,13 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
       >
         <Button 
           onClick={scrollToEnquiry}
-          className="bg-button-primary hover:bg-button-primary/90 text-button-primary-foreground font-semibold px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-lg shadow-warm transition-all duration-300 flex items-center gap-2 transform hover:scale-105 active:scale-95"
+          size="lg"
+          className="rounded-full text-white font-semibold text-sm md:text-base px-6 md:px-8 py-3 shadow-warm transition-transform duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center"
+          style={{
+            background: 'linear-gradient(90deg, #f07f71 0%, #ff6b6b 100%)',
+            color: '#ffffff',
+            boxShadow: '0 10px 30px rgba(255,107,107,0.18)'
+          }}
         >
           <span>ENQUIRE</span>
         </Button>

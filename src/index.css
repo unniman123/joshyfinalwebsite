@@ -308,6 +308,51 @@
     z-index: 13;
   }
 
+  /* Leaf-green board variant with subtle textured overlay */
+  .board {
+    background-image:
+      linear-gradient(180deg, #bfe9b0 0%, #7fb77b 60%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0 2px, rgba(255,255,255,0) 2px 8px);
+    background-blend-mode: overlay, normal;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 30px rgba(31, 100, 42, 0.08);
+  }
+
+  /* Title pill style (dark green rounded pill with left lime accent) */
+  .title-pill {
+    background: linear-gradient(180deg, #07281f 0%, #0b3b2c 100%);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 9999px;
+    box-shadow: 0 12px 30px rgba(3, 35, 20, 0.25);
+    border: 1px solid rgba(255,255,255,0.03);
+    position: relative;
+  }
+
+  .title-pill-accent {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, #d7ef73 0%, #bfe145 100%);
+    box-shadow: 0 4px 12px rgba(191,225,69,0.18) inset, 0 6px 18px rgba(11, 59, 44, 0.12);
+    flex: 0 0 auto;
+    margin-left: -8px;
+  }
+
+  /* Slight inner texture for title pill (very subtle) */
+  .title-pill::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, rgba(255,255,255,0) 2px 8px);
+    border-radius: 9999px;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
   @keyframes board-swing {
     0% { transform: rotate(-2deg); }
     50% { transform: rotate(2deg); }
@@ -383,5 +428,25 @@
     font-weight: bold;
     position: relative;
     z-index: 1;
+  }
+
+  /* Modern title hero card used across tour pages */
+  .title-hero {
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.99));
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 10px 30px rgba(7,18,26,0.06);
+    border-left: 8px solid hsl(var(--brand-primary));
+    color: hsl(var(--foreground));
+    display: inline-block;
+    min-width: 280px;
+  }
+
+  .title-hero-text {
+    color: hsl(var(--foreground));
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.05;
+    text-shadow: none;
   }
 }

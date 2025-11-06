@@ -29,18 +29,18 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
             {/* Title in wood signboard design */}
             <div className="flex items-center justify-center md:justify-start">
               <div className="relative inline-flex items-center">
-                <div className="wood-signboard px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-5 font-bold relative">
-                  <h1 className="wood-signboard-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight break-words text-center md:text-left">
-                    {tour.title}
-                  </h1>
-                  <div
-                    className="absolute top-0 right-0 translate-x-full h-full w-0"
-                    style={{
-                      borderTop: '30px solid transparent',
-                      borderBottom: '30px solid transparent',
-                      borderLeft: '20px solid #8B4513',
-                    }}
-                  />
+                <div className="hanging-board inline-flex items-start justify-center" aria-hidden="false">
+                  <span className="rope rope-left" aria-hidden="true" />
+                  <span className="rope rope-left-dup" aria-hidden="true" />
+                  <span className="rope rope-right-dup" aria-hidden="true" />
+                  <span className="rope rope-right" aria-hidden="true" />
+
+                  <div className="board title-pill inline-flex items-center px-6 py-3 rounded-full shadow-md text-white">
+                    <span className="title-pill-accent" aria-hidden="true" />
+                    <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-0 leading-tight ml-3">
+                      {tour.title}
+                    </h1>
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,18 +142,18 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           <div className="container mx-auto max-w-7xl px-4">
             <div className="flex items-center justify-center">
               <div className="relative inline-flex items-center">
-                <div className="wood-signboard px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 font-bold relative">
-                  <h1 className="wood-signboard-text text-2xl md:text-3xl lg:text-4xl font-bold leading-tight break-words text-center">
-                    {tour.title}
-                  </h1>
-                  <div
-                    className="absolute top-0 right-0 translate-x-full h-full w-0"
-                    style={{
-                      borderTop: '35px solid transparent',
-                      borderBottom: '35px solid transparent',
-                      borderLeft: '25px solid #8B4513',
-                    }}
-                  />
+                <div className="hanging-board inline-flex items-start justify-center" aria-hidden="false">
+                  <span className="rope rope-left" aria-hidden="true" />
+                  <span className="rope rope-left-dup" aria-hidden="true" />
+                  <span className="rope rope-right-dup" aria-hidden="true" />
+                  <span className="rope rope-right" aria-hidden="true" />
+
+                  <div className="board title-pill inline-flex items-center px-8 py-4 rounded-full shadow-md text-white">
+                    <span className="title-pill-accent" aria-hidden="true" />
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-0 leading-tight ml-4">
+                      {tour.title}
+                    </h1>
+                  </div>
                 </div>
               </div>
             </div>
