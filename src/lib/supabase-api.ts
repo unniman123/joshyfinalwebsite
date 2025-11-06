@@ -59,7 +59,8 @@ export async function getAllTours(): Promise<any[]> {
     const { data, error } = await supabase
       .from('vw_published_tours')
       .select('*')
-      .order('display_order', { ascending: true });
+      .order('is_featured', { ascending: false })  // Featured tours first
+      .order('display_order', { ascending: true }); // Then by display order
 
     if (error) {
       console.error('Error fetching tours:', error);
