@@ -437,7 +437,7 @@ const DayOutPackagesSection = ({
                     <Button
                       type="submit"
                       className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
-                      style={{ background: 'hsl(25 45% 35%)', color: 'hsl(var(--button-primary-foreground))' }}
+                      style={{ background: 'linear-gradient(90deg, #D9E84B 0%, #C6E22F 100%)', color: '#0B0B0B' }}
                     >
                       Send Request
                     </Button>
