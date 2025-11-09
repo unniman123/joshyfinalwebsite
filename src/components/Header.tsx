@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import NavigationDropdown from "@/components/NavigationDropdown";
 import useFocusTrap from "@/hooks/use-focus-trap";
+import navTaxonomy from "@/data/navTaxonomy";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,7 +80,7 @@ const Header = () => {
 
       {/* Main Navigation */}
       <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`}>
-            <div className="container mx-auto px-4" aria-hidden={isMenuOpen ? 'true' : 'false'}>
+            <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             {/* On very small screens stack logo above full brand name so the complete title is visible */}
@@ -155,7 +156,7 @@ const Header = () => {
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
 
               {/* Panel */}
-          <div role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
+          <div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <img src="/src/assets/logo-header.png.png" alt="Kerala" className="h-10 w-auto" />
@@ -183,12 +184,28 @@ const Header = () => {
                     <details key={item.name} className="group">
                         <summary className="flex items-center justify-between text-foreground hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Sora', sans-serif" }}>
                           <span>{item.name}</span>
+                          <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
                         </summary>
 
-                        <div className="pl-3 pb-2">
+                        <div className="pl-3 pb-2 space-y-1">
+                          {/* Render subcategory items from navTaxonomy */}
+                          {navTaxonomy[item.category.toLowerCase()] && 
+                            navTaxonomy[item.category.toLowerCase()].map((sub) => (
+                              <Link
+                                key={sub.slug}
+                                to={sub.href ? sub.href : `/tours?category=${item.category}&subcategory=${sub.slug}`}
+                                className="block text-sm text-foreground py-2 hover:text-foreground/80 hover:bg-gray-50 px-2 rounded min-h-[44px] flex items-center"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                {sub.label}
+                              </Link>
+                            ))
+                          }
+                          
+                          {/* View all link */}
                           <Link
                             to={item.href}
-                            className="block text-sm text-foreground py-2 hover:text-foreground/80 min-h-[44px] flex items-center"
+                            className="block text-sm text-foreground font-medium py-2 hover:text-foreground/80 hover:bg-gray-50 px-2 rounded min-h-[44px] flex items-center border-t border-gray-200 mt-2 pt-3"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             View all {item.name}

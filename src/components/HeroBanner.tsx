@@ -132,7 +132,7 @@ const HeroBanner = ({
               alt={image.alt}
               className="w-full h-full object-cover"
               loading={index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={index === 0 ? 'high' : 'auto'}
+              fetchpriority={index === 0 ? 'high' : 'auto'}
               srcSet={`${image.src} 1200w, ${image.src} 800w, ${image.src} 480w`}
             />
             {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
