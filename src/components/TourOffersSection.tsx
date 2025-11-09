@@ -64,7 +64,8 @@ const TourOffersSection = ({
         const toursData = await getAllTours();
 
         // Transform database tours to TourOffer format
-        const transformedTours: TourOffer[] = toursData.slice(0, 6).map((tour: any) => ({
+        // Show up to 8 tours (prioritizes featured tours due to API ordering)
+        const transformedTours: TourOffer[] = toursData.slice(0, 8).map((tour: any) => ({
           id: tour.id,
           title: tour.title,
           image: tour.image || keralaTourCard, // fallback to default image
@@ -182,7 +183,7 @@ const TourOffersSection = ({
                     onBlur={() => setIsPaused(false)}
                     style={{ transform: 'translateX(0px)' }}
                   >
-                    {duplicatedTours.map((tour, index) => (
+                    {duplicatedTours.filter(tour => tour && tour.slug).map((tour, index) => (
                       <Link
                         key={`${tour.id}-${index}`}
                         to={`/tours/${tour.slug}`}

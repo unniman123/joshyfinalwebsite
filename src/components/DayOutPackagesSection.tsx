@@ -139,6 +139,17 @@ const DayOutPackagesSection = ({
 
   // Get current package to display in banner
   const getCurrentPackage = () => {
+    if (!dayOutPackages || dayOutPackages.length === 0) {
+      return {
+        id: '',
+        title: '',
+        image: '',
+        slug: '',
+        description: '',
+        showDescription: false,
+        showExploreButton: false
+      };
+    }
     return dayOutPackages[currentIndex];
   };
 
@@ -250,6 +261,14 @@ const DayOutPackagesSection = ({
                 <div className="w-full h-64 sm:h-72 lg:h-[420px] relative overflow-hidden shadow-card hover:shadow-brand transition-all duration-300 lg:rounded-tr-2xl lg:rounded-br-2xl">
                 {(() => {
                   const currentPackage = getCurrentPackage();
+                  // Don't render if no valid package data
+                  if (!currentPackage || !currentPackage.slug) {
+                    return (
+                      <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                        <div className="text-gray-500">Loading package...</div>
+                      </div>
+                    );
+                  }
                   return (
                     <Link
                       to={`/tours/${currentPackage.slug}`}

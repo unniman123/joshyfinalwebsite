@@ -59,7 +59,8 @@ export async function getAllTours(): Promise<any[]> {
     const { data, error } = await supabase
       .from('vw_published_tours')
       .select('*')
-      .order('display_order', { ascending: true });
+      .order('is_featured', { ascending: false })  // Featured tours first
+      .order('display_order', { ascending: true }); // Then by display order
 
     if (error) {
       console.error('Error fetching tours:', error);
@@ -245,7 +246,7 @@ export async function getTourBySlug(slug: string): Promise<any | null> {
 
     // Transform images array to match legacy format
     // Note: view returns img.url (not img.image_url) as per jsonb_build_object in view definition
-    const images = (data.images || []).map((img: any, idx: number) => ({
+    let images = (data.images || []).map((img: any, idx: number) => ({
       id: `img-${idx}`,
       url: sanitizeImageURL(img.url) || '/placeholder.svg',
       alt: img.alt || data.title,
@@ -254,6 +255,37 @@ export async function getTourBySlug(slug: string): Promise<any | null> {
       section: img.section || 'overview',
       isActive: img.isActive !== false,
     }));
+
+    // Always include the featured image as an overview image if it exists
+    // This ensures backward compatibility and proper image display
+    if (data.featured_image_url) {
+      const sanitizedFeaturedUrl = sanitizeImageURL(data.featured_image_url) || '/placeholder.svg';
+      
+      // Check if the featured image URL already exists in the images array
+      // This prevents duplication when the admin panel stores the featured image in tour_images table
+      const featuredImageExists = images.some(img => img.url === sanitizedFeaturedUrl);
+      
+      if (!featuredImageExists) {
+        const featuredImage = {
+          id: 'featured-image',
+          url: sanitizedFeaturedUrl,
+          alt: data.title,
+          caption: null,
+          order: 0,
+          section: 'overview',
+          isActive: true,
+        };
+
+        // If no gallery images exist, replace the array with just the featured image
+        if (images.length === 0) {
+          images = [featuredImage];
+        } else {
+          // If gallery images exist, prepend the featured image to the array
+          // This ensures overview images come first
+          images = [featuredImage, ...images];
+        }
+      }
+    }
 
     // Extract sections
     // Note: view returns sec.type (not sec.section_type), sec.order (not sec.display_order), sec.isVisible
@@ -521,5 +553,4 @@ export async function getHomepageSettings(): Promise<{ title: string; subtitle: 
 
 // Re-export types for convenience
 export type { TourSummary, TourDetail };
-
 
