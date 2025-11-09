@@ -210,7 +210,7 @@ const TourEnquiryForm = ({
             <Button
               type="submit"
               className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
-              style={{ background: '#B39DDB', color: '#1A1A1A' }}
+              style={{ background: '#FF6B4A', color: '#FFFFFF' }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send Request"}

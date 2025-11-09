@@ -211,8 +211,11 @@ const ContactForm = ({
         variant="cta"
         size="lg"
         className="w-full"
+        style={{ background: '#FF6B4A', color: '#FFFFFF' }}
         disabled={isSubmitting}
         aria-describedby="form-status"
+        onMouseEnter={(e) => (e.currentTarget.style.background = '#FF5533')}
+        onMouseLeave={(e) => (e.currentTarget.style.background = '#FF6B4A')}
       >
         {isSubmitting ? "Sending..." : "Send Request"}
       </Button>
