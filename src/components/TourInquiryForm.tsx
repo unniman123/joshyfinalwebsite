@@ -110,7 +110,7 @@ const TourEnquiryForm = ({
         <form onSubmit={handleFormSubmit} className="space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-name`} className="text-[10px] font-medium text-black">
+            <Label htmlFor={`${formIdPrefix}-name`} className="text-[11px] font-bold text-black">
               Name *
             </Label>
             <div className="relative">
@@ -129,7 +129,7 @@ const TourEnquiryForm = ({
 
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[10px] font-medium text-black">
+            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[11px] font-bold text-black">
               Mobile No (WhatsApp) *
             </Label>
             <div className="relative">
@@ -149,7 +149,7 @@ const TourEnquiryForm = ({
           {/* Message Field - conditionally rendered */}
           {showMessage && (
             <div className="space-y-0.5">
-              <Label htmlFor={`${formIdPrefix}-message`} className="text-[10px] font-medium text-black">
+              <Label htmlFor={`${formIdPrefix}-message`} className="text-[11px] font-bold text-black">
                 Message *
               </Label>
               <div className="relative">
@@ -169,7 +169,7 @@ const TourEnquiryForm = ({
           {/* Date Field - conditionally rendered */}
           {showDate && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-date`} className="text-[10px] font-medium text-black">
+            <Label htmlFor={`${formIdPrefix}-date`} className="text-[11px] font-bold text-black">
                 Preferred Date *
               </Label>
               <div className="relative">
@@ -188,7 +188,7 @@ const TourEnquiryForm = ({
           {/* Destination Field - conditionally rendered */}
           {showDestination && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[10px] font-medium text-black">
+            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[11px] font-bold text-black">
                 Destination *
               </Label>
               <div className="relative">
@@ -210,7 +210,7 @@ const TourEnquiryForm = ({
             <Button
               type="submit"
               className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
-              style={{ background: 'linear-gradient(90deg, #D9E84B 0%, #C6E22F 100%)', color: '#0B0B0B' }}
+              style={{ background: '#B39DDB', color: '#1A1A1A' }}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send Request"}

@@ -97,39 +97,39 @@ const NavigationDropdown = ({ name, href, category }: NavigationDropdownProps) =
 
       {hasDropdown && isOpen && (
         <div
-          className="absolute left-0 mt-0 w-80 bg-white rounded-lg shadow-xl border border-border z-50 animate-fade-in"
+          className="absolute left-0 mt-0 w-[600px] bg-white rounded-lg shadow-xl border border-border z-50 animate-fade-in"
           style={{ fontFamily: "'Sora', sans-serif" }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="py-3 px-3 max-h-96 overflow-y-auto">
-            <div className="grid grid-cols-1 gap-2">
-              {/* Render subcategory headings if taxonomy exists - ALWAYS show regardless of tours */}
-              {navTaxonomy[category?.toLowerCase() || ""] && (
-                <div className="mb-2">
+          <div className="py-4 px-4 max-h-[500px] overflow-y-auto">
+            {/* Render subcategory headings if taxonomy exists - ALWAYS show regardless of tours */}
+            {navTaxonomy[category?.toLowerCase() || ""] && (
+              <>
+                <div className="grid grid-cols-2 gap-x-6 gap-y-1 mb-3">
                   {navTaxonomy[category!.toLowerCase()].map((sub: any) => (
                     <Link
                       key={sub.slug}
                       to={sub.href ? sub.href : `/tours?category=${category}&subcategory=${sub.slug}`}
-                      className="block text-sm text-foreground font-medium px-2 py-1 rounded transition-colors hover:bg-gray-100"
+                      className="block text-sm text-foreground font-medium px-3 py-2 rounded transition-colors hover:bg-gray-100"
                       onClick={() => setIsOpen(false)}
                     >
                       {sub.label}
                     </Link>
                   ))}
-                  <div className="my-1 border-t border-border" />
                 </div>
-              )}
+                <div className="my-2 border-t border-border" />
+              </>
+            )}
 
-              {/* View all link - always show */}
-              <Link
-                to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
-                className="mt-2 block text-center text-sm font-medium text-gray-600 hover:text-gray-800 hover:underline"
-                onClick={() => setIsOpen(false)}
-              >
-                View all {name}
-              </Link>
-            </div>
+            {/* View all link - always show */}
+            <Link
+              to={href || `/tours?category=${encodeURIComponent((name || '').toLowerCase().replace(/\s+/g, '-'))}`}
+              className="block text-center text-sm font-medium text-gray-600 hover:text-gray-800 hover:underline py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              View all {name}
+            </Link>
           </div>
         </div>
       )}

@@ -82,6 +82,43 @@
     --dayout-image-bg: 0 65% 82%; /* darker pale red for stronger visibility */
     --dayout-image-bg-foreground: 0 20% 12%;
 
+    /* Tourism-optimized color schemes for section titles */
+    /* Custom Brand Palette - From user's exact brand images */
+    --brand-yellow: 60 100% 85%; /* Bright Yellow Background #D4E157 (from star image) */
+    --brand-green: 170 100% 15%; /* Deep Teal Green Text #004D40 (from star image) */
+    --brand-yellow-light: 60 100% 92%; /* Lighter yellow for subtle backgrounds */
+    
+    /* Previous palette colors (kept for reference) */
+    --brand-orange: 14 94% 53%; /* Vibrant Orange #f85e1b */
+    --brand-peach: 33 100% 69%; /* Soft Peach #fbc860 */
+    --brand-sky: 199 53% 79%; /* Light Sky Blue #a8d0e6 */
+    --brand-sage: 81 15% 55%; /* Muted Sage #646745 */
+    
+    /* Ocean Breeze - Trust, calm, adventure */
+    --ocean-navy: 210 100% 25%; /* Deep Navy #001f3f */
+    --ocean-sky: 195 100% 75%; /* Sky Blue #7FDBFF */
+    --ocean-light: 195 100% 95%; /* Light Sky */
+    
+    /* Sunset Glow - Energy, warmth, adventure */
+    --sunset-coral: 16 100% 66%; /* Coral #FF7F50 */
+    --sunset-gold: 51 100% 50%; /* Warm Yellow #FFD700 */
+    --sunset-beige: 45 88% 95%; /* Soft Beige #FAF3E0 */
+    
+    /* Tropical Paradise - Vibrant, exotic, wanderlust */
+    --tropical-teal: 174 62% 47%; /* Teal #2DBAA3 */
+    --tropical-orange: 14 91% 58%; /* Sunset Orange #F4845F */
+    --tropical-sand: 39 77% 95%; /* Sandy Beige #FDF6E9 */
+    
+    /* Adventure Green - Nature, eco-tourism, exploration */
+    --adventure-forest: 140 60% 35%; /* Forest Green #228B22 */
+    --adventure-sage: 120 25% 65%; /* Sage Green #8FBC8F */
+    --adventure-cream: 60 29% 96%; /* Cream #F5F5DC */
+    
+    /* Luxury Travel - Premium, elegant, sophisticated */
+    --luxury-gold: 43 74% 49%; /* Rich Gold #C9A227 */
+    --luxury-navy: 220 39% 18%; /* Deep Navy #1C2841 */
+    --luxury-champagne: 45 56% 88%; /* Champagne #E8DCC4 */
+
     /* Image scrim for predictable text contrast over photos */
     --image-scrim: linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(0,0,0,0.55) 100%);
 
@@ -448,5 +485,40 @@
     font-weight: 700;
     line-height: 1.05;
     text-shadow: none;
+  }
+
+  /* Modern section title badge - gradient design with accent bar */
+  .section-title-badge {
+    background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: box-shadow;
+  }
+
+  .section-title-badge:hover {
+    box-shadow: 0 20px 40px rgba(7,18,26,0.12);
+  }
+
+  /* Section title pill variant */
+  .section-title-pill {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle shine effect on pill variant */
+  .section-title-pill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .section-title-pill:hover::before {
+    left: 100%;
   }
 }
