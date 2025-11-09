@@ -175,7 +175,7 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-button-primary hover:bg-button-primary/90 text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto"
+                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto font-semibold shadow-md"
                 >
                   Search
                 </Button>
@@ -184,7 +184,7 @@ const HeroBanner = ({
           </form>
 
           <div className="mt-6 md:mt-8 flex justify-center w-full mx-auto">
-            <Link to="/contact" className="inline-block bg-button-primary text-white px-8 py-3 rounded-md hover:brightness-90 transition text-center font-semibold">Plan My Trip</Link>
+            <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md transition text-center font-semibold shadow-md">Plan My Trip</Link>
           </div>
         </div>
       </div>
