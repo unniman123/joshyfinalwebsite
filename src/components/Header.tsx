@@ -85,7 +85,7 @@ const Header = () => {
             {/* Logo and Company Name */}
             {/* On very small screens stack logo above full brand name so the complete title is visible */}
             <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3" aria-label="Go to homepage">
-              <img src="/src/assets/logo-header.png.png" alt="Kerala Travels" className="h-12 md:h-16 w-auto cursor-pointer" />
+              <img src="/logo-header.png" alt="Kerala Travels" className="h-12 md:h-16 w-auto cursor-pointer" />
               <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight text-center sm:text-left ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
@@ -159,7 +159,7 @@ const Header = () => {
           <div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <img src="/src/assets/logo-header.png.png" alt="Kerala" className="h-10 w-auto" />
+                    <img src="/logo-header.png" alt="Kerala" className="h-10 w-auto" />
                     <div className="font-semibold">KeralaTours</div>
                   </div>
                   <button aria-label="Close menu" className="p-2 rounded-md hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
