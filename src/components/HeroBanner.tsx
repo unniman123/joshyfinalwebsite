@@ -163,7 +163,7 @@ const HeroBanner = ({
 
           {/* Search Bar - responsive stacking */}
           <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 md:p-4 shadow-lg">
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-2 md:p-2 shadow-lg">
               <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
@@ -172,13 +172,14 @@ const HeroBanner = ({
                     placeholder={searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 pr-4 py-3 text-sm md:text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
+                    className="pl-12 pr-4 h-10 text-base md:text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
+                    style={{ lineHeight: '1' }}
                   />
                 </div>
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-6 py-3 rounded-lg btn-subtle-anim w-full md:w-auto font-semibold shadow-md"
+                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-6 h-10 rounded-lg btn-subtle-anim w-full md:w-auto font-semibold shadow-md"
                 >
                   Search
                 </Button>
