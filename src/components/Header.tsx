@@ -85,7 +85,7 @@ const Header = () => {
             {/* Logo and Company Name */}
             {/* On very small screens stack logo above full brand name so the complete title is visible */}
             <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3" aria-label="Go to homepage">
-              <img src="/logo-header.png" alt="Kerala Travels" className="h-12 md:h-16 w-auto cursor-pointer" />
+              <img src="/logo-header.png" alt="Kerala Travels" className="h-16 md:h-20 w-auto cursor-pointer" />
               <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight text-center sm:text-left ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
