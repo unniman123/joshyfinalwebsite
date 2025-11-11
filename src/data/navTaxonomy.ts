@@ -15,7 +15,7 @@ const navTaxonomy: Record<string, { label: string; slug: string; href?: string }
     { label: "Offbeat Tours", slug: "offbeat-tours-kerala" }
   ],
   "discover-india": [
-    { label: "Beautiful Places in India", slug: "beautiful-places-in-india" },
+    { label: "Beautiful Places in India", slug: "beautiful-places-in-india", href: "/top-destinations" },
     { label: "Kerala Travels", slug: "kerala-travels-discover" },
     { label: "South India", slug: "south-india" },
     { label: "Golden Triangle", slug: "golden-triangle" },
