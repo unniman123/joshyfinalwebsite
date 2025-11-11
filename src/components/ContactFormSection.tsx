@@ -80,8 +80,8 @@ const ContactFormSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <Card className="border-2 border-brand-green/30 bg-muted/50">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl mb-2 text-brand-green">Plan Your Perfect Trip</CardTitle>
+          <CardHeader className="text-center">
+              <CardTitle className="text-2xl mb-2 text-brand-green" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>Plan Your Perfect Trip</CardTitle>
               <p className="text-muted-foreground">Let us create a customized itinerary just for you</p>
             </CardHeader>
             <CardContent>

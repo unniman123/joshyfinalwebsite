@@ -52,7 +52,7 @@ const Contact = () => {
       {/* Simplified Hero Section */}
       <section className="bg-gradient-to-b from-primary/5 to-background py-12 md:py-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
             Contact Us
           </h1>
         </div>
@@ -71,7 +71,7 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="bg-gray-100 border border-gray-200 rounded-xl p-6 md:p-8">
                 <div className="text-center lg:text-left mb-6">
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                     Plan My Trip
                   </h2>
                   <p className="text-lg text-muted-foreground">
