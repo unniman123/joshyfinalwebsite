@@ -146,7 +146,10 @@ const HeroBanner = ({
         <div className="text-center w-full mx-auto px-4">
           {/* Main Title - fetched from database */}
           {heroData?.title && (
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up"
+              style={{ animationDelay: '0.1s', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}
+            >
               {heroData.title}
             </h1>
           )}
