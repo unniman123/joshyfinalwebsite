@@ -236,7 +236,7 @@ const TourOffersSection = ({
               <div className="lg:w-[30%] mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
                 <div className="w-full">
                   {/* Form with light theme - consistent across all devices */}
-                  <div className="bg-green-600/10 text-green-900 rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
+                  <div className="bg-white text-foreground rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
                       formType="tour"

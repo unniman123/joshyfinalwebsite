@@ -97,19 +97,19 @@ const TourEnquiryForm = ({
   const formIdPrefix = formType === "dayOut" ? "dayOut" : "tour";
 
   return (
-    // Add a subtle defined border so the enquiry form reads as a distinct panel (burgundy theme)
-    <div className="relative" style={{ paddingTop: '12px', background: '#63D0DF', padding: '12px', borderRadius: '12px' }}>
-      {/* Decorative top strip (matches border color) */}
-      <div style={{ position: 'absolute', top: 6, left: 18, right: 18, height: 6, borderRadius: 6, background: '#63D0DF' }} />
-      <Card className="border shadow-none w-full bg-transparent" style={{ borderColor: '#63D0DF', borderWidth: '2px', borderStyle: 'solid' }}>
-      <CardHeader className="pb-1" style={{ background: '#FFE3A6' }}>
-        <CardTitle className="text-sm md:text-base font-bold text-black flex items-center gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
-          <User className="h-3 w-3 text-black/60" />
-          {title}
-        </CardTitle>
-      </CardHeader>
-      {/* Make inner background transparent to avoid doubling-up dark scrims - parent overlay already provides a subtle backdrop */}
-      <CardContent className="px-2 py-2" style={{ background: '#FFE3A6', backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
+    <div className="relative overflow-hidden">
+      {/* Decorative circles - adapted to form dimensions */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full translate-x-16 -translate-y-16"></div>
+      <div className="absolute bottom-0 left-0 w-24 h-24 bg-red-600/10 rounded-full -translate-x-12 translate-y-12"></div>
+
+      <Card className="border shadow-none transition-all duration-300 w-full rounded-xl relative z-10" style={{ borderColor: 'hsl(0 0% 85% / 0.3)', background: 'linear-gradient(180deg, hsl(0 0% 90% / 0.15), hsl(0 0% 85% / 0.08))' }}>
+        <CardHeader className="pb-1">
+          <CardTitle className="text-sm md:text-base font-bold text-black flex items-center gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <User className="h-3 w-3 text-black/60" />
+            {title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="px-2 py-2" style={{ backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
         <form onSubmit={handleFormSubmit} className="space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
@@ -221,7 +221,7 @@ const TourEnquiryForm = ({
           </div>
         </form>
       </CardContent>
-      </Card>
+    </Card>
     </div>
   );
 };
