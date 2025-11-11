@@ -131,14 +131,16 @@ const TourOffersSection = ({
             {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
               {/* Section Header - Modern gradient badge design with custom brand colors */}
-              <SectionTitle 
-                title={sectionTitle}
-                variant="gradient-badge"
-                colorScheme="custom-brand"
-                align="center"
-                size="lg"
-                className="mt-4"
-              />
+              <div style={{ fontFamily: "'Sora', sans-serif" }}>
+                <SectionTitle 
+                  title={sectionTitle}
+                  variant="gradient-badge"
+                  colorScheme="custom-brand"
+                  align="center"
+                  size="lg"
+                  className="mt-4"
+                />
+              </div>
 
               {/* Loading State */}
               {loading && (
