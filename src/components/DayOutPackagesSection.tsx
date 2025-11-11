@@ -184,7 +184,7 @@ const DayOutPackagesSection = ({
       // Show success toast
       toast({
         title: "Day Out Enquiry Submitted Successfully!",
-        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        description: "Thank you for your interest. We'll contact you within 24 hours. Thanks for your interest. We will respond you at the earliest.",
         variant: "default"
       });
 
