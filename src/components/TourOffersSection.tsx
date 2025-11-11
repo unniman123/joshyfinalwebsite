@@ -134,7 +134,7 @@ const TourOffersSection = ({
               <div style={{ fontFamily: "'Sora', sans-serif" }}>
                 <SectionTitle 
                   title={sectionTitle}
-                  variant="gradient-badge"
+                  variant="underline"
                   colorScheme="custom-brand"
                   align="center"
                   size="lg"
