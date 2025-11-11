@@ -142,7 +142,7 @@ const HeroBanner = ({
       ))}
 
       {/* Content Overlay - Full-screen center-aligned hero content */}
-      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform lg:-translate-y-6 ${className}`}>
+      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform md:translate-y-4 lg:translate-y-6 ${className}`}>
         <div className="text-center w-full mx-auto px-4">
           {/* Main Title - fetched from database */}
           {heroData?.title && (
