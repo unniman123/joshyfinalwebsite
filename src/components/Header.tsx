@@ -79,7 +79,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`}>
+      <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
             <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
