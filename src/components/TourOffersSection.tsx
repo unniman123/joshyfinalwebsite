@@ -56,6 +56,10 @@ const TourOffersSection = ({
   // Infinite loop carousel state with smooth CSS animation
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+  
+  // Touch/Swipe state for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Fetch tours from database on component mount
   useEffect(() => {
@@ -89,6 +93,33 @@ const TourOffersSection = ({
 
   // Duplicate tours multiple times for seamless infinite loop
   const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
+
+  // Swipe handlers for mobile touch gestures
+  const minSwipeDistance = 50; // Minimum distance for a swipe
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      scrollRight();
+    }
+    if (isRightSwipe) {
+      scrollLeft();
+    }
+  };
 
   // Manual navigation handlers with infinite scroll
   const scrollLeft = () => {
@@ -150,8 +181,8 @@ const TourOffersSection = ({
   return (
     <section className="relative">
       {/* Main container with proper layout */}
-      <div className="relative container mx-auto py-6 lg:py-8 max-w-7xl min-h-[220px]">
-        <div className="flex flex-col lg:flex-row gap-6 lg:items-start relative">
+      <div className="relative container mx-auto py-4 sm:py-6 lg:py-8 px-2 sm:px-4 max-w-7xl min-h-[220px]">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:items-start relative">
             {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
               {/* Section Header - Modern gradient badge design with custom brand colors */}
@@ -176,28 +207,35 @@ const TourOffersSection = ({
               {/* Tour Carousel - Infinite Loop without background card */}
               {!loading && tourOffers.length > 0 && (
                 <div className="relative">
-                {/* Left Navigation Button */}
+                {/* Left Navigation Button - Larger touch targets on mobile */}
                 <button
                   onClick={scrollLeft}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Previous tours"
                 >
-                  <ChevronLeft className="h-5 w-5 text-gray-800" />
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
                 </button>
 
-                {/* Right Navigation Button */}
+                {/* Right Navigation Button - Larger touch targets on mobile */}
                 <button
                   onClick={scrollRight}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
                   aria-label="Next tours"
                 >
-                  <ChevronRight className="h-5 w-5 text-gray-800" />
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
                 </button>
 
-                <div className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" ref={carouselRef} style={{ scrollBehavior: 'smooth', paddingLeft: 'min(6vw, 48px)', paddingRight: 'min(6vw, 48px)' }}>
+                <div 
+                  className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" 
+                  ref={carouselRef} 
+                  style={{ scrollBehavior: 'smooth', paddingLeft: 'min(4vw, 32px)', paddingRight: 'min(4vw, 32px)' }}
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
+                >
                   {/* Continuous sliding carousel wrapper with smooth CSS animation */}
                   <div
-                    className={`flex gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
+                    className={`flex gap-4 sm:gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                     onFocus={() => setIsPaused(true)}
@@ -208,11 +246,11 @@ const TourOffersSection = ({
                       <Link
                         key={`${tour.id}-${index}`}
                         to={`/tours/${tour.slug}`}
-                        className="group flex flex-col items-center flex-shrink-0 transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
+                        className="group flex flex-col items-center flex-shrink-0 transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05] min-w-[120px]"
                         aria-label={`View details for ${tour.title} tour`}
                       >
-                        {/* Oval tour card */}
-                        <div className="relative w-32 h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-3" style={{ borderColor: 'rgba(0, 0, 0, 0.2)' }}>
+                        {/* Oval tour card - Responsive sizes */}
+                        <div className="relative w-28 h-36 xs:w-32 xs:h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-2 sm:mb-3" style={{ borderColor: 'rgba(0, 0, 0, 0.2)' }}>
                           <img 
                             src={tour.image} 
                             alt={tour.title} 
@@ -224,8 +262,8 @@ const TourOffersSection = ({
                         </div>
 
                         {/* Only title - description removed */}
-                        <div className="text-center max-w-[160px]">
-                          <h3 className="text-sm sm:text-base font-semibold text-gray-900 leading-tight">
+                        <div className="text-center max-w-[140px] sm:max-w-[160px] px-1">
+                          <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2">
                             {tour.title}
                           </h3>
                         </div>
@@ -257,10 +295,10 @@ const TourOffersSection = ({
 
             {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
-                <div className="w-full">
+              <div className="lg:w-[30%] mt-4 sm:mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
+                <div className="w-full max-w-md mx-auto lg:max-w-none">
                   {/* Form with light theme - consistent across all devices */}
-                  <div className="bg-white text-foreground rounded-lg lg:rounded-xl p-3 lg:p-4 shadow-sm lg:shadow-2xl">
+                  <div className="bg-white text-foreground rounded-lg lg:rounded-xl p-4 sm:p-5 lg:p-4 shadow-sm lg:shadow-2xl">
                     <TourEnquiryForm
                       title={formConfig.title}
                       formType="tour"

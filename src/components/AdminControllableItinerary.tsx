@@ -87,11 +87,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
 
       {/* Floating ENQUIRE Button - appears on scroll */}
       <div 
-        className={`fixed ${
-          typeof window !== 'undefined' && window.innerWidth < 768 
-            ? 'bottom-20 right-4' 
-            : 'top-1/2 -translate-y-1/2 right-6'
-        } z-40 transition-all duration-500 ${
+        className={`fixed top-1/2 -translate-y-1/2 right-4 sm:right-6 z-40 transition-all duration-500 ${
           showFloatingButton ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10 pointer-events-none'
         }`}
       >
