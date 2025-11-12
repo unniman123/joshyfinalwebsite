@@ -357,7 +357,7 @@ const DayOutPackagesSection = ({
                 <form onSubmit={handleFormSubmit} className="space-y-1.5">
                   {/* Name Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-name" className="text-[10px] font-bold text-black">
+                    <Label htmlFor="dayOut-name" className="text-[12px] text-black">
                       Name *
                     </Label>
                     <div className="relative">
@@ -376,7 +376,7 @@ const DayOutPackagesSection = ({
 
                   {/* Mobile No (WhatsApp) Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-mobile" className="text-[10px] font-bold text-black">
+                    <Label htmlFor="dayOut-mobile" className="text-[12px] text-black">
                       Mobile No (WhatsApp) *
                     </Label>
                     <div className="relative">
@@ -395,7 +395,7 @@ const DayOutPackagesSection = ({
 
                   {/* Date Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-date" className="text-[10px] font-bold text-black">
+                    <Label htmlFor="dayOut-date" className="text-[12px] text-black">
                       Preferred Date *
                     </Label>
                     <div className="relative">
@@ -413,7 +413,7 @@ const DayOutPackagesSection = ({
 
                   {/* Number of People Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-people" className="text-[10px] font-bold text-black">
+                    <Label htmlFor="dayOut-people" className="text-[12px] text-black">
                       Number of People *
                     </Label>
                     <div className="relative">
@@ -433,7 +433,7 @@ const DayOutPackagesSection = ({
 
                   {/* Destination Field */}
                   <div className="space-y-0.5">
-                    <Label htmlFor="dayOut-destination" className="text-[10px] font-bold text-black">
+                    <Label htmlFor="dayOut-destination" className="text-[12px] text-black">
                       {formConfig.destinationFieldLabel} *
                     </Label>
                     <div className="relative">

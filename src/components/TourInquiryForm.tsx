@@ -113,7 +113,7 @@ const TourEnquiryForm = ({
         <form onSubmit={handleFormSubmit} className="space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-name`} className="text-[11px] font-bold text-black">
+            <Label htmlFor={`${formIdPrefix}-name`} className="text-[12px] text-black">
               Name *
             </Label>
             <div className="relative">
@@ -132,7 +132,7 @@ const TourEnquiryForm = ({
 
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[11px] font-bold text-black">
+            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[12px] text-black">
               Mobile No (WhatsApp) *
             </Label>
             <div className="relative">
@@ -152,7 +152,7 @@ const TourEnquiryForm = ({
           {/* Message Field - conditionally rendered */}
           {showMessage && (
             <div className="space-y-0.5">
-              <Label htmlFor={`${formIdPrefix}-message`} className="text-[11px] font-bold text-black">
+              <Label htmlFor={`${formIdPrefix}-message`} className="text-[12px] text-black">
                 Message *
               </Label>
               <div className="relative">
@@ -172,7 +172,7 @@ const TourEnquiryForm = ({
           {/* Date Field - conditionally rendered */}
           {showDate && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-date`} className="text-[11px] font-bold text-black">
+            <Label htmlFor={`${formIdPrefix}-date`} className="text-[12px] text-black">
                 Preferred Date *
               </Label>
               <div className="relative">
@@ -191,7 +191,7 @@ const TourEnquiryForm = ({
           {/* Destination Field - conditionally rendered */}
           {showDestination && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[11px] font-bold text-black">
+            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[12px] text-black">
                 Destination *
               </Label>
               <div className="relative">
