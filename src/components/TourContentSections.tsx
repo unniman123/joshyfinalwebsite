@@ -91,7 +91,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   
                   {/* White Section with Title (85%) */}
                   <div className="title-white-section">
-                    <h1 className="title-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight">
+                    <h1 className="title-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                       {tour.title}
                     </h1>
                   </div>
