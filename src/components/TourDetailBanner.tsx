@@ -91,7 +91,7 @@ const TourDetailBanner = ({ tour }: TourDetailBannerProps) => {
       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
         <div className="container mx-auto max-w-7xl">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
               {tour.title}
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-4 max-w-3xl leading-relaxed">

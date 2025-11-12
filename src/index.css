@@ -222,12 +222,13 @@
   }
 
   /* Use Merriweather for all major headings to create an editorial, readable contrast */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  /* Only apply to headings that don't have explicit font-family styling (inline styles) */
+  h1:not([style*="font-family"]),
+  h2:not([style*="font-family"]),
+  h3:not([style*="font-family"]),
+  h4:not([style*="font-family"]),
+  h5:not([style*="font-family"]),
+  h6:not([style*="font-family"]) {
     font-family: var(--font-heading);
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
