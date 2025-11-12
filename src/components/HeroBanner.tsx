@@ -187,7 +187,7 @@ const HeroBanner = ({
             </div>
           </form>
 
-          <div className="mt-6 md:mt-8 flex justify-center w-full mx-auto">
+          <div className="mt-8 md:mt-12 flex justify-center w-full mx-auto">
             <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md transition text-center font-semibold shadow-md">Plan My Trip</Link>
           </div>
         </div>
