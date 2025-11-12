@@ -50,13 +50,13 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 1rem 0.5rem;
+                    padding: 0.75rem 0.5rem;
                     flex-shrink: 0;
                   }
                   
                   .title-white-section {
                     width: 85%;
-                    padding: 1rem 1.5rem;
+                    padding: 0.75rem 1.5rem;
                     display: flex;
                     align-items: center;
                   }
@@ -76,11 +76,11 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     }
                     
                     .title-red-section {
-                      padding: 0.75rem 0.5rem;
+                      padding: 0.5rem 0.5rem;
                     }
                     
                     .title-white-section {
-                      padding: 0.75rem 1rem;
+                      padding: 0.5rem 1rem;
                     }
                   }
                 `}</style>
@@ -218,13 +218,13 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 1rem 0.5rem;
+                    padding: 0.75rem 0.5rem;
                     flex-shrink: 0;
                   }
                   
                   .title-white-section {
                     width: 85%;
-                    padding: 1rem 1.5rem;
+                    padding: 0.75rem 1.5rem;
                     display: flex;
                     align-items: center;
                   }
@@ -244,11 +244,11 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     }
                     
                     .title-red-section {
-                      padding: 0.75rem 0.5rem;
+                      padding: 0.5rem 0.5rem;
                     }
                     
                     .title-white-section {
-                      padding: 0.75rem 1rem;
+                      padding: 0.5rem 1rem;
                     }
                   }
                 `}</style>
