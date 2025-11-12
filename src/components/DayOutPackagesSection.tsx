@@ -270,10 +270,8 @@ const DayOutPackagesSection = ({
                     );
                   }
                   return (
-                    <Link
-                      to={`/tours/${currentPackage.slug}`}
+                    <div
                       className="block w-full h-full group"
-                      aria-label={`View details for ${currentPackage.title} day out package`}
                     >
                       {/* Banner Background Image - pale red background limited to the banner area */}
                       <div className="absolute inset-0 flex items-center justify-center">
@@ -321,7 +319,7 @@ const DayOutPackagesSection = ({
                       <div className="absolute top-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm font-medium">
                         {currentIndex + 1} of {totalPages}
                       </div>
-                    </Link>
+                    </div>
                   );
                 })()}
                 </div>
