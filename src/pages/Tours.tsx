@@ -197,7 +197,7 @@ const Tours = () => {
                 <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
                   <p className="text-sm text-blue-900 font-medium mb-1">
-                    Also found {destinationResultsCount} destination{destinationResultsCount !== 1 ? 's' : ''} in "100 Beautiful places in India"
+                    Also found {destinationResultsCount} destination{destinationResultsCount !== 1 ? 's' : ''} in "Beautiful places in India"
                   </p>
                   <Link
                     to={`/top-destinations?search=${encodeURIComponent(searchQuery)}`}

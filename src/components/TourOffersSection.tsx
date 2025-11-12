@@ -90,32 +90,56 @@ const TourOffersSection = ({
   // Duplicate tours multiple times for seamless infinite loop
   const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
 
-  // Manual navigation handlers
+  // Manual navigation handlers with infinite scroll
   const scrollLeft = () => {
-    if (carouselRef.current) {
+    if (carouselRef.current && tourOffers.length > 0) {
       const cardWidth = 160; // w-40 (160px) at lg breakpoint
       const gap = 32; // gap-8 (32px)
       const scrollAmount = cardWidth + gap;
-      
-      // Pause auto-scroll and manually scroll
+      const singleSetWidth = tourOffers.length * scrollAmount; // Width of one set of tours
+
+      // Pause auto-scroll
       setIsPaused(true);
+
+      const currentScroll = carouselRef.current.scrollLeft;
+
+      // If we're at the beginning of the first set, jump to the middle set
+      if (currentScroll < scrollAmount) {
+        // Jump to the equivalent position in the middle set (second copy)
+        carouselRef.current.scrollLeft = singleSetWidth + currentScroll;
+      }
+
+      // Scroll left by one card
       carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      
+
       // Resume auto-scroll after 5 seconds of inactivity
       setTimeout(() => setIsPaused(false), 5000);
     }
   };
 
   const scrollRight = () => {
-    if (carouselRef.current) {
+    if (carouselRef.current && tourOffers.length > 0) {
       const cardWidth = 160; // w-40 (160px) at lg breakpoint
       const gap = 32; // gap-8 (32px)
       const scrollAmount = cardWidth + gap;
-      
-      // Pause auto-scroll and manually scroll
+      const singleSetWidth = tourOffers.length * scrollAmount; // Width of one set of tours
+
+      // Pause auto-scroll
       setIsPaused(true);
+
+      const currentScroll = carouselRef.current.scrollLeft;
+      const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
+
+      // If we're at the end of the last set, jump to the beginning of the first set
+      if (currentScroll + scrollAmount > maxScroll - scrollAmount) {
+        // Calculate relative position within the set and jump to first set
+        const relativePosition = currentScroll - (singleSetWidth * 2);
+        carouselRef.current.scrollLeft = Math.max(0, relativePosition);
+      }
+
+      // Scroll right by one card
       carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-      
+
       // Resume auto-scroll after 5 seconds of inactivity
       setTimeout(() => setIsPaused(false), 5000);
     }
