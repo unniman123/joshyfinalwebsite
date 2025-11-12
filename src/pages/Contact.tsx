@@ -50,31 +50,31 @@ const Contact = () => {
       <Header />
 
       {/* Simplified Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-12 md:py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
+      <section className="bg-gradient-to-b from-primary/5 to-background py-8 sm:py-10 md:py-12 lg:py-16">
+        <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
             Contact Us
           </h1>
         </div>
       </section>
 
       {/* Two-Column Layout Section */}
-      <section className="py-16 md:py-20">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20">
+        <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
             {/* Left Column: Contact Actions */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <ContactInfo info={contactInfo} />
             </div>
 
             {/* Right Column: Contact Form */}
-            <div className="space-y-6">
-              <div className="bg-gray-100 border border-gray-200 rounded-xl p-6 md:p-8">
-                <div className="text-center lg:text-left mb-6">
-                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="bg-gray-100 border border-gray-200 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8">
+                <div className="text-center lg:text-left mb-4 sm:mb-6">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-2" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                     Plan My Trip
                   </h2>
-                  <p className="text-lg text-muted-foreground">
+                  <p className="text-base sm:text-lg text-muted-foreground">
                      Need a custom itinerary? We'd love to hear from you.
                   </p>
                 </div>

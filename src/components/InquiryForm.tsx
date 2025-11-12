@@ -96,62 +96,62 @@ const EnquiryForm = ({
     }));
   };
   return <div className="max-w-2xl mx-auto">
-    <div className="bg-slate-100/60 text-foreground rounded-lg p-4">
-      <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">Name *</Label>
-          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name " required />
+    <div className="bg-slate-100/60 text-foreground rounded-lg p-3 sm:p-4">
+      <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 md:space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="name" className="text-sm sm:text-base">Name *</Label>
+          <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your name " className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">Email Address *</Label>
-          <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" required />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="nationality">Nationality *</Label>
-          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" required />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="contactNumber">Contact No (WhatsApp) *</Label>
-          <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" required />
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="email" className="text-sm sm:text-base">Email Address *</Label>
+          <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="numberOfPeople">Number of adults (12 years and above) *</Label>
-          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" required />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="nationality" className="text-sm sm:text-base">Nationality *</Label>
+          <Input id="nationality" name="nationality" value={formData.nationality} onChange={handleChange} placeholder="Enter your nationality" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="numberOfKids">Number of kids & their age (If any)</Label>
-          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="dateOfTravel">Date of Travel *</Label>
-          <Input id="dateOfTravel" name="dateOfTravel" type="date" value={formData.dateOfTravel} onChange={handleChange} required />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="numberOfRooms">Number of Rooms *</Label>
-          <Input id="numberOfRooms" name="numberOfRooms" type="number" min="1" value={formData.numberOfRooms} onChange={handleChange} placeholder="e.g., 2" required />
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="contactNumber" className="text-sm sm:text-base">Contact No (WhatsApp) *</Label>
+          <Input id="contactNumber" name="contactNumber" type="tel" value={formData.contactNumber} onChange={handleChange} placeholder="Enter your WhatsApp number" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
       </div>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="numberOfPeople" className="text-sm sm:text-base">Number of adults (12 years and above) *</Label>
+          <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" className="h-10 sm:h-11 text-sm sm:text-base" required />
+        </div>
+
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="numberOfKids" className="text-sm sm:text-base">Number of kids & their age (If any)</Label>
+          <Input id="numberOfKids" name="numberOfKids" type="number" min="0" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" className="h-10 sm:h-11 text-sm sm:text-base" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="dateOfTravel" className="text-sm sm:text-base">Date of Travel *</Label>
+          <Input id="dateOfTravel" name="dateOfTravel" type="date" value={formData.dateOfTravel} onChange={handleChange} className="h-10 sm:h-11 text-sm sm:text-base" required />
+        </div>
+
+        <div className="space-y-1.5 sm:space-y-2">
+          <Label htmlFor="numberOfRooms" className="text-sm sm:text-base">Number of Rooms *</Label>
+          <Input id="numberOfRooms" name="numberOfRooms" type="number" min="1" value={formData.numberOfRooms} onChange={handleChange} placeholder="e.g., 2" className="h-10 sm:h-11 text-sm sm:text-base" required />
+        </div>
+      </div>
 
 
-      <div className="space-y-2">
-        <Label htmlFor="hotelCategory">Hotel Category *</Label>
+
+      <div className="space-y-1.5 sm:space-y-2">
+        <Label htmlFor="hotelCategory" className="text-sm sm:text-base">Hotel Category *</Label>
         <Select value={formData.hotelCategory} onValueChange={value => handleSelectChange("hotelCategory", value)}>
-          <SelectTrigger>
+          <SelectTrigger className="h-10 sm:h-11 text-sm sm:text-base">
             <SelectValue placeholder="Select hotel category" />
           </SelectTrigger>
           <SelectContent>
@@ -164,15 +164,15 @@ const EnquiryForm = ({
 
 
 
-      <div className="space-y-2">
-        <Label htmlFor="message">Special Comments</Label>
-        <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} />
+      <div className="space-y-1.5 sm:space-y-2">
+        <Label htmlFor="message" className="text-sm sm:text-base">Special Comments</Label>
+        <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Tell us about your travel plans, preferences, or any questions you have about this tour..." rows={5} className="text-sm sm:text-base" />
       </div>
 
       <Button
         type="submit"
         size="lg"
-        className="w-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+        className="w-full font-semibold shadow-md hover:shadow-lg transition-all duration-300 h-11 sm:h-12 text-sm sm:text-base"
         style={{ background: '#FF6B4A', color: '#FFFFFF' }}
         disabled={isSubmitting}
         aria-describedby="form-status"

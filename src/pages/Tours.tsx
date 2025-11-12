@@ -134,11 +134,11 @@ const Tours = () => {
       </Helmet>
       <Header />
 
-      <main className="py-12">
-        <div className="container mx-auto px-4 max-w-6xl">
+      <main className="py-6 sm:py-8 md:py-12">
+        <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
           {/* Page Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
               {selectedCategory ?
                 selectedCategory === 'discover-india' ?
                   'Discover India' :
@@ -152,7 +152,7 @@ const Tours = () => {
                 'Explore Our Tours'
               }
             </h1>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed px-2">
               {selectedCategory ?
                 selectedCategory === 'discover-india' ?
                   '' :
@@ -169,20 +169,28 @@ const Tours = () => {
           </div>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
+          <div className="max-w-2xl mx-auto mb-6 sm:mb-8">
             <form onSubmit={handleSearch}>
-              <div className="relative flex items-center">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
-                <Input
-                  type="text"
-                  placeholder="Search tours by destination, activity, or keyword..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 pr-32 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
-                />
+              <div className="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
+                <div className="relative flex-1">
+                  <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5 z-10" />
+                  <Input
+                    type="text"
+                    placeholder="Search tours..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 sm:pl-12 pr-3 sm:pr-32 py-3 sm:py-4 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-primary/20 w-full"
+                  />
+                  <Button
+                    type="submit"
+                    className="hidden sm:block absolute right-2 h-10 sm:h-12 px-4 sm:px-6 bg-[#FF8C00] hover:bg-[#FF7700] text-white text-sm sm:text-base"
+                  >
+                    Search
+                  </Button>
+                </div>
                 <Button
                   type="submit"
-                  className="absolute right-2 h-12 px-6 bg-[#FF8C00] hover:bg-[#FF7700] text-white"
+                  className="sm:hidden w-full h-11 bg-[#FF8C00] hover:bg-[#FF7700] text-white font-semibold"
                 >
                   Search
                 </Button>
@@ -192,16 +200,16 @@ const Tours = () => {
 
           {/* Alert for destination results */}
           {destinationResultsCount > 0 && searchQuery && (
-            <div className="mb-8 max-w-4xl mx-auto">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+            <div className="mb-6 sm:mb-8 max-w-4xl mx-auto">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
+                <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="text-sm text-blue-900 font-medium mb-1">
+                  <p className="text-xs sm:text-sm text-blue-900 font-medium mb-1">
                     Also found {destinationResultsCount} destination{destinationResultsCount !== 1 ? 's' : ''} in "Beautiful places in India"
                   </p>
                   <Link
                     to={`/top-destinations?search=${encodeURIComponent(searchQuery)}`}
-                    className="text-sm text-blue-600 hover:text-blue-800 font-semibold underline"
+                    className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-semibold underline inline-block min-h-[32px] flex items-center"
                   >
                     View destination results →
                   </Link>
@@ -211,11 +219,11 @@ const Tours = () => {
           )}
 
           {/* Results Section */}
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-6 md:space-y-8">
             {/* Results Header */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
               <div>
-                <p className="text-muted-foreground text-lg">
+                <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
                   {loading ? (
                     "Loading tours..."
                   ) : (
@@ -230,8 +238,8 @@ const Tours = () => {
 
             {/* Load More Button */}
             {!loading && filteredTours.length > 0 && (
-              <div className="text-center pt-12">
-                <Button variant="outline" size="lg" className="px-8 py-3">
+              <div className="text-center pt-8 sm:pt-10 md:pt-12">
+                <Button variant="outline" size="lg" className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base min-h-[44px]">
                   Load More Tours
                 </Button>
               </div>

@@ -68,7 +68,7 @@ const Header = () => {
           <div className="flex items-center gap-4 text-sm" style={{ fontFamily: "'Sora', sans-serif" }}>
             <a href="tel:+919539507516" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Phone className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'black' }} />
-              <span>+91-9539-507516</span>
+              <span>+91-95395-07516</span>
             </a>
             <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <Mail className="h-4 w-4" style={(isHome && !isScrolled) ? { color: 'white' } : { color: 'black' }} />
@@ -83,10 +83,10 @@ const Header = () => {
             <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
-            {/* On very small screens stack logo above full brand name so the complete title is visible */}
-            <Link to="/" className="flex flex-col sm:flex-row items-center gap-2 md:gap-3" aria-label="Go to homepage">
-              <img src="/logo-header.png" alt="Kerala Travels" className="h-16 md:h-20 w-auto cursor-pointer" />
-              <span className={`text-sm md:text-base lg:text-lg font-bold tracking-tight text-center sm:text-left ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
+            {/* Optimized mobile layout: smaller logo, wrapped text on tiny screens */}
+            <Link to="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0 max-w-[60%] md:max-w-none" aria-label="Go to homepage">
+              <img src="/logo-header.png" alt="Kerala Travels" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto cursor-pointer flex-shrink-0" />
+              <span className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-tight leading-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
@@ -155,46 +155,46 @@ const Header = () => {
               {/* Backdrop */}
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsMenuOpen(false)} />
 
-              {/* Panel */}
-          <div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white text-foreground shadow-xl p-4 overflow-y-auto animate-slide-in">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <img src="/logo-header.png" alt="Kerala" className="h-10 w-auto" />
-                    <div className="font-semibold">KeralaTours</div>
+              {/* Panel - Full width on very small screens, then 85% */}
+          <div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-full xs:w-[85%] sm:w-4/5 max-w-sm bg-white text-foreground shadow-xl p-4 sm:p-6 overflow-y-auto animate-slide-in">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <img src="/logo-header.png" alt="Kerala" className="h-10 sm:h-12 w-auto" />
+                    <div className="font-semibold text-sm sm:text-base">KeralaTours</div>
                   </div>
-                  <button aria-label="Close menu" className="p-2 rounded-md hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
-                    <X className="h-5 w-5" />
+                  <button aria-label="Close menu" className="p-2 sm:p-3 rounded-md hover:bg-gray-100 min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setIsMenuOpen(false)}>
+                    <X className="h-5 w-5 sm:h-6 sm:w-6" />
                   </button>
                 </div>
 
-                <div className="pb-3 mb-3 border-b border-border">
-                  <a href="tel:+919539507516" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth min-h-[44px]">
-                    <Phone className="h-4 w-4 text-foreground" />
-                    <span className="text-sm">+91-9539-507516</span>
+                <div className="pb-4 mb-4 border-b border-border space-y-2">
+                  <a href="tel:+919539507516" className="flex items-center gap-3 py-3 text-sm text-foreground hover:text-foreground/80 hover:bg-gray-50 rounded-lg px-3 transition-smooth min-h-[48px]">
+                    <Phone className="h-5 w-5 text-foreground flex-shrink-0" />
+                    <span className="text-sm font-medium">+91-9539-507516</span>
                   </a>
-                  <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-2 py-2 text-sm text-foreground hover:text-foreground/80 transition-smooth min-h-[44px]">
-                    <Mail className="h-4 w-4 text-foreground" />
-                    <span className="text-sm">KeralaToursGlobal@gmail.com</span>
+                  <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-3 py-3 text-sm text-foreground hover:text-foreground/80 hover:bg-gray-50 rounded-lg px-3 transition-smooth min-h-[48px]">
+                    <Mail className="h-5 w-5 text-foreground flex-shrink-0" />
+                    <span className="text-sm font-medium break-all">KeralaToursGlobal@gmail.com</span>
                   </a>
                 </div>
 
-                <div className="flex flex-col space-y-3">
+                <div className="flex flex-col space-y-2">
                   {navigationItems.map((item) => {
                     return item.category ? (
                     <details key={item.name} className="group">
-                        <summary className="flex items-center justify-between text-foreground hover:text-rose-300 transition-smooth font-semibold py-2 list-none cursor-pointer" style={{ fontFamily: "'Sora', sans-serif" }}>
-                          <span>{item.name}</span>
-                          <ChevronDown className="h-4 w-4 transition-transform duration-200 group-open:rotate-180" />
+                        <summary className="flex items-center justify-between text-foreground hover:bg-gray-50 transition-smooth font-semibold py-3 px-3 list-none cursor-pointer rounded-lg min-h-[48px]" style={{ fontFamily: "'Sora', sans-serif" }}>
+                          <span className="text-base">{item.name}</span>
+                          <ChevronDown className="h-5 w-5 transition-transform duration-200 group-open:rotate-180 flex-shrink-0" />
                         </summary>
 
-                        <div className="pl-3 pb-2 space-y-1">
+                        <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
                           {/* Render subcategory items from navTaxonomy */}
                           {navTaxonomy[item.category.toLowerCase()] && 
                             navTaxonomy[item.category.toLowerCase()].map((sub) => (
                               <Link
                                 key={sub.slug}
                                 to={sub.href ? sub.href : `/tours?category=${item.category}&subcategory=${sub.slug}`}
-                                className="block text-sm text-foreground py-2 hover:text-foreground/80 hover:bg-gray-50 px-2 rounded min-h-[44px] flex items-center"
+                                className="block text-sm text-foreground py-3 px-3 hover:text-foreground/80 hover:bg-gray-50 rounded-lg min-h-[48px] flex items-center transition-smooth"
                                 onClick={() => setIsMenuOpen(false)}
                               >
                                 {sub.label}
@@ -205,7 +205,7 @@ const Header = () => {
                           {/* View all link */}
                           <Link
                             to={item.href}
-                            className="block text-sm text-foreground font-medium py-2 hover:text-foreground/80 hover:bg-gray-50 px-2 rounded min-h-[44px] flex items-center border-t border-gray-200 mt-2 pt-3"
+                            className="block text-sm text-foreground font-medium py-3 px-3 hover:text-foreground/80 hover:bg-gray-50 rounded-lg min-h-[48px] flex items-center border-t border-gray-200 mt-2 transition-smooth"
                             onClick={() => setIsMenuOpen(false)}
                           >
                             View all {item.name}
@@ -215,16 +215,13 @@ const Header = () => {
                     ) : (
                       <div key={item.name}>
                         {item.name === 'Contact Us' && (
-                          <>
-                            <Link to="/heli-taxi" onClick={() => setIsMenuOpen(false)}>
-                              {/* Make Heli Taxi match nav link styling instead of a full-width button */}
-                              <span className="text-foreground font-semibold">Heli Taxi</span>
-                            </Link>
-                          </>
+                          <Link to="/heli-taxi" onClick={() => setIsMenuOpen(false)} className="block text-foreground hover:bg-gray-50 font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg transition-smooth text-base mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+                            Heli Taxi
+                          </Link>
                         )}
                         <Link
                           to={item.href}
-                          className="block text-foreground hover:text-foreground/80 transition-smooth font-semibold py-2 min-h-[44px] flex items-center"
+                          className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
                           style={{ fontFamily: "'Sora', sans-serif" }}
                           onClick={() => setIsMenuOpen(false)}
                         >

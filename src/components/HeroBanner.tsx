@@ -26,6 +26,10 @@ const HeroBanner = ({
   const [heroData, setHeroData] = useState<{ title: string; subtitle: string; images: Array<{ url: string; order: number }> } | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  
+  // Touch/Swipe state for mobile
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   // Fallback banner images for when database image is not available
   const fallbackImages = [
@@ -88,6 +92,33 @@ const HeroBanner = ({
     setCurrentSlide((prev) => (prev - 1 + bannerImages.length) % bannerImages.length);
   };
 
+  // Swipe handlers for mobile touch gestures
+  const minSwipeDistance = 50; // Minimum distance for a swipe
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const query = searchQuery.trim();
@@ -118,7 +149,12 @@ const HeroBanner = ({
   };
 
   return (
-    <section className="relative h-[72vh] md:h-[86vh] lg:h-[92vh] overflow-hidden mb-0">
+    <section 
+      className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-[92vh] overflow-hidden mb-0"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Background Images with scrim overlay for predictable contrast */}
       {bannerImages.map((image, index) => (
         <div
@@ -142,13 +178,13 @@ const HeroBanner = ({
       ))}
 
       {/* Content Overlay - Full-screen center-aligned hero content */}
-      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-6 transform md:translate-y-4 lg:translate-y-6 ${className}`}>
-        <div className="text-center w-full mx-auto px-4">
+      <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 sm:px-6 transform md:translate-y-4 lg:translate-y-6 ${className}`}>
+        <div className="text-center w-full max-w-4xl mx-auto px-2 sm:px-4">
           {/* Main Title - fetched from database */}
           {heroData?.title && (
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg animate-fade-in-up"
-              style={{ animationDelay: '0.1s', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg animate-fade-in-up px-2"
+              style={{ animationDelay: '0.1s', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}
             >
               {heroData.title}
             </h1>
@@ -156,30 +192,30 @@ const HeroBanner = ({
 
           {/* Subtitle - fetched from database */}
           {heroData?.subtitle && (
-            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-8 drop-shadow-md animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 drop-shadow-md animate-fade-in-up px-2" style={{ animationDelay: '0.3s' }}>
               {heroData.subtitle}
             </p>
           )}
 
           {/* Search Bar - responsive stacking */}
-          <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto">
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl p-2 md:p-2 shadow-lg">
-              <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-3">
+          <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto px-2">
+            <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-1.5 sm:p-2 shadow-lg">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                 <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
+                  <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4 sm:h-5 sm:w-5" />
                   <Input
                     type="text"
-                    placeholder={searchPlaceholder}
+                    placeholder="Search destinations..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-12 pr-4 h-10 text-base md:text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
+                    className="pl-8 sm:pl-12 pr-3 sm:pr-4 h-10 sm:h-11 text-sm sm:text-base border-0 rounded-lg bg-transparent focus:ring-2 focus:ring-brand-green/50 focus:outline-none"
                     style={{ lineHeight: '1' }}
                   />
                 </div>
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-6 h-10 rounded-lg btn-subtle-anim w-full md:w-auto font-semibold shadow-md"
+                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-5 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim w-full sm:w-auto font-semibold shadow-md text-sm sm:text-base"
                 >
                   Search
                 </Button>
@@ -187,38 +223,40 @@ const HeroBanner = ({
             </div>
           </form>
 
-          <div className="mt-8 md:mt-12 flex justify-center w-full mx-auto">
-            <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md transition text-center font-semibold shadow-md">Plan My Trip</Link>
+          <div className="mt-6 sm:mt-8 md:mt-12 flex justify-center w-full mx-auto px-2">
+            <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-md transition text-center font-semibold shadow-md text-sm sm:text-base min-h-[44px] flex items-center">Plan My Trip</Link>
           </div>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - Hidden on very small screens */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-smooth backdrop-blur-sm"
+        className="hidden sm:block absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/20 hover:bg-white/30 transition-smooth backdrop-blur-sm min-w-[44px] min-h-[44px]"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-white" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-smooth backdrop-blur-sm"
+        className="hidden sm:block absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/20 hover:bg-white/30 transition-smooth backdrop-blur-sm min-w-[44px] min-h-[44px]"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-white" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
       </button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+      {/* Slide Indicators - Larger touch targets */}
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {bannerImages.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-smooth ${index === currentSlide ? "bg-white" : "bg-white/50"
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-smooth min-w-[32px] min-h-[32px] flex items-center justify-center ${index === currentSlide ? "bg-white" : "bg-white/50"
               }`}
             aria-label={`Go to slide ${index + 1}`}
-          />
+          >
+            <span className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${index === currentSlide ? "bg-white" : "bg-white/50"}`}></span>
+          </button>
         ))}
       </div>
     </section>

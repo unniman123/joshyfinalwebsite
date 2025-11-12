@@ -33,15 +33,15 @@ const Footer = () => {
     href: "/privacy"
   }];
   return <footer className="bg-slate-900 text-white w-full">
-    <div className="container mx-auto px-4 py-5">
+    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-5">
       {/* Main Footer Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-3 sm:mb-4">
         {/* Quick Links */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
-          <ul className="space-y-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
+          <ul className="space-y-1.5 sm:space-y-2" style={{ fontFamily: "'Sora', sans-serif" }}>
             {quickLinks.map(link => <li key={link.name}>
-              <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth">
+              <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[32px] flex items-center">
                 {link.name}
               </Link>
             </li>)}
@@ -50,11 +50,11 @@ const Footer = () => {
 
         {/* Support Links */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
-          <ul className="space-y-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
+          <ul className="space-y-1.5 sm:space-y-2" style={{ fontFamily: "'Sora', sans-serif" }}>
             {supportLinks.map(link => (
               <li key={link.name}>
-                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth">
+                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[32px] flex items-center">
                   {link.name}
                 </Link>
               </li>
@@ -64,29 +64,29 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
 
           {/* Contact Details */}
-          <div className="space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 flex-shrink-0 text-white" />
-              <span className="text-xs text-white/80">
+          <div className="space-y-2 sm:space-y-2.5" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-white" />
+              <span className="text-xs sm:text-sm text-white/80 leading-relaxed">
                 <a href="tel:+919539507516" className="hover:text-white transition-colors">+91-95395-07516</a>
                 {", "}
                 <a href="tel:+914712488880" className="hover:text-white transition-colors">+91-471-2488880</a>
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 flex-shrink-0 text-white" />
-              <span className="text-xs text-white/80">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <Mail className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-white" />
+              <span className="text-xs sm:text-sm text-white/80 leading-relaxed break-words">
                 <a href="mailto:KeralaToursGlobal@gmail.com" className="hover:text-white transition-colors">KeralaToursGlobal@gmail.com</a>
                 {", "}
                 <a href="mailto:flabour@gmail.com" className="hover:text-white transition-colors">flabour@gmail.com</a>
               </span>
             </div>
-            <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 flex-shrink-0 mt-1 text-white" />
-              <span className="text-xs text-white/80">
+            <div className="flex items-start gap-2 sm:gap-3">
+              <MapPin className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5 text-white" />
+              <span className="text-xs sm:text-sm text-white/80 leading-relaxed">
                 Kovalam Beach, Thiruvananthapuram, Kerala, India
               </span>
             </div>
@@ -95,8 +95,8 @@ const Footer = () => {
 
         {/* Find Us Section - Right Side */}
         <div className="space-y-2">
-          <h3 className="text-sm font-semibold mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
-          <nav aria-label="Social media links" className="flex flex-wrap gap-2">
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
+          <nav aria-label="Social media links" className="flex flex-wrap gap-2 sm:gap-3">
             <a
               href="https://www.Facebook.com/GoIntoAllTheWorldin"
               target="_blank"
@@ -157,17 +157,17 @@ const Footer = () => {
       </div>
     </div>
 
-    <Separator className="bg-white/20 mb-2" />
+    <Separator className="bg-white/20 mb-3 sm:mb-4" />
 
     {/* Bottom Footer */}
-    <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-xs text-white/80" style={{ fontFamily: "'Sora', sans-serif" }}>
+    <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80 text-center sm:text-left" style={{ fontFamily: "'Sora', sans-serif" }}>
       <div className="font-medium">
         © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
-      <div className="flex gap-4">
-        <Link to="/terms" className="hover:text-gray-300 transition-smooth">Terms of Service</Link>
-        <Link to="/privacy" className="hover:text-gray-300 transition-smooth">Privacy Policy</Link>
-        <Link to="/cookies" className="hover:text-gray-300 transition-smooth">Cookie Policy</Link>
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+        <Link to="/terms" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Terms of Service</Link>
+        <Link to="/privacy" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Privacy Policy</Link>
+        <Link to="/cookies" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Cookie Policy</Link>
       </div>
     </div>
   </footer>;

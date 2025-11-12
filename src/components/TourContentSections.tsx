@@ -24,24 +24,25 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
     return (
       <div className="w-full">
         {/* Tour Title Section - Center Aligned */}
-        <section className="pt-6 md:pt-12 lg:pt-16 pb-2 md:py-3 lg:py-4 px-2 md:px-4">
-          <div className="container mx-auto max-w-7xl px-2 md:px-4">
+        <section className="pt-4 sm:pt-6 md:pt-12 lg:pt-16 pb-2 sm:pb-2 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4">
+          <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
             {/* Title in styled box with red section and white square */}
             <div className="flex items-center justify-center md:justify-start">
-              <div className="relative inline-flex items-center">
+              <div className="relative inline-flex items-center w-full max-w-[95%] sm:max-w-none sm:w-auto">
                 <style>{`
                   .title-box {
                     position: relative;
                     background: #FFFFFF;
-                    border-radius: 8px;
+                    border-radius: 6px;
                     padding: 0;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     display: inline-flex;
                     flex-direction: row;
                     align-items: stretch;
                     justify-content: flex-start;
-                    min-width: 300px;
+                    min-width: 260px;
                     overflow: hidden;
+                    width: 100%;
                   }
                   
                   .title-red-section {
@@ -50,13 +51,13 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 0.75rem 0.5rem;
+                    padding: 0.5rem 0.25rem;
                     flex-shrink: 0;
                   }
                   
                   .title-white-section {
                     width: 85%;
-                    padding: 0.75rem 1.5rem;
+                    padding: 0.5rem 0.75rem;
                     display: flex;
                     align-items: center;
                   }
@@ -70,9 +71,10 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     width: 100%;
                   }
                   
-                  @media (max-width: 768px) {
+                  @media (min-width: 640px) {
                     .title-box {
                       min-width: 280px;
+                      border-radius: 8px;
                     }
                     
                     .title-red-section {
@@ -83,6 +85,20 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       padding: 0.5rem 1rem;
                     }
                   }
+                  
+                  @media (min-width: 768px) {
+                    .title-box {
+                      min-width: 300px;
+                    }
+                    
+                    .title-red-section {
+                      padding: 0.75rem 0.5rem;
+                    }
+                    
+                    .title-white-section {
+                      padding: 0.75rem 1.5rem;
+                    }
+                  }
                 `}</style>
                 
                 <div className="title-box">
@@ -91,7 +107,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   
                   {/* White Section with Title (85%) */}
                   <div className="title-white-section">
-                    <h1 className="title-text text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
+                    <h1 className="title-text text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                       {tour.title}
                     </h1>
                   </div>
@@ -107,11 +123,11 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           
           if (overviewSection) {
             return (
-              <section className="pt-4 md:pt-6 pb-4 md:pb-6 px-2 md:px-4">
-                <div className="container mx-auto max-w-7xl px-2 md:px-4">
-                  <div className="prose prose-base md:prose-lg max-w-none">
+              <section className="pt-3 sm:pt-4 md:pt-6 pb-3 sm:pb-4 md:pb-6 px-2 sm:px-3 md:px-4">
+                <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
+                  <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
                     <div
-                      className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
+                      className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
                       dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
                     />
                   </div>
@@ -129,10 +145,10 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
 
           if (itinerarySection) {
             return (
-              <section className="pt-4 md:pt-6 lg:pt-8 pb-4 md:pb-6 lg:pb-8 bg-muted/30">
-                <div className="container mx-auto max-w-7xl px-2 md:px-4">
+              <section className="pt-3 sm:pt-4 md:pt-6 lg:pt-8 pb-3 sm:pb-4 md:pb-6 lg:pb-8 bg-muted/30">
+                <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
                   {/* 30-70 Grid Layout - Images with Itinerary */}
-                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 md:gap-6 lg:gap-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-10 gap-3 sm:gap-4 md:gap-6 lg:gap-10">
                     
                     {/* Left side - Image Gallery (30%) */}
                     <div className="order-2 lg:order-1 lg:col-span-3">
@@ -154,11 +170,11 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                         />
                       ) : (
                         <>
-                          <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-3 sm:mb-4">
                             {itinerarySection.title}
                           </h2>
                           <div
-                            className="text-muted-foreground leading-relaxed text-justify"
+                            className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify"
                             dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
                           />
                         </>
