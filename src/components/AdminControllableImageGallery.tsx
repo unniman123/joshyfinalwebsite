@@ -2,6 +2,14 @@ import { useState } from "react";
 import { TourImage } from "@/lib/api";
 import { Expand } from "lucide-react";
 import ImageLightbox from "./ImageLightbox";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useItineraryMobile } from "@/hooks/use-itinerary-mobile";
 
 interface AdminControllableImageGalleryProps {
   images: TourImage[];
@@ -18,6 +26,7 @@ const AdminControllableImageGallery = ({
 }: AdminControllableImageGalleryProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const isMobile = useItineraryMobile();
 
   // Filter images by section and active status, then sort by order
   // For itinerary section, show all images (gallery, overview, itinerary)
@@ -123,7 +132,53 @@ const AdminControllableImageGallery = ({
     }
 
     if (section === 'itinerary') {
-      // Itinerary section - vertical stack (no captions)
+      // Itinerary section - carousel on mobile, vertical stack on desktop
+      if (isMobile) {
+        // Mobile: Horizontal swipeable carousel
+        return (
+          <div className="relative">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {sectionImages.map((image, index) => (
+                  <CarouselItem key={image.id}>
+                    <div className="relative overflow-hidden rounded-lg shadow-warm group cursor-pointer border-2 border-transparent hover:border-brand-green/50 transition-all duration-300 hover:shadow-brand">
+                      <img
+                        src={image.url}
+                        alt={image.alt}
+                        className="w-full h-48 sm:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        onClick={() => handleImageClick(index)}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-br from-brand-green/10 to-warm-red/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute top-3 right-3 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <Expand className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              
+              {sectionImages.length > 1 && (
+                <>
+                  <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-black/50 border-white/20 text-white hover:bg-black/70" />
+                  <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-black/50 border-white/20 text-white hover:bg-black/70" />
+                </>
+              )}
+            </Carousel>
+            
+            {/* Image counter for mobile */}
+            {sectionImages.length > 1 && (
+              <div className="text-center mt-2">
+                <span className="text-xs text-muted-foreground">
+                  Swipe to view all {sectionImages.length} images
+                </span>
+              </div>
+            )}
+          </div>
+        );
+      }
+      
+      // Desktop: Vertical stack (original behavior)
       return (
         <div className="space-y-4">
           {sectionImages.map((image, index) => (

@@ -197,10 +197,10 @@ const HeroBanner = ({
             </p>
           )}
 
-          {/* Search Bar - responsive stacking */}
+          {/* Search Bar - button stays inside on all screen sizes */}
           <form onSubmit={handleSearch} className="w-full max-w-2xl mx-auto px-2">
             <div className="bg-white/95 backdrop-blur-sm rounded-lg sm:rounded-xl p-1.5 sm:p-2 shadow-lg">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div className="flex flex-row items-center gap-2">
                 <div className="relative flex-1">
                   <Search className="absolute left-2 sm:left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4 sm:h-5 sm:w-5" />
                   <Input
@@ -215,7 +215,7 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-5 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim w-full sm:w-auto font-semibold shadow-md text-sm sm:text-base"
+                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-4 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim font-semibold shadow-md text-sm sm:text-base flex-shrink-0"
                 >
                   Search
                 </Button>

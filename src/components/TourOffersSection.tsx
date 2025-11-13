@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TourEnquiryForm from "@/components/TourInquiryForm";
-import SectionTitle from "@/components/ui/section-title";
 import { getAllTours } from "@/lib/api";
 import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
@@ -185,17 +184,13 @@ const TourOffersSection = ({
         <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:items-start relative">
             {/* Left side - Tours section (70% width) */}
             <div className="flex-1 lg:w-[70%] relative">
-              {/* Section Header - Modern gradient badge design with custom brand colors */}
-              <div style={{ fontFamily: "'Sora', sans-serif" }}>
-                <SectionTitle 
-                  title={sectionTitle}
-                  variant="underline"
-                  colorScheme="custom-brand"
-                  align="center"
-                  size="lg"
-                  className="mt-4"
-                />
-              </div>
+              {/* Section Header - Plain title matching banner style */}
+              <h2 
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-foreground text-center mb-6 md:mb-8"
+                style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}
+              >
+                {sectionTitle}
+              </h2>
 
               {/* Loading State */}
               {loading && (
