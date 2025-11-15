@@ -33,15 +33,15 @@ const Footer = () => {
     href: "/privacy"
   }];
   return <footer className="bg-slate-900 text-white w-full">
-    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-5">
+    <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
       {/* Main Footer Content */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-3 sm:mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-2 sm:mb-3">
         {/* Quick Links */}
         <div className="space-y-2">
           <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
-          <ul className="space-y-1.5 sm:space-y-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+          <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
             {quickLinks.map(link => <li key={link.name}>
-              <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[32px] flex items-center">
+              <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
                 {link.name}
               </Link>
             </li>)}
@@ -51,10 +51,10 @@ const Footer = () => {
         {/* Support Links */}
         <div className="space-y-2">
           <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
-          <ul className="space-y-1.5 sm:space-y-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+          <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
             {supportLinks.map(link => (
               <li key={link.name}>
-                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[32px] flex items-center">
+                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
                   {link.name}
                 </Link>
               </li>
@@ -157,7 +157,7 @@ const Footer = () => {
       </div>
     </div>
 
-    <Separator className="bg-white/20 mb-3 sm:mb-4" />
+    <Separator className="bg-white/20 mb-2 sm:mb-3" />
 
     {/* Bottom Footer */}
     <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80 text-center sm:text-left" style={{ fontFamily: "'Sora', sans-serif" }}>
