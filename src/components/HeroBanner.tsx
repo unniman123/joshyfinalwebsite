@@ -224,7 +224,7 @@ const HeroBanner = ({
           </form>
 
           <div className="mt-6 sm:mt-8 md:mt-12 flex justify-center w-full mx-auto px-2">
-            <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-md transition text-center font-semibold shadow-md text-sm sm:text-base min-h-[44px] flex items-center">Plan My Trip</Link>
+            <Link to="/contact" className="inline-block bg-red-600 hover:bg-red-700 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-md transition text-center font-semibold shadow-md text-sm sm:text-base min-h-[44px] flex items-center">Plan My Trip</Link>
           </div>
         </div>
       </div>

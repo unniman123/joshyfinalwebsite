@@ -160,7 +160,7 @@ const Header = () => {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2 sm:gap-3">
                     <img src="/logo-header.png" alt="Kerala" className="h-10 sm:h-12 w-auto" />
-                    <div className="font-semibold text-sm sm:text-base">KeralaTours</div>
+                    <div className="font-semibold text-sm sm:text-base">KeralaTours Travels & Organic Remedies</div>
                   </div>
                   <button aria-label="Close menu" className="p-2 sm:p-3 rounded-md hover:bg-gray-100 min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setIsMenuOpen(false)}>
                     <X className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -170,7 +170,7 @@ const Header = () => {
                 <div className="pb-4 mb-4 border-b border-border space-y-2">
                   <a href="tel:+919539507516" className="flex items-center gap-3 py-3 text-sm text-foreground hover:text-foreground/80 hover:bg-gray-50 rounded-lg px-3 transition-smooth min-h-[48px]">
                     <Phone className="h-5 w-5 text-foreground flex-shrink-0" />
-                    <span className="text-sm font-medium">+91-9539-507516</span>
+                    <span className="text-sm font-medium">+91-95395-07516</span>
                   </a>
                   <a href="mailto:KeralaToursGlobal@gmail.com" className="flex items-center gap-3 py-3 text-sm text-foreground hover:text-foreground/80 hover:bg-gray-50 rounded-lg px-3 transition-smooth min-h-[48px]">
                     <Mail className="h-5 w-5 text-foreground flex-shrink-0" />
