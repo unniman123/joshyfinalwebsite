@@ -154,7 +154,7 @@ const DynamicCategoryPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
               {pageTitle}
             </h1>
             <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
