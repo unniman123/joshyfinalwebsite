@@ -529,8 +529,24 @@ export async function getDayOutPackages(limit = 10): Promise<any[]> {
 /**
  * Fetch homepage settings including hero banner images and text from site_content table
  * Used for dynamic homepage configuration with multiple hero images
+ * Supports optional cropData for each image from admin panel
  */
-export async function getHomepageSettings(): Promise<{ title: string; subtitle: string; images: Array<{ url: string; order: number }> } | null> {
+export async function getHomepageSettings(): Promise<{ 
+  title: string; 
+  subtitle: string; 
+  images: Array<{ 
+    url: string; 
+    order: number; 
+    section?: string;
+    cropData?: { 
+      x: number; 
+      y: number; 
+      width: number; 
+      height: number; 
+      aspectRatio: number 
+    } 
+  }> 
+} | null> {
   try {
     const { data, error } = await supabase
       .from('site_content')
@@ -544,6 +560,7 @@ export async function getHomepageSettings(): Promise<{ title: string; subtitle: 
     }
 
     // The data structure matches the expected format from site_content
+    // cropData is optional and will be present if set by admin panel
     return data?.content_value || null;
   } catch (err) {
     console.error('Unexpected error fetching homepage settings:', err);

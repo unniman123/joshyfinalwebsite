@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { unifiedSearch, getHomepageSettings } from "@/lib/api";
+import { HeroImage, CropData } from "@/lib/types/database";
 import ayurvedaTreatments from "@/assets/Ayurveda treatments KeralaToursGlobal.jpg";
 import ktgAmmachi from "@/assets/KTG Ammachi.jpg";
 import rameswaramTemple from "@/assets/Rameswaramtemple KeralaToursGlobal.png";
@@ -23,16 +24,61 @@ const HeroBanner = ({
 }: HeroBannerProps = {}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [heroData, setHeroData] = useState<{ title: string; subtitle: string; images: Array<{ url: string; order: number }> } | null>(null);
+  const [heroData, setHeroData] = useState<{ title: string; subtitle: string; images: HeroImage[] } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
   
   // Touch/Swipe state for mobile
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
+  // Detect mobile viewport for responsive crop adjustments
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  /**
+   * CSS-based cropping utility function
+   * Applies crop data to create background positioning styles
+   * This is the recommended approach for performance (Option A from instructions)
+   * Includes responsive handling for mobile devices
+   */
+  const getCropStyle = (image: HeroImage, isMobile: boolean = false): React.CSSProperties => {
+    // If no crop data, display full image with standard cover behavior
+    if (!image.cropData) {
+      return {
+        backgroundImage: `url(${image.url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
+    }
+
+    const { cropData } = image;
+    
+    // On mobile, apply a slight adjustment to ensure better visibility
+    // This prevents overly tight crops on smaller screens
+    const mobileAdjustment = isMobile ? 1.1 : 1;
+    
+    // Calculate background size and position based on crop data
+    // This creates a "window" effect showing only the cropped portion
+    return {
+      backgroundImage: `url(${image.url})`,
+      backgroundSize: `${((100 / cropData.aspectRatio) * (cropData.width / cropData.height)) * mobileAdjustment}%`,
+      backgroundPosition: `${-cropData.x}px ${-cropData.y}px`,
+      backgroundRepeat: 'no-repeat',
+    };
+  };
+
   // Fallback banner images for when database image is not available
-  const fallbackImages = [
+  const fallbackImages: Array<{ src: string; alt: string; heroImage?: HeroImage }> = [
     {
       src: ayurvedaTreatments,
       alt: "Ayurveda Treatments Kerala"
@@ -52,10 +98,15 @@ const HeroBanner = ({
   ];
 
   // Use hero images from database or fallback to rotating images
+  // Preserve HeroImage structure to support cropData
   const bannerImages = heroData?.images && heroData.images.length > 0
     ? heroData.images
         .sort((a, b) => a.order - b.order) // Sort by order field
-        .map(img => ({ src: img.url, alt: "Hero Banner" }))
+        .map(img => ({ 
+          src: img.url, 
+          alt: "Hero Banner",
+          heroImage: img // Preserve full HeroImage object with cropData
+        }))
     : fallbackImages;
 
   // Fetch hero settings from database
@@ -156,26 +207,35 @@ const HeroBanner = ({
       onTouchEnd={onTouchEnd}
     >
       {/* Background Images with scrim overlay for predictable contrast */}
-      {bannerImages.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-        >
-        <div className="absolute inset-0 z-0">
-            <img
-              src={image.src}
-              alt={image.alt}
-              className="w-full h-full object-cover"
-              loading={index === 0 ? 'eager' : 'lazy'}
-              fetchpriority={index === 0 ? 'high' : 'auto'}
-              srcSet={`${image.src} 1200w, ${image.src} 800w, ${image.src} 480w`}
-            />
-            {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
-            <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
+      {bannerImages.map((image, index) => {
+        // Use cropData if available (from heroImage), otherwise display full image
+        // Pass isMobile flag for responsive crop adjustments
+        const imageStyle = image.heroImage 
+          ? getCropStyle(image.heroImage, isMobile)
+          : {
+              backgroundImage: `url(${image.src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            };
+
+        return (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
+          >
+            <div 
+              className="absolute inset-0 z-0"
+              style={imageStyle}
+              role="img"
+              aria-label={image.alt}
+            >
+              {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
+              <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {/* Content Overlay - Full-screen center-aligned hero content */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 sm:px-6 transform md:translate-y-4 lg:translate-y-6 ${className}`}>
