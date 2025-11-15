@@ -138,7 +138,7 @@ const Tours = () => {
         <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
           {/* Page Header */}
           <div className="text-center mb-6 sm:mb-8 md:mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
               {selectedCategory ?
                 selectedCategory === 'discover-india' ?
                   'Discover India' :

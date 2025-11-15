@@ -93,7 +93,7 @@ const TopDestinations = () => {
       <section className="bg-gradient-to-b from-primary/5 to-background pt-12 md:pt-16 pb-6 md:pb-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
               Beautiful places in India
             </h1>
             <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
