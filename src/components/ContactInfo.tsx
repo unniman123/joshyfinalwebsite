@@ -23,7 +23,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 bg-gray-100 group-hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors flex-shrink-0">
               <MapPin className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
-            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
               <h3 className="font-semibold text-base sm:text-base md:text-lg mb-1">Office</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm leading-relaxed">
                 {info.address || "123 Travel Street, Tourism District, India"}
@@ -41,8 +41,8 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 bg-gray-100 group-hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors flex-shrink-0">
               <Phone className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
-            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif" }}>
-              <h3 className="font-semibold text-base sm:text-base md:text-lg mb-1">Contact us</h3>
+            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
+              <h3 className="font-semibold text-base sm:text-base md:text-lg mb-1">Call Us</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm group-hover:text-gray-700 transition-colors leading-relaxed">
                 {info.phone || "+91-95395-07516, +91-471-2488880"}
               </p>
@@ -59,7 +59,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 bg-gray-100 group-hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors flex-shrink-0">
               <Mail className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
-            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
               <h3 className="font-semibold text-base sm:text-base md:text-lg mb-1">Email us</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm group-hover:text-gray-700 transition-colors leading-relaxed break-words">
                 {info.email || "info@tourcompany.com, flabour@gmail.com"}
@@ -92,7 +92,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
               <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors flex-shrink-0" style={{ backgroundColor: 'hsl(145 60% 90%)' }}>
                 <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" style={{ color: 'hsl(145 70% 40%)' }} />
               </div>
-              <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+              <div className="flex-1" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
                 <h3 className="font-semibold text-base sm:text-base md:text-lg mb-1">Whatsapp</h3>
                 <p className="text-muted-foreground text-sm sm:text-sm md:text-sm transition-colors group-hover:opacity-80 leading-relaxed">
                   {info.whatsapp || "Enter your whatsapp number"}
