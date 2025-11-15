@@ -40,7 +40,7 @@ const TourOffersSection = ({
   sectionTitle = "Our Top Selling Packages",
   showEnquiryForm = true,
   formConfig = {
-    title: "Quick Enquiry",
+    title: "QUICK ENQUIRY",
     fields: {
       showMessage: true,
       showDate: false,

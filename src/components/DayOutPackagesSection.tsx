@@ -386,7 +386,7 @@ const DayOutPackagesSection = ({
               <CardHeader className="pb-2 sm:pb-1">
                 <CardTitle className="text-base sm:text-sm md:text-base font-bold text-black flex items-center gap-1.5 sm:gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
                   <User className="h-4 w-4 sm:h-3 sm:w-3 text-black/60" />
-                  Day Out Enquiry
+                  DAY OUT ENQUIRY
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-3 py-3 sm:px-2 sm:py-2" style={{ backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
