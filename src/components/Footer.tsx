@@ -24,7 +24,7 @@ const Footer = () => {
     href: "/contact"
   }, {
     name: "About Us",
-    href: "/about"
+    href: "/#about"
   }, {
     name: "Terms & Conditions",
     href: "/terms"
