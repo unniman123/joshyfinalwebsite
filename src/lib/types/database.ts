@@ -189,6 +189,29 @@ export interface QuickEnquiry {
 
 // Homepage settings (for admin-controlled content)
 
+/**
+ * CropData interface for image cropping information
+ * Stores the cropped area coordinates and dimensions from admin panel
+ */
+export interface CropData {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  aspectRatio: number;
+}
+
+/**
+ * HeroImage interface for homepage hero banner images
+ * Supports optional cropData for displaying cropped images
+ */
+export interface HeroImage {
+  url: string;
+  order: number;
+  section?: string;
+  cropData?: CropData;
+}
+
 export interface HomepageSettings {
   id: string;
   hero_title: string | null;

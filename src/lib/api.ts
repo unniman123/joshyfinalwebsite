@@ -1597,8 +1597,24 @@ export async function getAllDestinations(): Promise<DestinationSummary[]> {
 /**
  * Get homepage settings including hero banner image and text
  * Used for dynamic homepage configuration
+ * Supports optional cropData for each image from admin panel
  */
-export async function getHomepageSettings(): Promise<{ hero_image_url: string | null; hero_title: string | null; hero_subtitle: string | null } | null> {
+export async function getHomepageSettings(): Promise<{ 
+  title: string; 
+  subtitle: string; 
+  images: Array<{ 
+    url: string; 
+    order: number; 
+    section?: string;
+    cropData?: { 
+      x: number; 
+      y: number; 
+      width: number; 
+      height: number; 
+      aspectRatio: number 
+    } 
+  }> 
+} | null> {
   if (USE_SUPABASE) {
     try {
       return await SupabaseAPI.getHomepageSettings();
