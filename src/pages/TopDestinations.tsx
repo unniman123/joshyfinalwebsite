@@ -96,43 +96,35 @@ const TopDestinations = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
               Beautiful places in India
             </h1>
-            <div className="w-24 h-1 bg-gradient-golden mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-              {selectedState ?
-                `Discover the most incredible destinations in ${selectedState} - from historic monuments to natural wonders, explore the diversity and beauty of India.` :
-                searchQuery ?
-                  `Showing destinations matching "${searchQuery}"` :
-                  'Discover the most incredible destinations across India - from snow-capped mountains to pristine beaches, from ancient temples to bustling cities. Explore the diversity and beauty of our incredible nation.'
-              }
-            </p>
+            <div className="w-24 h-1 bg-gradient-golden mx-auto mb-8"></div>
+
+            {/* Search Bar */}
+            <div className="max-w-2xl mx-auto">
+              <form onSubmit={handleSearch}>
+                <div className="relative flex items-center">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
+                  <Input
+                    type="text"
+                    placeholder="Search destinations by name, state, or region..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-12 pr-32 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
+                  />
+                  <Button
+                    type="submit"
+                    className="absolute right-2 h-12 px-6 bg-[#FF8C00] hover:bg-[#FF7700] text-white"
+                  >
+                    Search
+                  </Button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
 
       <main className="py-6">
         <div className="container mx-auto px-4 max-w-6xl">
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <form onSubmit={handleSearch}>
-              <div className="relative flex items-center">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5 z-10" />
-                <Input
-                  type="text"
-                  placeholder="Search destinations by name, state, or region..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 pr-32 py-4 text-lg border-2 rounded-xl focus:ring-2 focus:ring-primary/20"
-                />
-                <Button
-                  type="submit"
-                  className="absolute right-2 h-12 px-6 bg-[#FF8C00] hover:bg-[#FF7700] text-white"
-                >
-                  Search
-                </Button>
-              </div>
-            </form>
-          </div>
-
           {/* Alert for tour results */}
           {tourResultsCount > 0 && searchQuery && (
             <div className="mb-8 max-w-4xl mx-auto">
