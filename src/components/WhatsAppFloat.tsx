@@ -5,7 +5,7 @@ const WhatsAppFloat = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = "918593834054"; // WhatsApp number: +91 8593834054
+    const phoneNumber = "919539507516"; // WhatsApp number: +91 9539 50 7516
     const message = "Need to plan my trip";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
