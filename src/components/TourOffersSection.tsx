@@ -8,6 +8,14 @@ import keralaTourCard from "@/assets/kerala-tour-card.jpg";
 import heroRajasthanPalace from "@/assets/hero-rajasthan-palace.jpg";
 import heroAyurvedaSpa from "@/assets/hero-ayurveda-spa.jpg";
 import goldenTriangleTourCard from "@/assets/tour-golden-triangle.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
 // heroKeralaBackwaters removed per design change
 
 // Enhanced tour card interface with descriptions
@@ -55,10 +63,7 @@ const TourOffersSection = ({
   // Infinite loop carousel state with smooth CSS animation
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
-  
-  // Touch/Swipe state for mobile
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [api, setApi] = useState<CarouselApi>();
 
   // Fetch tours from database on component mount
   useEffect(() => {
@@ -90,93 +95,19 @@ const TourOffersSection = ({
     fetchTours();
   }, []);
 
-  // Duplicate tours multiple times for seamless infinite loop
-  const duplicatedTours = [...tourOffers, ...tourOffers, ...tourOffers];
+  // Embla API state is stored in `api` via setApi
 
-  // Swipe handlers for mobile touch gestures
-  const minSwipeDistance = 50; // Minimum distance for a swipe
+  // Auto-advance using Embla API when available
+  useEffect(() => {
+    if (!api) return;
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
+    const timer = setInterval(() => {
+      if (isPaused) return;
+      api.scrollNext();
+    }, 5000);
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      scrollRight();
-    }
-    if (isRightSwipe) {
-      scrollLeft();
-    }
-  };
-
-  // Manual navigation handlers with infinite scroll
-  const scrollLeft = () => {
-    if (carouselRef.current && tourOffers.length > 0) {
-      const cardWidth = 160; // w-40 (160px) at lg breakpoint
-      const gap = 32; // gap-8 (32px)
-      const scrollAmount = cardWidth + gap;
-      const singleSetWidth = tourOffers.length * scrollAmount; // Width of one set of tours
-
-      // Pause auto-scroll
-      setIsPaused(true);
-
-      const currentScroll = carouselRef.current.scrollLeft;
-
-      // If we're at the beginning of the first set, jump to the middle set
-      if (currentScroll < scrollAmount) {
-        // Jump to the equivalent position in the middle set (second copy)
-        carouselRef.current.scrollLeft = singleSetWidth + currentScroll;
-      }
-
-      // Scroll left by one card
-      carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-
-      // Resume auto-scroll after 5 seconds of inactivity
-      setTimeout(() => setIsPaused(false), 5000);
-    }
-  };
-
-  const scrollRight = () => {
-    if (carouselRef.current && tourOffers.length > 0) {
-      const cardWidth = 160; // w-40 (160px) at lg breakpoint
-      const gap = 32; // gap-8 (32px)
-      const scrollAmount = cardWidth + gap;
-      const singleSetWidth = tourOffers.length * scrollAmount; // Width of one set of tours
-
-      // Pause auto-scroll
-      setIsPaused(true);
-
-      const currentScroll = carouselRef.current.scrollLeft;
-      const maxScroll = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
-
-      // If we're at the end of the last set, jump to the beginning of the first set
-      if (currentScroll + scrollAmount > maxScroll - scrollAmount) {
-        // Calculate relative position within the set and jump to first set
-        const relativePosition = currentScroll - (singleSetWidth * 2);
-        carouselRef.current.scrollLeft = Math.max(0, relativePosition);
-      }
-
-      // Scroll right by one card
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-
-      // Resume auto-scroll after 5 seconds of inactivity
-      setTimeout(() => setIsPaused(false), 5000);
-    }
-  };
-
-
-
+    return () => clearInterval(timer);
+  }, [api, isPaused]);
   return (
     <section className="relative">
       {/* Main container with proper layout */}
@@ -202,70 +133,50 @@ const TourOffersSection = ({
               {/* Tour Carousel - Infinite Loop without background card */}
               {!loading && tourOffers.length > 0 && (
                 <div className="relative">
-                {/* Left Navigation Button - Larger touch targets on mobile */}
-                <button
-                  onClick={scrollLeft}
-                  className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
-                  aria-label="Previous tours"
-                >
-                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
-                </button>
-
-                {/* Right Navigation Button - Larger touch targets on mobile */}
-                <button
-                  onClick={scrollRight}
-                  className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-2.5 rounded-full bg-white/80 hover:bg-white transition-all duration-300 shadow-lg hover:shadow-xl min-w-[44px] min-h-[44px] flex items-center justify-center"
-                  aria-label="Next tours"
-                >
-                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
-                </button>
-
-                <div 
-                  className="relative overflow-x-auto overflow-y-hidden scroll-smooth scrollbar-hide" 
-                  ref={carouselRef} 
-                  style={{ scrollBehavior: 'smooth', paddingLeft: 'min(4vw, 32px)', paddingRight: 'min(4vw, 32px)' }}
-                  onTouchStart={onTouchStart}
-                  onTouchMove={onTouchMove}
-                  onTouchEnd={onTouchEnd}
-                >
-                  {/* Continuous sliding carousel wrapper with smooth CSS animation */}
-                  <div
-                    className={`flex gap-4 sm:gap-6 md:gap-8 animate-scroll-left ${isPaused ? 'paused' : ''}`}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                    onFocus={() => setIsPaused(true)}
-                    onBlur={() => setIsPaused(false)}
-                    style={{ transform: 'translateX(0px)' }}
-                  >
-                    {duplicatedTours.filter(tour => tour && tour.slug).map((tour, index) => (
+              <Carousel
+                setApi={setApi}
+                opts={{ align: "start", loop: true, containScroll: "trimSnaps" }}
+                className="relative"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                onFocus={() => setIsPaused(true)}
+                onBlur={() => setIsPaused(false)}
+              >
+                <CarouselContent className="overflow-x-visible">
+                  {tourOffers.map((tour) => (
+                    <CarouselItem
+                      key={tour.id}
+                      className="flex-shrink-0 flex-grow-0 basis-auto pl-2 sm:pl-3 md:pl-4"
+                    >
                       <Link
-                        key={`${tour.id}-${index}`}
                         to={`/tours/${tour.slug}`}
-                        className="group flex flex-col items-center flex-shrink-0 transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05] min-w-[120px]"
+                        className="group flex flex-col items-center transition-transform duration-300 hover:scale-[1.05] focus:scale-[1.05]"
                         aria-label={`View details for ${tour.title} tour`}
                       >
-                        {/* Oval tour card - Responsive sizes */}
                         <div className="relative w-28 h-36 xs:w-32 xs:h-40 sm:w-36 sm:h-44 lg:w-40 lg:h-52 overflow-hidden rounded-full border shadow-card transition-all duration-300 mb-2 sm:mb-3" style={{ borderColor: 'rgba(0, 0, 0, 0.2)' }}>
-                          <img 
-                            src={tour.image} 
-                            alt={tour.title} 
-                            className="w-full h-full object-cover" 
-                            loading="lazy" 
-                            decoding="async" 
+                          <img
+                            src={tour.image}
+                            alt={tour.title}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
                         </div>
-
-                        {/* Only title - description removed */}
                         <div className="text-center max-w-[140px] sm:max-w-[160px] px-1">
                           <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2">
                             {tour.title}
                           </h3>
                         </div>
                       </Link>
-                    ))}
-                  </div>
-                </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+
+                {/* Prev/Next using shared Carousel controls */}
+                <CarouselPrevious className="!-left-3 sm:!-left-4" />
+                <CarouselNext className="!-right-3 sm:!-right-4" />
+              </Carousel>
 
                 {/* Soft edge fades to avoid abrupt clipping of oval cards */}
                 <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />

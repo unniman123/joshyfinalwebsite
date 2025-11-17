@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { getSocialIconClass, getSocialPlatformConfig } from "@/lib/utils/socialUtils";
@@ -32,6 +32,28 @@ const Footer = () => {
     name: "Privacy Policy",
     href: "/privacy"
   }];
+  const navigate = useNavigate();
+
+  const handleAboutClick = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
+    // If already on home page, scroll to the Namaste heading
+    if (window.location.pathname === "/") {
+      const el = document.getElementById("about-heading");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    // Otherwise navigate to home, then scroll after a short delay
+    navigate("/");
+    setTimeout(() => {
+      const el = document.getElementById("about-heading");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 150);
+  };
+
+  const noopClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+  };
+
   return <footer className="bg-slate-900 text-white w-full">
     <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
       {/* Main Footer Content */}
@@ -54,9 +76,31 @@ const Footer = () => {
           <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
             {supportLinks.map(link => (
               <li key={link.name}>
-                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
-                  {link.name}
-                </Link>
+                {link.name === "About Us" ? (
+                  <button
+                    type="button"
+                    onClick={handleAboutClick}
+                    className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                    aria-label="About Us - scroll to Namaste section"
+                  >
+                    {link.name}
+                  </button>
+                ) : (link.name === "Terms & Conditions" || link.name === "Privacy Policy") ? (
+                  <button
+                    type="button"
+                    onClick={noopClick}
+                    aria-disabled="true"
+                    className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                  >
+                    {link.name}
+                  </button>
+                ) : (
+                  <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                    {link.name}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -165,8 +209,8 @@ const Footer = () => {
         © KeralaTours Travels & Organic Remedies. All rights reserved.
       </div>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-        <Link to="/terms" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Terms of Service</Link>
-        <Link to="/privacy" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Privacy Policy</Link>
+        <button type="button" onClick={noopClick} aria-disabled="true" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Terms of Service</button>
+        <button type="button" onClick={noopClick} aria-disabled="true" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Privacy Policy</button>
         <Link to="/cookies" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Cookie Policy</Link>
       </div>
     </div>

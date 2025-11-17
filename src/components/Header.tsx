@@ -117,14 +117,16 @@ const Header = () => {
                 if (item.name === 'Contact Us') {
                   return (
                     <div key={item.name} className="flex items-center gap-4">
-                      <Link
-                        to="/heli-taxi"
+                      <button
+                        type="button"
+                        onClick={(e) => e.preventDefault()}
                         className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
                         style={{ fontFamily: "'Sora', sans-serif" }}
+                        aria-disabled="true"
                       >
                         Heli Taxi
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
-                      </Link>
+                      </button>
                       {renderItem}
                     </div>
                   );
@@ -215,9 +217,9 @@ const Header = () => {
                     ) : (
                       <div key={item.name}>
                         {item.name === 'Contact Us' && (
-                          <Link to="/heli-taxi" onClick={() => setIsMenuOpen(false)} className="block text-foreground hover:bg-gray-50 font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg transition-smooth text-base mb-2" style={{ fontFamily: "'Sora', sans-serif" }}>
+                          <button type="button" onClick={(e) => e.preventDefault()} className="block text-foreground hover:bg-gray-50 font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg transition-smooth text-base mb-2" style={{ fontFamily: "'Sora', sans-serif" }} aria-disabled="true">
                             Heli Taxi
-                          </Link>
+                          </button>
                         )}
                         <Link
                           to={item.href}
