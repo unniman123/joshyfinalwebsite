@@ -60,7 +60,7 @@ const TourEnquiryForm = ({
       // Show success toast
       toast({
         title: "Quick Enquiry Submitted Successfully!",
-        description: "Thank you for your interest. We'll contact you within 24 hours. Thanks for your interest. We will respond you at the earliest.",
+        description: "Thank you for your interest. We'll contact you within 24 hours.",
         variant: "default"
       });
 
@@ -140,7 +140,7 @@ const TourEnquiryForm = ({
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder={phoneFieldPlaceholder || "Enter your WhatsApp number"}
+                placeholder={phoneFieldPlaceholder || "Enter your WhatsApp number with Country Code"}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
                 className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"

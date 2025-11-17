@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
-        <meta name="description" content="Experience the beauty of Kerala and India with our expertly curated tour packages. From backwaters to hill stations, Ayurveda to heritage tours - your perfect journey awaits." />
+        <meta name="description" content="Here you can find holiday packages (Itineraries) with beautiful pictures of concerned destinations and the contents mainly promoting Kerala & India Tours." />
         <link rel="icon" type="image/png" href="/logo-header.png" />
       </Helmet>
       <Header />

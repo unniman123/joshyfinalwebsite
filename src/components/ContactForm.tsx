@@ -78,7 +78,7 @@ const ContactForm = ({
       // Show success toast
       toast({
         title: "Enquiry Submitted Successfully!",
-        description: "Thank you for your interest. We'll contact you within 24 hours. Thanks for your interest. We will respond you at the earliest.",
+        description: "Thank you for your interest. We'll contact you within 24 hours.",
         variant: "default"
       });
 

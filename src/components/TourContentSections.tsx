@@ -30,38 +30,42 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
             <div className="flex items-center justify-center md:justify-start">
               <div className="relative inline-flex items-center w-full max-w-[95%] sm:max-w-none sm:w-auto">
                 <style>{`
+                  /* Compact title box like provided design */
                   .title-box {
                     position: relative;
                     background: #FFFFFF;
-                    border-radius: 6px;
-                    padding: 0;
+                    border-radius: 8px;
+                    height: 40px;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     display: inline-flex;
                     flex-direction: row;
-                    align-items: stretch;
+                    align-items: center;
                     justify-content: flex-start;
-                    min-width: 260px;
+                    min-width: 220px;
                     overflow: hidden;
                     width: 100%;
                   }
-                  
+
                   .title-red-section {
                     background: #C41E3A;
-                    width: 15%;
+                    width: 40px;
+                    height: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 0.5rem 0.25rem;
                     flex-shrink: 0;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
                   }
-                  
+
                   .title-white-section {
-                    width: 85%;
-                    padding: 0.5rem 0.75rem;
+                    flex: 1 1 auto;
+                    padding: 0 12px;
                     display: flex;
                     align-items: center;
+                    height: 100%;
                   }
-                  
+
                   .title-text {
                     position: relative;
                     z-index: 2;
@@ -69,34 +73,27 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     color: #1A1A1A;
                     margin: 0;
                     width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 1;
+                    font-size: 16px;
+                    font-weight: 600;
                   }
-                  
-                  @media (min-width: 640px) {
+
+                  @media (max-width: 640px) {
                     .title-box {
-                      min-width: 280px;
-                      border-radius: 8px;
+                      min-width: 200px;
+                      height: 36px;
                     }
-                    
                     .title-red-section {
-                      padding: 0.5rem 0.5rem;
+                      width: 36px;
                     }
-                    
                     .title-white-section {
-                      padding: 0.5rem 1rem;
+                      padding: 0 10px;
                     }
-                  }
-                  
-                  @media (min-width: 768px) {
-                    .title-box {
-                      min-width: 300px;
-                    }
-                    
-                    .title-red-section {
-                      padding: 0.75rem 0.5rem;
-                    }
-                    
-                    .title-white-section {
-                      padding: 0.75rem 1.5rem;
+                    .title-text {
+                      font-size: 14px;
                     }
                   }
                 `}</style>
@@ -107,7 +104,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   
                   {/* White Section with Title (85%) */}
                   <div className="title-white-section">
-                    <h1 className="title-text text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
+                    <h1 className="title-text" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                       {tour.title}
                     </h1>
                   </div>
@@ -214,37 +211,41 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
             <div className="flex items-center justify-center">
               <div className="relative inline-flex items-center">
                 <style>{`
+                  /* Compact title box like provided design */
                   .title-box {
                     position: relative;
                     background: #FFFFFF;
                     border-radius: 8px;
-                    padding: 0;
+                    height: 40px;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     display: inline-flex;
                     flex-direction: row;
-                    align-items: stretch;
+                    align-items: center;
                     justify-content: flex-start;
-                    min-width: 300px;
+                    min-width: 220px;
                     overflow: hidden;
                   }
-                  
+
                   .title-red-section {
                     background: #C41E3A;
-                    width: 15%;
+                    width: 40px;
+                    height: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 0.75rem 0.5rem;
                     flex-shrink: 0;
+                    border-top-left-radius: 8px;
+                    border-bottom-left-radius: 8px;
                   }
-                  
+
                   .title-white-section {
-                    width: 85%;
-                    padding: 0.75rem 1.5rem;
+                    flex: 1 1 auto;
+                    padding: 0 12px;
                     display: flex;
                     align-items: center;
+                    height: 100%;
                   }
-                  
+
                   .title-text {
                     position: relative;
                     z-index: 2;
@@ -252,19 +253,27 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     color: #1A1A1A;
                     margin: 0;
                     width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 1;
+                    font-size: 16px;
+                    font-weight: 600;
                   }
-                  
+
                   @media (max-width: 768px) {
                     .title-box {
-                      min-width: 280px;
+                      min-width: 200px;
+                      height: 36px;
                     }
-                    
                     .title-red-section {
-                      padding: 0.5rem 0.5rem;
+                      width: 36px;
                     }
-                    
                     .title-white-section {
-                      padding: 0.5rem 1rem;
+                      padding: 0 10px;
+                    }
+                    .title-text {
+                      font-size: 14px;
                     }
                   }
                 `}</style>
@@ -275,7 +284,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   
                   {/* White Section with Title (85%) */}
                   <div className="title-white-section">
-                    <h1 className="title-text text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                    <h1 className="title-text">
                       {tour.title}
                     </h1>
                   </div>
