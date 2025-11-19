@@ -15,9 +15,6 @@ const Footer = () => {
   }, {
     name: "Ayurveda",
     href: "/tours"
-  }, {
-    name: "Heritage Tours",
-    href: "/tours?category=heritage"
   }];
   const supportLinks = [{
     name: "Contact Us",
