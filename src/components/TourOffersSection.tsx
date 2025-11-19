@@ -60,10 +60,11 @@ const TourOffersSection = ({
   const [tourOffers, setTourOffers] = useState<TourOffer[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Infinite loop carousel state with smooth CSS animation
+  // Infinite loop carousel state with custom auto-scroll
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [api, setApi] = useState<CarouselApi>();
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fetch tours from database on component mount
   useEffect(() => {
@@ -95,19 +96,63 @@ const TourOffersSection = ({
     fetchTours();
   }, []);
 
-  // Embla API state is stored in `api` via setApi
-
-  // Auto-advance using Embla API when available
+  // Custom auto-scroll implementation to replace CSS animation
   useEffect(() => {
     if (!api) return;
 
-    const timer = setInterval(() => {
-      if (isPaused) return;
-      api.scrollNext();
-    }, 5000);
+    const startAutoScroll = () => {
+      // Clear any existing interval first
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
 
-    return () => clearInterval(timer);
-  }, [api, isPaused]);
+      autoScrollIntervalRef.current = setInterval(() => {
+        // Only scroll if not paused
+        if (!isPaused && api) {
+          console.log('Auto-scrolling to next slide');
+          api.scrollNext();
+        } else {
+          console.log('Auto-scroll paused or api not available', { isPaused, hasApi: !!api });
+        }
+      }, 2000); // Increased speed to 2 seconds (original CSS animation was 20 seconds)
+    };
+
+    startAutoScroll();
+
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+        autoScrollIntervalRef.current = null;
+      }
+    };
+  }, [api]); // Only depend on api, not isPaused
+
+  // Handle pause/resume by clearing and restarting interval
+  useEffect(() => {
+    console.log('Pause state changed:', { isPaused, hasApi: !!api });
+
+    if (!api) return;
+
+    // Clear existing interval
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+      console.log('Cleared existing auto-scroll interval');
+    }
+
+    // Restart interval if not paused
+    if (!isPaused) {
+      autoScrollIntervalRef.current = setInterval(() => {
+        if (api) {
+          console.log('Auto-scrolling to next slide (pause/resume handler)');
+          api.scrollNext();
+        }
+      }, 2000); // Increased speed to 2 seconds
+      console.log('Started new auto-scroll interval');
+    }
+  }, [isPaused, api]);
+  // No need for Embla API auto-scroll when using CSS animation
+  // The isPaused state controls the animation via the 'paused' class
   return (
     <section className="relative">
       {/* Main container with proper layout */}
@@ -137,15 +182,28 @@ const TourOffersSection = ({
                 setApi={setApi}
                 opts={{ align: "start", loop: true, containScroll: "trimSnaps" }}
                 className="relative"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-                onFocus={() => setIsPaused(true)}
-                onBlur={() => setIsPaused(false)}
+                onMouseEnter={() => {
+                  console.log('Mouse entered - pausing auto-scroll');
+                  setIsPaused(true);
+                }}
+                onMouseLeave={() => {
+                  console.log('Mouse left - resuming auto-scroll');
+                  setIsPaused(false);
+                }}
+                onFocus={() => {
+                  console.log('Focused - pausing auto-scroll');
+                  setIsPaused(true);
+                }}
+                onBlur={() => {
+                  console.log('Blurred - resuming auto-scroll');
+                  setIsPaused(false);
+                }}
               >
                 <CarouselContent className="overflow-x-visible">
-                  {tourOffers.map((tour) => (
+                  {/* Render tours 3 times for seamless infinite scroll (animation translates by -33.333%) */}
+                  {[...tourOffers, ...tourOffers, ...tourOffers].map((tour, index) => (
                     <CarouselItem
-                      key={tour.id}
+                      key={`${tour.id}-${index}`}
                       className="flex-shrink-0 flex-grow-0 basis-auto pl-2 sm:pl-3 md:pl-4"
                     >
                       <Link
@@ -173,19 +231,19 @@ const TourOffersSection = ({
                   ))}
                 </CarouselContent>
 
-                {/* Prev/Next using shared Carousel controls */}
-                <CarouselPrevious className="!-left-3 sm:!-left-4" />
-                <CarouselNext className="!-right-3 sm:!-right-4" />
+                {/* Navigation buttons - restored for user control */}
+                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white border shadow-md h-10 w-10" />
+                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white border shadow-md h-10 w-10" />
               </Carousel>
 
                 {/* Soft edge fades to avoid abrupt clipping of oval cards */}
                 <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
                 <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
 
-                  {/* Scroll indicator - shows continuous animation */}
+                  {/* Scroll indicator - shows auto-scroll with manual override */}
                   <div className="flex justify-center mt-6">
                     <div className="text-gray-700 text-xs">
-                      Hover to pause
+                      Auto-scrolling • Hover to pause • Use navigation buttons
                     </div>
                   </div>
                 </div>
