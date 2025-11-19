@@ -35,20 +35,20 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     position: relative;
                     background: #FFFFFF;
                     border-radius: 8px;
-                    height: 40px;
+                    height: 60px;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     display: inline-flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: flex-start;
-                    min-width: 220px;
+                    min-width: 280px;
                     overflow: hidden;
                     width: 100%;
                   }
 
                   .title-red-section {
                     background: #C41E3A;
-                    width: 40px;
+                    width: 60px;
                     height: 100%;
                     display: flex;
                     align-items: center;
@@ -60,7 +60,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
 
                   .title-white-section {
                     flex: 1 1 auto;
-                    padding: 0 12px;
+                    padding: 0 16px;
                     display: flex;
                     align-items: center;
                     height: 100%;
@@ -77,23 +77,23 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 16px;
+                    font-size: 24px;
                     font-weight: 600;
                   }
 
                   @media (max-width: 640px) {
                     .title-box {
-                      min-width: 200px;
-                      height: 36px;
+                      min-width: 240px;
+                      height: 48px;
                     }
                     .title-red-section {
-                      width: 36px;
+                      width: 48px;
                     }
                     .title-white-section {
-                      padding: 0 10px;
+                      padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 14px;
+                      font-size: 18px;
                     }
                   }
                 `}</style>
@@ -216,19 +216,19 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     position: relative;
                     background: #FFFFFF;
                     border-radius: 8px;
-                    height: 40px;
+                    height: 60px;
                     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
                     display: inline-flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: flex-start;
-                    min-width: 220px;
+                    min-width: 280px;
                     overflow: hidden;
                   }
 
                   .title-red-section {
                     background: #C41E3A;
-                    width: 40px;
+                    width: 60px;
                     height: 100%;
                     display: flex;
                     align-items: center;
@@ -240,7 +240,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
 
                   .title-white-section {
                     flex: 1 1 auto;
-                    padding: 0 12px;
+                    padding: 0 16px;
                     display: flex;
                     align-items: center;
                     height: 100%;
@@ -257,23 +257,23 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 16px;
+                    font-size: 24px;
                     font-weight: 600;
                   }
 
                   @media (max-width: 768px) {
                     .title-box {
-                      min-width: 200px;
-                      height: 36px;
+                      min-width: 240px;
+                      height: 48px;
                     }
                     .title-red-section {
-                      width: 36px;
+                      width: 48px;
                     }
                     .title-white-section {
-                      padding: 0 10px;
+                      padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 14px;
+                      font-size: 18px;
                     }
                   }
                 `}</style>
