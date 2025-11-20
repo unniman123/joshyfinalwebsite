@@ -124,7 +124,7 @@ const Header = () => {
                         style={{ fontFamily: "'Sora', sans-serif" }}
                         aria-disabled="true"
                       >
-                        Heli Taxi
+                        MICE
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
                       </button>
                       {renderItem}
@@ -218,7 +218,7 @@ const Header = () => {
                       <div key={item.name}>
                         {item.name === 'Contact Us' && (
                           <button type="button" onClick={(e) => e.preventDefault()} className="block text-foreground hover:bg-gray-50 font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg transition-smooth text-base mb-2" style={{ fontFamily: "'Sora', sans-serif" }} aria-disabled="true">
-                            Heli Taxi
+                          MICE
                           </button>
                         )}
                         <Link
