@@ -327,7 +327,7 @@ const DayOutPackagesSection = ({
                       {/* Banner Content Overlay */}
                       <div className="absolute inset-0 flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 text-white">
                         <div className="max-w-2xl text-center px-2">
-                          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 drop-shadow-lg transition-colors duration-300" style={{ ['--hover-color' as string]: 'hsl(345 50% 85%)' } as React.CSSProperties}>
+                          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 drop-shadow-lg transition-colors duration-300" style={{ ['--hover-color' as string]: 'hsl(345 50% 85%)', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.1' } as React.CSSProperties}>
                             {currentPackage.title}
                           </h3>
                           {/* Show description only if configured to show */}
