@@ -43,6 +43,15 @@ const navTaxonomy: Record<string, { label: string; slug: string; href?: string }
     { label: "Buddhist Holidays", slug: "buddhist-holidays" }
   ],
   "global": [
+    { label: "Maldives", slug: "maldives", href: "/tours?category=global&subcategory=maldives" },
+    { label: "Thailand", slug: "thailand", href: "/tours?category=global&subcategory=thailand" },
+    { label: "Vietnam", slug: "vietnam", href: "/tours?category=global&subcategory=vietnam" },
+    { label: "Sri Lanka", slug: "sri-lanka", href: "/tours?category=global&subcategory=sri-lanka" },
+    { label: "Bhutan", slug: "bhutan", href: "/tours?category=global&subcategory=bhutan" },
+    { label: "Nepal", slug: "nepal", href: "/tours?category=global&subcategory=nepal" },
+    { label: "Indonesia", slug: "indonesia", href: "/tours?category=global&subcategory=indonesia" },
+    { label: "Malaysia", slug: "malaysia", href: "/tours?category=global&subcategory=malaysia" },
+    { label: "Singapore", slug: "singapore", href: "/tours?category=global&subcategory=singapore" },
     { label: "Egypt", slug: "egypt" },
     { label: "Hong Kong", slug: "hong-kong" },
     { label: "Albania", slug: "albania" },
