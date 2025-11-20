@@ -14,7 +14,7 @@ interface ContactInfoProps {
 
 const ContactInfo = ({ info }: ContactInfoProps) => {
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6" style={{ fontFamily: "'Sora', sans-serif" }}>
       {/* Contact Actions arranged vertically */}
       <div className="space-y-3 sm:space-y-4">
         {/* Office Button */}
@@ -89,8 +89,8 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
             }}
           >
             <div className="flex items-center space-x-3 sm:space-x-3 md:space-x-4">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors flex-shrink-0" style={{ backgroundColor: 'hsl(145 60% 90%)' }}>
-                <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" style={{ color: 'hsl(145 70% 40%)' }} />
+              <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-colors flex-shrink-0" style={{ backgroundColor: 'hsl(145 60% 90%)', color: 'hsl(145 70% 40%)' }}>
+                <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" />
               </div>
               <div className="flex-1">
                 <h3 className="text-sm sm:text-base font-medium mb-1">Whatsapp</h3>
