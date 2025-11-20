@@ -45,7 +45,7 @@ const Header = () => {
     // Top Destinations removed from main header; reachable via Discover India dropdown
     {
       name: "Ayurveda",
-      href: "/ayurveda-coming-soon"
+      href: "https://www.PanchakarmaIndia.com"
     },
     {
       name: "Contact Us",
@@ -95,6 +95,8 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => {
                 // Insert Heli Taxi button immediately before Contact Us
+                // Render external URLs as <a> so they navigate out of the app
+                const isExternal = item.href && (item.href.startsWith('http') || item.href.startsWith('www'));
                 const renderItem = item.category ? (
                   <NavigationDropdown
                     key={item.name}
@@ -103,15 +105,29 @@ const Header = () => {
                     category={item.category}
                   />
                 ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
-                    style={{ fontFamily: "'Sora', sans-serif" }}
-                  >
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
-                  </Link>
+                  isExternal ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                      style={{ fontFamily: "'Sora', sans-serif" }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
+                      style={{ fontFamily: "'Sora', sans-serif" }}
+                    >
+                      {item.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full" style={{ backgroundColor: (isHome && !isScrolled) ? 'rgba(255, 255, 255, 0.8)' : '#9ca3af' }}></span>
+                    </Link>
+                  )
                 );
 
                 if (item.name === 'Contact Us') {
@@ -221,14 +237,27 @@ const Header = () => {
                           MICE
                           </button>
                         )}
-                        <Link
-                          to={item.href}
-                          className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
-                          style={{ fontFamily: "'Sora', sans-serif" }}
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
+                        {item.href && (item.href.startsWith('http') || item.href.startsWith('www')) ? (
+                          <a
+                            href={item.href}
+                            className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
+                            style={{ fontFamily: "'Sora', sans-serif" }}
+                            onClick={() => setIsMenuOpen(false)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item.name}
+                          </a>
+                        ) : (
+                          <Link
+                            to={item.href}
+                            className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
+                            style={{ fontFamily: "'Sora', sans-serif" }}
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {item.name}
+                          </Link>
+                        )}
                       </div>
                     );
                   })}
