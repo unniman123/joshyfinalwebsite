@@ -1,4 +1,4 @@
-import aboutImage from '@/assets/about-us-image.jpg';
+import namasteImage from '@/assets/Namaste Image.jpg';
 
 const AboutUsSection = () => {
   return (
@@ -10,8 +10,8 @@ const AboutUsSection = () => {
           <div className="w-full lg:w-1/4 flex items-start lg:items-center justify-center p-4 sm:p-6 lg:p-8 bg-white lg:bg-transparent">
             <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-white rounded-lg lg:rounded-xl overflow-hidden shadow-card">
               <img
-                src={aboutImage}
-                alt="Family enjoying attractions"
+                src={namasteImage}
+                alt="Namaste greeting"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
