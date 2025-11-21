@@ -77,7 +77,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 24px;
+                    font-size: 26px;
                     font-weight: 600;
                   }
 
@@ -93,7 +93,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 18px;
+                      font-size: 20px;
                     }
                   }
                 `}</style>
@@ -257,7 +257,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 24px;
+                    font-size: 26px;
                     font-weight: 600;
                   }
 
@@ -273,7 +273,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 18px;
+                      font-size: 20px;
                     }
                   }
                 `}</style>
