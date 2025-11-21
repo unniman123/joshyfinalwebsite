@@ -132,7 +132,7 @@ const Header = () => {
 
                 if (item.name === 'Contact Us') {
                   return (
-                    <div key={item.name} className="flex items-center gap-4">
+                    <div key={item.name} className="flex items-center gap-8">
                       <button
                         type="button"
                         onClick={(e) => e.preventDefault()}
