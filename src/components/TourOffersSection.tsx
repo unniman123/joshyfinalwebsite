@@ -222,7 +222,10 @@ const TourOffersSection = ({
                           <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-colors duration-300" />
                         </div>
                         <div className="text-center max-w-[140px] sm:max-w-[160px] px-1">
-                          <h3 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2">
+                          <h3
+                            className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 leading-tight line-clamp-2"
+                            style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}
+                          >
                             {tour.title}
                           </h3>
                         </div>
