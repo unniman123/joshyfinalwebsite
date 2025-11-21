@@ -243,12 +243,7 @@ const TourOffersSection = ({
                 <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
                 <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:w-20" style={{ background: 'linear-gradient(-90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)', zIndex: 15 }} />
 
-                  {/* Scroll indicator - shows auto-scroll with manual override */}
-                  <div className="flex justify-center mt-6">
-                    <div className="text-gray-700 text-xs">
-                      Auto-scrolling • Hover to pause • Use navigation buttons
-                    </div>
-                  </div>
+                  {/* Scroll indicator removed per admin instruction */}
                 </div>
               )}
 
