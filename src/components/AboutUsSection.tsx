@@ -8,11 +8,12 @@ const AboutUsSection = () => {
 
           {/* Left: Image Card */}
           <div className="w-full lg:w-1/4 flex items-start lg:items-center justify-center p-4 sm:p-6 lg:p-8 bg-white lg:bg-transparent">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-white rounded-lg lg:rounded-xl overflow-hidden shadow-card">
+            <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 bg-white rounded-lg lg:rounded-xl overflow-hidden shadow-card">
               <img
                 src={namasteImage}
                 alt="Namaste greeting"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
+                style={{ objectPosition: 'center' }}
                 loading="lazy"
               />
             </div>
