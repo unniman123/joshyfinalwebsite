@@ -124,7 +124,8 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                 <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
                   <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
                     <div
-                      className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed text-justify"
+                      className="text-sm text-muted-foreground text-justify"
+                      style={{ fontSize: '0.875rem', lineHeight: '1.4' }}
                       dangerouslySetInnerHTML={{ __html: overviewSection.content || '' }}
                     />
                   </div>
