@@ -45,7 +45,7 @@ const Header = () => {
     // Top Destinations removed from main header; reachable via Discover India dropdown
     {
       name: "Ayurveda",
-      href: "https://www.PanchakarmaIndia.com"
+      href: "www.PanchakarmaIndia.com"
     },
     {
       name: "Contact Us",
