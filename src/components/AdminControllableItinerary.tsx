@@ -59,7 +59,10 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
         {/* Section heading in Red Box */}
         <div className="flex items-center justify-center md:justify-start mb-4 md:mb-6">
           <div className="inline-block bg-[hsl(var(--promo-red))] text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-warm">
-            <h2 className="text-base md:text-lg font-semibold leading-none">
+            <h2
+              className="text-base md:text-lg font-semibold leading-none"
+              style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', textTransform: 'uppercase' }}
+            >
               Itinerary
             </h2>
           </div>
