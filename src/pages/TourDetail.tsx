@@ -61,9 +61,12 @@ const TourDetail = () => {
             <div className="flex items-center justify-center">
               <div
                 className="inline-block rounded-full px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 flex items-center justify-center shadow-warm"
-                style={{ background: 'linear-gradient(90deg, #f07f71 0%, #ff6b6b 100%)', color: '#ffffff' }}
+                style={{ background: '#EAB308', color: '#000000' }}
               >
-                <h2 className="text-sm sm:text-base md:text-base lg:text-lg font-semibold leading-none tracking-wide">
+                <h2
+                  className="text-sm sm:text-base md:text-base lg:text-lg font-semibold leading-none tracking-wide"
+                  style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}
+                >
                   Enquire
                 </h2>
               </div>

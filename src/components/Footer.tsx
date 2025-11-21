@@ -14,7 +14,7 @@ const Footer = () => {
     href: "/tours?category=global"
   }, {
     name: "Ayurveda",
-    href: "/tours"
+    href: "www.PanchakarmaIndia.com"
   }];
   const supportLinks = [{
     name: "Contact Us",
@@ -60,9 +60,20 @@ const Footer = () => {
           <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
           <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
             {quickLinks.map(link => <li key={link.name}>
-              <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
-                {link.name}
-              </Link>
+              {link.href && (link.href.startsWith('http') || link.href.startsWith('www')) ? (
+                <a
+                  href={link.href.startsWith('www') ? `https://${link.href}` : link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                  {link.name}
+                </Link>
+              )}
             </li>)}
           </ul>
         </div>

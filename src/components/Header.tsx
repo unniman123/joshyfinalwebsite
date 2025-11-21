@@ -45,7 +45,7 @@ const Header = () => {
     // Top Destinations removed from main header; reachable via Discover India dropdown
     {
       name: "Ayurveda",
-      href: "https://www.PanchakarmaIndia.com"
+      href: "www.PanchakarmaIndia.com"
     },
     {
       name: "Contact Us",
@@ -108,7 +108,7 @@ const Header = () => {
                   isExternal ? (
                     <a
                       key={item.name}
-                      href={item.href}
+                      href={item.href.startsWith('www') ? `https://${item.href}` : item.href}
                       className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
                       style={{ fontFamily: "'Sora', sans-serif" }}
                       target="_blank"
@@ -132,7 +132,7 @@ const Header = () => {
 
                 if (item.name === 'Contact Us') {
                   return (
-                    <div key={item.name} className="flex items-center gap-4">
+                    <div key={item.name} className="flex items-center gap-8">
                       <button
                         type="button"
                         onClick={(e) => e.preventDefault()}
@@ -239,7 +239,7 @@ const Header = () => {
                         )}
                         {item.href && (item.href.startsWith('http') || item.href.startsWith('www')) ? (
                           <a
-                            href={item.href}
+                            href={item.href.startsWith('www') ? `https://${item.href}` : item.href}
                             className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
                             style={{ fontFamily: "'Sora', sans-serif" }}
                             onClick={() => setIsMenuOpen(false)}

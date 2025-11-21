@@ -24,7 +24,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
     return (
       <div className="w-full">
         {/* Tour Title Section - Center Aligned */}
-        <section className="pt-4 sm:pt-6 md:pt-12 lg:pt-16 pb-2 sm:pb-2 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4">
+        <section className="pt-4 sm:pt-6 md:pt-12 lg:pt-16 pb-0 px-2 sm:px-3 md:px-4">
           <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
             {/* Title in styled box with red section and white square */}
             <div className="flex items-center justify-center md:justify-start">
@@ -77,7 +77,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 24px;
+                    font-size: 26px;
                     font-weight: 600;
                   }
 
@@ -93,7 +93,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 18px;
+                      font-size: 20px;
                     }
                   }
                 `}</style>
@@ -120,7 +120,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           
           if (overviewSection) {
             return (
-              <section className="pt-3 sm:pt-4 md:pt-6 pb-3 sm:pb-4 md:pb-6 px-2 sm:px-3 md:px-4">
+              <section className="pt-0 sm:pt-1 pb-3 sm:pb-4 md:pb-6 px-2 sm:px-3 md:px-4">
                 <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
                   <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
                     <div
@@ -257,7 +257,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     overflow: hidden;
                     text-overflow: ellipsis;
                     line-height: 1;
-                    font-size: 24px;
+                    font-size: 26px;
                     font-weight: 600;
                   }
 
@@ -273,7 +273,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       padding: 0 12px;
                     }
                     .title-text {
-                      font-size: 18px;
+                      font-size: 20px;
                     }
                   }
                 `}</style>

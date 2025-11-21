@@ -62,16 +62,26 @@ const HeroBanner = ({
     }
 
     const { cropData } = image;
-    
-    // On mobile, apply a slight adjustment to ensure better visibility
-    // This prevents overly tight crops on smaller screens
-    const mobileAdjustment = isMobile ? 1.1 : 1;
-    
-    // Calculate background size and position based on crop data
-    // This creates a "window" effect showing only the cropped portion
+
+    // Conservative mobile handling:
+    // On small viewports the admin-supplied crop can be too tight and cause
+    // the hero to appear "incomplete". To preserve visual integrity on mobile
+    // we fallback to a safe `cover`/`center` behavior instead of applying a
+    // strict pixel-based crop. This preserves desktop crop behavior while
+    // preventing broken mobile rendering.
+    if (isMobile) {
+      return {
+        backgroundImage: `url(${image.url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      };
+    }
+
+    // Desktop: apply crop using provided cropData. Keep the existing logic
+    // for backwards compatibility; mobile uses safe fallback above.
     return {
       backgroundImage: `url(${image.url})`,
-      backgroundSize: `${((100 / cropData.aspectRatio) * (cropData.width / cropData.height)) * mobileAdjustment}%`,
+      backgroundSize: `${((100 / cropData.aspectRatio) * (cropData.width / cropData.height))}%`,
       backgroundPosition: `${-cropData.x}px ${-cropData.y}px`,
       backgroundRepeat: 'no-repeat',
     };
@@ -275,9 +285,9 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[#FF8C00] hover:bg-[#FF7700] text-white px-4 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim font-semibold shadow-md text-sm sm:text-base flex-shrink-0"
+                  className="bg-[#FF6B00] hover:bg-[#FF5A00] text-white px-4 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim font-semibold shadow-md text-sm sm:text-base flex-shrink-0"
                 >
-                  Search
+                  <span className="font-bold">Search</span>
                 </Button>
               </div>
             </div>
