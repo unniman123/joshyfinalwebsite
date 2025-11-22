@@ -9,6 +9,7 @@ import navTaxonomy from "@/data/navTaxonomy";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openMobileCategory, setOpenMobileCategory] = useState<string | null>(null);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -199,15 +200,43 @@ const Header = () => {
                 <div className="flex flex-col space-y-2">
                   {navigationItems.map((item) => {
                     return item.category ? (
-                    <details key={item.name} className="group">
-                        <summary className="flex items-center justify-between text-foreground hover:bg-gray-50 transition-smooth font-semibold py-3 px-3 list-none cursor-pointer rounded-lg min-h-[48px]" style={{ fontFamily: "'Sora', sans-serif" }}>
-                          <span className="text-base">{item.name}</span>
-                          <ChevronDown className="h-5 w-5 transition-transform duration-200 group-open:rotate-180 flex-shrink-0" />
-                        </summary>
+                      // Mobile accordion with "first tap opens, second tap navigates" behavior:
+                      <div key={item.name} className="group">
+                        <div className="flex items-center justify-between text-foreground hover:bg-gray-50 transition-smooth font-semibold py-3 px-3 rounded-lg min-h-[48px]" style={{ fontFamily: "'Sora', sans-serif" }}>
+                          {/* Parent link: first tap opens submenu (if closed), second tap navigates */}
+                          <Link
+                            to={item.href}
+                            className="flex-1"
+                            onClick={(e) => {
+                              if (openMobileCategory !== item.name) {
+                                // First tap: open submenu instead of navigating
+                                e.preventDefault();
+                                setOpenMobileCategory(item.name);
+                              } else {
+                                // Second tap: navigate and close mobile menu
+                                setIsMenuOpen(false);
+                              }
+                            }}
+                          >
+                            <span className="text-base">{item.name}</span>
+                          </Link>
+                          <button
+                            type="button"
+                            aria-label={`Toggle ${item.name} submenu`}
+                            className="ml-3 p-2 rounded-md hover:bg-gray-100 min-w-[40px] flex items-center justify-center"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setOpenMobileCategory(openMobileCategory === item.name ? null : item.name);
+                            }}
+                          >
+                            <ChevronDown className={`h-5 w-5 transition-transform duration-200 ${openMobileCategory === item.name ? 'rotate-180' : ''}`} />
+                          </button>
+                        </div>
 
+                        {openMobileCategory === item.name && (
                         <div className="pl-4 pr-2 pb-2 pt-1 space-y-1">
                           {/* Render subcategory items from navTaxonomy */}
-                          {navTaxonomy[item.category.toLowerCase()] && 
+                          {navTaxonomy[item.category.toLowerCase()] &&
                             navTaxonomy[item.category.toLowerCase()].map((sub) => (
                               <Link
                                 key={sub.slug}
@@ -219,7 +248,7 @@ const Header = () => {
                               </Link>
                             ))
                           }
-                          
+
                           {/* View all link */}
                           <Link
                             to={item.href}
@@ -229,7 +258,8 @@ const Header = () => {
                             View all {item.name}
                           </Link>
                         </div>
-                      </details>
+                        )}
+                      </div>
                     ) : (
                       <div key={item.name}>
                         {item.name === 'Contact Us' && (
