@@ -24,7 +24,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
     return (
       <div className="w-full">
         {/* Tour Title Section - Center Aligned */}
-        <section className="pt-4 sm:pt-6 md:pt-12 lg:pt-16 pb-2 sm:pb-2 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4">
+        <section className="pt-8 sm:pt-6 md:pt-12 lg:pt-16 pb-2 sm:pb-2 md:py-3 lg:py-4 px-2 sm:px-3 md:px-4">
           <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
             {/* Title in styled box with red section and white square */}
             <div className="flex items-center justify-center md:justify-start">
