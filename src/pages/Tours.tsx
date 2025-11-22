@@ -183,14 +183,14 @@ const Tours = () => {
                   />
                   <Button
                     type="submit"
-                    className="hidden sm:block absolute right-2 top-1/2 transform -translate-y-1/2 h-10 sm:h-12 px-4 sm:px-6 bg-[#FF6B00] hover:bg-[#FF5A00] text-white text-sm sm:text-base"
+                    className="hidden sm:block absolute right-2 top-1/2 transform -translate-y-1/2 h-10 sm:h-12 px-4 sm:px-6 bg-[#CC5500] hover:bg-[#B24400] text-white text-sm sm:text-base"
                   >
                     <span className="font-bold">Search</span>
                   </Button>
                 </div>
                 <Button
                   type="submit"
-                  className="sm:hidden w-full h-11 bg-[#FF6B00] hover:bg-[#FF5A00] text-white font-semibold"
+                  className="sm:hidden w-full h-11 bg-[#CC5500] hover:bg-[#B24400] text-white font-semibold"
                 >
                   <span className="font-bold">Search</span>
                 </Button>
