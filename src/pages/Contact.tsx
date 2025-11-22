@@ -50,7 +50,7 @@ const Contact = () => {
       <Header />
 
       {/* Simplified Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-8 sm:py-10 md:py-12 lg:py-16">
+      <section className="bg-gradient-to-b from-primary/5 to-background py-2 sm:py-10 md:py-12 lg:py-16">
         <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
             Contact Us
@@ -59,7 +59,7 @@ const Contact = () => {
       </section>
 
       {/* Two-Column Layout Section */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20">
+      <section className="py-2 sm:py-12 md:py-16 lg:py-20">
         <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
             {/* Left Column: Contact Actions */}
