@@ -3,19 +3,33 @@ import { Separator } from "@/components/ui/separator";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { getSocialIconClass, getSocialPlatformConfig } from "@/lib/utils/socialUtils";
 const Footer = () => {
-  const quickLinks = [{
-    name: "Kerala Travels",
-    href: "/tours?category=kerala"
-  }, {
-    name: "Discover India",
-    href: "/tours?category=discover-india"
-  }, {
-    name: "Global Holidays",
-    href: "/tours?category=global"
-  }, {
-    name: "Ayurveda",
-    href: "www.PanchakarmaIndia.com"
-  }];
+  const quickLinks = [
+    {
+      name: "Weekends in Kerala",
+      // Weekends is a subcategory under the Kerala (kerala) parent category
+      href: "/tours?category=kerala&subcategory=weekends-in-kerala"
+    },
+    {
+      name: "South India",
+      // subcategory of Discover India
+      href: "/tours?category=discover-india&subcategory=south-india"
+    },
+    {
+      name: "Lakshadweep",
+      // subcategory of Discover India
+      href: "/tours?category=discover-india&subcategory=lakshadweep"
+    },
+    {
+      name: "Golden Triangle",
+      // subcategory of Discover India
+      href: "/tours?category=discover-india&subcategory=golden-triangle"
+    },
+    {
+      name: "Ayurveda",
+      // preserve existing external Ayurveda link
+      href: "www.PanchakarmaIndia.com"
+    }
+  ];
   const supportLinks = [{
     name: "Contact Us",
     href: "/contact"
