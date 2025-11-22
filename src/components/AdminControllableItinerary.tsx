@@ -61,7 +61,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
           <div className="mb-0">
             <h2
               className="text-lg md:text-xl font-bold leading-none text-foreground"
-              style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', textTransform: 'uppercase' }}
+            style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', textTransform: 'none' }}
             >
               Itinerary
             </h2>
