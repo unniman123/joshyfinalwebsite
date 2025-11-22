@@ -146,9 +146,9 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                 <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
                   {/* 30-70 Grid Layout - Images with Itinerary */}
                   <div className="grid grid-cols-1 lg:grid-cols-10 gap-3 sm:gap-4 md:gap-6 lg:gap-10">
-                    
-                    {/* Left side - Image Gallery (30%) */}
-                    <div className="order-2 lg:order-1 lg:col-span-3">
+
+                    {/* Images above itinerary on mobile, left side on desktop */}
+                    <div className="order-1 lg:order-1 lg:col-span-3">
                       {hasStructuredImages && (
                         <AdminControllableImageGallery
                           images={tour.images}
@@ -158,8 +158,8 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       )}
                     </div>
 
-                    {/* Right side - Itinerary Content (70%) */}
-                    <div className="order-1 lg:order-2 lg:col-span-7">
+                    {/* Itinerary below images on mobile, right side on desktop */}
+                    <div className="order-2 lg:order-2 lg:col-span-7">
                       {hasStructuredItinerary ? (
                         <AdminControllableItinerary
                           itineraryDays={tour.itineraryDays}

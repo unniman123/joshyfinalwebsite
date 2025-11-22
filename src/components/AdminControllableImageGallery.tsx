@@ -157,7 +157,7 @@ const AdminControllableImageGallery = ({
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              
+
               {sectionImages.length > 1 && (
                 <>
                   <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 h-8 w-8 bg-black/50 border-white/20 text-white hover:bg-black/70" />
@@ -165,7 +165,7 @@ const AdminControllableImageGallery = ({
                 </>
               )}
             </Carousel>
-            
+
             {/* Image counter for mobile */}
             {sectionImages.length > 1 && (
               <div className="text-center mt-2">
@@ -177,7 +177,7 @@ const AdminControllableImageGallery = ({
           </div>
         );
       }
-      
+
       // Desktop: Vertical stack (original behavior)
       return (
         <div className="space-y-4">
@@ -186,7 +186,7 @@ const AdminControllableImageGallery = ({
               <img
                 src={image.url}
                 alt={image.alt}
-                className="w-full h-40 md:h-48 lg:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-32 sm:h-40 md:h-48 lg:h-56 object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
                 onClick={() => handleImageClick(index)}
               />
