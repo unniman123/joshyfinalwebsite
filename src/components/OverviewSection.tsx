@@ -80,7 +80,7 @@ const OverviewSection = ({ tour }: OverviewSectionProps) => {
 
             {/* Full overview content with progressive disclosure */}
             <div className="prose prose-lg max-w-none">
-              <div className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify">
+              <div className="text-base md:text-lg text-muted-foreground leading-relaxed text-justify px-4">
                 {collapsedContent.split('\n\n').map((paragraph, idx) => (
                   <p key={idx} className="mb-3 last:mb-0">
                     {paragraph.trim()}
