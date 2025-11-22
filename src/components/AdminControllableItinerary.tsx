@@ -78,7 +78,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
               </h3>
               {day.description && (
                 <div 
-                  className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed"
+                  className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed [&_b]:text-inherit [&_strong]:text-inherit"
                   dangerouslySetInnerHTML={{ __html: day.description }}
                 />
               )}

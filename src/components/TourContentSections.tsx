@@ -122,7 +122,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
             return (
               <section className="pt-0 sm:pt-1 pb-3 sm:pb-4 md:pb-6 px-2 sm:px-3 md:px-4">
                 <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
-                  <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none">
+                  <div className="prose prose-sm sm:prose-base md:prose-lg max-w-none prose-strong:text-inherit [&_b]:text-inherit">
                     <div
                       className="text-sm text-muted-foreground text-justify"
                       style={{ fontSize: '0.875rem', lineHeight: '1.4' }}
@@ -172,7 +172,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                             {itinerarySection.title}
                           </h2>
                           <div
-                            className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify"
+                            className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify [&_b]:text-inherit [&_strong]:text-inherit"
                             dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
                           />
                         </>
