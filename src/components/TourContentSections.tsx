@@ -47,7 +47,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   }
 
                   .title-red-section {
-                    background: #C41E3A;
+                    background: #287788;
                     width: 60px;
                     height: 100%;
                     display: flex;
@@ -228,7 +228,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   }
 
                   .title-red-section {
-                    background: #C41E3A;
+                    background: #287788;
                     width: 60px;
                     height: 100%;
                     display: flex;
