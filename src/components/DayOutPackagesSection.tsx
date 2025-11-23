@@ -320,7 +320,6 @@ const DayOutPackagesSection = ({
                             decoding="async"
                             srcSet={`${currentPackage.image} 1200w, ${currentPackage.image} 800w, ${currentPackage.image} 480w`}
                           />
-                          <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
                         </div>
                       </div>
 

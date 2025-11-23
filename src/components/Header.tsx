@@ -56,7 +56,7 @@ const Header = () => {
 
   return (
     <header
-      className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white text-foreground shadow-md' : 'bg-black/30 text-white'}` : 'w-full sticky top-0 bg-white text-foreground shadow-md z-40'}
+      className={isHome ? `w-full fixed top-0 left-0 z-40 transition-colors duration-200 ${isScrolled ? 'bg-white text-foreground shadow-md' : 'bg-transparent text-white'}` : 'w-full sticky top-0 bg-white text-foreground shadow-md z-40'}
       style={{}}
       data-testid="site-header"
     >

@@ -240,8 +240,6 @@ const HeroBanner = ({
               role="img"
               aria-label={image.alt}
             >
-              {/* scrim overlay applied as pseudo overlay div to ensure readable text */}
-              <div className="absolute inset-0" style={{ background: 'var(--image-scrim)' }} />
             </div>
           </div>
         );
