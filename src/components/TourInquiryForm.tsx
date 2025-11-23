@@ -102,18 +102,18 @@ const TourEnquiryForm = ({
       <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full translate-x-16 -translate-y-16"></div>
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-red-600/10 rounded-full -translate-x-12 translate-y-12"></div>
 
-      <Card className="border shadow-none transition-all duration-300 w-full rounded-xl relative z-10" style={{ borderColor: 'hsl(0 0% 85% / 0.3)', background: 'linear-gradient(180deg, hsl(0 0% 90% / 0.15), hsl(0 0% 85% / 0.08))' }}>
-        <CardHeader className="pb-1">
-          <CardTitle className="text-sm md:text-base font-bold text-black flex items-center gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
-            <User className="h-3 w-3 text-black/60" />
+      <Card className="border shadow-none transition-all duration-300 w-full max-w-md mx-auto lg:max-w-xs rounded-xl relative z-10" style={{ borderColor: 'hsl(0 0% 85% / 0.3)', background: 'linear-gradient(180deg, hsl(0 0% 90% / 0.15), hsl(0 0% 85% / 0.08))' }}>
+        <CardHeader className="pb-2 sm:pb-1">
+          <CardTitle className="text-base sm:text-sm md:text-base font-bold text-black flex items-center gap-1.5 sm:gap-1" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <User className="h-4 w-4 sm:h-3 sm:w-3 text-black/60" />
             {title}
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-2 py-2" style={{ backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
-        <form onSubmit={handleFormSubmit} className="space-y-1.5">
+        <CardContent className="px-3 py-3 sm:px-2 sm:py-2" style={{ backdropFilter: 'blur(4px)', boxShadow: '0 6px 18px rgba(0,0,0,0.08)' }}>
+        <form onSubmit={handleFormSubmit} className="space-y-2 sm:space-y-1.5">
           {/* Name Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-name`} className="text-[12px] text-black">
+            <Label htmlFor={`${formIdPrefix}-name`} className="text-sm sm:text-[12px] text-black">
               Name *
             </Label>
             <div className="relative">
@@ -124,7 +124,7 @@ const TourEnquiryForm = ({
                 placeholder="Enter your name"
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
-                className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
+                className="pl-8 sm:pl-6 h-10 sm:h-8 text-sm sm:text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                 required
               />
             </div>
@@ -132,7 +132,7 @@ const TourEnquiryForm = ({
 
           {/* Mobile No (WhatsApp) Field */}
           <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-[12px] text-black">
+            <Label htmlFor={`${formIdPrefix}-mobile`} className="text-sm sm:text-[12px] text-black">
               Mobile No (WhatsApp) *
             </Label>
             <div className="relative">
@@ -152,7 +152,7 @@ const TourEnquiryForm = ({
           {/* Message Field - conditionally rendered */}
           {showMessage && (
             <div className="space-y-0.5">
-              <Label htmlFor={`${formIdPrefix}-message`} className="text-[12px] text-black">
+              <Label htmlFor={`${formIdPrefix}-message`} className="text-sm sm:text-[12px] text-black">
                 Message *
               </Label>
               <div className="relative">
@@ -161,7 +161,7 @@ const TourEnquiryForm = ({
                   placeholder={messagePlaceholder}
                   value={formData.message || ""}
                   onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="min-h-[44px] text-[12px] resize-none bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
+                  className="min-h-[44px] text-sm sm:text-[12px] resize-none bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                   rows={2}
                   required
                 />
@@ -172,7 +172,7 @@ const TourEnquiryForm = ({
           {/* Date Field - conditionally rendered */}
           {showDate && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-date`} className="text-[12px] text-black">
+            <Label htmlFor={`${formIdPrefix}-date`} className="text-sm sm:text-[12px] text-black">
                 Preferred Date *
               </Label>
               <div className="relative">
@@ -191,7 +191,7 @@ const TourEnquiryForm = ({
           {/* Destination Field - conditionally rendered */}
           {showDestination && (
             <div className="space-y-0.5">
-            <Label htmlFor={`${formIdPrefix}-destination`} className="text-[12px] text-black">
+            <Label htmlFor={`${formIdPrefix}-destination`} className="text-sm sm:text-[12px] text-black">
                 Destination *
               </Label>
               <div className="relative">
@@ -212,7 +212,7 @@ const TourEnquiryForm = ({
           <div className="pt-1">
             <Button
               type="submit"
-              className="w-full hover:shadow-brand transition-all duration-300 h-9 text-[12px] font-bold"
+              className="w-full hover:shadow-brand transition-all duration-300 h-11 sm:h-9 text-sm sm:text-[12px] font-bold"
               style={{ background: '#008000', color: '#FFFFFF' }}
               disabled={isSubmitting}
             >

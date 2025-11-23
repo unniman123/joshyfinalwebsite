@@ -257,20 +257,15 @@ const TourOffersSection = ({
 
             {/* Right side - Enquiry form (30% width, outside Blue Greeny panel) */}
             {showEnquiryForm && (
-              <div className="lg:w-[30%] mt-4 sm:mt-6 lg:mt-10 lg:mr-6 lg:ml-6">
-                <div className="w-full max-w-md mx-auto lg:max-w-none">
-                  {/* Form with light theme - consistent across all devices */}
-                  <div className="bg-white text-foreground rounded-lg lg:rounded-xl p-4 sm:p-5 lg:p-4 shadow-sm lg:shadow-2xl">
-                    <TourEnquiryForm
-                      title={formConfig.title}
-                      formType="tour"
-                      showMessage={formConfig.fields.showMessage}
-                      showDate={formConfig.fields.showDate}
-                      showDestination={formConfig.fields.showDestination}
-                      messagePlaceholder={formConfig.fields.messagePlaceholder}
-                    />
-                  </div>
-                </div>
+              <div className="lg:w-[30%] mt-6 sm:mt-8 lg:mt-0">
+                <TourEnquiryForm
+                  title={formConfig.title}
+                  formType="tour"
+                  showMessage={formConfig.fields.showMessage}
+                  showDate={formConfig.fields.showDate}
+                  showDestination={formConfig.fields.showDestination}
+                  messagePlaceholder={formConfig.fields.messagePlaceholder}
+                />
               </div>
             )}
         </div>
