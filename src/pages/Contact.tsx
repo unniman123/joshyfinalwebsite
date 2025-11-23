@@ -11,6 +11,9 @@ const Contact = () => {
   const [contactInfo, setContactInfo] = useState(null);
 
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     // TODO: Fetch contactInfo via getContactInfo()
     const fetchContactInfo = async () => {
       try {
@@ -50,8 +53,8 @@ const Contact = () => {
       <Header />
 
       {/* Simplified Hero Section */}
-      <section className="bg-gradient-to-b from-primary/5 to-background py-2 sm:py-10 md:py-12 lg:py-16">
-        <div className="container mx-auto px-3 sm:px-4 max-w-6xl">
+      <section className="bg-gradient-to-b from-primary/5 to-background py-6 sm:py-10 md:py-12 lg:py-16">
+        <div className="container mx-auto px-3 sm:px-4 max-w-6xl mb-6 sm:mb-8 md:mb-12">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-center" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
             Contact Us
           </h1>

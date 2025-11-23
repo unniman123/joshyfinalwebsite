@@ -163,7 +163,7 @@ const ContactForm = ({
         </div>
 
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfKidsAndAge" className="text-sm sm:text-base">Kids & age (If any)</Label>
+          <Label htmlFor="numberOfKidsAndAge" className="text-sm sm:text-base">No of kids & age (If any)</Label>
           <Input id="numberOfKidsAndAge" name="numberOfKidsAndAge" value={formData.numberOfKidsAndAge} onChange={handleChange} placeholder="e.g., 2 kids (5, 8 yrs)" className="h-10 sm:h-11 text-sm sm:text-base" />
         </div>
       </div>
@@ -175,7 +175,7 @@ const ContactForm = ({
         </div>
 
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfDaysTourNeeded" className="text-sm sm:text-base">Days needed *</Label>
+          <Label htmlFor="numberOfDaysTourNeeded" className="text-sm sm:text-base">No of Days Tour *</Label>
           <Input id="numberOfDaysTourNeeded" name="numberOfDaysTourNeeded" type="number" min="1" value={formData.numberOfDaysTourNeeded} onChange={handleChange} placeholder="e.g., 7" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
       </div>

@@ -50,14 +50,14 @@ const Footer = () => {
     // If already on home page, scroll to the Namaste heading
     if (window.location.pathname === "/") {
       const el = document.getElementById("about-heading");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     // Otherwise navigate to home, then scroll after a short delay
     navigate("/");
     setTimeout(() => {
       const el = document.getElementById("about-heading");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 150);
   };
 
