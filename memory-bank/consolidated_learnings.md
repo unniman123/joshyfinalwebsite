@@ -44,4 +44,19 @@
 - **Design tokens first**: Any UI change should update tokens first (in `src/index.css`), then components. This ensures consistent, site-wide theming and easier A/B experimentation.
 
 - **Next immediate work**: Standardize `--accent` to match the orange CTA in screenshots, add `--image-scrim`, and create `components/ui/button.tsx` variants if missing.
+- 
+## Supabase Wiring — Key Mappings & Rollout Pattern
+
+- **Views to Frontend Models:**
+  - `vw_published_tours` → listing needs: `id`, `title`, `slug`, `short_description`, `featured_image_url`, `price`, `duration_days`, `display_order`, `is_featured`, `is_day_out_package`, `rating`, `review_count`, `location`, `category_name`, `category_slug`, `images` (JSON array with `image_url`, `alt_text`, `caption`, `display_order`, `section`).
+  - `vw_tour_by_slug` → detail needs: above plus `sections` (JSONB array mirroring `tour_sections`), `overview_content` (pre-selected HTML), `itinerary` (JSON), `gallery` images.
+  - Inquiry tables (`public.inquiries`, `public.day_out_inquiry`, `public.contact_inquiry`) expect anon inserts with required fields noted in docs; frontend must map form inputs directly to columns and capture optional metadata (e.g., `tour_id`).
+
+- **Rollout Sequence (reuse for similar projects):**
+  1. Configure env (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`); verify via new `supabaseClient` helper.
+  2. Replace mock fetchers with Supabase queries (listing, detail, category filters) ensuring data transformations align with existing component props; seed and publish at least one tour via admin before smoke tests to validate wiring.
+  3. Integrate HTML sanitization (e.g., DOMPurify) before injecting `overview_content`.
+  4. Update inquiry forms to call `supabase.from(...).insert(...)` with client-side validation and error handling aligned to RLS allowances.
+  5. Execute staging verification: content fetch, detail view, inquiry submission, RLS denial on restricted tables; record SQL outputs for evidence.
+  6. Promote to production after smoke tests; document edits in `Admin_Manual` / `database document`.
 
