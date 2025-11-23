@@ -112,7 +112,8 @@ const TopDestinations = () => {
                   />
                   <Button
                     type="submit"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-12 px-6 bg-[#CC5500] hover:bg-[#B24400] text-white"
+                    className="absolute right-2 top-0 bottom-0 my-auto h-12 px-6 bg-[#EAB308] hover:bg-[#CF9A06] text-black hover:scale-100 hover:translate-y-0 transition-none"
+                    style={{ transform: 'none' }}
                   >
                     <span className="font-bold">Search</span>
                   </Button>

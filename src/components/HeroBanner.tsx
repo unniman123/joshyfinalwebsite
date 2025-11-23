@@ -283,7 +283,7 @@ const HeroBanner = ({
                 <Button
                   type="submit"
                   variant="cta"
-                  className="bg-[#CC5500] hover:bg-[#B24400] text-white px-4 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim font-semibold shadow-md text-sm sm:text-base flex-shrink-0"
+                  className="bg-[#EAB308] hover:bg-[#CF9A06] text-black px-4 sm:px-6 h-10 sm:h-11 rounded-lg btn-subtle-anim font-semibold shadow-md text-sm sm:text-base flex-shrink-0"
                 >
                   <span className="font-bold">Search</span>
                 </Button>
