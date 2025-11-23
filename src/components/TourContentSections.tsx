@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Tour } from "@/lib/api";
 import OverviewSection from "@/components/OverviewSection";
 import ItinerarySection from "@/components/ItinerarySection";
@@ -15,6 +16,16 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
   const hasStructuredItinerary = tour.itineraryDays && tour.itineraryDays.length > 0;
   const hasStructuredImages = tour.images && tour.images.length > 0;
 
+  // Mobile title wrapping logic - detect long titles for mobile
+  const [isTitleLong, setIsTitleLong] = useState(false);
+
+  useEffect(() => {
+    // Check if title is long enough to need wrapping on mobile
+    // Threshold: titles longer than 25 characters on mobile screens
+    const TITLE_LENGTH_THRESHOLD = 25;
+    setIsTitleLong(tour.title.length > TITLE_LENGTH_THRESHOLD);
+  }, [tour.title]);
+
   if (hasStructuredData || hasStructuredItinerary || hasStructuredImages) {
     // Render admin-controlled sections (overview no longer requires images)
     const visibleSections = tour.sections
@@ -28,7 +39,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
           <div className="container mx-auto max-w-7xl px-2 sm:px-3 md:px-4">
             {/* Title in styled box with red section and white square */}
             <div className="flex items-center justify-center md:justify-start">
-              <div className="relative inline-flex items-center w-full max-w-[95%] sm:max-w-none sm:w-auto">
+              <div className="relative inline-flex items-center sm:w-auto">
                 <style>{`
                   /* Compact title box like provided design */
                   .title-box {
@@ -83,9 +94,45 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     font-weight: 600;
                   }
 
+                  /* Mobile title wrapping for long titles */
+                  @media (max-width: 640px) {
+                    .title-box-long {
+                      height: auto !important;
+                      min-height: 48px !important;
+                      padding: 8px 0 !important;
+                    }
+
+                    .title-red-section-long {
+                      height: auto !important;
+                      min-height: 48px !important;
+                    }
+
+                    .title-white-section-long {
+                      height: auto !important;
+                      min-height: 40px !important;
+                      display: flex !important;
+                      align-items: flex-start !important;
+                      padding-top: 4px !important;
+                    }
+
+                    .title-text-long {
+                      white-space: normal !important;
+                      overflow: visible !important;
+                      text-overflow: clip !important;
+                      line-height: 1.2 !important;
+                      font-size: 18px !important;
+                      word-wrap: break-word;
+                      hyphens: auto;
+                      margin: 0 !important;
+                      padding: 0 !important;
+                    }
+                  }
+
                   @media (max-width: 640px) {
                     .title-box {
-                      min-width: 240px;
+                      min-width: 200px;
+                      width: 95vw;
+                      max-width: 300px;
                       height: 48px;
                     }
                     .title-red-section {
@@ -100,13 +147,13 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   }
                 `}</style>
                 
-                <div className="title-box">
+                <div className={`title-box ${isTitleLong ? 'title-box-long' : ''}`}>
                   {/* Red Section (15%) */}
-                  <div className="title-red-section"></div>
-                  
+                  <div className={`title-red-section ${isTitleLong ? 'title-red-section-long' : ''}`}></div>
+
                   {/* White Section with Title (85%) */}
-                  <div className="title-white-section">
-                    <h1 className="title-text" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
+                  <div className={`title-white-section ${isTitleLong ? 'title-white-section-long' : ''}`}>
+                    <h1 className={`title-text ${isTitleLong ? 'title-text-long' : ''}`} style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}>
                       {tour.title}
                     </h1>
                   </div>
@@ -279,16 +326,48 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     .title-text {
                       font-size: 20px;
                     }
+
+                    /* Mobile title wrapping for long titles - fallback section */
+                    .title-box-long {
+                      height: auto !important;
+                      min-height: 48px !important;
+                      padding: 8px 0 !important;
+                    }
+
+                    .title-red-section-long {
+                      height: auto !important;
+                      min-height: 48px !important;
+                    }
+
+                    .title-white-section-long {
+                      height: auto !important;
+                      min-height: 40px !important;
+                      display: flex !important;
+                      align-items: flex-start !important;
+                      padding-top: 4px !important;
+                    }
+
+                    .title-text-long {
+                      white-space: normal !important;
+                      overflow: visible !important;
+                      text-overflow: clip !important;
+                      line-height: 1.2 !important;
+                      font-size: 18px !important;
+                      word-wrap: break-word;
+                      hyphens: auto;
+                      margin: 0 !important;
+                      padding: 0 !important;
+                    }
                   }
                 `}</style>
                 
-                <div className="title-box">
+                <div className={`title-box ${isTitleLong ? 'title-box-long' : ''}`}>
                   {/* Red Section (15%) */}
-                  <div className="title-red-section"></div>
-                  
+                  <div className={`title-red-section ${isTitleLong ? 'title-red-section-long' : ''}`}></div>
+
                   {/* White Section with Title (85%) */}
-                  <div className="title-white-section">
-                    <h1 className="title-text">
+                  <div className={`title-white-section ${isTitleLong ? 'title-white-section-long' : ''}`}>
+                    <h1 className={`title-text ${isTitleLong ? 'title-text-long' : ''}`}>
                       {tour.title}
                     </h1>
                   </div>
