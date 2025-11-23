@@ -24,7 +24,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
               <MapPin className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
             <div className="flex-1">
-              <h3 className="text-sm sm:text-base font-normal mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Office</h3>
+              <h3 className="text-sm sm:text-base font-bold mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Office</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm leading-relaxed" style={{ fontFamily: "'Sora', sans-serif" }}>
                 {info.address || "123 Travel Street, Tourism District, India"}
               </p>
@@ -42,7 +42,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
               <Phone className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
             <div className="flex-1">
-              <h3 className="text-sm sm:text-base font-normal mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Call Us</h3>
+              <h3 className="text-sm sm:text-base font-bold mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Call Us</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm group-hover:text-gray-700 transition-colors leading-relaxed" style={{ fontFamily: "'Sora', sans-serif" }}>
                 {info.phone || "+91-95395-07516, +91-471-2488880"}
               </p>
@@ -60,7 +60,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
               <Mail className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 text-gray-600" />
             </div>
             <div className="flex-1">
-              <h3 className="text-sm sm:text-base font-normal mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Email us</h3>
+              <h3 className="text-sm sm:text-base font-bold mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Email us</h3>
               <p className="text-muted-foreground text-sm sm:text-sm md:text-sm group-hover:text-gray-700 transition-colors leading-relaxed break-words" style={{ fontFamily: "'Sora', sans-serif" }}>
                 {info.email || "info@tourcompany.com, flabour@gmail.com"}
               </p>
@@ -93,7 +93,7 @@ const ContactInfo = ({ info }: ContactInfoProps) => {
                 <WhatsAppIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6" />
               </div>
               <div className="flex-1">
-                <h3 className="text-sm sm:text-base font-normal mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Whatsapp</h3>
+                <h3 className="text-sm sm:text-base font-bold mb-1" style={{ fontFamily: 'Inter, sans-serif' }}>Whatsapp</h3>
                 <p className="text-muted-foreground text-sm sm:text-sm md:text-sm transition-colors group-hover:opacity-80 leading-relaxed" style={{ fontFamily: "'Sora', sans-serif" }}>
                   {info.whatsapp || "Enter your whatsapp number"}
                 </p>
