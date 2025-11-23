@@ -69,7 +69,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
         </div>
 
         {/* Single content box with paragraphed content */}
-      <div className="bg-white rounded-lg shadow-warm border border-border pt-6 pb-6 px-4 md:pt-10 md:pb-10 md:px-12 lg:px-16">
+      <div className="bg-white rounded-lg shadow-warm border border-border pt-6 pb-6 px-4 md:pt-10 md:pb-10 md:px-12 lg:px-16 overflow-wrap-anywhere">
         <div className="max-w-none">
           {activeDays.map((day, index) => (
             <div key={day.id} className={`${index > 0 ? 'mt-3 md:mt-4' : ''}`}>
@@ -77,8 +77,8 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
                 Day {day.dayNumber}: {day.title}
               </h3>
               {day.description && (
-                <div 
-                  className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed [&_b]:text-inherit [&_strong]:text-inherit"
+                <div
+                  className="text-muted-foreground text-sm md:text-base text-justify !m-0 !p-0 leading-relaxed [&_b]:text-inherit [&_strong]:text-inherit break-words overflow-wrap-anywhere hyphens-auto"
                   dangerouslySetInnerHTML={{ __html: day.description }}
                 />
               )}
