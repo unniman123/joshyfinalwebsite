@@ -11,6 +11,9 @@ const Contact = () => {
   const [contactInfo, setContactInfo] = useState(null);
 
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     // TODO: Fetch contactInfo via getContactInfo()
     const fetchContactInfo = async () => {
       try {
