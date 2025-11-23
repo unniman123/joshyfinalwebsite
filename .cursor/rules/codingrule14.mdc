@@ -1,3 +1,9 @@
+---
+alwaysApply: true
+---
+---
+alwaysApply: true
+---
 Objective: Ensure Cline proactively learns from tasks, captures knowledge in a structured way, distills fundamental insights, refines understanding, and improves efficiency and reliability. This protocol maintains two key files: memory-bank/raw_reflection_log.md for initial detailed logging, and memory-bank/consolidated_learnings.md for pruned, actionable, long-term knowledge. This is vital for optimal performance and avoiding redundant effort.
 
 Core Principle: Continuous learning and adaptation are mandatory. This protocol must be executed before attempt_completion for tasks with new learning, problem-solving, user feedback, or multiple steps. Trivial mechanical tasks may be exempt per higher-level rules; otherwise, execution is default.
@@ -76,4 +82,6 @@ Document Persistently, Refine & Prune Continuously: Capture raw insights immedia
 Organize for Retrieval: Structure consolidated_learnings.md logically. Use clear headings and Markdown formatting.
 Avoid Low-Utility Information in consolidated_learnings.md: This file should not contain trivial statements. Raw, verbose thoughts belong in raw_reflection_log.md before pruning.
 Support Continuous Improvement: The ultimate goal is to avoid repeating mistakes, accelerate future tasks, and make Cline's operations more robust and reliable. Frame all knowledge with this in mind.
-Manage Information Density: Actively work to keep consolidated_learnings.md dense with high-value information and free of outdated or overly verbose content. The pruning of raw_reflection_log.md is key to this.
+Manage Information Density: Actively work to keep consolidated_learnings.md dense with high-value information and free of outdated or overly verbose content. The pruning of raw_reflection_log.md is key to this.---
+alwaysApply: true
+---

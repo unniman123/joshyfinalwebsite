@@ -49,13 +49,15 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   .title-red-section {
                     background: #287788;
                     width: 60px;
+                    min-height: 60px;
                     height: 100%;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     justify-content: center;
                     flex-shrink: 0;
                     border-top-left-radius: 8px;
                     border-bottom-left-radius: 8px;
+                    padding-top: 8px;
                   }
 
                   .title-white-section {
@@ -147,7 +149,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   {/* 30-70 Grid Layout - Images with Itinerary */}
                   <div className="grid grid-cols-1 lg:grid-cols-10 gap-3 sm:gap-4 md:gap-6 lg:gap-10">
 
-                    {/* Images above itinerary on mobile, left side on desktop */}
+                    {/* Images column - stacks above on mobile, left side on desktop */}
                     <div className="order-1 lg:order-1 lg:col-span-3">
                       {hasStructuredImages && (
                         <AdminControllableImageGallery
@@ -158,7 +160,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                       )}
                     </div>
 
-                    {/* Itinerary below images on mobile, right side on desktop */}
+                    {/* Itinerary column - stacks below on mobile, right side on desktop */}
                     <div className="order-2 lg:order-2 lg:col-span-7">
                       {hasStructuredItinerary ? (
                         <AdminControllableItinerary
@@ -171,7 +173,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                             {itinerarySection.title}
                           </h2>
                           <div
-                            className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify [&_b]:text-inherit [&_strong]:text-inherit"
+                            className="text-sm sm:text-base text-muted-foreground leading-relaxed text-justify [&_b]:text-inherit [&_strong]:text-inherit break-words overflow-wrap-anywhere hyphens-auto"
                             dangerouslySetInnerHTML={{ __html: itinerarySection.content || '' }}
                           />
                         </>
@@ -229,13 +231,15 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   .title-red-section {
                     background: #287788;
                     width: 60px;
+                    min-height: 60px;
                     height: 100%;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     justify-content: center;
                     flex-shrink: 0;
                     border-top-left-radius: 8px;
                     border-bottom-left-radius: 8px;
+                    padding-top: 8px;
                   }
 
                   .title-white-section {
