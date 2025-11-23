@@ -425,8 +425,9 @@ export async function getTourCategories(): Promise<string[]> {
 }
 
 /**
- * Unified search across tours
- * TODO: Expand to search destinations when that table is added
+ * Unified search across tours and destinations
+ * NOTE: Tours are fetched from database, destinations use mock data until destinations table is created
+ * TODO: Replace mock destination search with database query when destinations table is implemented
  */
 export async function unifiedSearch(query: string): Promise<any> {
   if (!query || query.trim().length === 0) {
@@ -443,6 +444,7 @@ export async function unifiedSearch(query: string): Promise<any> {
   try {
     const searchTerm = query.toLowerCase().trim();
 
+    // Search tours from database
     const { data, error } = await supabase
       .from('vw_published_tours')
       .select('*')
@@ -465,13 +467,33 @@ export async function unifiedSearch(query: string): Promise<any> {
 
     const tours = (data || []).map(transformTourSummary);
 
+    // Search mock destinations (temporary solution until destinations table is created)
+    // Import the mock destinations data from api.ts
+    const { getAllDestinations } = await import('./api');
+    const allDestinations = await getAllDestinations();
+    
+    const matchingDestinations = allDestinations.filter(dest => {
+      return (
+        dest.title.toLowerCase().includes(searchTerm) ||
+        dest.shortDescription.toLowerCase().includes(searchTerm) ||
+        dest.state.toLowerCase().includes(searchTerm) ||
+        dest.region.toLowerCase().includes(searchTerm) ||
+        (dest.famousFor || []).some(f => f.toLowerCase().includes(searchTerm))
+      );
+    });
+
+    const totalResults = tours.length + matchingDestinations.length;
+    const hasToursOnly = tours.length > 0 && matchingDestinations.length === 0;
+    const hasDestinationsOnly = matchingDestinations.length > 0 && tours.length === 0;
+    const hasBoth = tours.length > 0 && matchingDestinations.length > 0;
+
     return {
       tours,
-      destinations: [], // TODO: Add destination search
-      totalResults: tours.length,
-      hasToursOnly: tours.length > 0,
-      hasDestinationsOnly: false,
-      hasBoth: false,
+      destinations: matchingDestinations,
+      totalResults,
+      hasToursOnly,
+      hasDestinationsOnly,
+      hasBoth,
     };
   } catch (err) {
     console.error('Unexpected error during search:', err);
