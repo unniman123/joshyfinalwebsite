@@ -69,67 +69,76 @@ const Footer = () => {
     <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
       {/* Main Footer Content */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-2 sm:mb-3">
-        {/* Quick Links */}
-        <div className="space-y-2">
-          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
-          <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
-            {quickLinks.map(link => <li key={link.name}>
-              {link.href && (link.href.startsWith('http') || link.href.startsWith('www')) ? (
-                <a
-                  href={link.href.startsWith('www') ? `https://${link.href}` : link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
-                  {link.name}
-                </Link>
-              )}
-            </li>)}
-          </ul>
-        </div>
+        {/* Quick Links and Support - Side by side on mobile */}
+        <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-2">
+          <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-4 items-start">
+            {/* Support Links - on the left */}
+            <div className="space-y-2">
+              <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
+              <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
+                {supportLinks.map(link => (
+                  <li key={link.name}>
+                    {link.name === "About Us" ? (
+                      <button
+                        type="button"
+                        onClick={handleAboutClick}
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                        style={{ fontFamily: "'Sora', sans-serif" }}
+                        aria-label="About Us - scroll to Namaste section"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (link.name === "Terms & Conditions" || link.name === "Privacy Policy") ? (
+                      <button
+                        type="button"
+                        onClick={noopClick}
+                        aria-disabled="true"
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                        style={{ fontFamily: "'Sora', sans-serif" }}
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        {/* Support Links */}
-        <div className="space-y-2">
-          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
-          <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
-            {supportLinks.map(link => (
-              <li key={link.name}>
-                {link.name === "About Us" ? (
-                  <button
-                    type="button"
-                    onClick={handleAboutClick}
-                    className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
-                    style={{ fontFamily: "'Sora', sans-serif" }}
-                    aria-label="About Us - scroll to Namaste section"
-                  >
-                    {link.name}
-                  </button>
-                ) : (link.name === "Terms & Conditions" || link.name === "Privacy Policy") ? (
-                  <button
-                    type="button"
-                    onClick={noopClick}
-                    aria-disabled="true"
-                    className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
-                    style={{ fontFamily: "'Sora', sans-serif" }}
-                  >
-                    {link.name}
-                  </button>
-                ) : (
-                  <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
-                    {link.name}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+            {/* Quick Links - on the right with separator line */}
+            <div className="space-y-2 relative">
+              {/* White separator line - visible on mobile/tablet */}
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/20 md:hidden"></div>
+              <div className="pl-4 md:pl-0 space-y-2">
+                <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
+                <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
+                  {quickLinks.map(link => <li key={link.name}>
+                    {link.href && (link.href.startsWith('http') || link.href.startsWith('www')) ? (
+                      <a
+                        href={link.href.startsWith('www') ? `https://${link.href}` : link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>)}
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Contact Info */}
-        <div className="space-y-2">
+        <div className="col-span-1 space-y-2">
           <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
 
           {/* Contact Details */}
@@ -160,7 +169,7 @@ const Footer = () => {
         </div>
 
         {/* Find Us Section - Right Side */}
-        <div className="space-y-2">
+        <div className="col-span-1 space-y-2">
           <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
           <nav aria-label="Social media links" className="flex flex-wrap gap-2 sm:gap-3">
             <a
@@ -226,14 +235,9 @@ const Footer = () => {
     <Separator className="bg-white/20 mb-2 sm:mb-3" />
 
     {/* Bottom Footer */}
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-3 text-xs sm:text-sm text-white/80 text-center sm:text-left" style={{ fontFamily: "'Sora', sans-serif" }}>
+    <div className="text-center text-xs sm:text-sm text-white/80" style={{ fontFamily: "'Sora', sans-serif" }}>
       <div className="font-medium">
         © KeralaTours Travels & Organic Remedies. All rights reserved.
-      </div>
-      <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-        <button type="button" onClick={noopClick} aria-disabled="true" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Terms of Service</button>
-        <button type="button" onClick={noopClick} aria-disabled="true" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Privacy Policy</button>
-        <Link to="/cookies" className="hover:text-gray-300 transition-smooth min-h-[32px] flex items-center">Cookie Policy</Link>
       </div>
     </div>
   </footer>;

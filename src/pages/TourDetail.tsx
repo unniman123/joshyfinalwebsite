@@ -64,7 +64,7 @@ const TourDetail = () => {
                 style={{ background: '#EAB308', color: '#000000' }}
               >
                 <h2
-                  className="text-sm sm:text-base md:text-base lg:text-lg font-semibold leading-none tracking-wide"
+                  className="text-lg font-semibold leading-none tracking-wide"
                   style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em' }}
                 >
                   Enquire
