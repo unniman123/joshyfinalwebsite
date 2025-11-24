@@ -124,7 +124,7 @@ const EnquiryForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfPeople" className="text-sm sm:text-base">No of adults (12 years and above) *</Label>
+          <Label htmlFor="numberOfPeople" className="text-sm sm:text-base">No of adults (12 year & above) *</Label>
           <Input id="numberOfPeople" name="numberOfPeople" type="number" min="1" value={formData.numberOfPeople} onChange={handleChange} placeholder="e.g., 4" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
 
@@ -141,7 +141,7 @@ const EnquiryForm = ({
         </div>
 
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfRooms" className="text-sm sm:text-base">Number of Rooms *</Label>
+          <Label htmlFor="numberOfRooms" className="text-sm sm:text-base">No of Rooms *</Label>
           <Input id="numberOfRooms" name="numberOfRooms" type="number" min="1" value={formData.numberOfRooms} onChange={handleChange} placeholder="e.g., 2" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
       </div>

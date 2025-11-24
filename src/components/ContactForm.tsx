@@ -158,7 +158,7 @@ const ContactForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfPersons" className="text-sm sm:text-base">Number of Adults *</Label>
+          <Label htmlFor="numberOfPersons" className="text-sm sm:text-base">No of adults *</Label>
           <Input id="numberOfPersons" name="numberOfPersons" type="number" min="1" value={formData.numberOfPersons} onChange={handleChange} placeholder="e.g., 2" className="h-10 sm:h-11 text-sm sm:text-base" required />
         </div>
 
