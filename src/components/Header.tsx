@@ -61,7 +61,7 @@ const Header = () => {
       data-testid="site-header"
     >
       {/* Top Contact Bar - Hidden on mobile, visible on tablet+ */}
-      <div className={`hidden md:block px-4 py-2 text-sm font-medium ${isHome ? 'bg-transparent' : 'bg-gray-50'}`}>
+      <div className={`hidden md:block px-4 py-2 text-sm font-medium ${isHome && !isScrolled ? 'bg-black/40 backdrop-blur-sm' : 'bg-gray-50'}`}>
         <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-4">
             {/* Removed KeralaToursGlobal text */}
@@ -80,7 +80,7 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className={`border-b ${isHome ? 'bg-transparent border-transparent' : 'bg-white border-gray-200'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
+      <nav className={`border-b ${isHome && !isScrolled ? 'bg-black/40 backdrop-blur-sm border-transparent' : 'bg-white border-gray-200'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
             <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
@@ -154,13 +154,13 @@ const Header = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden relative z-10">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
-                className={`drop-shadow-lg ${isHome && !isScrolled ? 'text-white hover:bg-white/20' : 'text-foreground hover:bg-gray-100'}`}
+                className={`drop-shadow-lg pointer-events-auto ${isHome && !isScrolled ? 'text-white bg-black/30 hover:bg-black/50 border border-white/30' : 'text-foreground hover:bg-gray-100'}`}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
