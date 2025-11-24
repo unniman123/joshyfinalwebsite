@@ -68,13 +68,16 @@ const Footer = () => {
   return <footer className="bg-slate-900 text-white w-full">
     <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
       {/* Main Footer Content */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-2 sm:mb-3">
-        {/* Quick Links and Support - Side by side on mobile */}
-        <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-2">
+      <div className="grid items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-3 mb-2 sm:mb-3">
+        {/* Support + Quick Links wrapper
+            - On very small screens we want Support and Quick Links side-by-side (2 cols)
+            - On lg they should occupy two separate outer columns (lg:col-span-2 ensures the inner two cols map to outer cols 1 & 2)
+        */}
+        <div className="col-span-1 sm:col-span-2 lg:col-span-2 space-y-2">
           <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-4 items-start">
-            {/* Support Links - on the left */}
+            {/* Support Links - left inside wrapper */}
             <div className="space-y-2">
-              <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
+              <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 lg:mt-2" style={{ fontFamily: "'Sora', sans-serif" }}>Support</h3>
               <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
                 {supportLinks.map(link => (
                   <li key={link.name}>
@@ -108,12 +111,12 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Quick Links - on the right with separator line */}
+            {/* Quick Links - right inside wrapper */}
             <div className="space-y-2 relative">
               {/* White separator line - visible on mobile/tablet */}
               <div className="absolute left-0 top-0 bottom-0 w-px bg-white/20 md:hidden"></div>
               <div className="pl-4 md:pl-0 space-y-2">
-                <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
+                <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 lg:mt-2" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
                 <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
                   {quickLinks.map(link => <li key={link.name}>
                     {link.href && (link.href.startsWith('http') || link.href.startsWith('www')) ? (
@@ -139,7 +142,7 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div className="col-span-1 space-y-2">
-          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 lg:mt-2" style={{ fontFamily: "'Sora', sans-serif" }}>Get In Touch</h3>
 
           {/* Contact Details */}
           <div className="space-y-2 sm:space-y-2.5" style={{ fontFamily: "'Sora', sans-serif" }}>
@@ -170,7 +173,7 @@ const Footer = () => {
 
         {/* Find Us Section - Right Side */}
         <div className="col-span-1 space-y-2">
-          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 lg:mt-2" style={{ fontFamily: "'Sora', sans-serif" }}>Follow Us</h3>
           <nav aria-label="Social media links" className="flex flex-wrap gap-2 sm:gap-3">
             <a
               href="https://www.Facebook.com/GoIntoAllTheWorldin"
