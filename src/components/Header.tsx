@@ -154,13 +154,13 @@ const Header = () => {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden relative z-10">
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
-                className={`drop-shadow-lg ${isHome && !isScrolled ? 'text-white hover:bg-white/20' : 'text-foreground hover:bg-gray-100'}`}
+                className={`drop-shadow-lg pointer-events-auto ${isHome && !isScrolled ? 'text-white bg-black/30 hover:bg-black/50 border border-white/30' : 'text-foreground hover:bg-gray-100'}`}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </Button>
