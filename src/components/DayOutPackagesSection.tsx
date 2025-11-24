@@ -276,7 +276,7 @@ const DayOutPackagesSection = ({
       <div className="container mx-auto px-3 sm:px-4">
         {/* Section Header */}
         <div className="text-center mb-6 sm:mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-foreground text-center mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
             {sectionTitle}
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-gradient-brand mx-auto mb-4 sm:mb-6"></div>
