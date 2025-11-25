@@ -87,7 +87,7 @@ const Header = () => {
             {/* Optimized mobile layout: smaller logo, wrapped text on tiny screens */}
             <Link to="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0 max-w-[60%] md:max-w-none" aria-label="Go to homepage">
               <img src="/logo-header.png" alt="Kerala Travels" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto cursor-pointer flex-shrink-0" />
-              <span className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-tight leading-tight ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
+              <span className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-tight leading-tight whitespace-nowrap md:whitespace-normal ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
               </span>
             </Link>
