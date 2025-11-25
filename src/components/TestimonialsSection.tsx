@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-foreground text-center mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
-            What our customers say
+            What Our Customers Say
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-golden to-golden-dark mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
