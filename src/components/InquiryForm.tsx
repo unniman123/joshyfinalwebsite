@@ -129,7 +129,7 @@ const EnquiryForm = ({
         </div>
 
         <div className="space-y-1.5 sm:space-y-2">
-          <Label htmlFor="numberOfKids" className="text-sm sm:text-base">No of kids & their age (If any) *</Label>
+          <Label htmlFor="numberOfKids" className="text-sm sm:text-base">No of kids & their age (If any)</Label>
           <Input id="numberOfKids" name="numberOfKids" type="text" value={formData.numberOfKids} onChange={handleChange} placeholder="e.g., 2 kids (5 years, 8 years)" className="h-10 sm:h-11 text-sm sm:text-base" />
         </div>
       </div>
