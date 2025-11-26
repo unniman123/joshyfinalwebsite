@@ -21,7 +21,7 @@ const AboutUsSection = () => {
 
           {/* Right: Content (75%) */}
           <div className="w-full lg:w-3/4 p-4 sm:p-6 lg:pl-8 flex flex-col justify-center text-gray-900 bg-gray-100 rounded-b-xl lg:rounded-tr-2xl lg:rounded-br-2xl lg:rounded-bl-none" role="region" aria-labelledby="about-heading">
-            <h2 id="about-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-green-600">
+            <h2 id="about-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-green-600 text-center lg:text-left">
               Namaste !
             </h2>
 
