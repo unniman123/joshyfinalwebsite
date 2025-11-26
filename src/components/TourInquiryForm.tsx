@@ -140,10 +140,10 @@ const TourEnquiryForm = ({
               <Input
                 id={`${formIdPrefix}-mobile`}
                 type="tel"
-                placeholder={phoneFieldPlaceholder || "WhatsApp number with Country Code"}
+                placeholder={phoneFieldPlaceholder || "With Country Code"}
                 value={formData.mobileNo}
                 onChange={(e) => handleInputChange("mobileNo", e.target.value)}
-                className="pl-6 h-8 text-[12px] bg-white/8 text-black placeholder:text-[11px] placeholder-[color:var(--form-placeholder)]"
+                className="pl-6 h-8 text-sm sm:text-[12px] bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                 required
               />
             </div>
@@ -161,7 +161,7 @@ const TourEnquiryForm = ({
                   placeholder={messagePlaceholder}
                   value={formData.message || ""}
                   onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="min-h-[44px] text-sm sm:text-[12px] resize-none bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
+                  className="min-h-[44px] text-sm resize-none bg-white/8 text-black placeholder-[color:var(--form-placeholder)]"
                   rows={2}
                   required
                 />

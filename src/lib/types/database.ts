@@ -137,9 +137,10 @@ export interface ContactInquiry {
   id?: string;
   name: string;
   email: string;
-  subject: string | null;
+  subject: string;
   message: string;
-  created_at?: string;
+  status?: string;
+  submitted_at?: string;
 }
 
 export interface TourInquiry {
