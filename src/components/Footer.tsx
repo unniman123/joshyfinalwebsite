@@ -112,10 +112,8 @@ const Footer = () => {
             </div>
 
             {/* Quick Links - right inside wrapper */}
-            <div className="space-y-2 relative">
-              {/* White separator line - visible on mobile/tablet */}
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/20 md:hidden"></div>
-              <div className="pl-4 md:pl-0 space-y-2">
+            <div className="space-y-2 relative -mt-0.5">
+              <div className="pl-8 md:pl-0 space-y-2">
                 <h3 className="text-sm sm:text-base font-semibold mb-2 sm:mb-3 mt-2 lg:mt-3" style={{ fontFamily: "'Sora', sans-serif" }}>Quick Links</h3>
                 <ul className="space-y-1 sm:space-y-1.5" style={{ fontFamily: "'Sora', sans-serif" }}>
                   {quickLinks.map(link => <li key={link.name}>
