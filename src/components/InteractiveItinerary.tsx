@@ -31,16 +31,39 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      
-      // Show button after scrolling 300px
-      if (scrollPosition > 300) {
-        setShowFloatingButton(true);
+      const windowHeight = window.innerHeight;
+
+      // Get the itinerary section (this component's container)
+      const itinerarySection = document.querySelector('[data-itinerary-section]');
+      const enquirySection = document.getElementById('enquiry-section');
+
+      if (itinerarySection && enquirySection) {
+        const itineraryRect = itinerarySection.getBoundingClientRect();
+        const enquiryRect = enquirySection.getBoundingClientRect();
+
+        // Calculate positions relative to viewport
+        const itineraryBottom = itineraryRect.bottom + window.scrollY;
+        const enquiryTop = enquiryRect.top + window.scrollY;
+
+        // Show button after scrolling 300px AND before reaching itinerary end
+        // Hide button when user has scrolled past itinerary end but before enquiry section
+        const showButton = scrollPosition > 300 && scrollPosition < (itineraryBottom - windowHeight * 0.5);
+
+        setShowFloatingButton(showButton);
       } else {
-        setShowFloatingButton(false);
+        // Fallback to original behavior if elements not found
+        if (scrollPosition > 300) {
+          setShowFloatingButton(true);
+        } else {
+          setShowFloatingButton(false);
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Trigger initial check
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   // Simplified parsing logic - admin controlled content
@@ -97,7 +120,7 @@ const InteractiveItinerary = ({ itinerary, itineraryDays, tourTitle }: Interacti
 
   return (
     <>
-      <div className="space-y-0">
+      <div className="space-y-0" data-itinerary-section>
         {/* Section heading in Red Box */}
         <div className="flex items-center justify-center md:justify-start mb-3 md:mb-4">
           <div className="inline-block bg-[hsl(var(--promo-red))] text-white rounded-md px-4 py-2 md:px-6 md:py-3 shadow-lg shadow-warm">

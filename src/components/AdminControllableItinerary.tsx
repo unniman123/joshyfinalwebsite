@@ -32,16 +32,38 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      
-      // Show button after scrolling 300px
-      if (scrollPosition > 300) {
-        setShowFloatingButton(true);
+
+      // Get the itinerary section (this component's container)
+      const itinerarySection = document.querySelector('[data-itinerary-section]');
+      const enquirySection = document.getElementById('enquiry-section');
+
+      if (itinerarySection && enquirySection) {
+        const itineraryRect = itinerarySection.getBoundingClientRect();
+        const enquiryRect = enquirySection.getBoundingClientRect();
+
+        // Calculate positions relative to viewport
+        const itineraryBottom = itineraryRect.bottom + window.scrollY;
+        const enquiryTop = enquiryRect.top + window.scrollY;
+
+        // Show button after scrolling 300px AND before reaching itinerary end
+        // Hide button when user has scrolled past itinerary end but before enquiry section
+        const showButton = scrollPosition > 300 && scrollPosition < (itineraryBottom - windowHeight * 0.5);
+
+        setShowFloatingButton(showButton);
       } else {
-        setShowFloatingButton(false);
+        // Fallback to original behavior if elements not found
+        if (scrollPosition > 300) {
+          setShowFloatingButton(true);
+        } else {
+          setShowFloatingButton(false);
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    // Trigger initial check
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -55,7 +77,7 @@ const AdminControllableItinerary = ({ itineraryDays, tourTitle, className = "" }
 
   return (
     <>
-      <div className={`space-y-0 ${className}`}>
+      <div className={`space-y-0 ${className}`} data-itinerary-section>
         {/* Section heading in Red Box */}
         <div className="flex items-center justify-center md:justify-start mb-4 md:mb-6">
           <div className="mb-0">
