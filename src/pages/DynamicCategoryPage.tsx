@@ -79,6 +79,9 @@ const DynamicCategoryPage = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     const fetchCategoryData = async () => {
       try {
         setLoading(true);

@@ -20,13 +20,15 @@ const TopDestinations = () => {
 
   // Set search query and state from URL parameters
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     const searchParam = searchParams.get('search');
     const stateParam = searchParams.get('state');
 
     if (searchParam) {
       const decodedSearch = decodeURIComponent(searchParam);
-      setSearchQuery(decodedSearch);
-      
+
       // Check if there are also tour results for this search
       unifiedSearch(decodedSearch).then(results => {
         setTourResultsCount(results.tours.length);
