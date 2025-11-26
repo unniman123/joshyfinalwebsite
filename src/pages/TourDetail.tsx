@@ -54,8 +54,8 @@ const TourDetail = () => {
     <main>
       <TourContentSections tour={tour} />
 
-      <section id="enquiry-section" className="pt-2 sm:pt-3 pb-3 sm:pb-4 px-2 sm:px-3 md:px-4 bg-muted/30 scroll-mt-20">
-        <div className="max-w-4xl mx-auto">
+      <section id="enquiry-section" className="pt-2 sm:pt-3 pb-3 sm:pb-4 bg-muted/30 scroll-mt-20">
+        <div className="max-w-4xl mx-auto px-2 sm:px-3 md:px-4">
           <div className="mb-3 sm:mb-3 md:mb-4">
             {/* Title panel styled as a pill to match booking CTA */}
             <div className="flex items-center justify-center">
