@@ -85,7 +85,7 @@ const Footer = () => {
                       <button
                         type="button"
                         onClick={handleAboutClick}
-                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-flex min-h-[24px] items-center"
                         style={{ fontFamily: "'Sora', sans-serif" }}
                         aria-label="About Us - scroll to Namaste section"
                       >
@@ -96,13 +96,13 @@ const Footer = () => {
                         type="button"
                         onClick={noopClick}
                         aria-disabled="true"
-                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-flex min-h-[24px] items-center"
                         style={{ fontFamily: "'Sora', sans-serif" }}
                       >
                         {link.name}
                       </button>
                     ) : (
-                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-flex min-h-[24px] items-center">
                         {link.name}
                       </Link>
                     )}
@@ -122,12 +122,12 @@ const Footer = () => {
                         href={link.href.startsWith('www') ? `https://${link.href}` : link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center"
+                        className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-flex min-h-[24px] items-center"
                       >
                         {link.name}
                       </a>
                     ) : (
-                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-block min-h-[24px] flex items-center">
+                      <Link to={link.href} className="text-white/80 hover:text-gray-300 transition-smooth text-sm sm:text-base inline-flex min-h-[24px] items-center">
                         {link.name}
                       </Link>
                     )}
