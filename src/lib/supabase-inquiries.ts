@@ -92,8 +92,7 @@ export async function submitContactInquiry(
       name: inquiry.name.trim().substring(0, 100), // Limit length
       email: inquiry.email.trim().toLowerCase(),
       message: inquiry.message.trim().substring(0, 2000), // Limit message length
-      subject: inquiry.subject || null,
-      source: 'website_contact_form'
+      subject: inquiry.subject || 'General Contact Inquiry' // Provide fallback for non-null subject
     };
 
     // Enhanced email validation
