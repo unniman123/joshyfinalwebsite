@@ -21,13 +21,16 @@ const Tours = () => {
 
   // Set search query and category from URL parameters
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     const searchParam = searchParams.get('search');
     const categoryParam = searchParams.get('category');
     const hasDestinationsParam = searchParams.get('hasDestinations');
-    
+
     if (searchParam) {
       setSearchQuery(decodeURIComponent(searchParam));
-      
+
       // If search has destinations flag, check for destination results
       if (hasDestinationsParam === 'true') {
         unifiedSearch(decodeURIComponent(searchParam)).then(results => {

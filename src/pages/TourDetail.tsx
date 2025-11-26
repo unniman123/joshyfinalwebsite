@@ -18,6 +18,9 @@ const TourDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when component mounts to ensure users start from the title
+    window.scrollTo(0, 0);
+
     const fetchTourData = async () => {
       if (slug) {
         const tourData = await getTourBySlug(slug);
