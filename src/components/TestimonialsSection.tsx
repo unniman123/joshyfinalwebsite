@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
     <section className="py-12 bg-background" id="testimonials">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-2 sm:mb-4">
+        <div className="text-center mb-2 sm:mb-4 -mt-8 sm:-mt-10 md:mt-0 relative">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-foreground text-center mb-2 sm:mb-3" style={{ fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.2' }}>
             What Our Customers Say
           </h2>
