@@ -49,8 +49,8 @@ const EnquiryForm = ({
 
       // Show success toast with accessibility
       toast({
-        title: "Quick Enquiry Submitted Successfully!",
-        description: "Thank you for your interest in this tour. We'll respond within 24 hours.",
+        title: "Enquiry Submitted Successfully !",
+        description: "Thanks for your interest. We will respond at the earliest",
         variant: "default"
       });
 

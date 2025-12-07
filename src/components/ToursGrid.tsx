@@ -2,9 +2,22 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { TourSummary } from "@/lib/api";
 import navTaxonomy from '@/data/navTaxonomy';
+
+const toSlug = (value: string) => value
+  .toLowerCase()
+  .trim()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+
+const getParentCategory = (tour: TourSummary) => {
+  const categories = tour.categories || [];
+  if (categories.length > 1) return categories[categories.length - 1];
+  if (categories.length === 1) return categories[0];
+  return tour.category || '';
+};
 interface ToursGridProps {
   tours: TourSummary[];
   loading?: boolean;
@@ -62,17 +75,27 @@ const ToursGrid = ({
               {(tour.subcategories && tour.subcategories.length > 0 ? tour.subcategories.slice(0, 2) : (tour.categories || [])).map((sub) => {
                 // resolve label from taxonomy if available
                 const label = Object.values(navTaxonomy).flat().find(s => s.slug === sub)?.label || sub;
+                const parentFromTaxonomy = Object.entries(navTaxonomy).find(([, subs]) =>
+                  subs.some((s) => s.slug === sub)
+                )?.[0];
+                const parentCategorySlug = toSlug(parentFromTaxonomy || getParentCategory(tour));
+                const query = [
+                  parentCategorySlug ? `category=${encodeURIComponent(parentCategorySlug)}` : '',
+                  `subcategory=${encodeURIComponent(sub)}`
+                ].filter(Boolean).join('&');
+
                 return (
-                  <Link key={sub} to={`/tours?category=${(tour.categories && tour.categories[0]) || (tour.category || '')}&subcategory=${sub}`} className="text-[10px] sm:text-xs bg-brand-green/10 text-brand-green px-2 py-1 rounded font-medium hover:bg-brand-green/20 min-h-[28px] flex items-center">
+                  <Link
+                    key={sub}
+                    to={`/tours?${query}`}
+                    className="text-[10px] sm:text-xs bg-brand-green/10 text-brand-green px-2 py-1 rounded font-medium hover:bg-brand-green/20 min-h-[28px] flex items-center"
+                  >
                     {label}
                   </Link>
                 );
               })}
             </div>
-            <div className="text-[10px] sm:text-xs text-muted-foreground flex items-center gap-1.5 sm:gap-2">
-              <CalendarDays className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span>{tour.duration} days</span>
-            </div>
+            {/* duration display intentionally removed per design request */}
           </div>
         </CardHeader>
 

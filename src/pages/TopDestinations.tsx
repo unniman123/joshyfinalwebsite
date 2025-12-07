@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/SeoMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -70,6 +70,8 @@ const TopDestinations = () => {
     return matchesSearch && matchesState;
   });
 
+  const leadImage = filteredDestinations[0]?.image || destinations[0]?.image;
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     const newParams = new URLSearchParams();
@@ -84,11 +86,12 @@ const TopDestinations = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>Top Destinations - KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
-        <meta name="description" content="Explore India's most beautiful destinations. From Kerala's backwaters to Rajasthan's palaces, discover your perfect travel destination." />
-        <link rel="icon" type="image/png" href="/logo-header.png" />
-      </Helmet>
+      <SeoMeta
+        title="Top Destinations - KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays"
+        description="Explore India's most beautiful destinations. From Kerala's backwaters to Rajasthan's palaces, discover your perfect travel destination."
+        image={leadImage}
+        url="/top-destinations"
+      />
       <Header />
 
       {/* Hero Section */}

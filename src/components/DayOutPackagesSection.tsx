@@ -187,8 +187,8 @@ const DayOutPackagesSection = ({
 
       // Show success toast
       toast({
-        title: "Day Out Enquiry Submitted Successfully!",
-        description: "Thank you for your interest. We'll contact you within 24 hours.",
+        title: "DayOut Enquiry Submitted Successfully !",
+        description: "Thanks for your interest. We will respond at the earliest",
         variant: "default"
       });
 
@@ -326,9 +326,15 @@ const DayOutPackagesSection = ({
                       {/* Banner Content Overlay */}
                       <div className="absolute inset-0 flex flex-col justify-center items-center p-4 sm:p-6 md:p-8 text-white">
                         <div className="max-w-2xl text-center px-2">
-                          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 drop-shadow-lg transition-colors duration-300" style={{ ['--hover-color' as string]: 'hsl(345 50% 85%)', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.1' } as React.CSSProperties}>
-                            {currentPackage.title}
-                          </h3>
+                          {(() => {
+                            const rawTitle = (currentPackage?.title ?? '').toString().trim();
+                            const hasMeaningfulTitle = rawTitle.length > 0 && !/^untitled/i.test(rawTitle);
+                            return hasMeaningfulTitle ? (
+                              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4 drop-shadow-lg transition-colors duration-300" style={{ ['--hover-color' as string]: 'hsl(345 50% 85%)', fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em', lineHeight: '1.1' } as React.CSSProperties}>
+                                {rawTitle}
+                              </h3>
+                            ) : null;
+                          })()}
                           {/* Show description only if configured to show */}
                           {currentPackage.showDescription && (
                             <p className="text-sm sm:text-base md:text-lg text-white/90 mb-3 sm:mb-4 drop-shadow-md">

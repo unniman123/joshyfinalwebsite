@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail, ChevronDown } from "lucide-react";
 import NavigationDropdown from "@/components/NavigationDropdown";
@@ -22,6 +22,13 @@ const Header = () => {
 
   const drawerRef = useRef<HTMLDivElement | null>(null);
   useFocusTrap(drawerRef, isMenuOpen, () => setIsMenuOpen(false));
+  const navigate = useNavigate();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    // Always reload the page to home while keeping navigation functionality
+    e.preventDefault();
+    window.location.href = "/";
+  };
 
   const navigationItems = [
     {
@@ -85,7 +92,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo and Company Name */}
             {/* Optimized mobile layout: smaller logo, wrapped text on tiny screens */}
-            <Link to="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0 max-w-[60%] md:max-w-none" aria-label="Go to homepage">
+            <Link to="/" onClick={handleLogoClick} className="flex items-center gap-2 md:gap-3 flex-shrink-0 max-w-[60%] md:max-w-none" aria-label="Go to homepage">
               <img src="/logo-header.png" alt="Kerala Travels" className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto cursor-pointer flex-shrink-0" />
               <span className={`text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-tight leading-tight whitespace-nowrap md:whitespace-normal ${isHome && !isScrolled ? 'text-white' : 'text-foreground'}`} style={{ fontFamily: "'Sora', sans-serif" }}>
                 KeralaTours Travels & Organic Remedies
@@ -122,6 +129,7 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.href}
+                      onClick={item.name === 'Home' ? handleLogoClick : undefined}
                       className={`transition-smooth font-semibold relative group whitespace-nowrap ${(isHome && !isScrolled) ? 'text-white hover:text-gray-200' : 'text-foreground hover:text-gray-600'}`}
                       style={{ fontFamily: "'Sora', sans-serif" }}
                     >
@@ -178,7 +186,11 @@ const Header = () => {
           <div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Mobile navigation" className="absolute right-0 top-0 h-full w-full xs:w-[85%] sm:w-4/5 max-w-sm bg-white text-foreground shadow-xl p-4 sm:p-6 overflow-y-auto animate-slide-in">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <img src="/logo-header.png" alt="Kerala" className="h-10 sm:h-12 w-auto" />
+                    <img src="/logo-header.png" alt="Kerala" className="h-10 sm:h-12 w-auto cursor-pointer" onClick={() => {
+                      setIsMenuOpen(false);
+                      // Always reload the page to home
+                      window.location.href = "/";
+                    }} />
                     <div className="font-semibold text-sm sm:text-base">KeralaTours Travels & Organic Remedies</div>
                   </div>
                   <button aria-label="Close menu" className="p-2 sm:p-3 rounded-md hover:bg-gray-100 min-w-[44px] min-h-[44px] flex items-center justify-center" onClick={() => setIsMenuOpen(false)}>
@@ -283,7 +295,10 @@ const Header = () => {
                             to={item.href}
                             className="block text-foreground hover:bg-gray-50 hover:text-foreground/80 transition-smooth font-semibold py-3 px-3 min-h-[48px] flex items-center rounded-lg text-base"
                             style={{ fontFamily: "'Sora', sans-serif" }}
-                            onClick={() => setIsMenuOpen(false)}
+                            onClick={(e: any) => {
+                              if (item.name === 'Home') handleLogoClick(e);
+                              setIsMenuOpen(false);
+                            }}
                           >
                             {item.name}
                           </Link>

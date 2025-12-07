@@ -128,6 +128,15 @@ export async function submitContactInquiry(
 
     logApiRequest('INSERT', 'contact_inquiry', true, responseTime);
     console.log('✅ Contact inquiry submitted successfully');
+
+    // Send email notification using Bluehost PHP endpoint
+    try {
+      await sendEmailNotification('contact', sanitizedInquiry);
+    } catch (emailError) {
+      console.error('❌ Email notification failed:', emailError);
+      // Don't fail the whole submission for email issues
+    }
+
     return { success: true };
   } catch (err) {
     const responseTime = Date.now() - startTime;
@@ -195,6 +204,14 @@ export async function submitTourInquiry(
       };
     }
 
+    // Send email notification using Bluehost PHP endpoint
+    try {
+      await sendEmailNotification('tour', inquiry);
+    } catch (emailError) {
+      console.error('❌ Email notification failed:', emailError);
+      // Don't fail the whole submission for email issues
+    }
+
     return { success: true };
   } catch (err) {
     console.error('Unexpected error submitting tour inquiry:', err);
@@ -247,6 +264,14 @@ export async function submitDayOutInquiry(
       };
     }
 
+    // Send email notification using Bluehost PHP endpoint
+    try {
+      await sendEmailNotification('day-out', inquiry);
+    } catch (emailError) {
+      console.error('❌ Email notification failed:', emailError);
+      // Don't fail the whole submission for email issues
+    }
+
     return { success: true };
   } catch (err) {
     console.error('Unexpected error submitting day-out inquiry:', err);
@@ -285,6 +310,14 @@ export async function submitQuickEnquiry(
       };
     }
 
+    // Send email notification using Bluehost PHP endpoint
+    try {
+      await sendEmailNotification('quick', inquiry);
+    } catch (emailError) {
+      console.error('❌ Email notification failed:', emailError);
+      // Don't fail the whole submission for email issues
+    }
+
     return { success: true };
   } catch (err) {
     console.error('Unexpected error submitting quick enquiry:', err);
@@ -292,6 +325,38 @@ export async function submitQuickEnquiry(
       success: false,
       error: 'An unexpected error occurred. Please try again later.',
     };
+  }
+}
+
+/**
+ * 🔐 SECURITY: Send email notification using Bluehost PHP endpoint
+ * Called after successful database insertion
+ */
+async function sendEmailNotification(enquiryType: string, enquiryData: any): Promise<void> {
+  const emailEndpoint = 'https://keralatoursglobal.com/api/send-enquiry-email.php'; // Production endpoint on Bluehost (api path)
+
+  try {
+    const response = await fetch(emailEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        enquiryType,
+        enquiryData
+      })
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(result.error || 'Email sending failed');
+    }
+
+    console.log('✅ Email notification sent successfully');
+  } catch (error) {
+    console.error('❌ Email notification error:', error);
+    throw error;
   }
 }
 

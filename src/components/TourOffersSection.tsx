@@ -25,6 +25,8 @@ interface TourOffer {
   image: string;
   slug: string;
   description: string; // 2-line description for card display
+  isDayOutPackage?: boolean;
+  isFeatured?: boolean;
 }
 
 // Admin configuration interfaces
@@ -74,16 +76,26 @@ const TourOffersSection = ({
         const toursData = await getAllTours();
 
         // Transform database tours to TourOffer format
-        // Show up to 8 tours (prioritizes featured tours due to API ordering)
-        const transformedTours: TourOffer[] = toursData.slice(0, 8).map((tour: any) => ({
+        // Do NOT impose a fixed limit here — show all eligible tours.
+        const transformedTours: TourOffer[] = toursData.map((tour: any) => ({
           id: tour.id,
           title: tour.title,
           image: tour.image || keralaTourCard, // fallback to default image
           slug: tour.slug,
-          description: tour.description || tour.short_description || `${tour.title} - Discover amazing experiences`
+          description: tour.description || tour.short_description || `${tour.title} - Discover amazing experiences`,
+          // expose day-out flag from backend transform if present (supabase-api.ts will add this)
+          isDayOutPackage: (tour as any).is_day_out_package ?? (tour as any).isDayOutPackage ?? false,
+          // expose featured flag from backend transform if present (supabase-api.ts will add this)
+          isFeatured: (tour as any).is_featured ?? (tour as any).isFeatured ?? false
         }));
 
-        setTourOffers(transformedTours);
+        // Filter for featured tours and exclude day-out packages from the featured carousel (business rule).
+        const featuredTours = transformedTours.filter(t => t.isFeatured && !t.isDayOutPackage);
+
+        // Deduplicate by id to guard against accidental duplicates from the API
+        const uniqueById = Array.from(new Map(featuredTours.map(t => [t.id, t])).values());
+
+        setTourOffers(uniqueById);
       } catch (error) {
         console.error("Error fetching tours for TourOffersSection:", error);
         // Fallback to empty array on error
@@ -201,7 +213,7 @@ const TourOffersSection = ({
               >
                 <CarouselContent className="overflow-x-visible">
                   {/* Render tours 3 times for seamless infinite scroll (animation translates by -33.333%) */}
-                  {[...tourOffers, ...tourOffers, ...tourOffers].map((tour, index) => (
+                  {tourOffers.map((tour, index) => (
                     <CarouselItem
                       key={`${tour.id}-${index}`}
                       className="flex-shrink-0 flex-grow-0 basis-auto pl-2 sm:pl-3 md:pl-4"

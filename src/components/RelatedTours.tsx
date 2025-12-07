@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tour } from "@/lib/api";
-import { Clock, MapPin, IndianRupee } from "lucide-react";
+import { MapPin, IndianRupee } from "lucide-react";
 import { Link } from "react-router-dom";
 interface RelatedToursProps {
   tours: Tour[];
@@ -47,10 +47,6 @@ const RelatedTours = ({
             </p>
 
             <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                <span>{tour.duration} Days</span>
-              </div>
               <div className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
                 <span>{tour.category}</span>

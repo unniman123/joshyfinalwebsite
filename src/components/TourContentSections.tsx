@@ -61,15 +61,17 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                   .title-red-section {
                     background: #287788;
                     width: 60px;
-                    min-height: 60px;
-                    height: 100%;
-                    display: flex;
-                    align-items: flex-start;
-                    justify-content: center;
-                    flex-shrink: 0;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
                     border-top-left-radius: 8px;
                     border-bottom-left-radius: 8px;
-                    padding-top: 8px;
+                    flex-shrink: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
                   }
 
                   .title-white-section {
@@ -78,6 +80,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     display: flex;
                     align-items: center;
                     height: 100%;
+                    margin-left: 60px;
                   }
 
                   .title-text {
@@ -106,6 +109,19 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     .title-red-section-long {
                       height: auto !important;
                       min-height: 48px !important;
+                    }
+
+                    /* Ensure the left color block stretches to match multiline title height */
+                    .title-box-long {
+                      align-items: stretch !important;
+                    }
+
+                    .title-red-section-long {
+                      align-self: stretch !important;
+                      padding-top: 0 !important;
+                      display: flex !important;
+                      align-items: center !important;
+                      justify-content: center !important;
                     }
 
                     .title-white-section-long {
@@ -138,12 +154,26 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     }
                     .title-red-section {
                       width: 48px;
+                      left: 0;
                     }
                     .title-white-section {
                       padding: 0 12px;
+                      margin-left: 48px;
                     }
                     .title-text {
                       font-size: 20px;
+                    }
+                    
+                    /* When title wraps, make the red section stretch to the full height */
+                    .title-box-long {
+                      align-items: stretch !important;
+                    }
+                    .title-red-section-long {
+                      align-self: stretch !important;
+                      padding-top: 0 !important;
+                      display: flex !important;
+                      align-items: center !important;
+                      justify-content: center !important;
                     }
                   }
                 `}</style>
@@ -324,6 +354,7 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     }
                     .title-white-section {
                       padding: 0 12px;
+                      margin-left: 48px;
                     }
                     .title-text {
                       font-size: 20px;
@@ -339,6 +370,18 @@ const TourContentSections = ({ tour }: TourContentSectionsProps) => {
                     .title-red-section-long {
                       height: auto !important;
                       min-height: 48px !important;
+                    }
+
+                    /* Ensure left color block stretches when title becomes multiline */
+                    .title-box-long {
+                      align-items: stretch !important;
+                    }
+                    .title-red-section-long {
+                      align-self: stretch !important;
+                      padding-top: 0 !important;
+                      display: flex !important;
+                      align-items: center !important;
+                      justify-content: center !important;
                     }
 
                     .title-white-section-long {

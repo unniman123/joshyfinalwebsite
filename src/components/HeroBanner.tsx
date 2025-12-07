@@ -107,17 +107,20 @@ const HeroBanner = ({
     }
   ];
 
-  // Use hero images from database or fallback to rotating images
-  // Preserve HeroImage structure to support cropData
-  const bannerImages = heroData?.images && heroData.images.length > 0
-    ? heroData.images
-        .sort((a, b) => a.order - b.order) // Sort by order field
-        .map(img => ({ 
-          src: img.url, 
-          alt: "Hero Banner",
-          heroImage: img // Preserve full HeroImage object with cropData
-        }))
-    : fallbackImages;
+  // Use hero images from database. While loading, avoid showing fallback images
+  // (prevents a single local image flashing before DB images arrive).
+  // After loading, if no DB images exist, fall back to the preset images.
+  const bannerImages = !loading
+    ? (heroData?.images && heroData.images.length > 0
+        ? heroData.images
+            .sort((a, b) => a.order - b.order) // Sort by order field
+            .map(img => ({
+              src: img.url,
+              alt: "Hero Banner",
+              heroImage: img // Preserve full HeroImage object with cropData
+            }))
+        : fallbackImages)
+    : []; // empty while loading
 
   // Fetch hero settings from database
   useEffect(() => {
@@ -138,6 +141,13 @@ const HeroBanner = ({
   }, []);
 
   useEffect(() => {
+    // Only start automatic sliding if there are at least 2 images.
+    if (bannerImages.length <= 1) {
+      // Reset to first slide when images change to a single image or none.
+      setCurrentSlide(0);
+      return;
+    }
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
     }, 5000);
@@ -217,7 +227,11 @@ const HeroBanner = ({
       onTouchEnd={onTouchEnd}
     >
       {/* Background Images with scrim overlay for predictable contrast */}
-      {bannerImages.map((image, index) => {
+      {bannerImages.length === 0 ? (
+        // Lightweight skeleton while DB images are loading
+        <div key="skeleton" className="absolute inset-0 bg-gray-100/60 animate-pulse z-0" />
+      ) : (
+        bannerImages.map((image, index) => {
         // Use cropData if available (from heroImage), otherwise display full image
         // Pass isMobile flag for responsive crop adjustments
         const imageStyle = image.heroImage 
@@ -243,7 +257,8 @@ const HeroBanner = ({
             </div>
           </div>
         );
-      })}
+        })
+      )}
 
       {/* Content Overlay - Full-screen center-aligned hero content */}
       <div className={`relative z-20 h-full flex flex-col justify-center items-center px-4 sm:px-6 transform md:translate-y-4 lg:translate-y-6 ${className}`}>

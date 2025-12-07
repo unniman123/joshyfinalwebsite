@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import ToursGrid from "@/components/ToursGrid";
 import { getToursByCategoryAndSubcategory, getAllTours, TourSummary } from "@/lib/api";
 import { useLocation } from 'react-router-dom';
+import SeoMeta from "@/components/SeoMeta";
 
 interface CategoryPageData {
   id: string;
@@ -139,17 +139,18 @@ const DynamicCategoryPage = () => {
   const pageDescription = categoryData.customPageDescription || categoryData.description;
   const seoTitle = categoryData.seoTitle || pageTitle;
   const seoDescription = categoryData.seoDescription || pageDescription;
+  const pagePath = category ? `/category/${category}` : undefined;
+  const socialImage = tours[0]?.image;
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{seoTitle}</title>
-        <meta name="description" content={seoDescription} />
-        <meta property="og:title" content={seoTitle} />
-        <meta property="og:description" content={seoDescription} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href={`/category/${category}`} />
-      </Helmet>
+      <SeoMeta
+        title={seoTitle}
+        description={seoDescription}
+        image={socialImage}
+        url={pagePath}
+        canonical={pagePath}
+      />
 
       <Header />
 
