@@ -44,6 +44,10 @@ function transformTourSummary(dbTour: any): any {
     image: sanitizeImageURL(primaryImage) || '/placeholder.svg',
     slug: dbTour.slug,
     isActive: true,
+    // Preserve day-out flag for component-level filtering
+    isDayOutPackage: !!dbTour.is_day_out_package,
+    // Preserve featured flag for component-level filtering
+    isFeatured: !!dbTour.is_featured,
     rating: dbTour.rating,
     reviewCount: dbTour.review_count,
     location: dbTour.location,

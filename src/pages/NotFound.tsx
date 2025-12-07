@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/SeoMeta";
 
 const NotFound = () => {
   const location = useLocation();
@@ -14,11 +14,12 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <Helmet>
-        <title>404 - Page Not Found | KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
-        <meta name="description" content="The page you're looking for could not be found. Return to KeralaToursGlobal homepage." />
-        <link rel="icon" type="image/png" href="/logo-header.png" />
-      </Helmet>
+      <SeoMeta
+        title="404 - Page Not Found | KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays"
+        description="The page you're looking for could not be found. Return to KeralaToursGlobal homepage."
+        url={location.pathname}
+        noIndex
+      />
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">404</h1>
         <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>

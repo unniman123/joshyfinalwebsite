@@ -6,7 +6,7 @@ import EnquiryForm from "@/components/InquiryForm";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/SeoMeta";
 
 const TourDetail = () => {
   const {
@@ -46,12 +46,17 @@ const TourDetail = () => {
     </div>;
   }
 
+  const primaryImage = tour.images?.find(img => img.isActive !== false)?.url || tour.image;
+  const tourPath = `/tours/${tour.slug}`;
+
   return <div className="min-h-screen bg-background">
-    <Helmet>
-      <title>{tour.title} - KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays</title>
-      <meta name="description" content={tour.description} />
-      <link rel="icon" type="image/png" href="/logo-header.png" />
-    </Helmet>
+    <SeoMeta
+      title={`${tour.title} - KeralaToursGlobal - Kerala Travels | Discover India | Panchakarma Treatment Holidays | Global Holidays`}
+      description={tour.description}
+      image={primaryImage}
+      url={tourPath}
+      type="article"
+    />
 
     <Header />
     <main>

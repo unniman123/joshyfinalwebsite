@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SeoMeta from "@/components/SeoMeta";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
@@ -130,11 +130,12 @@ const Tours = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
-        <title>{getPageTitle()}</title>
-        <meta name="description" content={getPageDescription()} />
-        <link rel="icon" type="image/png" href="/logo-header.png" />
-      </Helmet>
+      <SeoMeta
+        title={getPageTitle()}
+        description={getPageDescription()}
+        image={filteredTours[0]?.image || tours[0]?.image}
+        url="/tours"
+      />
       <Header />
 
       <main className="py-6 sm:py-8 md:py-12">
