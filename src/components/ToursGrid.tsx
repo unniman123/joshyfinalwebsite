@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin } from "lucide-react";
 import { TourSummary } from "@/lib/api";
 import navTaxonomy from '@/data/navTaxonomy';
+import { trackTourView } from "@/lib/analytics";
 
 const toSlug = (value: string) => value
   .toLowerCase()
@@ -55,6 +56,7 @@ const ToursGrid = ({
     {tours.map(tour => <Link
       key={tour.id}
       to={`/tours/${tour.slug}`}
+      onClick={() => trackTourView(tour.slug, tour.title)}
       className="block group transition-all duration-300 hover:shadow-lg"
       aria-label={`View details for ${tour.title} tour`}
     >

@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { submitTourEnquiry } from "@/lib/api/tours";
+import { trackFormSubmission } from "@/lib/analytics";
 interface EnquiryFormProps {
   tourId: string;
 }
@@ -46,6 +47,9 @@ const EnquiryForm = ({
         specialComments: "", // Removed field, sending empty string for API compatibility
         message: formData.message
       });
+
+      // Track form submission in Google Analytics
+      trackFormSubmission('Tour Detail Inquiry Form', tourId);
 
       // Show success toast with accessibility
       toast({

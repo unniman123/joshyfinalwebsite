@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Filter, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface CategoryFilterProps {
   onFiltersChange?: (filters: FilterState) => void;
@@ -61,6 +62,9 @@ const CategoryFilter = ({ onFiltersChange }: CategoryFilterProps) => {
       ? [...filters.destinations, destination]
       : filters.destinations.filter(d => d !== destination);
     
+    // Track filter usage in Google Analytics
+    trackEvent('Filter', checked ? 'Select Destination' : 'Deselect Destination', destination);
+    
     const newFilters = { ...filters, destinations: newDestinations };
     setFilters(newFilters);
     onFiltersChange?.(newFilters);
@@ -70,6 +74,9 @@ const CategoryFilter = ({ onFiltersChange }: CategoryFilterProps) => {
     const newCategories = checked
       ? [...filters.categories, category]
       : filters.categories.filter(c => c !== category);
+    
+    // Track filter usage in Google Analytics
+    trackEvent('Filter', checked ? 'Select Category' : 'Deselect Category', category);
     
     const newFilters = { ...filters, categories: newCategories };
     setFilters(newFilters);
@@ -89,6 +96,9 @@ const CategoryFilter = ({ onFiltersChange }: CategoryFilterProps) => {
   };
 
   const clearAllFilters = () => {
+    // Track clear all filters action
+    trackEvent('Filter', 'Clear All Filters', 'User Action');
+    
     const clearedFilters = {
       destinations: [],
       categories: [],

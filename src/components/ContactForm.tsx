@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { submitTourEnquiry } from "@/lib/api/tours";
 import { submitContactEnquiry } from "@/lib/api/contact";
+import { trackFormSubmission } from "@/lib/analytics";
 interface ContactFormProps {
   tourId?: string;
 }
@@ -74,6 +75,12 @@ const ContactForm = ({
           message: `Destinations: ${formData.destinationsInterested}`
         });
       }
+
+      // Track form submission in Google Analytics
+      trackFormSubmission(
+        isContactPage ? 'Contact Form' : 'Tour Inquiry Form',
+        isContactPage ? formData.destinationsInterested : undefined
+      );
 
       // Show success toast
       toast({

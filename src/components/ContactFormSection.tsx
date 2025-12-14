@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, MapPin, Users, Hotel, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { submitContactEnquiry } from "@/lib/api/contact";
+import { trackFormSubmission } from "@/lib/analytics";
 const ContactFormSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +40,9 @@ const ContactFormSection = () => {
         email: formData.contactWhatsapp, // Using WhatsApp as contact method
         message: `Contact WhatsApp: ${formData.contactWhatsapp}\nNationality: ${formData.nationality}\nDestination: ${formData.destinationInterested}\nTour Days: ${formData.tourDays}\nTravel Date: ${formData.travelDate}\nRooms: ${formData.roomsCount}\nHotel Category: ${formData.hotelCategory}\nSpecial Comments: ${formData.specialComments}`
       });
+
+      // Track form submission in Google Analytics
+      trackFormSubmission('Homepage Quote Request Form', formData.destinationInterested);
 
       // Show success toast with accessibility
       toast({

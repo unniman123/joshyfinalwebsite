@@ -1,10 +1,14 @@
 import { useState } from "react";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { trackButtonClick } from "@/lib/analytics";
 
 const WhatsAppFloat = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleWhatsAppClick = () => {
+    // Track WhatsApp button click in Google Analytics
+    trackButtonClick('WhatsApp Float Button', 'Global');
+    
     const phoneNumber = "919539507516"; // WhatsApp number: +91 9539 50 7516
     const message = "Need to plan my trip";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

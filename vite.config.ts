@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import Sitemap from "vite-plugin-sitemap";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,13 +14,13 @@ export default defineConfig(({ mode }) => ({
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     },
   },
+  preview: {
+    port: 4173,
+    strictPort: false,
+    host: true,
+  },
   plugins: [
     react(),
-    // Generate sitemap.xml at build time and place it in the dist/ root.
-    // Hostname must be the full canonical URL for accurate sitemap entries.
-    Sitemap({
-      hostname: "https://keralatoursglobal.com",
-    }),
   ].filter(Boolean),
   resolve: {
     alias: {
